@@ -173,8 +173,8 @@
         "settings": {
           "enable_custombar": true,
           "custom_top_bar1": "Compra Segura",
-          "custom_top_bar2": "Colección Exclusiva",
-          "custombarcolor": "#1a1a1a"
+          "custom_top_bar2": "Todo Colombia",
+          "custombarcolor": "#5e98ea"
         }
       },
       "header": {
@@ -182,7 +182,6 @@
         "custom_css": [],
         "settings": {
           "color_scheme": "background-1",
-          "logo": "shopify://shop_images/AURA.png",
           "logo_width": 130,
           "logo_position": "middle-left",
           "menu": "",
