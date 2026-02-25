@@ -174,7 +174,7 @@
           "enable_custombar": true,
           "custom_top_bar1": "Compra Segura",
           "custom_top_bar2": "Todo Colombia",
-          "custombarcolor": "#5e98ea"
+          "custombarcolor": "#000000"
         }
       },
       "header": {
