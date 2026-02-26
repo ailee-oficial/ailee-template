@@ -16,6 +16,18 @@
           "type": "title",
           "settings": {}
         },
+        "6c94aa0a-aa1b-44a9-a2c7-74743398574b": {
+          "type": "shopify://apps/audien-reviews/blocks/star_rating/ce002b21-24e0-4d65-87ca-18c9770b24d4",
+          "settings": {
+            "size": 16,
+            "rating_text": "+200 Clientes satisfechos",
+            "rating_hide_text": false,
+            "widget_alignment": "left",
+            "rating_color_for_star": "rgba(0,0,0,0)",
+            "primary_color_for_star": "rgba(0,0,0,0)",
+            "custom_css": ""
+          }
+        },
         "price": {
           "type": "price",
           "settings": {}
@@ -96,10 +108,6 @@
             "content": "<p>Tienes 30 días para contactarte con nuestra línea de SAC:<br/>y solicitar tu devolución o garantía</p>",
             "page": ""
           }
-        },
-        "6c94aa0a-aa1b-44a9-a2c7-74743398574b": {
-          "type": "shopify://apps/audien-reviews/blocks/star_rating/ce002b21-24e0-4d65-87ca-18c9770b24d4",
-          "settings": {}
         }
       },
       "block_order": [
