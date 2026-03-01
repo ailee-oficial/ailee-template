@@ -208,6 +208,7 @@
         "template--16985062932724__b6fc2703-d30b-40d4-b2cb-fcc2eade4e34-column-1": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/whisk_e04e463fbc22066b6eb4a212b333ce95dr_optimized.png",
             "title": "<strong>Valentina Torres (Bogotá)</strong>",
             "text": "<h5>⭐️⭐️⭐️⭐️⭐️</h5><h5><em>Me daba un poco de miedo pedir por internet, pero el pago contra entrega me dio mucha confianza. Pedí mis tenis el martes y el jueves ya los tenía en mi casa. Pagué en efectivo al recibirlos. ¡Súper recomendados!</em></h5>",
             "link_label": "",
@@ -217,6 +218,7 @@
         "template--16985062932724__b6fc2703-d30b-40d4-b2cb-fcc2eade4e34-column-2": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/whisk_4e3717cb04ae246bab54f6aec05ae458dr_optimized.jpg",
             "title": "Mateo Holguín (Medellín)",
             "text": "<h5>⭐️⭐️⭐️⭐️⭐️</h5><h5><em>Sinceramente me sorprendió la calidad. Los acabados son perfectos y el material se siente muy resistente, nada que envidiar a las tiendas de centro comercial. Además, llegaron en su caja original impecable. ¡10/10!</em></h5>",
             "link_label": "",
@@ -226,6 +228,7 @@
         "template--16985062932724__b6fc2703-d30b-40d4-b2cb-fcc2eade4e34-column-3": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/whisk_4a357a802853195b8154f31f1a2dad83dr_optimized.jpg",
             "title": "Javier Castro (Cali)",
             "text": "<h5>⭐️⭐️⭐️⭐️⭐️</h5><h5><em>Los compré para el trabajo porque paso mucho tiempo de pie y son increíblemente livianos. La suela amortigua muy bien y la talla me quedó exacta siguiendo la guía que tienen en la página.</em></h5>",
             "link_label": "",
@@ -235,6 +238,7 @@
         "column_38AXm4": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/whisk_3808dcc32f4aacbba1647c348430b8e8dr_optimized.jpg",
             "title": "Camila Restrepo (Barranquilla)",
             "text": "<h5>⭐️⭐️⭐️⭐️⭐️</h5><h5><em>Son hermosos, el color es exactamente igual al de las fotos. Se ven súper exclusivos y me han preguntado mucho dónde los compré. El envío gratis a la costa fue un gran plus.</em></h5>",
             "link_label": "",
@@ -244,7 +248,8 @@
         "column_3tk8Gw": {
           "type": "column",
           "settings": {
-            "title": "Felipe Morales (Bucaramanga)",
+            "image": "shopify://shop_images/whisk_5af8b5aabce586da33246366427b1ca3dr_optimized.jpg",
+            "title": "Camila Morales (Bucaramanga)",
             "text": "<h5>⭐️⭐️⭐️⭐️⭐️</h5><h5><em>Ya es el segundo par que pido en Aura Shop y la experiencia siempre es excelente. Son cumplidos con los tiempos y el producto siempre llega en perfecto estado. Gran opción para comprar calzado premium.</em></h5>",
             "link_label": "",
             "link": ""
