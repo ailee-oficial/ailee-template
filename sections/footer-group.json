@@ -14,13 +14,6 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "image_MG8ykG": {
-          "type": "image",
-          "settings": {
-            "image_width": 255,
-            "alignment": ""
-          }
-        },
         "ce4df638-505d-4898-a818-5fe4fcaa4e11": {
           "type": "text",
           "settings": {
@@ -37,7 +30,6 @@
         }
       },
       "block_order": [
-        "image_MG8ykG",
         "ce4df638-505d-4898-a818-5fe4fcaa4e11",
         "f9dc0b7d-bfd8-48e8-b286-8fda5de2783a"
       ],
