@@ -1,0 +1,173 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "rodillera_titulo": {
+          "type": "custom_liquid",
+          "name": "Titulo Verificado",
+          "settings": {
+            "custom_liquid": "<div class=\"product-verified-wrapper\"><h1 class=\"product-title-inline\">{{ product.title }}<img class=\"inline-check-icon\" src=\"https://cdn-icons-png.flaticon.com/512/1828/1828640.png\" alt=\"Verificado\"></h1></div><style>.product-verified-wrapper{margin:0 0 10px!important;padding:0;line-height:1.2;}.product-title-inline{font-family:var(--font-heading-family),sans-serif;font-weight:bold;font-size:30px;color:#1A1410;display:inline;margin:0;padding:0;word-wrap:break-word;}.inline-check-icon{display:inline-block;vertical-align:middle;width:24px;height:24px;margin-left:4px;object-fit:contain;}@media(max-width:749px){.product-title-inline{font-size:26px;}.inline-check-icon{width:18px;height:18px;}}</style>"
+          }
+        },
+        "rodillera_reviews": {
+          "type": "custom_liquid",
+          "name": "Reviews",
+          "settings": {
+            "custom_liquid": "<div class=\"review-container\"><div class=\"stars\">{% for i in (1..5) %}<span class=\"star\">★</span>{% endfor %}</div><span class=\"review-text\"> 4.9 | +240 Clientes Satisfechos</span></div><style>.review-container{display:flex;align-items:center;font-size:18px;font-style:italic;margin:0;}.stars{color:#FFD700;font-size:17px;display:flex;align-items:center;}.star{margin-right:1px;}.review-text{margin-left:8px;color:#1A1410;font-size:14px;font-weight:normal;}</style>"
+          }
+        },
+        "rodillera_precio": {
+          "type": "custom_liquid",
+          "name": "Precio",
+          "settings": {
+            "custom_liquid": "<div class=\"custom-price-container\">{%- if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price -%}<div class=\"price-header\"><span class=\"price-item price-item--regular\">{{ product.selected_or_first_available_variant.compare_at_price | money }}</span><span class=\"badge-oferta\">Oferta Limitada</span></div>{%- endif -%}<div class=\"price-row-inline\"><div class=\"price-main\"><span class=\"price-item price-item--sale\">{{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}</span><span class=\"currency-code\">COP</span></div><div class=\"shipping-tag\"><span class=\"shipping-text\">+ Envíos <strong>GRATIS</strong></span></div></div></div><style>.custom-price-container{margin:15px 0;font-family:var(--font-body-family),sans-serif;}.price-header{display:flex;align-items:center;gap:10px;margin-bottom:5px;}.price-item--regular{color:#8c8c8c;text-decoration:line-through;font-size:1.8rem;}.badge-oferta{background:#3D2B1F;color:#FAF6F0;padding:3px 14px;border-radius:0;font-size:1.1rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;}.price-row-inline{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px;}.price-main{display:flex;align-items:baseline;gap:6px;}.price-item--sale{color:#1A1410;font-size:3.3rem;font-weight:900;line-height:1;}.currency-code{font-size:1.8rem;font-weight:700;color:#1A1410;}.shipping-tag{color:#1A1410;font-size:1.8rem;font-weight:700;}.shipping-tag strong{font-weight:900;}@media(max-width:480px){.price-item--sale{font-size:2.9rem;}}</style>"
+          }
+        },
+        "rodillera_inventory": {
+          "type": "inventory",
+          "settings": {
+            "text_style": "uppercase",
+            "inventory_threshold": 0,
+            "show_inventory_quantity": false
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "rodillera_garantia": {
+          "type": "custom_liquid",
+          "name": "Garantía 15 días",
+          "settings": {
+            "custom_liquid": "<div class=\"garantia-15\"><div class=\"garantia-15__icon\">🛡️</div><div class=\"garantia-15__content\"><p class=\"garantia-15__headline\">Si en <strong>15 días</strong> no sientes mejoría,<br>te devolvemos tu dinero — sin preguntas.</p><p class=\"garantia-15__sub\">Creemos tanto en nuestra rodillera que asumimos el riesgo por ti. Úsala, siéntela, compruébala.</p></div></div><style>.garantia-15{display:flex;align-items:flex-start;gap:14px;background:#FAF6F0;border:1.5px solid #C4A882;border-left:5px solid #3D2B1F;padding:16px 18px;margin:14px 0;}.garantia-15__icon{font-size:2.4rem;line-height:1;flex-shrink:0;margin-top:2px;}.garantia-15__content{flex:1;}.garantia-15__headline{margin:0 0 6px;font-family:\"Jost\",sans-serif;font-size:1.4rem;font-weight:600;color:#1A1410;line-height:1.4;}.garantia-15__headline strong{color:#3D2B1F;font-weight:800;}.garantia-15__sub{margin:0;font-family:\"Jost\",sans-serif;font-size:1.2rem;color:#7A6555;line-height:1.5;}</style>"
+          }
+        },
+        "rodillera_clock": {
+          "type": "clocktext",
+          "settings": {
+            "clocktext": "Oferta por tiempo limitado — stock reducido."
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "rodillera_shipping": {
+          "type": "shippingarrow",
+          "settings": {
+            "preshipsby": "Se envía en máximo 1",
+            "shippingarrow": "",
+            "postshipsby": "día si confirmas hoy!"
+          }
+        },
+        "rodillera_testimonios": {
+          "type": "custom_liquid",
+          "name": "Prueba social",
+          "settings": {
+            "custom_liquid": "<div class=\"testimonials-carousel-wrapper\"><div class=\"testimonials-container\"><div class=\"testimonial-card\"><div class=\"testimonial-main-layout\"><div class=\"testimonial-image\"><img src=\"https://cdn.shopify.com/s/files/1/0741/8072/2856/files/4_optimized.jpg?v=1772406794\" alt=\"Cliente\"></div><div class=\"testimonial-body-content\"><div class=\"testimonial-stars\">★★★★★</div><p class=\"testimonial-text\">\"Llevaba más de un año con dolor en la rodilla izquierda. A los 8 días de usarla bajó la inflamación notablemente. No pensé que algo así pudiera funcionar tan rápido.\"</p><div class=\"testimonial-footer\"><span class=\"verified-icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M10.2426 16.3137L6 12.071L7.41421 10.6568L10.2426 13.4853L15.8995 7.8284L17.3137 9.24264L10.2426 16.3137Z\" fill=\"#3E84F4\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21ZM12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23Z\" fill=\"#3E84F4\"/></svg></span><span class=\"client-info\"><strong>Carmen L.</strong> (Bogotá) 🇨🇴</span></div></div></div></div><div class=\"testimonial-card\"><div class=\"testimonial-main-layout\"><div class=\"testimonial-image\"><img src=\"https://cdn.shopify.com/s/files/1/0741/8072/2856/files/1_optimized.jpg?v=1772406794\" alt=\"Cliente\"></div><div class=\"testimonial-body-content\"><div class=\"testimonial-stars\">★★★★★</div><p class=\"testimonial-text\">\"Me lesioné jugando fútbol y el médico me recomendó calor para la recuperación. La compré sin esperanzas y superó todo. El calor penetra profundo y alivia de verdad.\"</p><div class=\"testimonial-footer\"><span class=\"verified-icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M10.2426 16.3137L6 12.071L7.41421 10.6568L10.2426 13.4853L15.8995 7.8284L17.3137 9.24264L10.2426 16.3137Z\" fill=\"#3E84F4\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21ZM12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23Z\" fill=\"#3E84F4\"/></svg></span><span class=\"client-info\"><strong>Rodrigo V.</strong> (Medellín) 🇨🇴</span></div></div></div></div><div class=\"testimonial-card\"><div class=\"testimonial-main-layout\"><div class=\"testimonial-image\"><img src=\"https://cdn.shopify.com/s/files/1/0741/8072/2856/files/2_optimized.jpg?v=1772406794\" alt=\"Cliente\"></div><div class=\"testimonial-body-content\"><div class=\"testimonial-stars\">★★★★★</div><p class=\"testimonial-text\">\"Trabajo 10 horas de pie y al final del día las rodillas me mataban. Desde que uso la rodillera por las noches duermo mucho mejor y el dolor ya no es lo que era. 100% recomendada.\"</p><div class=\"testimonial-footer\"><span class=\"verified-icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M10.2426 16.3137L6 12.071L7.41421 10.6568L10.2426 13.4853L15.8995 7.8284L17.3137 9.24264L10.2426 16.3137Z\" fill=\"#3E84F4\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21ZM12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23Z\" fill=\"#3E84F4\"/></svg></span><span class=\"client-info\"><strong>Martha P.</strong> (Cali) 🇨🇴</span></div></div></div></div><div class=\"testimonial-card\"><div class=\"testimonial-main-layout\"><div class=\"testimonial-image\"><img src=\"https://cdn.shopify.com/s/files/1/0741/8072/2856/files/3_optimized.jpg?v=1772406794\" alt=\"Cliente\"></div><div class=\"testimonial-body-content\"><div class=\"testimonial-stars\">★★★★</div><p class=\"testimonial-text\">\"Llegó rápido a Barranquilla y el pago contra entrega me dio mucha confianza. La garantía de 15 días me convenció de probarla. Llevo 3 semanas usándola y no la cambio.\"</p><div class=\"testimonial-footer\"><span class=\"verified-icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M10.2426 16.3137L6 12.071L7.41421 10.6568L10.2426 13.4853L15.8995 7.8284L17.3137 9.24264L10.2426 16.3137Z\" fill=\"#3E84F4\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21ZM12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23Z\" fill=\"#3E84F4\"/></svg></span><span class=\"client-info\"><strong>Jorge A.</strong> (Barranquilla) 🇨🇴</span></div></div></div></div></div></div><style>.testimonials-carousel-wrapper{width:100%;overflow:hidden;padding:0;margin:0;}.testimonials-container{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding:5px 15px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}.testimonials-container::-webkit-scrollbar{display:none;}.testimonial-card{flex:0 0 88%;scroll-snap-align:center;background:#fff;border:1px solid #f0f0f0;border-radius:10px;padding:14px;box-sizing:border-box;box-shadow:0 2px 6px rgba(0,0,0,.03);}.testimonial-main-layout{display:flex;align-items:flex-start;gap:12px;}.testimonial-image img{width:50px;height:50px;border-radius:50%;object-fit:cover;flex-shrink:0;}.testimonial-body-content{flex:1;min-width:0;}.testimonial-stars{font-size:.9rem;margin-bottom:4px;color:#FFD700;}.testimonial-text{margin:0;font-size:1.3rem;line-height:1.3;color:#333;word-break:break-word;}.testimonial-footer{display:flex;align-items:center;gap:5px;margin-top:10px;padding-top:8px;border-top:1px solid #f5f5f5;}.verified-icon svg{width:15px;height:15px;}.client-info{font-size:1.1rem;color:#666;}@media(min-width:768px){.testimonial-card{flex:0 0 350px;}.testimonials-container{justify-content:center;}}</style>"
+          }
+        },
+        "rodillera_moneyback": {
+          "type": "moneybackguarantee",
+          "settings": {}
+        },
+        "rodillera_icons": {
+          "type": "iconss",
+          "settings": {}
+        },
+        "rodillera_incluye": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "¿Qué incluye?",
+            "icon": "gift",
+            "content": "<p>1 Rodillera Térmica con Masaje<br>Cable USB para carga<br>Manual de uso</p>"
+          }
+        },
+        "rodillera_envio": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Información de Envío",
+            "icon": "truck",
+            "content": "<p>Envío gratis a todo Colombia. Tiempo estimado: 2 a 5 días hábiles. Pago contra entrega disponible.</p>"
+          }
+        },
+        "rodillera_devoluciones": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Garantía y Devoluciones",
+            "icon": "return",
+            "content": "<p>Si en los primeros 15 días de uso no notas mejoría, contáctanos y te devolvemos el dinero sin preguntas. Tu satisfacción es nuestra prioridad.</p>"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "rodillera_titulo",
+        "rodillera_reviews",
+        "rodillera_precio",
+        "rodillera_inventory",
+        "variant_picker",
+        "rodillera_garantia",
+        "rodillera_clock",
+        "buy_buttons",
+        "rodillera_shipping",
+        "rodillera_testimonios",
+        "rodillera_moneyback",
+        "rodillera_icons",
+        "rodillera_incluye",
+        "rodillera_envio",
+        "rodillera_devoluciones",
+        "description"
+      ],
+      "settings": {
+        "color_scheme": "background-1",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "stickybutton": true,
+        "stickybuttontext": "Comprar ahora",
+        "custom_css": "button--secondary { background: transparent !important; color: #3D2B1F !important; border: 1.5px solid #3D2B1F !important; }",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "También te puede gustar",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related-products"
+  ]
+}
