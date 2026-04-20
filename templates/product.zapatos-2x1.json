@@ -30,7 +30,7 @@
           "type": "custom_liquid",
           "name": "Precio",
           "settings": {
-            "custom_liquid": "<div class=\"custom-price-container\">\n  {%- if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price -%}\n    <div class=\"price-header\">\n      <span class=\"price-item price-item--regular\">\n        {{ product.selected_or_first_available_variant.compare_at_price | money }}\n      </span>\n      <span class=\"badge-oferta\">Oferta 2x1</span>\n    </div>\n  {%- endif -%}\n\n  <div class=\"price-row-inline\">\n    <div class=\"price-main\">\n      <span class=\"price-item price-item--sale\">\n        {{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}\n      </span>\n      <span class=\"currency-code\">COP</span>\n    </div>\n    \n    <div class=\"shipping-tag\">\n      <span class=\"shipping-text\">+ Envíos <strong>GRATIS</strong></span>\n    </div>\n  </div>\n</div>\n\n<style>\n  .custom-price-container {\n    margin: 15px 0;\n    font-family: var(--font-body-family), sans-serif;\n  }\n\n  /* Precio Original Tachado */\n  .price-header {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    margin-bottom: 5px;\n  }\n\n  .price-item--regular {\n    color: #8c8c8c;\n    text-decoration: line-through;\n    font-size: 1.8rem; /* Tamaño original */\n  }\n\n  /* Badge de Oferta con tu color naranja */\n.badge-oferta {\n  background-color: #00E5FF;\n  color: #0B0B0B;             /* Texto oscuro para legibilidad */\n  padding: 2px 12px;\n  border-radius: 20px;\n  font-size: 1.3rem;\n  font-weight: bold;\n  text-transform: uppercase;\n}\n\n  /* Fila de Precio y Envío */\n  .price-row-inline {\n    display: flex;\n    align-items: baseline;\n    flex-wrap: wrap;\n    gap: 10px;\n  }\n\n  .price-main {\n    display: flex;\n    align-items: baseline;\n    gap: 6px;\n  }\n\n  .price-item--sale {\n    color: #1A1A1A;\n    font-size: 3.3rem; /* Tamaño grande original */\n    font-weight: 900;\n    line-height: 1;\n  }\n\n  .currency-code {\n    font-size: 1.8rem; /* Tamaño original */\n    font-weight: 700;\n    color: #1A1A1A;\n  }\n\n  /* Envío Gratis en la misma línea */\n  .shipping-tag {\n    color: #1A1A1A;\n    font-size: 1.8rem; /* Ajustado para que combine con el COP */\n    font-weight: 700;\n  }\n\n  .shipping-tag strong {\n    font-weight: 900;\n  }\n\n  /* Responsivo */\n  @media (max-width: 480px) {\n    .price-item--sale {\n      font-size: 2.9rem;\n    }\n  }\n</style>"
+            "custom_liquid": "<div class=\"custom-price-container\">\n  {%- if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price -%}\n    <div class=\"price-header\">\n      <span class=\"price-item price-item--regular\">\n        {{ product.selected_or_first_available_variant.compare_at_price | money }}\n      </span>\n      <span class=\"badge-oferta\">Oferta 2x1</span>\n    </div>\n  {%- endif -%}\n\n  <div class=\"price-row-inline\">\n    <div class=\"price-main\">\n      <span class=\"price-item price-item--sale\">\n        {{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}\n      </span>\n      <span class=\"currency-code\">COP</span>\n    </div>\n    \n    <div class=\"shipping-tag\">\n      <span class=\"shipping-text\">+ Envíos <strong>GRATIS</strong></span>\n    </div>\n  </div>\n</div>\n\n<style>\n  .custom-price-container {\n    margin: 15px 0;\n    font-family: var(--font-body-family), sans-serif;\n  }\n\n  /* Precio Original Tachado */\n  .price-header {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    margin-bottom: 5px;\n  }\n\n  .price-item--regular {\n    color: #8c8c8c;\n    text-decoration: line-through;\n    font-size: 1.8rem; /* Tamaño original */\n  }\n\n  /* Badge de Oferta con tu color naranja */\n.badge-oferta {\n  background-color: #3B2114;\n  color: #FAF6F1;\n  padding: 3px 14px;\n  border-radius: 0;\n  font-size: 1.1rem;\n  font-weight: 600;\n  letter-spacing: 0.08em;\n  text-transform: uppercase;\n}\n\n  /* Fila de Precio y Envío */\n  .price-row-inline {\n    display: flex;\n    align-items: baseline;\n    flex-wrap: wrap;\n    gap: 10px;\n  }\n\n  .price-main {\n    display: flex;\n    align-items: baseline;\n    gap: 6px;\n  }\n\n  .price-item--sale {\n    color: #1A1A1A;\n    font-size: 3.3rem; /* Tamaño grande original */\n    font-weight: 900;\n    line-height: 1;\n  }\n\n  .currency-code {\n    font-size: 1.8rem; /* Tamaño original */\n    font-weight: 700;\n    color: #1A1A1A;\n  }\n\n  /* Envío Gratis en la misma línea */\n  .shipping-tag {\n    color: #1A1A1A;\n    font-size: 1.8rem; /* Ajustado para que combine con el COP */\n    font-weight: 700;\n  }\n\n  .shipping-tag strong {\n    font-weight: 900;\n  }\n\n  /* Responsivo */\n  @media (max-width: 480px) {\n    .price-item--sale {\n      font-size: 2.9rem;\n    }\n  }\n</style>"
           }
         },
         "inventory_PaVqzG": {
@@ -125,6 +125,27 @@
         "description": {
           "type": "description",
           "settings": {}
+        },
+        "custom_2x1_explain": {
+          "type": "custom_liquid",
+          "name": "PAR 1 — Explicación",
+          "settings": {
+            "custom_liquid": "<div class=\"par1-explain\"><span class=\"par-step\">PAR 1</span><p>Elige <strong>color y talla</strong> del primer par con los botones de arriba ☝️</p></div><style>.par1-explain {  display:flex; align-items:center; gap:12px;  background:#FAF6F1; border:1.5px solid rgba(59,33,20,0.18);  border-radius:0; padding:12px 16px; margin:12px 0;}.par-step {  background:#3B2114; color:#FAF6F1;  font-family:\"Jost\",sans-serif; font-size:1.1rem;  font-weight:700; letter-spacing:0.1em; text-transform:uppercase;  padding:4px 12px; white-space:nowrap; border-radius:0;}.par1-explain p {  margin:0; font-size:1.35rem; color:#2C1A0E; line-height:1.4;}</style>"
+          }
+        },
+        "custom_size_guide_visual": {
+          "type": "custom_liquid",
+          "name": "Guía de tallas visual",
+          "settings": {
+            "custom_liquid": "<div class=\"size-callout\">\n  <div class=\"size-callout__icon\">📏</div>\n  <div class=\"size-callout__text\">\n    <strong>¿Cuál es tu talla?</strong>\n    <span>Revisa la guía antes de elegir — evita demoras por cambios de talla.</span>\n  </div>\n  <button type=\"button\" class=\"size-callout__btn\" id=\"openSizeGuide2x1\">\n    Ver guía →\n  </button>\n</div>\n\n<div id=\"sizeGuideModal2x1\" class=\"size-modal2\" aria-hidden=\"true\">\n  <div class=\"size-modal2-content\" role=\"dialog\" aria-modal=\"true\">\n    <div class=\"size-modal2-header\">\n      <h3>Guía de tallas</h3>\n      <button type=\"button\" class=\"size-modal2-close\" id=\"closeSizeGuide2x1\">&times;</button>\n    </div>\n    <div class=\"size-modal2-body\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0741/8072/2856/files/tallason_optimized.jpg?v=1773082873\" alt=\"Guía de tallas\" loading=\"lazy\">\n    </div>\n  </div>\n</div>\n\n<style>\n  .size-callout {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    background: #fff8f0;\n    border: 1.5px solid #C4A882;\n    padding: 12px 16px;\n    margin: 10px 0;\n    font-family: 'Jost', sans-serif;\n  }\n  .size-callout__icon {\n    font-size: 1.8rem;\n    flex-shrink: 0;\n  }\n  .size-callout__text {\n    flex: 1;\n    display: flex;\n    flex-direction: column;\n    gap: 2px;\n  }\n  .size-callout__text strong {\n    font-size: 1.3rem;\n    font-weight: 700;\n    color: #2C1A0E;\n    text-transform: uppercase;\n    letter-spacing: 0.06em;\n  }\n  .size-callout__text span {\n    font-size: 1.2rem;\n    color: #7A6555;\n    line-height: 1.3;\n  }\n  .size-callout__btn {\n    background: #3B2114;\n    color: #FAF6F1;\n    border: none;\n    padding: 8px 16px;\n    font-family: 'Jost', sans-serif;\n    font-size: 1.2rem;\n    font-weight: 600;\n    letter-spacing: 0.06em;\n    cursor: pointer;\n    white-space: nowrap;\n    flex-shrink: 0;\n    transition: background 0.2s;\n  }\n  .size-callout__btn:hover { background: #7A5236; }\n  .size-modal2 {\n    display: none;\n    position: fixed;\n    z-index: 9999;\n    inset: 0;\n    background: rgba(0,0,0,0.55);\n    backdrop-filter: blur(3px);\n  }\n  .size-modal2-content {\n    background: #FAF6F1;\n    margin: 5% auto;\n    width: 90%;\n    max-width: 580px;\n    border-radius: 0;\n    overflow: hidden;\n    animation: fadeUp 0.22s ease-out;\n  }\n  @keyframes fadeUp {\n    from { transform: translateY(-20px); opacity: 0; }\n    to { transform: translateY(0); opacity: 1; }\n  }\n  .size-modal2-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 14px 20px;\n    border-bottom: 1px solid #EDE0CE;\n    background: #3B2114;\n  }\n  .size-modal2-header h3 {\n    margin: 0;\n    font-family: 'Jost', sans-serif;\n    font-size: 1.5rem;\n    font-weight: 600;\n    letter-spacing: 0.1em;\n    text-transform: uppercase;\n    color: #FAF6F1;\n  }\n  .size-modal2-close {\n    background: none;\n    border: none;\n    font-size: 2.8rem;\n    line-height: 1;\n    cursor: pointer;\n    color: #FAF6F1;\n  }\n  .size-modal2-body {\n    padding: 20px;\n    max-height: 80vh;\n    overflow-y: auto;\n    text-align: center;\n  }\n  .size-modal2-body img { max-width: 100%; height: auto; }\n  @media (max-width: 480px) {\n    .size-modal2-content { margin: 15% auto; width: 95%; }\n    .size-callout { flex-wrap: wrap; }\n    .size-callout__btn { width: 100%; text-align: center; }\n  }\n</style>\n\n<script>\n  (function() {\n    var modal = document.getElementById('sizeGuideModal2x1');\n    var btn = document.getElementById('openSizeGuide2x1');\n    var closeBtn = document.getElementById('closeSizeGuide2x1');\n    if (!btn || !modal) return;\n    btn.onclick = function() { modal.style.display = 'block'; document.body.style.overflow = 'hidden'; };\n    closeBtn.onclick = function() { modal.style.display = 'none'; document.body.style.overflow = ''; };\n    window.addEventListener('click', function(e) {\n      if (e.target === modal) { modal.style.display = 'none'; document.body.style.overflow = ''; }\n    });\n  })();\n</script>"
+          }
+        },
+        "custom_par2_explain": {
+          "type": "custom_liquid",
+          "name": "PAR 2 — Explicación",
+          "settings": {
+            "custom_liquid": "<div class=\"par2-explain\"><div class=\"par2-header\"><span class=\"par2-step\">PAR 2</span><strong class=\"par2-title\">¿Y el segundo par?</strong></div><p class=\"par2-body\">Al tocar el botón de compra, el formulario de pedido te preguntará el <strong>color y talla del segundo par</strong> — sin ningún costo adicional.</p></div><style>.par2-explain {  background:#EDE0CE; border-left:4px solid #3B2114;  padding:14px 16px; margin:14px 0 6px;}.par2-header {  display:flex; align-items:center; gap:10px; margin-bottom:6px;}.par2-step {  background:#C4A882; color:#3B2114;  font-family:\"Jost\",sans-serif; font-size:1.1rem;  font-weight:700; letter-spacing:0.1em; text-transform:uppercase;  padding:3px 10px; border-radius:0;}.par2-title {  font-family:\"Jost\",sans-serif; font-size:1.35rem;  color:#2C1A0E; font-weight:700;}.par2-body {  margin:0; font-size:1.3rem; color:#2C1A0E; line-height:1.5;}</style>"
+          }
         }
       },
       "block_order": [
@@ -133,9 +154,11 @@
         "custom_liquid_KX6Vd4",
         "inventory_PaVqzG",
         "variant_picker",
-        "custom_liquid_iWDE9T",
+        "custom_2x1_explain",
+        "custom_size_guide_visual",
         "1088bb43-2931-4cb5-b642-6c5e04e45224",
         "buy_buttons",
+        "custom_par2_explain",
         "eed7bb10-67b9-4655-8c71-ca64ed54fb48",
         "custom_liquid_TJNJiE",
         "3122dfde-b867-4a3c-9e0f-cf61bd664e99",
@@ -147,7 +170,7 @@
       ],
       "custom_css": [
         "div.product__title > h1 {font-size: 17px !important;}",
-        ".button--secondary {background-color: #7069bc; color: white;}"
+        ".button--secondary {background-color: transparent !important; color: #3B2114 !important; border: 1.5px solid #3B2114 !important;}"
       ],
       "settings": {
         "new_product_page_media": true,
@@ -161,7 +184,7 @@
         "textbadge_background": "#000000",
         "badge_text": "capitalize",
         "stickybutton": true,
-        "stickybuttontext": "Select Colors",
+        "stickybuttontext": "Elige tu talla",
         "atcicon": true,
         "atcsavings": false,
         "mostpopularcolor": "#1a1a1a",
