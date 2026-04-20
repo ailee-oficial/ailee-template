@@ -1,0 +1,490 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "rodillera_titulo": {
+          "type": "custom_liquid",
+          "name": "Titulo Verificado",
+          "settings": {
+            "custom_liquid": "<div class=\"product-verified-wrapper\">\n    <h1 class=\"product-title-inline\">\n        {{ product.title }}\n        <img class=\"inline-check-icon\" src=\"https://cdn-icons-png.flaticon.com/512/1828/1828640.png\" alt=\"Verificado\">\n    </h1>\n</div>\n\n<style>\n    .product-verified-wrapper {\n        margin: 0 0 10px 0 !important;\n        padding: 0;\n        line-height: 1.2;\n    }\n    .product-title-inline {\n        font-family: var(--font-heading-family), sans-serif;\n        font-weight: var(--font-heading-weight, bold);\n        font-size: 30px;\n        color: #1A1A1A;\n        display: inline;\n        margin: 0;\n        padding: 0;\n        word-wrap: break-word;\n    }\n    .inline-check-icon {\n        display: inline-block;\n        vertical-align: middle;\n        width: 24px;\n        height: 24px;\n        margin-left: 4px;\n        object-fit: contain;\n    }\n    @media (max-width: 749px) {\n        .product-title-inline { font-size: 26px; }\n        .inline-check-icon { width: 18px; height: 18px; }\n    }\n</style>"
+          }
+        },
+        "rodillera_reviews": {
+          "type": "custom_liquid",
+          "name": "Reviews",
+          "settings": {
+            "custom_liquid": "<div class=\"review-container\">\n  <div class=\"stars\">\n    {% for i in (1..5) %}\n      <span class=\"star\">★</span>\n    {% endfor %}\n  </div>\n  <span class=\"review-text\"> 4.9 | +240 Clientes Satisfechos</span>\n</div>\n\n<style>\n  .review-container {\n    display: flex;\n    align-items: center;\n    font-family: Arial, sans-serif;\n    font-size: 18px;\n    font-style: italic;\n    font-weight: normal;\n    margin-top: 0;\n    margin-bottom: 0;\n  }\n  .stars {\n    color: #FFD700;\n    font-size: 17px;\n    display: flex;\n    align-items: center;\n  }\n  .star { margin-right: 1px; }\n  .review-text {\n    margin-left: 8px;\n    color: #000;\n    font-size: 14px;\n    font-weight: normal;\n  }\n</style>"
+          }
+        },
+        "rodillera_precio": {
+          "type": "custom_liquid",
+          "name": "Precio",
+          "settings": {
+            "custom_liquid": "<div class=\"custom-price-container\">{%- if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price -%}<div class=\"price-header\"><span class=\"price-item price-item--regular\">{{ product.selected_or_first_available_variant.compare_at_price | money }}</span><span class=\"badge-oferta\">Oferta Limitada</span></div>{%- endif -%}<div class=\"price-row-inline\"><div class=\"price-main\"><span class=\"price-item price-item--sale\">{{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}</span><span class=\"currency-code\">COP</span></div><div class=\"shipping-tag\"><span class=\"shipping-text\">+ Envíos <strong>GRATIS</strong></span></div></div></div><style>.custom-price-container{margin:15px 0;font-family:var(--font-body-family),sans-serif;}.price-header{display:flex;align-items:center;gap:10px;margin-bottom:5px;}.price-item--regular{color:#8c8c8c;text-decoration:line-through;font-size:1.8rem;}.badge-oferta{background:#3D2B1F;color:#FAF6F0;padding:3px 14px;border-radius:0;font-size:1.1rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;}.price-row-inline{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px;}.price-main{display:flex;align-items:baseline;gap:6px;}.price-item--sale{color:#1A1410;font-size:3.3rem;font-weight:900;line-height:1;}.currency-code{font-size:1.8rem;font-weight:700;color:#1A1410;}.shipping-tag{color:#1A1410;font-size:1.8rem;font-weight:700;}.shipping-tag strong{font-weight:900;}@media(max-width:480px){.price-item--sale{font-size:2.9rem;}}</style>"
+          }
+        },
+        "rodillera_inventory": {
+          "type": "inventory",
+          "settings": {
+            "text_style": "uppercase",
+            "inventory_threshold": 0,
+            "show_inventory_quantity": false
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "rodillera_garantia": {
+          "type": "custom_liquid",
+          "name": "Garantía 15 días",
+          "settings": {
+            "custom_liquid": "<div class=\"garantia-15\"><div class=\"garantia-15__icon\">🛡️</div><div class=\"garantia-15__content\"><p class=\"garantia-15__headline\">Si en <strong>15 días</strong> no sientes mejoría,<br>te devolvemos tu dinero — sin preguntas.</p><p class=\"garantia-15__sub\">Creemos tanto en nuestra rodillera que asumimos el riesgo por ti. Úsala, siéntela, compruébala.</p></div></div><style>.garantia-15{display:flex;align-items:flex-start;gap:14px;background:#FAF6F0;border:1.5px solid #C4A882;border-left:5px solid #3D2B1F;padding:16px 18px;margin:14px 0;}.garantia-15__icon{font-size:2.4rem;line-height:1;flex-shrink:0;margin-top:2px;}.garantia-15__content{flex:1;}.garantia-15__headline{margin:0 0 6px;font-family:\"Jost\",sans-serif;font-size:1.4rem;font-weight:600;color:#1A1410;line-height:1.4;}.garantia-15__headline strong{color:#3D2B1F;font-weight:800;}.garantia-15__sub{margin:0;font-family:\"Jost\",sans-serif;font-size:1.2rem;color:#7A6555;line-height:1.5;}</style>"
+          }
+        },
+        "rodillera_clock": {
+          "type": "clocktext",
+          "settings": {
+            "clocktext": "Oferta por tiempo limitado — stock reducido."
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "rodillera_shipping": {
+          "type": "shippingarrow",
+          "settings": {
+            "preshipsby": "Se envía en máximo 1",
+            "shippingarrow": "",
+            "postshipsby": "día si confirmas hoy!"
+          }
+        },
+        "rodillera_testimonios": {
+          "type": "custom_liquid",
+          "name": "Prueba social",
+          "settings": {
+            "custom_liquid": "<div class=\"testimonials-carousel-wrapper\"><div class=\"testimonials-container\"><div class=\"testimonial-card\"><div class=\"testimonial-main-layout\"><div class=\"testimonial-image\"><img src=\"https://cdn.shopify.com/s/files/1/0741/8072/2856/files/4_optimized.jpg?v=1772406794\" alt=\"Cliente\"></div><div class=\"testimonial-body-content\"><div class=\"testimonial-stars\">★★★★★</div><p class=\"testimonial-text\">\"Llevaba más de un año con dolor en la rodilla izquierda. A los 8 días de usarla bajó la inflamación notablemente. No pensé que algo así pudiera funcionar tan rápido.\"</p><div class=\"testimonial-footer\"><span class=\"verified-icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M10.2426 16.3137L6 12.071L7.41421 10.6568L10.2426 13.4853L15.8995 7.8284L17.3137 9.24264L10.2426 16.3137Z\" fill=\"#3E84F4\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21ZM12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 23 12 23Z\" fill=\"#3E84F4\"/></svg></span><span class=\"client-info\"><strong>Carmen L.</strong> (Bogotá) 🇨🇴</span></div></div></div></div><div class=\"testimonial-card\"><div class=\"testimonial-main-layout\"><div class=\"testimonial-image\"><img src=\"https://cdn.shopify.com/s/files/1/0741/8072/2856/files/1_optimized.jpg?v=1772406794\" alt=\"Cliente\"></div><div class=\"testimonial-body-content\"><div class=\"testimonial-stars\">★★★★★</div><p class=\"testimonial-text\">\"Me lesioné jugando fútbol y el médico me recomendó calor para la recuperación. La compré sin esperanzas y superó todo. El calor penetra profundo y alivia de verdad.\"</p><div class=\"testimonial-footer\"><span class=\"verified-icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M10.2426 16.3137L6 12.071L7.41421 10.6568L10.2426 13.4853L15.8995 7.8284L17.3137 9.24264L10.2426 16.3137Z\" fill=\"#3E84F4\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21ZM12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 23 12 23Z\" fill=\"#3E84F4\"/></svg></span><span class=\"client-info\"><strong>Rodrigo V.</strong> (Medellín) 🇨🇴</span></div></div></div></div><div class=\"testimonial-card\"><div class=\"testimonial-main-layout\"><div class=\"testimonial-image\"><img src=\"https://cdn.shopify.com/s/files/1/0741/8072/2856/files/2_optimized.jpg?v=1772406794\" alt=\"Cliente\"></div><div class=\"testimonial-body-content\"><div class=\"testimonial-stars\">★★★★★</div><p class=\"testimonial-text\">\"Trabajo 10 horas de pie y al final del día las rodillas me mataban. Desde que uso la rodillera por las noches duermo mucho mejor y el dolor ya no es lo que era. 100% recomendada.\"</p><div class=\"testimonial-footer\"><span class=\"verified-icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M10.2426 16.3137L6 12.071L7.41421 10.6568L10.2426 13.4853L15.8995 7.8284L17.3137 9.24264L10.2426 16.3137Z\" fill=\"#3E84F4\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21ZM12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 23 12 23Z\" fill=\"#3E84F4\"/></svg></span><span class=\"client-info\"><strong>Martha P.</strong> (Cali) 🇨🇴</span></div></div></div></div><div class=\"testimonial-card\"><div class=\"testimonial-main-layout\"><div class=\"testimonial-image\"><img src=\"https://cdn.shopify.com/s/files/1/0741/8072/2856/files/3_optimized.jpg?v=1772406794\" alt=\"Cliente\"></div><div class=\"testimonial-body-content\"><div class=\"testimonial-stars\">★★★★</div><p class=\"testimonial-text\">\"Llegó rápido a Barranquilla y el pago contra entrega me dio mucha confianza. La garantía de 15 días me convenció de probarla. Llevo 3 semanas usándola y no la cambio.\"</p><div class=\"testimonial-footer\"><span class=\"verified-icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M10.2426 16.3137L6 12.071L7.41421 10.6568L10.2426 13.4853L15.8995 7.8284L17.3137 9.24264L10.2426 16.3137Z\" fill=\"#3E84F4\"/><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21ZM12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 23 12 23Z\" fill=\"#3E84F4\"/></svg></span><span class=\"client-info\"><strong>Jorge A.</strong> (Barranquilla) 🇨🇴</span></div></div></div></div></div></div><style>.testimonials-carousel-wrapper{width:100%;overflow:hidden;padding:0;margin:0;}.testimonials-container{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding:5px 15px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}.testimonials-container::-webkit-scrollbar{display:none;}.testimonial-card{flex:0 0 88%;scroll-snap-align:center;background:#fff;border:1px solid #f0f0f0;border-radius:10px;padding:14px;box-sizing:border-box;box-shadow:0 2px 6px rgba(0,0,0,.03);}.testimonial-main-layout{display:flex;align-items:flex-start;gap:12px;}.testimonial-image img{width:50px;height:50px;border-radius:50%;object-fit:cover;flex-shrink:0;}.testimonial-body-content{flex:1;min-width:0;}.testimonial-stars{font-size:.9rem;margin-bottom:4px;color:#FFD700;}.testimonial-text{margin:0;font-size:1.3rem;line-height:1.3;color:#333;word-break:break-word;}.testimonial-footer{display:flex;align-items:center;gap:5px;margin-top:10px;padding-top:8px;border-top:1px solid #f5f5f5;}.verified-icon svg{width:15px;height:15px;}.client-info{font-size:1.1rem;color:#666;}@media(min-width:768px){.testimonial-card{flex:0 0 350px;}.testimonials-container{justify-content:center;}}</style>"
+          }
+        },
+        "rodillera_moneyback": {
+          "type": "moneybackguarantee",
+          "settings": {
+            "moneybackguarantee": "15 DÍAS DE GARANTÍA TOTAL"
+          }
+        },
+        "rodillera_icons": {
+          "type": "iconss",
+          "settings": {
+            "text1": "Garantía Satisfacción",
+            "text2": "Pagos Contraentrega",
+            "iconcolorreturns": "#1a1a1a"
+          }
+        },
+        "rodillera_incluye": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "¿Qué Incluye?",
+            "icon": "clipboard",
+            "content": "<h5>• <em><strong>Rodillera Térmica con Masaje:</strong></em> Dispositivo de calor terapéutico con función de masaje por vibración.</h5><h5>• <em><strong>Cable USB para carga:</strong></em> Recarga cómoda desde cualquier cargador estándar.</h5><h5>• <em><strong>Manual de uso en español:</strong></em> Guía paso a paso para aprovechar al máximo sus funciones.</h5>",
+            "page": ""
+          }
+        },
+        "rodillera_envio": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Información de Envío",
+            "icon": "truck",
+            "content": "<h5>• <em><strong>Envío Totalmente Gratis:</strong></em> A cualquier ciudad de Colombia, sin costo adicional.</h5><h5>• <em><strong>Tiempos de Entrega:</strong></em> Procesamos tu pedido en 24 horas. Recíbelo en 3 a 8 días hábiles.</h5><h5>• <em><strong>Pago Contra Entrega:</strong></em> Pide hoy y paga en efectivo únicamente cuando recibas tu rodillera en casa.</h5>",
+            "page": ""
+          }
+        },
+        "rodillera_devoluciones": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Garantía y Devoluciones",
+            "icon": "return",
+            "content": "<h5>• <em><strong>Garantía de 15 días:</strong></em> Si en los primeros 15 días de uso no notas mejoría, te devolvemos tu dinero sin preguntas.</h5><h5>• <em><strong>Satisfacción Garantizada:</strong></em> Si el producto llega con algún defecto de fábrica, gestionamos la reposición de inmediato sin costo.</h5><h5>• <em><strong>Proceso Sencillo:</strong></em> Escríbenos por WhatsApp y un asesor te guiará en cada paso.</h5>",
+            "page": ""
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "rodillera_titulo",
+        "rodillera_reviews",
+        "rodillera_precio",
+        "rodillera_inventory",
+        "variant_picker",
+        "rodillera_garantia",
+        "rodillera_clock",
+        "buy_buttons",
+        "rodillera_shipping",
+        "rodillera_testimonios",
+        "rodillera_moneyback",
+        "rodillera_icons",
+        "rodillera_incluye",
+        "rodillera_envio",
+        "rodillera_devoluciones",
+        "description"
+      ],
+      "settings": {
+        "color_scheme": "background-1",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "stickybutton": true,
+        "stickybuttontext": "Comprar ahora",
+        "custom_css": "button--secondary { background: transparent !important; color: #3D2B1F !important; border: 1.5px solid #3D2B1F !important; }",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rod_clientes": {
+      "type": "multicolumn",
+      "blocks": {
+        "rc1": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/whisk_e04e463fbc22066b6eb4a212b333ce95dr_optimized.png",
+            "title": "<strong>Carmen López (Bogotá)</strong>",
+            "text": "<h5>⭐️⭐️⭐️⭐️⭐️</h5><h5><em>Tenía artritis en ambas rodillas y el dolor me impedía caminar más de dos cuadras. A la semana de usar la rodillera ya dormía sin despertarme. Gracias al pago contraentrega me atreví a probarla sin miedo.</em></h5>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "rc2": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/whisk_4e3717cb04ae246bab54f6aec05ae458dr_optimized.jpg",
+            "title": "Rodrigo Vásquez (Medellín)",
+            "text": "<h5>⭐️⭐️⭐️⭐️⭐️</h5><h5><em>Me lesioné el menisco y el fisioterapeuta me recomendó terapia de calor entre sesiones. Esta rodillera es exactamente lo que necesitaba. Calienta parejo, no quema y dura la batería toda la noche.</em></h5>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "rc3": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/whisk_4a357a802853195b8154f31f1a2dad83dr_optimized.jpg",
+            "title": "Martha Peña (Cali)",
+            "text": "<h5>⭐️⭐️⭐️⭐️⭐️</h5><h5><em>Trabajo de pie 10 horas al día y llegaba a casa con las rodillas inflamadas. Desde hace un mes uso la rodillera de noche y el cambio es increíble. Me arrepiento de no haberla comprado antes.</em></h5>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "rc4": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/whisk_3808dcc32f4aacbba1647c348430b8e8dr_optimized.jpg",
+            "title": "Gloria Sánchez (Bucaramanga)",
+            "text": "<h5>⭐️⭐️⭐️⭐️⭐️</h5><h5><em>Después de la cirugía de rodilla el médico me dijo que necesitaba calor constante. La probé y es perfecta. Fácil de usar, cómoda y la garantía de 15 días me dio toda la confianza para comprarla.</em></h5>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "rc5": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/whisk_5af8b5aabce586da33246366427b1ca3dr_optimized.jpg",
+            "title": "Jorge Arias (Barranquilla)",
+            "text": "<h5>⭐️⭐️⭐️⭐️</h5><h5><em>Tenía dudas porque nunca había pedido por internet, pero el pago contra entrega me convenció. Llegó rapidísimo a Barranquilla y funciona exactamente como lo describe la página. Muy cumplidos.</em></h5>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "rc1",
+        "rc2",
+        "rc3",
+        "rc4",
+        "rc5"
+      ],
+      "settings": {
+        "title": "Lo que dicen nuestros clientes",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "inverse",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "rod_compare": {
+      "type": "compare-chart",
+      "blocks": {
+        "rc_row1": {
+          "type": "row",
+          "settings": {
+            "benefit": "Garantía 15 días o devolución",
+            "us": true,
+            "others": false
+          }
+        },
+        "rc_row2": {
+          "type": "row",
+          "settings": {
+            "benefit": "Calor Terapéutico Real",
+            "us": true,
+            "others": false
+          }
+        },
+        "rc_row3": {
+          "type": "row",
+          "settings": {
+            "benefit": "Pago Contraentrega",
+            "us": true,
+            "others": false
+          }
+        },
+        "rc_row4": {
+          "type": "row",
+          "settings": {
+            "benefit": "Envíos Gratis",
+            "us": true,
+            "others": false
+          }
+        },
+        "rc_row5": {
+          "type": "row",
+          "settings": {
+            "benefit": "Precios Altos",
+            "us": false,
+            "others": true
+          }
+        }
+      },
+      "block_order": [
+        "rc_row1",
+        "rc_row2",
+        "rc_row3",
+        "rc_row4",
+        "rc_row5"
+      ],
+      "settings": {
+        "title": "¿Por qué elegirnos?",
+        "heading_size": "h1",
+        "text": "<p>Descubre por qué miles de colombianos confían en nuestra rodillera</p>",
+        "button_label": "",
+        "link": "",
+        "button_style_secondary": false,
+        "layout": "table_second",
+        "color_scheme": "background-1",
+        "logo_width": 75,
+        "us_label": "Nosotros",
+        "others_label": "Otros",
+        "benefit_color_scheme": "accent-1",
+        "checkmark_color": "#53af01",
+        "icon_cells_color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rod_sinriesgo": {
+      "type": "multicolumn",
+      "blocks": {
+        "sr1": {
+          "type": "column",
+          "settings": {
+            "title": "Envíos Gratis",
+            "text": "<p>A todo Colombia, sin costo adicional</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "sr2": {
+          "type": "column",
+          "settings": {
+            "title": "15 Días de Garantía",
+            "text": "<p>Si no funciona, te devolvemos tu dinero</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "sr3": {
+          "type": "column",
+          "settings": {
+            "title": "Devoluciones Fáciles",
+            "text": "<p>Proceso simple y sin complicaciones</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "sr1",
+        "sr2",
+        "sr3"
+      ],
+      "settings": {
+        "title": "Pruébanos sin riesgos",
+        "heading_size": "h2",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "background-2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "rod_porcentajes": {
+      "type": "percentage",
+      "blocks": {
+        "pp1": {
+          "type": "row",
+          "settings": {
+            "percentage": 97,
+            "row_text": "<p>Dice que sintió alivio en los primeros 10 días de uso.</p>"
+          }
+        },
+        "pp2": {
+          "type": "row",
+          "settings": {
+            "percentage": 94,
+            "row_text": "<p>Afirma que mejoró su movilidad y calidad del sueño.</p>"
+          }
+        },
+        "pp3": {
+          "type": "row",
+          "settings": {
+            "percentage": 92,
+            "row_text": "<p>Volvería a comprar y la recomendaría a un familiar.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "pp1",
+        "pp2",
+        "pp3"
+      ],
+      "settings": {
+        "title": "Descubre lo que piensan nuestros clientes...",
+        "heading_size": "h1",
+        "text": "<p>Esto es lo que reportan quienes ya alivian su dolor con la rodillera</p>",
+        "color_scheme": "background-1",
+        "layout": "percentages_second",
+        "percentages_headline": "¡Cada cliente importa! 💛",
+        "percentages_headline_size": "h2",
+        "percentages_headline_alignment": "left",
+        "caption": "<p>* Resultados basados en encuesta a clientes después de 15 días de uso.</p>",
+        "button_label": "",
+        "link": "",
+        "button_style_secondary": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rod_faq": {
+      "type": "collapsible-content",
+      "blocks": {
+        "faq1": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Para qué tipos de dolor sirve la rodillera?",
+            "icon": "question_mark",
+            "row_content": "<p>Está diseñada para aliviar el dolor por <strong>artritis, artrosis, lesiones deportivas, menisco, post-cirugía y fatiga por estar de pie</strong> muchas horas. El calor terapéutico mejora la circulación y reduce la inflamación de forma natural.</p>",
+            "page": ""
+          }
+        },
+        "faq2": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cuánto tiempo debo usarla cada día?",
+            "icon": "question_mark",
+            "row_content": "<p>Recomendamos sesiones de <strong>20 a 30 minutos</strong>, una o dos veces al día. Puedes usarla sentado, acostado o caminando gracias a su diseño ergonómico y recargable.</p>",
+            "page": ""
+          }
+        },
+        "faq3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Tienen disponible pago contraentrega?",
+            "icon": "question_mark",
+            "row_content": "<p>Sí. El servicio de pago contraentrega está disponible para todo Colombia y <strong>no tiene ningún costo adicional</strong>. Pides hoy y pagas en efectivo cuando recibes tu rodillera.</p>",
+            "page": ""
+          }
+        },
+        "faq4": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Qué pasa si en 15 días no noto mejoría?",
+            "icon": "question_mark",
+            "row_content": "<p>Te devolvemos tu dinero sin preguntas. Nuestra <strong>garantía de 15 días</strong> es real y sin complicaciones. Solo escríbenos por WhatsApp y un asesor gestionará la devolución de inmediato.</p>",
+            "page": ""
+          }
+        },
+        "faq5": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿En cuánto tiempo recibo mi pedido?",
+            "icon": "question_mark",
+            "row_content": "<p>Procesamos tu pedido el mismo día. La entrega toma entre <strong>3 y 8 días hábiles</strong> dependiendo de tu ciudad. Te enviamos el número de guía para que puedas hacer seguimiento en tiempo real.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq1",
+        "faq2",
+        "faq3",
+        "faq4",
+        "faq5"
+      ],
+      "settings": {
+        "caption": "¿Tienes dudas antes de comprar?",
+        "heading": "Nosotros respondemos tus preguntas",
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "background-1",
+        "container_color_scheme": "background-2",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 4,
+        "padding_bottom": 36
+      }
+    },
+    "ce002b21-24e0-4d65-87ca-18c9770b24d4": {
+      "type": "apps",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "rod_clientes",
+    "rod_compare",
+    "rod_sinriesgo",
+    "rod_porcentajes",
+    "rod_faq",
+    "ce002b21-24e0-4d65-87ca-18c9770b24d4"
+  ]
+}
