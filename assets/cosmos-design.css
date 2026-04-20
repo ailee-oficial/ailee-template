@@ -1,0 +1,427 @@
+/* ============================================================
+   COSMOS MODA — Design System
+   Paleta oficial: #1A1410 · #3D2B1F · #C4A882 · #E8D5BE · #FAF6F0
+   Tipografía: Cormorant Garamond (headings) · Jost (body)
+   ============================================================ */
+
+/* ── FUENTES ─────────────────────────────────────────────── */
+:root {
+  --font-heading-family: 'Cormorant Garamond', Georgia, serif;
+  --font-body-family: 'Jost', system-ui, sans-serif;
+
+  /* Paleta Cosmos oficial */
+  --cm-brown:       #3D2B1F;
+  --cm-brown-mid:   #6B4C36;
+  --cm-beige:       #C4A882;
+  --cm-cream:       #FAF6F0;
+  --cm-nude-light:  #E8D5BE;
+  --cm-text:        #1A1410;
+  --cm-text-muted:  #7A6555;
+  --cm-white:       #ffffff;
+}
+
+/* ── FONDO GLOBAL ────────────────────────────────────────── */
+body {
+  background-color: var(--cm-cream) !important;
+  color: var(--cm-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TIPOGRAFÍA ──────────────────────────────────────────── */
+h1, h2, h3, h4, h5,
+.h1, .h2, .h3, .h4,
+.banner__heading,
+.product__title,
+.card__heading,
+.section-header__title,
+.collection__title {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--cm-text) !important;
+}
+
+body, p, li, span, a, input, button, label,
+.card__information,
+.price__container {
+  font-family: 'Jost', system-ui, sans-serif !important;
+}
+
+/* Escala editorial para títulos de producto */
+.product__title h1,
+.product__title {
+  font-size: clamp(2.2rem, 4vw, 3.2rem) !important;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+}
+
+/* ── ANNOUNCEMENT BAR ─────────────────────────────────────── */
+.announcement-bar,
+.announcement-bar__link,
+.topbarout {
+  background-color: var(--cm-brown) !important;
+  color: var(--cm-cream) !important;
+}
+.topbarout * {
+  color: var(--cm-cream) !important;
+}
+
+/* ── HEADER ──────────────────────────────────────────────── */
+.header-wrapper,
+.header {
+  background-color: var(--cm-cream) !important;
+  border-bottom: 1px solid rgba(59, 33, 20, 0.12) !important;
+}
+.header__heading-link,
+.header__icon,
+.header__menu-item,
+.list-menu__item {
+  color: var(--cm-text) !important;
+}
+.header__menu-item:hover,
+.list-menu__item:hover {
+  color: var(--cm-brown) !important;
+}
+/* Logo en header */
+.header__heading-logo {
+  filter: none;
+}
+
+/* ── BOTONES PRINCIPALES (ATC, CTA) ──────────────────────── */
+.button,
+.button--primary,
+.shopify-payment-button__button--unbranded,
+.cart__checkout-button,
+.product-form__submit {
+  background-color: var(--cm-brown) !important;
+  color: var(--cm-cream) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  font-family: 'Jost', sans-serif !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  font-size: 1.3rem !important;
+  padding: 1.6rem 3rem !important;
+  transition: background-color 0.2s ease, opacity 0.2s ease !important;
+}
+.button:hover,
+.button--primary:hover,
+.product-form__submit:hover {
+  background-color: var(--cm-brown-mid) !important;
+  opacity: 1 !important;
+}
+
+/* Botón secundario */
+.button--secondary {
+  background-color: transparent !important;
+  color: var(--cm-brown) !important;
+  border: 1.5px solid var(--cm-brown) !important;
+  border-radius: 0 !important;
+}
+.button--secondary:hover {
+  background-color: var(--cm-brown) !important;
+  color: var(--cm-cream) !important;
+}
+
+/* ── STICKY ATC ──────────────────────────────────────────── */
+.stickyatc,
+.sticky-atc-bar,
+[class*="sticky-atc"] {
+  background-color: var(--cm-brown) !important;
+  color: var(--cm-cream) !important;
+}
+
+/* ── VARIANT PILLS (tallas / colores) ────────────────────── */
+.swatch__input:checked + .swatch__label,
+.swatch__input:checked + .swatch-label,
+fieldset .select-swatch:checked + label {
+  border-color: var(--cm-brown) !important;
+  background-color: var(--cm-brown) !important;
+  color: var(--cm-cream) !important;
+}
+
+/* Botones de talla */
+.variant-button,
+.variant__button-label,
+.product-form__input--pill label {
+  border-radius: 0 !important;
+  font-family: 'Jost', sans-serif !important;
+  font-size: 1.3rem !important;
+  font-weight: 400;
+  border: 1.5px solid rgba(59, 33, 20, 0.3) !important;
+  color: var(--cm-text) !important;
+  transition: all 0.15s ease;
+}
+.variant-button:hover,
+.product-form__input--pill label:hover {
+  border-color: var(--cm-brown) !important;
+  color: var(--cm-brown) !important;
+}
+.variant-button--active,
+.product-form__input--pill input:checked + label,
+.swatch__input:checked + .swatch__label {
+  background-color: var(--cm-brown) !important;
+  border-color: var(--cm-brown) !important;
+  color: var(--cm-cream) !important;
+}
+
+/* Override negro puro del tema en tallas seleccionadas */
+.product-form__input .swatch-input:checked + .swatch-label,
+fieldset .product-form__input input[type="radio"]:checked + label {
+  background-color: var(--cm-brown) !important;
+  border-color: var(--cm-brown) !important;
+  color: var(--cm-cream) !important;
+}
+
+/* ── BADGES (SALE / SOLD OUT) ────────────────────────────── */
+.badge,
+.product-badge,
+.badge--sale,
+.card__badge .badge {
+  background-color: var(--cm-brown) !important;
+  color: var(--cm-cream) !important;
+  border-radius: 0 !important;
+  font-family: 'Jost', sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+/* Badge personalizado en custom_liquid */
+.badge-oferta {
+  background-color: var(--cm-brown) !important;
+  color: var(--cm-cream) !important;
+  border-radius: 0 !important;
+  font-family: 'Jost', sans-serif !important;
+  letter-spacing: 0.08em !important;
+}
+
+/* ── TARJETAS DE PRODUCTO ─────────────────────────────────── */
+.card-wrapper,
+.card--product,
+.card {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background-color: var(--cm-cream) !important;
+}
+.card__information {
+  padding: 1.4rem 0.4rem 1.6rem !important;
+  text-align: left;
+}
+.card__heading {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+/* Precio en tarjetas */
+.price--on-sale .price-item--sale {
+  color: var(--cm-brown) !important;
+  font-weight: 600;
+}
+.price--on-sale .price-item--regular {
+  color: var(--cm-text-muted) !important;
+}
+
+/* ── COLECCIÓN / GRILLA ──────────────────────────────────── */
+.collection {
+  background-color: var(--cm-cream) !important;
+}
+.collection__title {
+  font-size: clamp(2.8rem, 5vw, 5rem) !important;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+}
+
+/* ── PRECIOS EN PRODUCTO ─────────────────────────────────── */
+.price-item--sale {
+  color: var(--cm-text) !important;
+  font-weight: 700;
+}
+.price-item--regular {
+  color: var(--cm-text-muted) !important;
+}
+
+/* ── CARRITO / DRAWER ────────────────────────────────────── */
+.cart-drawer,
+.cart-notification {
+  background-color: var(--cm-cream) !important;
+}
+.cart-drawer__header {
+  border-bottom: 1px solid var(--cm-nude-light) !important;
+}
+.cart-drawer__footer {
+  border-top: 1px solid var(--cm-nude-light) !important;
+  background-color: var(--cm-nude-light) !important;
+}
+.totals__total-value {
+  color: var(--cm-brown) !important;
+  font-weight: 700;
+}
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+.footer {
+  background-color: var(--cm-brown) !important;
+  color: var(--cm-cream) !important;
+}
+.footer * {
+  color: var(--cm-cream) !important;
+}
+.footer a:hover {
+  color: var(--cm-beige) !important;
+}
+.footer__heading {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 1.8rem !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase;
+  color: var(--cm-beige) !important;
+}
+
+/* ── SEPARADORES / BORDES ────────────────────────────────── */
+.section,
+.shopify-section {
+  border-color: var(--cm-nude-light) !important;
+}
+
+/* ── INPUTS / FORMULARIOS ────────────────────────────────── */
+.field__input,
+.select__select,
+input[type="text"],
+input[type="email"] {
+  border-radius: 0 !important;
+  border-color: rgba(59, 33, 20, 0.3) !important;
+  background-color: var(--cm-white) !important;
+  color: var(--cm-text) !important;
+  font-family: 'Jost', sans-serif !important;
+}
+.field__input:focus,
+input:focus {
+  border-color: var(--cm-brown) !important;
+  box-shadow: 0 0 0 1px var(--cm-brown) !important;
+  outline: none;
+}
+
+/* ── SECCIÓN DE TESTIMONIALES / REVIEWS ─────────────────── */
+.multicolumn,
+.multirow {
+  background-color: var(--cm-nude-light) !important;
+}
+
+/* ── COMPARE CHART ───────────────────────────────────────── */
+/* color-accent-1 solo define variables, no aplica color al texto — forzar aquí */
+.comparison-table__row-name,
+.comparison-table__row-name h3,
+.comparison-table__row-name p,
+.comparison-table__row-name span,
+td.comparison-table__row-name {
+  color: var(--cm-cream) !important;
+}
+.comparison-table th {
+  color: var(--cm-text) !important;
+  font-family: 'Jost', sans-serif !important;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 1.3rem !important;
+}
+
+/* ── SCROLLBAR SUBTLE ────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--cm-nude-light); }
+::-webkit-scrollbar-thumb { background: var(--cm-beige); border-radius: 0; }
+
+/* ── COLLAPSIBLE / ACCORDION ─────────────────────────────── */
+.accordion__button,
+details summary {
+  font-family: 'Jost', sans-serif !important;
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: var(--cm-text) !important;
+  border-bottom: 1px solid var(--cm-nude-light) !important;
+}
+
+/* ── PRODUCT PAGE ESPECÍFICO ─────────────────────────────── */
+.product {
+  background-color: var(--cm-cream) !important;
+}
+.product__media-wrapper {
+  background-color: var(--cm-nude-light) !important;
+}
+
+/* Labels de variantes (SELECCIONA UN COLOR / LA TALLA) */
+.product-form__input .form__label,
+.variant-labels,
+fieldset legend {
+  font-family: 'Jost', sans-serif !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: var(--cm-text-muted) !important;
+}
+
+/* ── ANNOUNCEMENT BAR — OVERRIDES STRONG ─────────────────── */
+.topbarout,
+.topbarout a,
+.topbar-flex,
+.new-top-bar {
+  background-color: var(--cm-brown) !important;
+  color: var(--cm-cream) !important;
+  font-family: 'Jost', sans-serif !important;
+  font-size: 1.15rem !important;
+  letter-spacing: 0.06em;
+}
+
+/* ── RICH TEXT / HOMEPAGE ────────────────────────────────── */
+.rich-text__heading {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: clamp(2.4rem, 4vw, 4rem) !important;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.rich-text__text {
+  font-size: 1.5rem;
+  color: var(--cm-text-muted);
+  line-height: 1.7;
+}
+
+/* Botón de "Comprar Ahora" / CTA homepage */
+.banner__buttons .button {
+  font-size: 1.2rem !important;
+  letter-spacing: 0.15em !important;
+  min-width: 18rem;
+}
+
+/* ── SECTION HEADINGS ────────────────────────────────────── */
+.title-wrapper .title,
+.section-heading {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* ── MOBILE REFINEMENTS ──────────────────────────────────── */
+@media (max-width: 749px) {
+  .product__title h1 {
+    font-size: 2.2rem !important;
+  }
+  .collection__title {
+    font-size: 2.8rem !important;
+  }
+  .card__heading {
+    font-size: 1.4rem !important;
+  }
+  .button,
+  .button--primary,
+  .product-form__submit {
+    font-size: 1.2rem !important;
+    padding: 1.5rem 2rem !important;
+    letter-spacing: 0.1em !important;
+  }
+}
