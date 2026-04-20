@@ -354,6 +354,20 @@ details summary {
   background-color: var(--cm-nude-light) !important;
 }
 
+/* Título de producto: más grande y separado de la imagen */
+.product-verified-wrapper {
+  margin-top: 1.8rem !important;
+  margin-bottom: 6px !important;
+}
+.product-title-inline {
+  font-size: 36px !important;
+  line-height: 1.15 !important;
+}
+@media (max-width: 749px) {
+  .product-verified-wrapper { margin-top: 1rem !important; }
+  .product-title-inline { font-size: 28px !important; }
+}
+
 /* Labels de variantes (SELECCIONA UN COLOR / LA TALLA) */
 .product-form__input .form__label,
 .variant-labels,
