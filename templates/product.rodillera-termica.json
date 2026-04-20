@@ -147,8 +147,8 @@
         "description"
       ],
       "settings": {
-        "color_scheme": "background-1",
-        "secondary_background": false,
+        "stickybutton": true,
+        "stickybuttontext": "Comprar ahora",
         "media_size": "medium",
         "constrain_to_viewport": true,
         "media_fit": "contain",
@@ -156,9 +156,6 @@
         "mobile_thumbnails": "show",
         "hide_variants": false,
         "enable_video_looping": false,
-        "stickybutton": true,
-        "stickybuttontext": "Comprar ahora",
-        "custom_css": "button--secondary { background: transparent !important; color: #3D2B1F !important; border: 1.5px solid #3D2B1F !important; }",
         "padding_top": 36,
         "padding_bottom": 36
       }
