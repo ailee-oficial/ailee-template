@@ -155,7 +155,7 @@
         "description"
       ],
       "custom_css": [
-        "div.product__title > h1 {font-size: 17px !important;}",
+        "div.product__title > h1 {font-size: 20px !important;}",
         ".button--secondary {background-color: transparent !important; color: #3d2b1f !important; border: 1.5px solid #3d2b1f !important;}"
       ],
       "settings": {
