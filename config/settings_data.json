@@ -174,7 +174,7 @@
           "enable_custombar": true,
           "custom_top_bar1": "Compra Segura",
           "custom_top_bar2": "Todo Colombia",
-          "custombarcolor": "#3D2B1F"
+          "custombarcolor": "#3d2b1f"
         }
       },
       "header": {
@@ -182,7 +182,7 @@
         "custom_css": [],
         "settings": {
           "color_scheme": "background-1",
-          "logo": "shopify://shop_images/Miguel_Ortega_1.jpg",
+          "logo": "shopify://shop_images/Miguel_Ortega__1_-removebg-preview.png",
           "logo_width": 80,
           "logo_position": "middle-center",
           "menu": "",
