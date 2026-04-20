@@ -186,7 +186,6 @@
       "blocks": {
         "rc1": {
           "type": "column",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/whisk_e04e463fbc22066b6eb4a212b333ce95dr_optimized.png",
             "title": "<strong>Carmen López (Bogotá)</strong>",
@@ -243,6 +242,7 @@
         "rc4",
         "rc5"
       ],
+      "disabled": true,
       "settings": {
         "title": "Lo que dicen nuestros clientes",
         "heading_size": "h1",
