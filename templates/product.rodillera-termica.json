@@ -181,85 +181,6 @@
         "padding_bottom": 36
       }
     },
-    "rod_clientes": {
-      "type": "multicolumn",
-      "blocks": {
-        "rc1": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/whisk_e04e463fbc22066b6eb4a212b333ce95dr_optimized.png",
-            "title": "<strong>Carmen López (Bogotá)</strong>",
-            "text": "<h5>⭐️⭐️⭐️⭐️⭐️</h5><h5><em>Tenía artritis en ambas rodillas y el dolor me impedía caminar más de dos cuadras. A la semana de usar la rodillera ya dormía sin despertarme. Gracias al pago contraentrega me atreví a probarla sin miedo.</em></h5>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "rc2": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/whisk_4e3717cb04ae246bab54f6aec05ae458dr_optimized.jpg",
-            "title": "Rodrigo Vásquez (Medellín)",
-            "text": "<h5>⭐️⭐️⭐️⭐️⭐️</h5><h5><em>Me lesioné el menisco y el fisioterapeuta me recomendó terapia de calor entre sesiones. Esta rodillera es exactamente lo que necesitaba. Calienta parejo, no quema y dura la batería toda la noche.</em></h5>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "rc3": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/whisk_4a357a802853195b8154f31f1a2dad83dr_optimized.jpg",
-            "title": "Martha Peña (Cali)",
-            "text": "<h5>⭐️⭐️⭐️⭐️⭐️</h5><h5><em>Trabajo de pie 10 horas al día y llegaba a casa con las rodillas inflamadas. Desde hace un mes uso la rodillera de noche y el cambio es increíble. Me arrepiento de no haberla comprado antes.</em></h5>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "rc4": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/whisk_3808dcc32f4aacbba1647c348430b8e8dr_optimized.jpg",
-            "title": "Gloria Sánchez (Bucaramanga)",
-            "text": "<h5>⭐️⭐️⭐️⭐️⭐️</h5><h5><em>Después de la cirugía de rodilla el médico me dijo que necesitaba calor constante. La probé y es perfecta. Fácil de usar, cómoda y la garantía de 15 días me dio toda la confianza para comprarla.</em></h5>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "rc5": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/whisk_5af8b5aabce586da33246366427b1ca3dr_optimized.jpg",
-            "title": "Jorge Arias (Barranquilla)",
-            "text": "<h5>⭐️⭐️⭐️⭐️</h5><h5><em>Tenía dudas porque nunca había pedido por internet, pero el pago contra entrega me convenció. Llegó rapidísimo a Barranquilla y funciona exactamente como lo describe la página. Muy cumplidos.</em></h5>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "rc1",
-        "rc2",
-        "rc3",
-        "rc4",
-        "rc5"
-      ],
-      "disabled": true,
-      "settings": {
-        "title": "Lo que dicen nuestros clientes",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "color_scheme": "inverse",
-        "columns_mobile": "1",
-        "swipe_on_mobile": true,
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
     "rod_compare": {
       "type": "compare-chart",
       "blocks": {
@@ -510,7 +431,6 @@
   },
   "order": [
     "main",
-    "rod_clientes",
     "rod_compare",
     "rod_sinriesgo",
     "rod_porcentajes",
