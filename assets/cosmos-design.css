@@ -1,6 +1,6 @@
 /* ============================================================
    COSMOS MODA — Design System
-   Paleta oficial: #1A1410 · #3D2B1F · #C4A882 · #E8D5BE · #FAF6F0
+   Paleta oficial: #000000 · #333333 · #767677 · #f5f5f5 · #ffffff
    Tipografía: Cormorant Garamond (headings) · Jost (body)
    ============================================================ */
 
@@ -9,14 +9,14 @@
   --font-heading-family: 'Cormorant Garamond', Georgia, serif;
   --font-body-family: 'Jost', system-ui, sans-serif;
 
-  /* Paleta Cosmos oficial */
-  --cm-brown:       #3D2B1F;
-  --cm-brown-mid:   #6B4C36;
-  --cm-beige:       #C4A882;
-  --cm-cream:       #FAF6F0;
-  --cm-nude-light:  #E8D5BE;
-  --cm-text:        #1A1410;
-  --cm-text-muted:  #7A6555;
+  /* Paleta Cosmos — estilo Adidas (negro/blanco/grises) */
+  --cm-brown:       #000000;
+  --cm-brown-mid:   #333333;
+  --cm-beige:       #767677;
+  --cm-cream:       #ffffff;
+  --cm-nude-light:  #f5f5f5;
+  --cm-text:        #111111;
+  --cm-text-muted:  #767677;
   --cm-white:       #ffffff;
 }
 
@@ -71,7 +71,7 @@ body, p, li, span, a, input, button, label,
 .header-wrapper,
 .header {
   background-color: var(--cm-cream) !important;
-  border-bottom: 1px solid rgba(59, 33, 20, 0.12) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 .header__heading-link,
 .header__icon,
@@ -81,7 +81,7 @@ body, p, li, span, a, input, button, label,
 }
 .header__menu-item:hover,
 .list-menu__item:hover {
-  color: var(--cm-brown) !important;
+  color: var(--cm-brown-mid) !important;
 }
 /* Logo en header */
 .header__heading-logo {
@@ -115,13 +115,13 @@ body, p, li, span, a, input, button, label,
 
 /* Botón secundario */
 .button--secondary {
-  background-color: transparent !important;
-  color: var(--cm-brown) !important;
+  background-color: var(--cm-brown) !important;
+  color: var(--cm-cream) !important;
   border: 1.5px solid var(--cm-brown) !important;
   border-radius: 0 !important;
 }
 .button--secondary:hover {
-  background-color: var(--cm-brown) !important;
+  background-color: var(--cm-brown-mid) !important;
   color: var(--cm-cream) !important;
 }
 
@@ -150,7 +150,7 @@ fieldset .select-swatch:checked + label {
   font-family: 'Jost', sans-serif !important;
   font-size: 1.3rem !important;
   font-weight: 400;
-  border: 1.5px solid rgba(59, 33, 20, 0.3) !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.2) !important;
   color: var(--cm-text) !important;
   transition: all 0.15s ease;
 }
@@ -167,7 +167,7 @@ fieldset .select-swatch:checked + label {
   color: var(--cm-cream) !important;
 }
 
-/* Override negro puro del tema en tallas seleccionadas */
+/* Override del tema en tallas seleccionadas */
 .product-form__input .swatch-input:checked + .swatch-label,
 fieldset .product-form__input input[type="radio"]:checked + label {
   background-color: var(--cm-brown) !important;
@@ -295,7 +295,7 @@ fieldset .product-form__input input[type="radio"]:checked + label {
 input[type="text"],
 input[type="email"] {
   border-radius: 0 !important;
-  border-color: rgba(59, 33, 20, 0.3) !important;
+  border-color: rgba(0, 0, 0, 0.2) !important;
   background-color: var(--cm-white) !important;
   color: var(--cm-text) !important;
   font-family: 'Jost', sans-serif !important;
@@ -314,7 +314,6 @@ input:focus {
 }
 
 /* ── COMPARE CHART ───────────────────────────────────────── */
-/* color-accent-1 solo define variables, no aplica color al texto — forzar aquí */
 .comparison-table__row-name,
 .comparison-table__row-name h3,
 .comparison-table__row-name p,
@@ -354,7 +353,7 @@ details summary {
   background-color: var(--cm-nude-light) !important;
 }
 
-/* Título de producto: más grande y separado de la imagen */
+/* Título de producto */
 .product-verified-wrapper {
   margin-top: 1.8rem !important;
   margin-bottom: 6px !important;
@@ -368,7 +367,7 @@ details summary {
   .product-title-inline { font-size: 28px !important; }
 }
 
-/* Labels de variantes (SELECCIONA UN COLOR / LA TALLA) */
+/* Labels de variantes */
 .product-form__input .form__label,
 .variant-labels,
 fieldset legend {
@@ -405,7 +404,7 @@ fieldset legend {
   line-height: 1.7;
 }
 
-/* Botón de "Comprar Ahora" / CTA homepage */
+/* Botón CTA homepage */
 .banner__buttons .button {
   font-size: 1.2rem !important;
   letter-spacing: 0.15em !important;
