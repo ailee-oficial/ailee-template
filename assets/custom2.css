@@ -208,7 +208,7 @@ img {
     line-height: 45px;
     font-weight: 700;
     margin-top: 0;
-    color: #2e2a39;
+    color: #1A1410;
     margin-bottom: 10px;
 }
 
@@ -708,7 +708,7 @@ a.btn {
     width: 100%;
     margin: auto auto 15px;
     text-align: center;
-    color: #2e2a39;
+    color: #1A1410;
     font-weight: 700;
 }
 
@@ -1523,7 +1523,7 @@ div#cart-notification .notification-checkout-btn {
 }
 
 .cart-notification__satisfaction {
-    background-color: #f4f1ff;
+    background-color: #f5f5f5;
     color: #000;
     border-bottom-left-radius: 22px;
     border-bottom-right-radius: 22px;
@@ -1762,7 +1762,7 @@ pro_compare .com_left-side_box {
 .our_iwt_slid_sec {
     padding-top: 40px;
     padding-bottom: 40px;
-    background-color: #f8f7f3;
+    background-color: #fafafa;
 }
 
 .our_iwt_slid_sec .image-with-text__image img {
@@ -1994,7 +1994,7 @@ pro_compare .com_left-side_box {
 }
 
 .creator-faq-sec .spb-row a.spb-row-expand-text {
-    color: #2e2a39;
+    color: #1A1410;
     text-decoration: none;
     font-size: 27px;
     font-weight: bold;
@@ -2291,7 +2291,7 @@ pro_compare .com_left-side_box {
 
     .sale_compare_section .com_left-side h2.com_heading,
     .sale_compare_section .compare-box .com_text p {
-        color: #2e2a39;
+        color: #1A1410;
     }
 
     .table_content {
@@ -2825,7 +2825,7 @@ section.pro_tab_section {
     line-height: 120%;
 }
 .feature-descriptions{
-    border-bottom: 1px solid #f0eeeb;
+    border-bottom: 1px solid #eeeeee;
     margin-bottom: 20px;
     padding-bottom: 10px;
 }.feature-descriptions-component .description-item {

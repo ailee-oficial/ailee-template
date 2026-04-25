@@ -141,7 +141,7 @@
         "stickybuttontext": "Select Colors",
         "atcicon": true,
         "atcsavings": false,
-        "mostpopularcolor": "#7069bc",
+        "mostpopularcolor": "#C4A882",
         "enable_shipping_calculate": true,
         "shipping_calculator_label": "Expected Delivery:",
         "days_to_start_shipping": 5,
