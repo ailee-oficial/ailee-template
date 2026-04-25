@@ -76,7 +76,7 @@
           "settings": {
             "text1": "Pagos Contraentrega",
             "text2": "Envíos Gratis",
-            "iconcolorreturns": "#7069bc"
+            "iconcolorreturns": "#C4A882"
           }
         },
         "collapsible_tab_AUafHX": {
@@ -175,7 +175,7 @@
       ],
       "custom_css": [
         "div.product__title > h1 {font-size: 17px !important;}",
-        ".button--secondary {background-color: #7069bc; color: white;}"
+        ".button--secondary {background-color: #C4A882; color: #111111;}"
       ],
       "settings": {
         "new_product_page_media": true,
