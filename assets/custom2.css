@@ -208,7 +208,7 @@ img {
     line-height: 45px;
     font-weight: 700;
     margin-top: 0;
-    color: #1A1410;
+    color: #000000;
     margin-bottom: 10px;
 }
 
@@ -482,7 +482,7 @@ a.btn {
 
 .eye_lash_content_inner {
     padding: 28px 16px 12px;
-    border-bottom: 1px solid rgba(192, 188, 182, 0.6);
+    border-bottom: 1px solid rgba(200, 200, 200, 0.6);
 }
 
 .eye_lash_content_inner h3 {
@@ -499,7 +499,7 @@ a.btn {
     letter-spacing: 3px;
     font-size: 12px;
     line-height: 15px;
-    color: #c0bcb6;
+    color: #a8a8a8;
     font-weight: 700;
     padding: 0;
     margin-bottom: 5px;
@@ -708,7 +708,7 @@ a.btn {
     width: 100%;
     margin: auto auto 15px;
     text-align: center;
-    color: #1A1410;
+    color: #000000;
     font-weight: 700;
 }
 
@@ -1994,7 +1994,7 @@ pro_compare .com_left-side_box {
 }
 
 .creator-faq-sec .spb-row a.spb-row-expand-text {
-    color: #1A1410;
+    color: #000000;
     text-decoration: none;
     font-size: 27px;
     font-weight: bold;
@@ -2291,7 +2291,7 @@ pro_compare .com_left-side_box {
 
     .sale_compare_section .com_left-side h2.com_heading,
     .sale_compare_section .compare-box .com_text p {
-        color: #1A1410;
+        color: #000000;
     }
 
     .table_content {

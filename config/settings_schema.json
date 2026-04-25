@@ -89,14 +89,14 @@
       {
         "type": "color",
         "id": "colors_text",
-        "default": "#1A1410",
+        "default": "#000000",
         "label": "t:settings_schema.colors.settings.colors_text.label",
         "info": "t:settings_schema.colors.settings.colors_text.info"
       },
       {
         "type": "color",
         "id": "colors_outline_button_labels",
-        "default": "#1A1410",
+        "default": "#000000",
         "label": "t:settings_schema.colors.settings.colors_outline_button_labels.label",
         "info": "t:settings_schema.colors.settings.colors_outline_button_labels.info"
       },

@@ -147,7 +147,7 @@
       ],
       "custom_css": [
         "div.product__title > h1 {font-size: 17px !important;}",
-        ".button--secondary {background-color: #C4A882; color: #111111;}"
+        ".button--secondary {background-color: #000000; color: #ffffff;}"
       ],
       "settings": {
         "new_product_page_media": true,

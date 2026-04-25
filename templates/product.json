@@ -76,7 +76,7 @@
           "settings": {
             "text1": "Pagos Contraentrega",
             "text2": "Envíos Gratis",
-            "iconcolorreturns": "#C4A882"
+            "iconcolorreturns": "#000000"
           }
         },
         "2d3f6e7f-6a34-4642-9897-6d7d3a47bfe2": {
@@ -127,7 +127,7 @@
       ],
       "custom_css": [
         "div.product__title > h1 {font-size: 17px !important;}",
-        ".button--secondary {background-color: #C4A882; color: white;}"
+        ".button--secondary {background-color: #000000; color: #ffffff;}"
       ],
       "settings": {
         "new_product_page_media": true,

@@ -15,7 +15,7 @@
 
 /*Text Highlight */
 .highlight {
-    box-shadow: inset 0 -2px 0 0 #1A1410;
+    box-shadow: inset 0 -2px 0 0 #000000;
     color: inherit;
     text-decoration: none;
 }
@@ -139,7 +139,7 @@ img {
     color: #FFF;
 }     
   .announcement_bottom {
-    background-color: #1A1410;
+    background-color: #000000;
 } 
   .announcement_bottom_blocks .icon-text-wrap .icon svg{
     fill: #FFF;
