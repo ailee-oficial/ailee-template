@@ -13,29 +13,11 @@
 {%- liquid
   assign product_image = product.featured_image | image_url: width: 120
   assign options = product.options_with_values
-
-  assign offers = '' | split: ','
-  assign offer0 = 'PAGA 1 LLEVA 2|AHORRA MAS 💸|linear-gradient(270deg,#F1E408 0%,#0AD64A 100%)|2|130000|109900|false' | split: '|'
-  assign offer1 = 'PAGA 2 LLEVA 3|MAS VENDIDO 🔥|linear-gradient(0deg,#23AEFE 0%,#083EFF 97%)|3|195000|129900|true' | split: '|'
-  assign offer2 = 'PAGA 4 LLEVA 5|MEGA OFERTA 🚀|linear-gradient(90deg,#FC361C 0%,#FAD20C 100%)|5|325000|169900|false' | split: '|'
+  assign _offers_raw = "PAGA 1 LLEVA 2^^AHORRA MAS 💸^^linear-gradient(270deg,#F1E408 0%,#0AD64A 100%)^^2^^13000000^^10990000^^false|PAGA 2 LLEVA 3^^MAS VENDIDO 🔥^^linear-gradient(0deg,#23AEFE 0%,#083EFF 97%)^^3^^19500000^^12990000^^true|PAGA 4 LLEVA 5^^MEGA OFERTA 🚀^^linear-gradient(90deg,#FC361C 0%,#FAD20C 100%)^^5^^32500000^^16990000^^false" | split: '|'
 -%}
 
 <div id="qo-widget" class="qo-widget">
   <div class="qo-list">
-
-    {%- for raw_offer in offer0, offer1, offer2 -%}
-      {%- assign o = raw_offer -%}
-      {%- comment -%} Trick: iterate over the 3 pre-split arrays {%- endcomment -%}
-    {%- endfor -%}
-
-    {%- assign all_offers = offer0 | concat: offer1 | concat: offer2 -%}
-
-    {%- comment -%}
-      Renderizamos manualmente los 3 cards para evitar la limitación de arrays
-      de objetos en Liquid estándar.
-    {%- endcomment -%}
-
-    {%- assign _offers_raw = "PAGA 1 LLEVA 2^^AHORRA MAS 💸^^linear-gradient(270deg,#F1E408 0%,#0AD64A 100%)^^2^^130000^^109900^^false|PAGA 2 LLEVA 3^^MAS VENDIDO 🔥^^linear-gradient(0deg,#23AEFE 0%,#083EFF 97%)^^3^^195000^^129900^^true|PAGA 4 LLEVA 5^^MEGA OFERTA 🚀^^linear-gradient(90deg,#FC361C 0%,#FAD20C 100%)^^5^^325000^^169900^^false" | split: '|' -%}
 
     {%- for offer_str in _offers_raw -%}
       {%- assign of = offer_str | split: '^^' -%}
