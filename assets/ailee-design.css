@@ -1,23 +1,26 @@
 /* ============================================================
-   COSMOS MODA — Design System
-   Paleta oficial: #000000 · #333333 · #767677 · #f5f5f5 · #ffffff
-   Tipografía: Cormorant Garamond (headings) · Jost (body)
+   AILÉE — Design System
+   Paleta oficial nude: #C4A882 · #E8D5C8 · #D9C4B5 · #F0E8E0 · #FAF7F4
+   Tipografía: Cormorant Garamond (logo/campaña) · Josefin Sans (titulares) · DM Sans (body)
+   "Hecho para ella. Pensado en ella. Solo para ella." 🦋
    ============================================================ */
 
 /* ── FUENTES ─────────────────────────────────────────────── */
 :root {
   --font-heading-family: 'Cormorant Garamond', Georgia, serif;
-  --font-body-family: 'Jost', system-ui, sans-serif;
+  --font-subheading-family: 'Josefin Sans', 'Raleway', sans-serif;
+  --font-body-family: 'DM Sans', 'Inter', system-ui, sans-serif;
 
-  /* Paleta Cosmos — estilo Adidas (negro/blanco/grises) */
-  --cm-brown:       #000000;
-  --cm-brown-mid:   #333333;
-  --cm-beige:       #767677;
-  --cm-cream:       #ffffff;
-  --cm-nude-light:  #f5f5f5;
-  --cm-text:        #111111;
-  --cm-text-muted:  #767677;
-  --cm-white:       #ffffff;
+  /* Paleta AILÉE — Nude cálida */
+  --cm-brown:       #C4A882;   /* CAMEL NUDE — principal, botones, acentos */
+  --cm-brown-mid:   #C9A96E;   /* DORADO NUDE — acento lujo */
+  --cm-beige:       #D9C4B5;   /* ROSE NUDE — tarjetas, etiquetas */
+  --cm-cream:       #FAF7F4;   /* BLANCO CÁLIDO — fondo web */
+  --cm-nude-light:  #F0E8E0;   /* CREMA — fondos sección, stories */
+  --cm-blush:       #E8D5C8;   /* BLUSH NUDE — fondos secundarios */
+  --cm-text:        #1C1C1C;   /* NEGRO SUAVE — texto principal */
+  --cm-text-muted:  #7A7A7A;   /* GRIS NEUTRO — texto secundario */
+  --cm-white:       #FAF7F4;   /* BLANCO CÁLIDO */
 }
 
 /* ── FONDO GLOBAL ────────────────────────────────────────── */
@@ -44,7 +47,7 @@ h1, h2, h3, h4, h5,
 body, p, li, span, a, input, button, label,
 .card__information,
 .price__container {
-  font-family: 'Jost', system-ui, sans-serif !important;
+  font-family: 'DM Sans', 'Inter', system-ui, sans-serif !important;
 }
 
 /* Escala editorial para títulos de producto */
@@ -98,7 +101,7 @@ body, p, li, span, a, input, button, label,
   color: var(--cm-cream) !important;
   border: none !important;
   border-radius: 0 !important;
-  font-family: 'Jost', sans-serif !important;
+  font-family: 'DM Sans', sans-serif !important;
   font-weight: 500 !important;
   letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
@@ -147,7 +150,7 @@ fieldset .select-swatch:checked + label {
 .variant__button-label,
 .product-form__input--pill label {
   border-radius: 0 !important;
-  font-family: 'Jost', sans-serif !important;
+  font-family: 'DM Sans', sans-serif !important;
   font-size: 1.3rem !important;
   font-weight: 400;
   border: 1.5px solid rgba(0, 0, 0, 0.2) !important;
@@ -183,7 +186,7 @@ fieldset .product-form__input input[type="radio"]:checked + label {
   background-color: var(--cm-brown) !important;
   color: var(--cm-cream) !important;
   border-radius: 0 !important;
-  font-family: 'Jost', sans-serif !important;
+  font-family: 'DM Sans', sans-serif !important;
   font-size: 1rem !important;
   font-weight: 500 !important;
   letter-spacing: 0.08em !important;
@@ -195,7 +198,7 @@ fieldset .product-form__input input[type="radio"]:checked + label {
   background-color: var(--cm-brown) !important;
   color: var(--cm-cream) !important;
   border-radius: 0 !important;
-  font-family: 'Jost', sans-serif !important;
+  font-family: 'DM Sans', sans-serif !important;
   letter-spacing: 0.08em !important;
 }
 
@@ -298,7 +301,7 @@ input[type="email"] {
   border-color: rgba(0, 0, 0, 0.2) !important;
   background-color: var(--cm-white) !important;
   color: var(--cm-text) !important;
-  font-family: 'Jost', sans-serif !important;
+  font-family: 'DM Sans', sans-serif !important;
 }
 .field__input:focus,
 input:focus {
@@ -323,7 +326,7 @@ td.comparison-table__row-name {
 }
 .comparison-table th {
   color: var(--cm-text) !important;
-  font-family: 'Jost', sans-serif !important;
+  font-family: 'DM Sans', sans-serif !important;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -338,7 +341,7 @@ td.comparison-table__row-name {
 /* ── COLLAPSIBLE / ACCORDION ─────────────────────────────── */
 .accordion__button,
 details summary {
-  font-family: 'Jost', sans-serif !important;
+  font-family: 'DM Sans', sans-serif !important;
   font-weight: 500;
   font-size: 1.4rem;
   color: var(--cm-text) !important;
@@ -371,7 +374,7 @@ details summary {
 .product-form__input .form__label,
 .variant-labels,
 fieldset legend {
-  font-family: 'Jost', sans-serif !important;
+  font-family: 'DM Sans', sans-serif !important;
   font-size: 1.1rem !important;
   font-weight: 600 !important;
   letter-spacing: 0.12em !important;
@@ -386,7 +389,7 @@ fieldset legend {
 .new-top-bar {
   background-color: var(--cm-brown) !important;
   color: var(--cm-cream) !important;
-  font-family: 'Jost', sans-serif !important;
+  font-family: 'DM Sans', sans-serif !important;
   font-size: 1.15rem !important;
   letter-spacing: 0.06em;
 }

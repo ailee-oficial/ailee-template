@@ -1,19 +1,29 @@
-# CLAUDE.md
+# CLAUDE.md — ailee-template
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-## Tienda: Somos-Cosmos
-
-Tema Shopify para la tienda `7ve3de-yc.myshopify.com`. Repo GitHub: `Breitner96/cosmos-template`.
+Tema Shopify para la tienda `ailee-6717.myshopify.com`. Repo GitHub: `Breitner96/ailee-template`.
 
 ## Comandos Shopify CLI
 
 ```bash
-# Ejecutar desde la raíz del tema (cosmos-template/)
+# Ejecutar desde la raíz del tema (ailee-template/)
 shopify theme push        # sube cambios al tema activo en Shopify
 shopify theme dev         # preview en desarrollo con hot reload
 shopify theme pull        # trae cambios del admin al repo
 ```
+
+## Identidad visual AILÉE
+
+| Elemento | Valor |
+|----------|-------|
+| Color principal | CAMEL NUDE `#C4A882` |
+| Color secundario | BLUSH NUDE `#E8D5C8` |
+| Fondo web | BLANCO CÁLIDO `#FAF7F4` |
+| Acento | DORADO NUDE `#C9A96E` |
+| Texto | NEGRO SUAVE `#1C1C1C` |
+| Texto muted | GRIS NEUTRO `#7A7A7A` |
+| Fuente headings | Cormorant Garamond / EB Garamond |
+| Fuente titulares | Josefin Sans / Raleway Light |
+| Fuente body | DM Sans / Inter |
 
 ## Arquitectura del tema
 
@@ -34,51 +44,26 @@ Cada `product.*.json` es una landing page independiente para una campaña:
 | Archivo | Campaña |
 |---------|---------|
 | `product.json` | Plantilla base |
-| `product.caramela-beauty.json` / `product.caramela-v2.json` | Caramela Beauty |
+| `product.zapatos-2x1.json` | Zapatos 2x1 |
+| `product.zapatos-single.json` | Zapatos individual |
+| `product.zapatos-ofertas.json` | Zapatos ofertas |
+| `product.maletin-ailee.json` | Maletín AILÉE |
 | `product.Producto-USA.json` | Mercado USA |
 | `product.product-10x.json` | Campaña 10x |
-| `product.zapatos-50.json` | Zapatos 50% descuento |
-| `product.zapatos-2x1.json` / `product.zapatos-2x1-timberland-ar.json` | Zapatos 2x1 |
 
-### Secciones clave
+### Assets clave
 
-- `sections/main-product.liquid` — núcleo de todas las páginas de producto; contiene lógica de variantes, galería, botones de compra y bloques extensibles
-- `sections/cart-drawer.liquid` — carrito lateral con upsells (`snippets/cart-first-upsell.liquid`, `snippets/cart-second-upsell.liquid`)
-- `sections/header.liquid` / `sections/footer.liquid` — cabecera y pie globales (configurados vía `header-group.json` / `footer-group.json`)
-- `sections/custom-liquid.liquid` — bloque para insertar HTML/CSS/JS arbitrario desde el admin
-
-### Assets (CSS/JS)
-
-Organizados por componente en `assets/`:
-- `base.css` — estilos base globales
-- `component-*.css` / `section-*.css` — estilos por componente o sección
-- `constants.js`, `global.js`, `pubsub.js`, `custom.js` — framework JS del tema
-- `cart-*.js` / `product-*.js` — lógica de carrito y producto
-
-### Snippets importantes
-
-- `card-product.liquid` — tarjeta de producto usada en colecciones y búsqueda
-- `product-variant-picker.liquid` — selector de variantes (talla, color)
-- `price.liquid` — muestra precio con lógica de descuentos
-- `buy-buttons.liquid` — botones "Agregar al carrito" / "Comprar ahora"
-- `meta-tags.liquid` — inyección de SEO meta tags
+- `assets/ailee-design.css` — Design System de AILÉE: paleta nude, tipografía, componentes
 
 ### Configuración del tema
 
-- `config/settings_schema.json` — define todas las opciones personalizables del tema (colores, tipografía, layout, carrito, insignias)
-- `config/settings_data.json` — valores actuales de esas opciones
-
-### Internacionalización
-
-`locales/` contiene 26+ idiomas. El idioma principal es `en.default.json`; las claves de schema están en `*.schema.json`.
+- `config/settings_schema.json` — opciones personalizables (colores, tipografía, layout)
+- `config/settings_data.json` — valores actuales
 
 ## Patrón de personalización
 
-El patrón principal para customizar páginas de producto es:
-1. Crear/editar un bloque `custom_liquid` dentro de `sections/main-product.liquid` vía el admin de Shopify, o
-2. Editar directamente el HTML/CSS/JS embebido en el bloque `custom_liquid` del archivo `templates/product.*.json`.
+El patrón principal para customizar páginas de producto es editar el HTML/CSS embebido en bloques `custom_liquid` dentro de `templates/product.*.json`.
 
-Los archivos `.json` de templates tienen la forma:
 ```json
 {
   "sections": {
