@@ -1,0 +1,169 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "hero_image": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div style=\"width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);background:#f9f7f4;padding:24px 16px 20px;text-align:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;\">\n<div style=\"max-width:480px;margin:0 auto;\">\n<div style=\"display:flex;gap:10px;justify-content:center;margin-bottom:16px;\">\n<img src=\"{{ product.images[0].src | image_url: width: 400 }}\" alt=\"Negro\" width=\"200\" height=\"250\" loading=\"eager\" fetchpriority=\"high\" decoding=\"async\" style=\"flex:1;max-width:48%;height:auto;border-radius:10px;object-fit:cover;\">\n<img src=\"{{ product.images[1].src | image_url: width: 400 }}\" alt=\"Azul\" width=\"200\" height=\"250\" loading=\"eager\" decoding=\"async\" style=\"flex:1;max-width:48%;height:auto;border-radius:10px;object-fit:cover;\">\n</div>\n<div style=\"color:#d4a24e;font-size:1.1rem;letter-spacing:2px;margin-bottom:6px;\">★★★★★</div>\n<h1 style=\"font-size:1.6rem;font-weight:800;color:#1a1a1a;margin:0 0 8px;line-height:1.2;\">Set de Ollas 13 Piezas</h1>\n<p style=\"font-size:.95rem;color:#555;margin:0 0 14px;\">Antiadherente · 2 Colores Disponibles</p>\n<div style=\"margin-bottom:12px;\">\n<span style=\"font-size:1rem;color:#999;text-decoration:line-through;\">$179.900</span>\n<span style=\"font-size:1.5rem;font-weight:800;color:#c0392b;margin-left:8px;\">$109.700</span>\n<span style=\"display:inline-block;background:#c0392b;color:#fff;font-size:.75rem;font-weight:700;padding:3px 8px;border-radius:4px;margin-left:6px;vertical-align:middle;\">-39%</span>\n</div>\n<div style=\"display:flex;gap:8px;justify-content:center;flex-wrap:wrap;\">\n<span style=\"font-size:.85rem;color:#2d7d46;font-weight:600;\">📦 Envío Gratis</span>\n<span style=\"font-size:.85rem;color:#2d7d46;font-weight:600;\">💰 Paga al Recibir</span>\n<span style=\"font-size:.85rem;color:#2d7d46;font-weight:600;\">🛡️ Garantía 30 Días</span>\n</div>\n</div>\n</div>"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "cta_inmediato": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<style>\n  .product-form__submit { display: none !important; }\n\n  #cta-inmediato {\n    width: 100%;\n    min-height: 51px;\n    margin-top: 10px;\n    margin-bottom: 10px;\n    padding: 12px 20px 14px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    box-sizing: border-box;\n    border: 0;\n    border-radius: 13px;\n    background: rgba(29, 158, 6, 1);\n    color: #fff;\n    font-family: inherit;\n    font-size: 17.6px;\n    font-weight: 600;\n    line-height: 1.3;\n    text-align: center;\n    cursor: pointer;\n    appearance: none;\n    animation: cta-shake 2.5s ease-in-out 1.5s infinite;\n  }\n  #cta-inmediato .cta-icono { flex: 0 0 auto; margin-right: 14px; }\n  #cta-inmediato .cta-sub {\n    display: block;\n    margin-top: 3px;\n    font-size: 90%;\n    font-weight: 400;\n    opacity: 0.95;\n  }\n  #cta-inmediato[data-esperando=\"1\"] { opacity: 0.75; }\n\n  @keyframes cta-shake {\n    0%, 88%, 100% { transform: translateX(0); }\n    90%, 94% { transform: translateX(-5px); }\n    92%, 96% { transform: translateX(5px); }\n  }\n  @media (prefers-reduced-motion: reduce) {\n    #cta-inmediato { animation: none; }\n  }\n\n  body:has(._rsi-buy-now-button-product) #cta-inmediato { display: none; }\n</style>\n\n<button type=\"button\" id=\"cta-inmediato\" aria-label=\"Comprar con pago contra entrega\">\n  <svg class=\"cta-icono\" width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\n    <path d=\"M3 6h11v9H3z\"/><path d=\"M14 9h4l3 3v3h-7z\"/>\n    <circle cx=\"7\" cy=\"17.5\" r=\"1.8\"/><circle cx=\"17\" cy=\"17.5\" r=\"1.8\"/>\n  </svg>\n  <span>\n    CLICK AQUI, PAGA EN CASA\n    <span class=\"cta-sub\">¡ENVIO GRATIS!</span>\n  </span>\n</button>\n\n<script>\n(function () {\n  var SELECTOR_REAL = '._rsi-buy-now-button-product';\n  var MS_ESPERA_MAXIMA = 12000;\n  var MS_INTENCION_VALIDA = 15000;\n\n  var placeholder = document.getElementById('cta-inmediato');\n  if (!placeholder) return;\n\n  var contenedor = placeholder.closest('.product-form__buttons') || document;\n  var intencionEn = 0;\n  var resuelto = false;\n\n  function botonReal() {\n    return contenedor.querySelector(SELECTOR_REAL) || document.querySelector(SELECTOR_REAL);\n  }\n\n  function activar(real) {\n    if (resuelto) return;\n    resuelto = true;\n    observador.disconnect();\n    placeholder.style.display = 'none';\n\n    var aTiempo = intencionEn && (Date.now() - intencionEn) < MS_INTENCION_VALIDA;\n    if (aTiempo) real.click();\n  }\n\n  function rendirse() {\n    if (resuelto) return;\n    resuelto = true;\n    observador.disconnect();\n    placeholder.style.display = 'none';\n\n    var nativo = document.querySelector('.product-form__submit');\n    if (nativo) nativo.style.setProperty('display', 'flex', 'important');\n  }\n\n  placeholder.addEventListener('click', function () {\n    var real = botonReal();\n    if (real) { activar(real); return; }\n\n    intencionEn = Date.now();\n    placeholder.setAttribute('data-esperando', '1');\n  });\n\n  var observador = new MutationObserver(function () {\n    var real = botonReal();\n    if (real) activar(real);\n  });\n  observador.observe(document.body, { childList: true, subtree: true });\n\n  var yaEstaba = botonReal();\n  if (yaEstaba) activar(yaEstaba);\n  else setTimeout(rendirse, MS_ESPERA_MAXIMA);\n})();\n</script>\n"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "hero_image",
+        "variant_picker",
+        "buy_buttons",
+        "cta_inmediato",
+        "description"
+      ],
+      "custom_css": [
+        ".button--secondary {background-color: #000000; color: #ffffff;}",
+        ".product__media-wrapper {display: none !important;}",
+        ".product__title {display: none !important;}",
+        ".price {display: none !important;}",
+        ".product__text.inventory {display: none !important;}"
+      ],
+      "settings": {
+        "new_product_page_media": true,
+        "othergallerystyle": false,
+        "salebadge": true,
+        "freeshipprice": true,
+        "shiptextnexttoprice": "+ Envíos GRATIS",
+        "enable_gallerybadge": false,
+        "stickybutton": true,
+        "stickybuttontext": "Selecciona Color",
+        "atcicon": true,
+        "atcsavings": false,
+        "mostpopularcolor": "#1a1a1a",
+        "enable_shipping_calculate": false,
+        "enable_sticky_info": true,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail",
+        "media_position": "left",
+        "image_zoom": "none",
+        "mobile_thumbnails": "hide",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "faq": {
+      "type": "collapsible-content",
+      "blocks": {
+        "faq_1": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿De qué material está hecho el set?",
+            "icon": "question_mark",
+            "row_content": "<p>Las ollas y la sartén son de <strong>aleación de aluminio con recubrimiento antiadherente</strong>. Las tapas son de vidrio templado resistente al calor. Los utensilios son de nylon de alta resistencia, diseñados para no rayar el antiadherente.</p>",
+            "page": ""
+          }
+        },
+        "faq_2": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Funciona en estufas de gas y eléctricas?",
+            "icon": "question_mark",
+            "row_content": "<p>Sí, el set es compatible con <strong>estufas de gas, eléctricas y vitrocerámicas</strong>. No es compatible con estufas de inducción.</p>",
+            "page": ""
+          }
+        },
+        "faq_3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Qué pasa si llega con algún defecto?",
+            "icon": "question_mark",
+            "row_content": "<p>Tienes <strong>30 días de garantía</strong>. Si el producto presenta algún defecto de fábrica, gestionamos el cambio o devolución sin costo adicional. Escríbenos por WhatsApp y lo resolvemos.</p>",
+            "page": ""
+          }
+        },
+        "faq_4": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Puedo abrir el paquete antes de pagar?",
+            "icon": "question_mark",
+            "row_content": "<p>Por políticas de las empresas de mensajería (Servientrega, Envía, Interrapidísimo), no se permite abrir el paquete antes de realizar el pago en la modalidad de Pago Contra Entrega. Sin embargo, cuentas con nuestra garantía de satisfacción para cualquier cambio posterior.</p>",
+            "page": ""
+          }
+        },
+        "faq_5": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cuánto demora el envío?",
+            "icon": "question_mark",
+            "row_content": "<p>El envío es <strong>gratis a toda Colombia</strong> y llega en <strong>3 a 7 días hábiles</strong> dependiendo de tu ciudad. Ciudades principales: 3-4 días. Zonas rurales: 5-7 días.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5"
+      ],
+      "settings": {
+        "caption": "Todo lo que necesitas saber antes de pedir",
+        "heading": "<strong>RESOLVEMOS TUS DUDAS</strong>",
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "background-1",
+        "container_color_scheme": "background-2",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 4,
+        "padding_bottom": 4
+      }
+    },
+    "apps": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq",
+    "apps"
+  ]
+}
