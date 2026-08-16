@@ -96,7 +96,8 @@
         ".product__media-wrapper {display: none !important;}",
         ".product__title {display: none !important;}",
         ".price {display: none !important;}",
-        ".product__text.inventory {display: none !important;}"
+        ".product__text.inventory {display: none !important;}",
+        ".product__info-container > *:first-child {margin-top: 0 !important;}"
       ],
       "settings": {
         "new_product_page_media": true,
