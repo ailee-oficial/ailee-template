@@ -16,18 +16,6 @@
           "type": "title",
           "settings": {}
         },
-        "6c94aa0a-aa1b-44a9-a2c7-74743398574b": {
-          "type": "shopify://apps/audien-reviews/blocks/star_rating/ce002b21-24e0-4d65-87ca-18c9770b24d4",
-          "settings": {
-            "size": 16,
-            "rating_text": "+200 Clientes satisfechos",
-            "rating_hide_text": false,
-            "widget_alignment": "left",
-            "rating_color_for_star": "rgba(0,0,0,0)",
-            "primary_color_for_star": "rgba(0,0,0,0)",
-            "custom_css": ""
-          }
-        },
         "price": {
           "type": "price",
           "settings": {}
@@ -112,7 +100,6 @@
       },
       "block_order": [
         "title",
-        "6c94aa0a-aa1b-44a9-a2c7-74743398574b",
         "price",
         "1088bb43-2931-4cb5-b642-6c5e04e45224",
         "daa0e452-23d5-4bd1-afb3-35d7babab88c",
@@ -587,15 +574,6 @@
     },
     "ce002b21-24e0-4d65-87ca-18c9770b24d4": {
       "type": "apps",
-      "blocks": {
-        "ce002b21-24e0-4d65-87ca-18c9770b24d4": {
-          "type": "shopify://apps/audien-reviews/blocks/review_list/ce002b21-24e0-4d65-87ca-18c9770b24d4",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "ce002b21-24e0-4d65-87ca-18c9770b24d4"
-      ],
       "settings": {
         "include_margins": true
       }

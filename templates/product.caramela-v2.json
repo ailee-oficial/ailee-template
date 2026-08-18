@@ -145,16 +145,11 @@
           "type": "description",
           "disabled": true,
           "settings": {}
-        },
-        "f557e927-9910-4a37-b6c5-960f2ecacda1": {
-          "type": "shopify://apps/audien-reviews/blocks/star_rating/ce002b21-24e0-4d65-87ca-18c9770b24d4",
-          "settings": {}
         }
       },
       "block_order": [
         "custom_liquid_9XDG7p",
         "title",
-        "f557e927-9910-4a37-b6c5-960f2ecacda1",
         "d57f30db-f1f3-4fd5-a089-2c2e9533ba3d",
         "text_gazJkx",
         "daa0e452-23d5-4bd1-afb3-35d7babab88c",
@@ -701,15 +696,6 @@
     },
     "ce002b21-24e0-4d65-87ca-18c9770b24d4": {
       "type": "apps",
-      "blocks": {
-        "ce002b21-24e0-4d65-87ca-18c9770b24d4": {
-          "type": "shopify://apps/audien-reviews/blocks/review_list/ce002b21-24e0-4d65-87ca-18c9770b24d4",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "ce002b21-24e0-4d65-87ca-18c9770b24d4"
-      ],
       "settings": {
         "include_margins": true
       }
