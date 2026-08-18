@@ -395,7 +395,7 @@
         "template--16985062932724__b6fc2703-d30b-40d4-b2cb-fcc2eade4e34-column-1": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/avatar_testimonio_01.webp",
+            "image": "shopify://shop_images/mujer1.jpg",
             "title": "Mónica R. ⭐⭐⭐⭐⭐",
             "text": "<p>\"Lo consumo diariamente y me da tranquilidad saber que combina diferentes fuentes de colágeno en una sola fórmula.\"</p>",
             "link_label": "",
@@ -405,7 +405,7 @@
         "template--16985062932724__b6fc2703-d30b-40d4-b2cb-fcc2eade4e34-column-2": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/avatar_testimonio_02.webp",
+            "image": "shopify://shop_images/mujer2.jpg",
             "title": "Ángela P.T. ⭐⭐⭐⭐⭐",
             "text": "<p>\"Me encantó que sea libre de gluten y de sabor neutro. Era justo lo que buscaba para tomar diariamente sin complicaciones.\"</p>",
             "link_label": "",
@@ -415,7 +415,7 @@
         "template--16985062932724__b6fc2703-d30b-40d4-b2cb-fcc2eade4e34-column-3": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/avatar_testimonio_03.webp",
+            "image": "shopify://shop_images/mujer3.jpg",
             "title": "Natalia S. ⭐⭐⭐⭐⭐",
             "text": "<p>\"Lo preparo todas las mañanas con café y ni se siente. Los resultados sí.\"</p>",
             "link_label": "",
