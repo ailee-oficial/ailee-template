@@ -306,7 +306,7 @@
         "fb814fee-541b-418f-a1f8-b03b37c368ce"
       ],
       "settings": {
-        "image": "shopify://shop_images/mcp-mi_pdp2_dolor.webp",
+        "image": "shopify://shop_images/mcp-mi_pdp2_dolor.jpg",
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "text_first",
@@ -466,7 +466,7 @@
         "template--16985062932724__78161370-bfb0-428e-adf1-f106aca5123b-text-1"
       ],
       "settings": {
-        "image": "shopify://shop_images/mcp-mi_pdp4_cafe.webp",
+        "image": "shopify://shop_images/mcp-mi_pdp4_cafe.jpg",
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "image_first",
