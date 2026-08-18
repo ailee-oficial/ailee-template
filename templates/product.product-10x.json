@@ -23,8 +23,10 @@
           "settings": {}
         },
         "d57f30db-f1f3-4fd5-a089-2c2e9533ba3d": {
-          "type": "price",
-          "settings": {}
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{%- assign v = product.selected_or_first_available_variant -%}<div style=\"margin:14px 0 8px;padding:16px;background:#EDE8E3;border:1px solid #EDE8E3;border-radius:14px;box-shadow:0 2px 12px rgba(28,28,28,.05);\"><div style=\"display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;\">{%- if v.compare_at_price > v.price -%}<span style=\"font-size:1.5rem;color:#B0A090;text-decoration:line-through;\">{{ v.compare_at_price | money_without_trailing_zeros }}</span>{%- assign s = v.compare_at_price | minus: v.price | times: 100 | divided_by: v.compare_at_price -%}<span style=\"background:#C4A882;color:#fff;font-size:.8rem;font-weight:800;padding:3px 10px;border-radius:8px;\">-{{ s }}% DCTO</span>{%- endif -%}</div><div style=\"font-size:3.2rem;font-weight:800;color:#1C1C1C;line-height:1;letter-spacing:-.02em;margin-bottom:12px;\">{{ v.price | money_without_trailing_zeros }}</div><div style=\"display:flex;gap:14px;flex-wrap:wrap;\"><span style=\"font-size:.95rem;font-weight:700;color:#1C1C1C;\">🚚 Envío Gratis</span><span style=\"font-size:.95rem;font-weight:700;color:#1C1C1C;\">💰 Paga al Recibir</span></div></div>"
+          }
         },
         "text_gazJkx": {
           "type": "text",
@@ -145,16 +147,11 @@
           "type": "description",
           "disabled": true,
           "settings": {}
-        },
-        "bb22c88b-9775-4ed6-8a1f-bf39e40f3aa5": {
-          "type": "shopify://apps/audien-reviews/blocks/star_rating/ce002b21-24e0-4d65-87ca-18c9770b24d4",
-          "settings": {}
         }
       },
       "block_order": [
         "custom_liquid_9XDG7p",
         "title",
-        "bb22c88b-9775-4ed6-8a1f-bf39e40f3aa5",
         "d57f30db-f1f3-4fd5-a089-2c2e9533ba3d",
         "text_gazJkx",
         "daa0e452-23d5-4bd1-afb3-35d7babab88c",
@@ -175,7 +172,8 @@
       ],
       "custom_css": [
         "div.product__title > h1 {font-size: 17px !important;}",
-        ".button--secondary {background-color: #000000; color: #ffffff;}"
+        ".button--secondary {background-color: #000000; color: #ffffff;}",
+        ".price {display: none !important;}"
       ],
       "settings": {
         "new_product_page_media": true,
@@ -701,15 +699,6 @@
     },
     "ce002b21-24e0-4d65-87ca-18c9770b24d4": {
       "type": "apps",
-      "blocks": {
-        "ce002b21-24e0-4d65-87ca-18c9770b24d4": {
-          "type": "shopify://apps/audien-reviews/blocks/review_list/ce002b21-24e0-4d65-87ca-18c9770b24d4",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "ce002b21-24e0-4d65-87ca-18c9770b24d4"
-      ],
       "settings": {
         "include_margins": true
       }
