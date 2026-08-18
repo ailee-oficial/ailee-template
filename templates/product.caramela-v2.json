@@ -15,7 +15,7 @@
         "custom_liquid_9XDG7p": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<div class=\"review-container\">\n  <div class=\"stars\">\n    {% for i in (1..5) %}\n      <span class=\"star\">★</span>\n    {% endfor %}\n  </div>\n  <span class=\"review-text\">+560 REVIEWS</span>\n</div>\n\n<style>\n  .review-container {\n    display: flex;\n    align-items: center;\n    font-family: Arial, sans-serif;\n    font-size: 18px;\n    font-weight: bold;\n    margin-top: 10px;\n    margin-bottom: 0;\n  }\n\n  .stars {\n    color: #FFD700; /* Color dorado */\n    font-size: 17px; /* Corregido el error de 17x */\n    display: flex;\n    align-items: center;\n  }\n\n  .star {\n    margin-right: 2px;\n  }\n\n  .review-text {\n    margin-left: 8px;\n    color: #000;\n    font-size: 14px;\n    font-weight: bold;\n  }\n</style>"
+            "custom_liquid": "<div class=\"review-container\">\n  <div class=\"stars\">\n    {% for i in (1..5) %}\n      <span class=\"star\">★<\/span>\n    {% endfor %}\n  <\/div>\n  <span class=\"review-text\">+560 REVIEWS<\/span>\n<\/div>\n\n<style>\n  .review-container {\n    display: flex;\n    align-items: center;\n    font-family: Arial, sans-serif;\n    font-size: 18px;\n    font-weight: bold;\n    margin-top: 10px;\n    margin-bottom: 0;\n  }\n\n  .stars {\n    color: #FFD700; \/* Color dorado *\/\n    font-size: 17px; \/* Corregido el error de 17x *\/\n    display: flex;\n    align-items: center;\n  }\n\n  .star {\n    margin-right: 2px;\n  }\n\n  .review-text {\n    margin-left: 8px;\n    color: #000;\n    font-size: 14px;\n    font-weight: bold;\n  }\n<\/style>"
           }
         },
         "title": {
@@ -29,7 +29,7 @@
         "text_gazJkx": {
           "type": "text",
           "settings": {
-            "text": "<strong>PROPUESTA DE VALOR</strong>",
+            "text": "<strong>PROPUESTA DE VALOR<\/strong>",
             "text_style": "body"
           }
         },
@@ -102,7 +102,7 @@
           "settings": {
             "heading": "Información de Envío",
             "icon": "truck",
-            "content": "<p>Escribe aquí, tus condiciones de envío y tiempos de entrega reales.</p>",
+            "content": "<p>Escribe aquí, tus condiciones de envío y tiempos de entrega reales.<\/p>",
             "page": ""
           }
         },
@@ -111,7 +111,7 @@
           "settings": {
             "heading": "Devoluciones",
             "icon": "return",
-            "content": "<p>Escribe aquí tus condiciones para devoluciones faciles y aumentar la confianza en los clientes</p>",
+            "content": "<p>Escribe aquí tus condiciones para devoluciones faciles y aumentar la confianza en los clientes<\/p>",
             "page": ""
           }
         },
@@ -196,7 +196,7 @@
         "enable_sticky_info": true,
         "media_size": "medium",
         "constrain_to_viewport": true,
-        "media_fit": "cover",
+        "media_fit": "contain",
         "gallery_layout": "thumbnail",
         "media_position": "left",
         "image_zoom": "lightbox",
@@ -238,7 +238,7 @@
         "11abbd1c-ea50-4aca-a4aa-563a76d850b5": {
           "type": "text",
           "settings": {
-            "text": "<p>How this product meets their desired outcome</p>"
+            "text": "<p>How this product meets their desired outcome<\/p>"
           }
         }
       },
@@ -260,7 +260,7 @@
       "type": "compare-image",
       "settings": {
         "title": "Beneficios del producto",
-        "text": "<p>Descripción de los beneficios del producto con Imagen Antes/despúes </p>",
+        "text": "<p>Descripción de los beneficios del producto con Imagen Antes\/despúes <\/p>",
         "before": "ANTES",
         "after": "DESPUES"
       }
@@ -278,7 +278,7 @@
         "template--19239854407957__3bc3f381-5c12-4e1e-9f92-289fb87d308d-168585216294cb3c48-1": {
           "type": "text",
           "settings": {
-            "text": "<p>Aquí, complementas y refuerzas el punto de dolor anterior</p>",
+            "text": "<p>Aquí, complementas y refuerzas el punto de dolor anterior<\/p>",
             "text_style": "body"
           }
         },
@@ -317,7 +317,7 @@
           "type": "column",
           "settings": {
             "title": "Beneficio 1",
-            "text": "<p>Ampliar el beneficio 1</p>",
+            "text": "<p>Ampliar el beneficio 1<\/p>",
             "link_label": "",
             "link": ""
           }
@@ -326,7 +326,7 @@
           "type": "column",
           "settings": {
             "title": "Beneficio 2",
-            "text": "<p>Ampliar el beneficio 2</p>",
+            "text": "<p>Ampliar el beneficio 2<\/p>",
             "link_label": "",
             "link": ""
           }
@@ -335,7 +335,7 @@
           "type": "column",
           "settings": {
             "title": "Beneficio 3",
-            "text": "<p>Ampliar el beneficio 3</p>",
+            "text": "<p>Ampliar el beneficio 3<\/p>",
             "link_label": "",
             "link": ""
           }
@@ -344,7 +344,7 @@
           "type": "column",
           "settings": {
             "title": "Beneficio 4",
-            "text": "<p>Ampliar el beneficio 4</p>",
+            "text": "<p>Ampliar el beneficio 4<\/p>",
             "link_label": "",
             "link": ""
           }
@@ -380,7 +380,7 @@
           "type": "column",
           "settings": {
             "title": "( FOTO CLIENTE SATISFECHO) Nombre del Cliente (Emoji 5 Estrellas)",
-            "text": "<p>Review o testimonio del cliente</p>",
+            "text": "<p>Review o testimonio del cliente<\/p>",
             "link_label": "",
             "link": ""
           }
@@ -389,7 +389,7 @@
           "type": "column",
           "settings": {
             "title": "( FOTO CLIENTE SATISFECHO) Nombre del Cliente (Emoji 5 Estrellas)",
-            "text": "<p>Review o testimonio del cliente</p>",
+            "text": "<p>Review o testimonio del cliente<\/p>",
             "link_label": "",
             "link": ""
           }
@@ -398,7 +398,7 @@
           "type": "column",
           "settings": {
             "title": "( FOTO CLIENTE SATISFECHO) Nombre del Cliente (Emoji 5 Estrellas)",
-            "text": "<p>Review o testimonio del cliente</p>",
+            "text": "<p>Review o testimonio del cliente<\/p>",
             "link_label": "",
             "link": ""
           }
@@ -439,7 +439,7 @@
         "template--16985062932724__78161370-bfb0-428e-adf1-f106aca5123b-text-1": {
           "type": "text",
           "settings": {
-            "text": "<p>Y este texto es para una recomendación del producto</p>",
+            "text": "<p>Y este texto es para una recomendación del producto<\/p>",
             "text_style": "body"
           }
         }
@@ -516,7 +516,7 @@
       "settings": {
         "title": "Exalta tu producto frente a la competencia",
         "heading_size": "h1",
-        "text": "<p>Menciona porque tu producto es mejor que el de la ocmpetencia</p>",
+        "text": "<p>Menciona porque tu producto es mejor que el de la ocmpetencia<\/p>",
         "button_label": "",
         "link": "",
         "button_style_secondary": false,
@@ -539,21 +539,21 @@
           "type": "row",
           "settings": {
             "percentage": 90,
-            "row_text": "<p>Cliente Feliz respecto a algo...</p>"
+            "row_text": "<p>Cliente Feliz respecto a algo...<\/p>"
           }
         },
         "template--16985062932724__3d28e77d-b7ce-4326-99e5-6a739a02727b-row-2": {
           "type": "row",
           "settings": {
             "percentage": 90,
-            "row_text": "<p>Cliente Feliz respecto a algo...</p>"
+            "row_text": "<p>Cliente Feliz respecto a algo...<\/p>"
           }
         },
         "template--16985062932724__3d28e77d-b7ce-4326-99e5-6a739a02727b-row-3": {
           "type": "row",
           "settings": {
             "percentage": 90,
-            "row_text": "<p>Cliente Feliz respecto a algo...</p>"
+            "row_text": "<p>Cliente Feliz respecto a algo...<\/p>"
           }
         }
       },
@@ -565,13 +565,13 @@
       "settings": {
         "title": "Recomendación",
         "heading_size": "h1",
-        "text": "<p>Habla del porcentaje de clientes que estan felices con uno de los beneficios puntuales del producto</p>",
+        "text": "<p>Habla del porcentaje de clientes que estan felices con uno de los beneficios puntuales del producto<\/p>",
         "color_scheme": "background-1",
         "layout": "percentages_second",
         "percentages_headline": "",
         "percentages_headline_size": "h2",
         "percentages_headline_alignment": "left",
-        "caption": "<p>*aquí puedes decir que estos porcentajes son comprobados.</p>",
+        "caption": "<p>*aquí puedes decir que estos porcentajes son comprobados.<\/p>",
         "button_label": "",
         "link": "",
         "button_style_secondary": false,
@@ -587,7 +587,7 @@
           "settings": {
             "heading": "Título de la pregunta",
             "icon": "question_mark",
-            "row_content": "<p>respuesta de la pregunta</p>",
+            "row_content": "<p>respuesta de la pregunta<\/p>",
             "page": ""
           }
         },
@@ -596,7 +596,7 @@
           "settings": {
             "heading": "Título de la pregunta",
             "icon": "question_mark",
-            "row_content": "<p>respuesta de la pregunta</p>",
+            "row_content": "<p>respuesta de la pregunta<\/p>",
             "page": ""
           }
         },
@@ -605,7 +605,7 @@
           "settings": {
             "heading": "Título de la pregunta",
             "icon": "question_mark",
-            "row_content": "<p>respuesta de la pregunta</p>",
+            "row_content": "<p>respuesta de la pregunta<\/p>",
             "page": ""
           }
         },
@@ -614,7 +614,7 @@
           "settings": {
             "heading": "Título de la pregunta",
             "icon": "question_mark",
-            "row_content": "<p>respuesta de la pregunta</p>",
+            "row_content": "<p>respuesta de la pregunta<\/p>",
             "page": ""
           }
         }
@@ -647,7 +647,7 @@
           "type": "column",
           "settings": {
             "title": "Nombre del cliente",
-            "text": "<p>Texto del testimonio</p>",
+            "text": "<p>Texto del testimonio<\/p>",
             "link_label": "",
             "link": ""
           }
@@ -656,7 +656,7 @@
           "type": "column",
           "settings": {
             "title": "Nombre del cliente",
-            "text": "<p>texto del testimonio</p>",
+            "text": "<p>texto del testimonio<\/p>",
             "link_label": "",
             "link": ""
           }
@@ -665,7 +665,7 @@
           "type": "column",
           "settings": {
             "title": "Nombre del cliente",
-            "text": "<p>testo del testimonio</p>",
+            "text": "<p>testo del testimonio<\/p>",
             "link_label": "",
             "link": ""
           }
