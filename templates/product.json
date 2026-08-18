@@ -84,7 +84,7 @@
           "settings": {
             "heading": "Información de envío",
             "icon": "truck",
-            "content": "<p>Tiempos de Entrega de 4-6 días hábiles, pagas en la puerta de tu casa.</p>",
+            "content": "<p>Tiempos de Entrega de 4-6 días hábiles, pagas en la puerta de tu casa.<\/p>",
             "page": ""
           }
         },
@@ -93,7 +93,7 @@
           "settings": {
             "heading": "Devoluciones Fáciles",
             "icon": "return",
-            "content": "<p>Tienes 30 días para contactarte con nuestra línea de SAC:<br/>y solicitar tu devolución o garantía</p>",
+            "content": "<p>Tienes 30 días para contactarte con nuestra línea de SAC:<br\/>y solicitar tu devolución o garantía<\/p>",
             "page": ""
           }
         }
@@ -140,7 +140,7 @@
         "enable_sticky_info": true,
         "media_size": "medium",
         "constrain_to_viewport": true,
-        "media_fit": "cover",
+        "media_fit": "contain",
         "gallery_layout": "thumbnail",
         "media_position": "left",
         "image_zoom": "lightbox",
@@ -182,7 +182,7 @@
         "11abbd1c-ea50-4aca-a4aa-563a76d850b5": {
           "type": "text",
           "settings": {
-            "text": "<p>How this product meets their desired outcome</p>"
+            "text": "<p>How this product meets their desired outcome<\/p>"
           }
         }
       },
@@ -213,7 +213,7 @@
         "template--19239854407957__3bc3f381-5c12-4e1e-9f92-289fb87d308d-168585216294cb3c48-1": {
           "type": "text",
           "settings": {
-            "text": "<p>These women are actual Bleame customers that have seen results with consistent use of Bleame's Crystal Hair Eraser!</p>",
+            "text": "<p>These women are actual Bleame customers that have seen results with consistent use of Bleame's Crystal Hair Eraser!<\/p>",
             "text_style": "body"
           }
         },
@@ -227,7 +227,7 @@
         "fb814fee-541b-418f-a1f8-b03b37c368ce": {
           "type": "caption",
           "settings": {
-            "caption": "Rated 4.9/5 by 175,000+ Happy Customers",
+            "caption": "Rated 4.9\/5 by 175,000+ Happy Customers",
             "text_style": "subtitle",
             "text_size": "medium"
           }
@@ -267,7 +267,7 @@
         "6d02dd60-e492-4801-9720-401867f1a5e7": {
           "type": "text",
           "settings": {
-            "text": "<p>Benefit 2. Speak to one of the customers desired outcome<br/><br/>The main benefit of how the product met the desired outcome of the <strong>ideal customer</strong></p>",
+            "text": "<p>Benefit 2. Speak to one of the customers desired outcome<br\/><br\/>The main benefit of how the product met the desired outcome of the <strong>ideal customer<\/strong><\/p>",
             "text_style": "body"
           }
         }
@@ -304,7 +304,7 @@
         "341af988-c8c2-4a9d-ade9-1e70c01292f7": {
           "type": "text",
           "settings": {
-            "text": "<p>Benefit 3. Speak to one of the customers desired outcome<br/><br/>The main benefit of how the product met the desired outcome of the <strong>ideal customer</strong></p>",
+            "text": "<p>Benefit 3. Speak to one of the customers desired outcome<br\/><br\/>The main benefit of how the product met the desired outcome of the <strong>ideal customer<\/strong><\/p>",
             "text_style": "body"
           }
         }
@@ -382,7 +382,7 @@
       "settings": {
         "title": "Que hace especial a nuestra tienda",
         "heading_size": "h1",
-        "text": "<p>Descubra porque nos encanta satisfacer a nuestros clientes</p>",
+        "text": "<p>Descubra porque nos encanta satisfacer a nuestros clientes<\/p>",
         "button_label": "",
         "link": "",
         "button_style_secondary": false,
@@ -405,7 +405,7 @@
           "type": "column",
           "settings": {
             "title": "Envíos Gratis",
-            "text": "<p>En todas las ordenes</p>",
+            "text": "<p>En todas las ordenes<\/p>",
             "link_label": "",
             "link": ""
           }
@@ -414,7 +414,7 @@
           "type": "column",
           "settings": {
             "title": "30-Dias de Garantia",
-            "text": "<p>Siempre que el producto esté en buen estado</p>",
+            "text": "<p>Siempre que el producto esté en buen estado<\/p>",
             "link_label": "",
             "link": ""
           }
@@ -423,7 +423,7 @@
           "type": "column",
           "settings": {
             "title": "Devoluciones Faciles",
-            "text": "<p>Política de devoluciones muy sencilla para ti</p>",
+            "text": "<p>Política de devoluciones muy sencilla para ti<\/p>",
             "link_label": "",
             "link": ""
           }
@@ -458,21 +458,21 @@
           "type": "row",
           "settings": {
             "percentage": 95,
-            "row_text": "<p>Dice que es muy fácil comprar y pagar contraentrega los pedidos.</p>"
+            "row_text": "<p>Dice que es muy fácil comprar y pagar contraentrega los pedidos.<\/p>"
           }
         },
         "template--19569037836604__be5110f8-30ab-4ba0-bde4-8e6eee02a929-1686951254980033df-1": {
           "type": "row",
           "settings": {
             "percentage": 94,
-            "row_text": "<p>Dice que nuestros asesores han solucionado sus problemas</p>"
+            "row_text": "<p>Dice que nuestros asesores han solucionado sus problemas<\/p>"
           }
         },
         "template--19569037836604__be5110f8-30ab-4ba0-bde4-8e6eee02a929-1686951254980033df-2": {
           "type": "row",
           "settings": {
             "percentage": 90,
-            "row_text": "<p>Ha dicho que volvería a comprar con nosotros</p>"
+            "row_text": "<p>Ha dicho que volvería a comprar con nosotros<\/p>"
           }
         }
       },
@@ -484,13 +484,13 @@
       "settings": {
         "title": "Descubre lo que piensan nuestros clientes...",
         "heading_size": "h1",
-        "text": "<p>Procesamos más de 860 órdenes al día... y esto es lo que dicen ellos</p>",
+        "text": "<p>Procesamos más de 860 órdenes al día... y esto es lo que dicen ellos<\/p>",
         "color_scheme": "background-1",
         "layout": "percentages_second",
         "percentages_headline": "Cada compra es trata con amor! 💜",
         "percentages_headline_size": "h2",
         "percentages_headline_alignment": "left",
-        "caption": "<p>* Los resultados fueron basados de la encuesta realizada a nuestros 95.600 clientes del año 2022.</p>",
+        "caption": "<p>* Los resultados fueron basados de la encuesta realizada a nuestros 95.600 clientes del año 2022.<\/p>",
         "button_label": "",
         "link": "",
         "button_style_secondary": false,
@@ -506,7 +506,7 @@
           "settings": {
             "heading": "¿Como puedo comprar?",
             "icon": "question_mark",
-            "row_content": "<p>El proceso es realmente simple... después de ingresar tus datos finalizas la orden de compra y podrás pagar en casa.</p>",
+            "row_content": "<p>El proceso es realmente simple... después de ingresar tus datos finalizas la orden de compra y podrás pagar en casa.<\/p>",
             "page": ""
           }
         },
@@ -515,7 +515,7 @@
           "settings": {
             "heading": "¿Tienen disponible pago contraentrega?",
             "icon": "question_mark",
-            "row_content": "<p>El servicio de pago contraentrega ESTÁ DISPONIBLE  para todos nuestros usuarios, y NO TIENE COSTO ALGUNO.</p>",
+            "row_content": "<p>El servicio de pago contraentrega ESTÁ DISPONIBLE  para todos nuestros usuarios, y NO TIENE COSTO ALGUNO.<\/p>",
             "page": ""
           }
         },
@@ -524,7 +524,7 @@
           "settings": {
             "heading": "¿En cuanto tiempo recibo mi pedido?",
             "icon": "question_mark",
-            "row_content": "<p>Los pedidos son procesados el mismo día en que haces la compra. Y son entregados en la puerta de tu casa de 4 a 6 días hábiles.</p>",
+            "row_content": "<p>Los pedidos son procesados el mismo día en que haces la compra. Y son entregados en la puerta de tu casa de 4 a 6 días hábiles.<\/p>",
             "page": ""
           }
         },
@@ -533,7 +533,7 @@
           "settings": {
             "heading": "¿A donde puedo contactarme?",
             "icon": "question_mark",
-            "row_content": "<p>Si deseas hacer una compra, o tienes algún problema con tu pedido, no dudes escribir a nuestro whatsapp</p>",
+            "row_content": "<p>Si deseas hacer una compra, o tienes algún problema con tu pedido, no dudes escribir a nuestro whatsapp<\/p>",
             "page": ""
           }
         }
