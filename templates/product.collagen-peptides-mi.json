@@ -15,7 +15,7 @@
         "custom_liquid_9XDG7p": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<div class=\"review-container\">\n  <div class=\"stars\">\n    {% for i in (1..5) %}\n      <span class=\"star\">★<\/span>\n    {% endfor %}\n  <\/div>\n  <span class=\"review-text\">+21.000 REVIEWS<\/span>\n<\/div>\n\n<style>\n  .review-container {\n    display: flex;\n    align-items: center;\n    font-family: Arial, sans-serif;\n    font-size: 18px;\n    font-weight: bold;\n    margin-top: 10px;\n    margin-bottom: 0;\n  }\n\n  .stars {\n    color: #FFD700; \/* Color dorado *\/\n    font-size: 17px; \/* Corregido el error de 17x *\/\n    display: flex;\n    align-items: center;\n  }\n\n  .star {\n    margin-right: 2px;\n  }\n\n  .review-text {\n    margin-left: 8px;\n    color: #000;\n    font-size: 14px;\n    font-weight: bold;\n  }\n<\/style>"
+            "custom_liquid": "<div class=\"review-container\">\n  <div class=\"stars\">\n    {% for i in (1..5) %}\n      <span class=\"star\">★</span>\n    {% endfor %}\n  </div>\n  <span class=\"review-text\">+21.000 REVIEWS</span>\n</div>\n\n<style>\n  .review-container {\n    display: flex;\n    align-items: center;\n    font-family: Arial, sans-serif;\n    font-size: 18px;\n    font-weight: bold;\n    margin-top: 10px;\n    margin-bottom: 0;\n  }\n\n  .stars {\n    color: #FFD700; /* Color dorado */\n    font-size: 17px; /* Corregido el error de 17x */\n    display: flex;\n    align-items: center;\n  }\n\n  .star {\n    margin-right: 2px;\n  }\n\n  .review-text {\n    margin-left: 8px;\n    color: #000;\n    font-size: 14px;\n    font-weight: bold;\n  }\n</style>"
           }
         },
         "title": {
@@ -25,13 +25,13 @@
         "d57f30db-f1f3-4fd5-a089-2c2e9533ba3d": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "{%- assign v = product.selected_or_first_available_variant -%}<div style=\"margin:14px 0 8px;padding:16px;background:#EDE8E3;border:1px solid #EDE8E3;border-radius:14px;box-shadow:0 2px 12px rgba(28,28,28,.05);\"><div style=\"display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;\">{%- if v.compare_at_price > v.price -%}<span style=\"font-size:1.5rem;color:#B0A090;text-decoration:line-through;\">{{ v.compare_at_price | money_without_trailing_zeros }}<\/span><span style=\"background:#C4A882;color:#fff;font-size:.8rem;font-weight:800;padding:3px 10px;border-radius:8px;\">2x1<\/span>{%- endif -%}<\/div><div style=\"font-size:3.2rem;font-weight:800;color:#1C1C1C;line-height:1;letter-spacing:-.02em;margin-bottom:12px;\">{{ v.price | money_without_trailing_zeros }}<\/div><div style=\"display:flex;gap:14px;flex-wrap:wrap;\"><span style=\"font-size:.95rem;font-weight:700;color:#1C1C1C;\">🚚 Envío Gratis<\/span><span style=\"font-size:.95rem;font-weight:700;color:#1C1C1C;\">💰 Paga al Recibir<\/span><\/div><\/div>"
+            "custom_liquid": "{%- assign v = product.selected_or_first_available_variant -%}<div style=\"margin:14px 0 8px;padding:16px;background:#EDE8E3;border:1px solid #EDE8E3;border-radius:14px;box-shadow:0 2px 12px rgba(28,28,28,.05);\"><div style=\"display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;\">{%- if v.compare_at_price > v.price -%}<span style=\"font-size:1.5rem;color:#B0A090;text-decoration:line-through;\">{{ v.compare_at_price | money_without_trailing_zeros }}</span><span style=\"background:#C4A882;color:#fff;font-size:.8rem;font-weight:800;padding:3px 10px;border-radius:8px;\">2x1</span>{%- endif -%}</div><div style=\"font-size:3.2rem;font-weight:800;color:#1C1C1C;line-height:1;letter-spacing:-.02em;margin-bottom:12px;\">{{ v.price | money_without_trailing_zeros }}</div><div style=\"display:flex;gap:14px;flex-wrap:wrap;\"><span style=\"font-size:.95rem;font-weight:700;color:#1C1C1C;\">🚚 Envío Gratis</span><span style=\"font-size:.95rem;font-weight:700;color:#1C1C1C;\">💰 Paga al Recibir</span></div></div>"
           }
         },
         "text_gazJkx": {
           "type": "text",
           "settings": {
-            "text": "<strong>Los primeros 2 meses de tu tratamiento<\/strong> — 5 tipos de colágeno en una sola cucharada diaria. Sin sabor. Sin complicaciones.",
+            "text": "<strong>Los primeros 2 meses de tu tratamiento</strong> — 5 tipos de colágeno en una sola cucharada diaria. Sin sabor. Sin complicaciones.",
             "text_style": "body"
           }
         },
@@ -61,7 +61,7 @@
         "cta_inmediato": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<style>\n  .product-form__submit { display: none !important; }\n\n  #cta-inmediato {\n    width: 100%;\n    min-height: 51px;\n    margin-top: 10px;\n    margin-bottom: 10px;\n    padding: 12px 20px 14px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    box-sizing: border-box;\n    border: 0;\n    border-radius: 13px;\n    background: #1C1C1C;\n    color: #fff;\n    font-family: inherit;\n    font-size: 17.6px;\n    font-weight: 600;\n    line-height: 1.3;\n    text-align: center;\n    cursor: pointer;\n    appearance: none;\n    animation: cta-wave 2s ease-out infinite, cta-bounce 2s ease-in-out infinite;\n  }\n  #cta-inmediato .cta-icono { flex: 0 0 auto; margin-right: 14px; }\n  #cta-inmediato .cta-sub {\n    display: block;\n    margin-top: 3px;\n    font-size: 90%;\n    font-weight: 400;\n    opacity: 0.95;\n  }\n  #cta-inmediato[data-esperando=\"1\"] { opacity: 0.75; }\n\n  @keyframes cta-wave {\n    0%   { box-shadow: 0 0 0 0 rgba(28,28,28,.35); }\n    60%  { box-shadow: 0 0 0 14px rgba(28,28,28,0); }\n    100% { box-shadow: 0 0 0 0  rgba(28,28,28,0); }\n  }\n  @keyframes cta-bounce {\n    0%,100% { transform: translateY(0); }\n    30%     { transform: translateY(-4px); }\n    60%     { transform: translateY(-2px); }\n  }\n  ._rsi-buy-now-button-product,\n  body ._rsi-buy-now-button-product,\n  .product-form ._rsi-buy-now-button-product {\n    background-color: #1C1C1C !important;\n    background: #1C1C1C !important;\n    border-color: #1C1C1C !important;\n    animation: cta-wave 2s ease-out infinite, cta-bounce 2s ease-in-out infinite !important;\n  }\n  @media (prefers-reduced-motion: reduce) {\n    #cta-inmediato, ._rsi-buy-now-button-product { animation: none !important; }\n  }\n\n  body:has(._rsi-buy-now-button-product) #cta-inmediato { display: none; }\n<\/style>\n\n<button type=\"button\" id=\"cta-inmediato\" aria-label=\"Comprar con pago contra entrega\">\n  <svg class=\"cta-icono\" width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\n    <path d=\"M3 6h11v9H3z\"\/><path d=\"M14 9h4l3 3v3h-7z\"\/>\n    <circle cx=\"7\" cy=\"17.5\" r=\"1.8\"\/><circle cx=\"17\" cy=\"17.5\" r=\"1.8\"\/>\n  <\/svg>\n  <span>\n    CLICK AQUI, PAGA EN CASA\n    <span class=\"cta-sub\">¡ENVIO GRATIS!<\/span>\n  <\/span>\n<\/button>\n\n<script>\n(function () {\n  var SELECTOR_REAL = \"._rsi-buy-now-button-product\";\n  var MS_ESPERA_MAXIMA = 12000;\n  var MS_INTENCION_VALIDA = 15000;\n\n  var placeholder = document.getElementById(\"cta-inmediato\");\n  if (!placeholder) return;\n\n  var contenedor = placeholder.closest(\".product-form__buttons\") || document;\n  var intencionEn = 0;\n  var resuelto = false;\n\n  function botonReal() {\n    return contenedor.querySelector(SELECTOR_REAL) || document.querySelector(SELECTOR_REAL);\n  }\n\n  function activar(real) {\n    if (resuelto) return;\n    resuelto = true;\n    observador.disconnect();\n    placeholder.style.display = \"none\";\n    real.style.setProperty(\"background-color\",\"#1C1C1C\",\"important\");\n    real.style.setProperty(\"background\",\"#1C1C1C\",\"important\");\n    real.style.setProperty(\"border-color\",\"#1C1C1C\",\"important\");\n\n    var aTiempo = intencionEn && (Date.now() - intencionEn) < MS_INTENCION_VALIDA;\n    if (aTiempo) real.click();\n  }\n\n  function rendirse() {\n    if (resuelto) return;\n    resuelto = true;\n    observador.disconnect();\n    placeholder.style.display = \"none\";\n    var nativo = document.querySelector(\".product-form__submit\");\n    if (nativo) nativo.style.setProperty(\"display\", \"flex\", \"important\");\n  }\n\n  placeholder.addEventListener(\"click\", function () {\n    var real = botonReal();\n    if (real) { activar(real); return; }\n    intencionEn = Date.now();\n    placeholder.setAttribute(\"data-esperando\", \"1\");\n  });\n\n  var observador = new MutationObserver(function () {\n    var real = botonReal();\n    if (real) activar(real);\n  });\n  observador.observe(document.body, { childList: true, subtree: true });\n\n  var yaEstaba = botonReal();\n  if (yaEstaba) activar(yaEstaba);\n  else setTimeout(rendirse, MS_ESPERA_MAXIMA);\n})();\n<\/script>\n"
+            "custom_liquid": "<style>\n  .product-form__submit { display: none !important; }\n\n  #cta-inmediato {\n    width: 100%;\n    min-height: 51px;\n    margin-top: 10px;\n    margin-bottom: 10px;\n    padding: 12px 20px 14px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    box-sizing: border-box;\n    border: 0;\n    border-radius: 13px;\n    background: #1C1C1C;\n    color: #fff;\n    font-family: inherit;\n    font-size: 17.6px;\n    font-weight: 600;\n    line-height: 1.3;\n    text-align: center;\n    cursor: pointer;\n    appearance: none;\n    animation: cta-wave 2s ease-out infinite, cta-bounce 2s ease-in-out infinite;\n  }\n  #cta-inmediato .cta-icono { flex: 0 0 auto; margin-right: 14px; }\n  #cta-inmediato .cta-sub {\n    display: block;\n    margin-top: 3px;\n    font-size: 90%;\n    font-weight: 400;\n    opacity: 0.95;\n  }\n  #cta-inmediato[data-esperando=\"1\"] { opacity: 0.75; }\n\n  @keyframes cta-wave {\n    0%   { box-shadow: 0 0 0 0 rgba(28,28,28,.35); }\n    60%  { box-shadow: 0 0 0 14px rgba(28,28,28,0); }\n    100% { box-shadow: 0 0 0 0  rgba(28,28,28,0); }\n  }\n  @keyframes cta-bounce {\n    0%,100% { transform: translateY(0); }\n    30%     { transform: translateY(-4px); }\n    60%     { transform: translateY(-2px); }\n  }\n  ._rsi-buy-now-button-product,\n  body ._rsi-buy-now-button-product,\n  .product-form ._rsi-buy-now-button-product {\n    background-color: #1C1C1C !important;\n    background: #1C1C1C !important;\n    border-color: #1C1C1C !important;\n    animation: cta-wave 2s ease-out infinite, cta-bounce 2s ease-in-out infinite !important;\n  }\n  @media (prefers-reduced-motion: reduce) {\n    #cta-inmediato, ._rsi-buy-now-button-product { animation: none !important; }\n  }\n\n  body:has(._rsi-buy-now-button-product) #cta-inmediato { display: none; }\n</style>\n\n<button type=\"button\" id=\"cta-inmediato\" aria-label=\"Comprar con pago contra entrega\">\n  <svg class=\"cta-icono\" width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\n    <path d=\"M3 6h11v9H3z\"/><path d=\"M14 9h4l3 3v3h-7z\"/>\n    <circle cx=\"7\" cy=\"17.5\" r=\"1.8\"/><circle cx=\"17\" cy=\"17.5\" r=\"1.8\"/>\n  </svg>\n  <span>\n    CLICK AQUI, PAGA EN CASA\n    <span class=\"cta-sub\">¡ENVIO GRATIS!</span>\n  </span>\n</button>\n\n<script>\n(function () {\n  var SELECTOR_REAL = \"._rsi-buy-now-button-product\";\n  var MS_ESPERA_MAXIMA = 12000;\n  var MS_INTENCION_VALIDA = 15000;\n\n  var placeholder = document.getElementById(\"cta-inmediato\");\n  if (!placeholder) return;\n\n  var contenedor = placeholder.closest(\".product-form__buttons\") || document;\n  var intencionEn = 0;\n  var resuelto = false;\n\n  function botonReal() {\n    return contenedor.querySelector(SELECTOR_REAL) || document.querySelector(SELECTOR_REAL);\n  }\n\n  function activar(real) {\n    if (resuelto) return;\n    resuelto = true;\n    observador.disconnect();\n    placeholder.style.display = \"none\";\n    real.style.setProperty(\"background-color\",\"#1C1C1C\",\"important\");\n    real.style.setProperty(\"background\",\"#1C1C1C\",\"important\");\n    real.style.setProperty(\"border-color\",\"#1C1C1C\",\"important\");\n\n    var aTiempo = intencionEn && (Date.now() - intencionEn) < MS_INTENCION_VALIDA;\n    if (aTiempo) real.click();\n  }\n\n  function rendirse() {\n    if (resuelto) return;\n    resuelto = true;\n    observador.disconnect();\n    placeholder.style.display = \"none\";\n    var nativo = document.querySelector(\".product-form__submit\");\n    if (nativo) nativo.style.setProperty(\"display\", \"flex\", \"important\");\n  }\n\n  placeholder.addEventListener(\"click\", function () {\n    var real = botonReal();\n    if (real) { activar(real); return; }\n    intencionEn = Date.now();\n    placeholder.setAttribute(\"data-esperando\", \"1\");\n  });\n\n  var observador = new MutationObserver(function () {\n    var real = botonReal();\n    if (real) activar(real);\n  });\n  observador.observe(document.body, { childList: true, subtree: true });\n\n  var yaEstaba = botonReal();\n  if (yaEstaba) activar(yaEstaba);\n  else setTimeout(rendirse, MS_ESPERA_MAXIMA);\n})();\n</script>\n"
           }
         },
         "eed7bb10-67b9-4655-8c71-ca64ed54fb48": {
@@ -75,7 +75,7 @@
         "1c393517-7c5c-4915-ba22-5dbd8ede91e5": {
           "type": "featuredreview",
           "settings": {
-            "reviewimage": "shopify:\/\/shop_images\/mujer1.jpg",
+            "reviewimage": "shopify://shop_images/mujer1.jpg",
             "reviewtext": "Lo consumo diariamente y me da tranquilidad saber que combina diferentes fuentes de colágeno en una sola fórmula. Se disuelve fácil y no altera el sabor del café.",
             "reviewname": "Mónica R. ⭐⭐⭐⭐⭐"
           }
@@ -93,7 +93,7 @@
           "settings": {
             "heading": "Qué Incluye",
             "icon": "check_mark",
-            "content": "<p>2 bolsas × 454g de colágeno multi-tipo hidrolizado (tipos I, II, III, V y X).<br>4 fuentes: res grass-fed, pollo, pescado silvestre, cáscara de huevo.<br>~40 porciones por bolsa. Scoop dosificador incluido.<\/p>",
+            "content": "<p>2 bolsas × 454g de colágeno multi-tipo hidrolizado (tipos I, II, III, V y X).<br>4 fuentes: res grass-fed, pollo, pescado silvestre, cáscara de huevo.<br>~40 porciones por bolsa. Scoop dosificador incluido.</p>",
             "page": ""
           }
         },
@@ -102,7 +102,7 @@
           "settings": {
             "heading": "Cómo se usa",
             "icon": "check_mark",
-            "content": "<p>1-2 cucharadas al día en agua, café, batidos o cualquier bebida fría o caliente.<br>Sin sabor — no altera el gusto de la bebida.<br>Tomar a diario durante mínimo 4-8 semanas para notar resultados.<\/p>",
+            "content": "<p>1-2 cucharadas al día en agua, café, batidos o cualquier bebida fría o caliente.<br>Sin sabor — no altera el gusto de la bebida.<br>Tomar a diario durante mínimo 4-8 semanas para notar resultados.</p>",
             "page": ""
           }
         },
@@ -111,7 +111,7 @@
           "settings": {
             "heading": "Información de Envío",
             "icon": "truck",
-            "content": "<p><strong>Envío gratis a toda Colombia.<\/strong><br>Se despacha en 1 día hábil. Entrega en 3 a 7 días hábiles según la ciudad.<br>Pagas cuando recibes el producto en la puerta de tu casa.<\/p>",
+            "content": "<p><strong>Envío gratis a toda Colombia.</strong><br>Se despacha en 1 día hábil. Entrega en 3 a 7 días hábiles según la ciudad.<br>Pagas cuando recibes el producto en la puerta de tu casa.</p>",
             "page": ""
           }
         },
@@ -120,7 +120,7 @@
           "settings": {
             "heading": "Devoluciones",
             "icon": "return",
-            "content": "<p>Si no quedas satisfecha, tienes 30 días para devolverlo sin complicaciones.<br>Nos contactas, coordinamos la recogida y se te devuelve el dinero.<br>Sin preguntas, sin letras pequeñas.<\/p>",
+            "content": "<p>Si no quedas satisfecha, tienes 30 días para devolverlo sin complicaciones.<br>Nos contactas, coordinamos la recogida y se te devuelve el dinero.<br>Sin preguntas, sin letras pequeñas.</p>",
             "page": ""
           }
         },
@@ -249,7 +249,7 @@
         "11abbd1c-ea50-4aca-a4aa-563a76d850b5": {
           "type": "text",
           "settings": {
-            "text": "<p>How this product meets their desired outcome<\/p>"
+            "text": "<p>How this product meets their desired outcome</p>"
           }
         }
       },
@@ -271,11 +271,11 @@
       "type": "compare-image",
       "settings": {
         "title": "Tu piel produce menos colágeno cada año",
-        "text": "<p>A partir de los 25 años, la producción natural disminuye. Multi Collagen repone los 5 tipos que tu cuerpo necesita para mantener firmeza, elasticidad e hidratación.<\/p>",
+        "text": "<p>A partir de los 25 años, la producción natural disminuye. Multi Collagen repone los 5 tipos que tu cuerpo necesita para mantener firmeza, elasticidad e hidratación.</p>",
         "before": "SIN COLÁGENO",
         "after": "CON COLÁGENO",
-        "image1": "shopify:\/\/shop_images\/mcp-mi_T01_before.webp",
-        "image2": "shopify:\/\/shop_images\/mcp-mi_T02_after.webp"
+        "image1": "shopify://shop_images/mcp-mi_T01_before.webp",
+        "image2": "shopify://shop_images/mcp-mi_T02_after.webp"
       }
     },
     "3bc3f381-5c12-4e1e-9f92-289fb87d308d": {
@@ -291,7 +291,7 @@
         "template--19239854407957__3bc3f381-5c12-4e1e-9f92-289fb87d308d-168585216294cb3c48-1": {
           "type": "text",
           "settings": {
-            "text": "<p>No es que estés haciendo algo mal. Es que tu cuerpo necesita un colágeno que cubra todo — no solo la piel.<\/p>",
+            "text": "<p>No es que estés haciendo algo mal. Es que tu cuerpo necesita un colágeno que cubra todo — no solo la piel.</p>",
             "text_style": "body"
           }
         },
@@ -310,7 +310,7 @@
         "fb814fee-541b-418f-a1f8-b03b37c368ce"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/mcp-mi_pdp2_dolor.jpg",
+        "image": "shopify://shop_images/mcp-mi_pdp2_dolor.jpg",
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "text_first",
@@ -330,9 +330,9 @@
         "template--16985062932724__50f8db15-9a00-4bfb-8176-786845498504-column-1": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/mcp-mi_T04_piel.webp",
+            "image": "shopify://shop_images/mcp-mi_T04_piel.webp",
             "title": "Piel más firme",
-            "text": "<p>Colágeno tipos I y III estimulan la firmeza y elasticidad desde adentro.<\/p>",
+            "text": "<p>Colágeno tipos I y III estimulan la firmeza y elasticidad desde adentro.</p>",
             "link_label": "",
             "link": ""
           }
@@ -340,9 +340,9 @@
         "template--16985062932724__50f8db15-9a00-4bfb-8176-786845498504-column-2": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/mcp-mi_T05_cabello.webp",
+            "image": "shopify://shop_images/mcp-mi_T05_cabello.webp",
             "title": "Cabello con más cuerpo",
-            "text": "<p>Nutre el folículo piloso para crecimiento más fuerte y brillante.<\/p>",
+            "text": "<p>Nutre el folículo piloso para crecimiento más fuerte y brillante.</p>",
             "link_label": "",
             "link": ""
           }
@@ -350,9 +350,9 @@
         "template--16985062932724__50f8db15-9a00-4bfb-8176-786845498504-column-3": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/mcp-mi_T06_articulaciones.webp",
+            "image": "shopify://shop_images/mcp-mi_T06_articulaciones.webp",
             "title": "Articulaciones cómodas",
-            "text": "<p>Colágeno tipo II apoya el cartílago y reduce la rigidez matutina.<\/p>",
+            "text": "<p>Colágeno tipo II apoya el cartílago y reduce la rigidez matutina.</p>",
             "link_label": "",
             "link": ""
           }
@@ -360,9 +360,9 @@
         "8f4c5208-c742-4fe0-9e42-8cc758a77b8c": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/mcp-mi_T07_ritual.webp",
+            "image": "shopify://shop_images/mcp-mi_T07_ritual.webp",
             "title": "Una cucharada y listo",
-            "text": "<p>Sabor neutro, sin textura arenosa. Lo mezclas en el café y ni se siente.<\/p>",
+            "text": "<p>Sabor neutro, sin textura arenosa. Lo mezclas en el café y ni se siente.</p>",
             "link_label": "",
             "link": ""
           }
@@ -397,9 +397,9 @@
         "template--16985062932724__b6fc2703-d30b-40d4-b2cb-fcc2eade4e34-column-1": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/mujer4.jpg",
+            "image": "shopify://shop_images/mujer4.jpg",
             "title": "Mónica R. ⭐⭐⭐⭐⭐",
-            "text": "<p>\"Lo consumo diariamente y me da tranquilidad saber que combina diferentes fuentes de colágeno en una sola fórmula.\"<\/p>",
+            "text": "<p>\"Lo consumo diariamente y me da tranquilidad saber que combina diferentes fuentes de colágeno en una sola fórmula.\"</p>",
             "link_label": "",
             "link": ""
           }
@@ -407,9 +407,9 @@
         "template--16985062932724__b6fc2703-d30b-40d4-b2cb-fcc2eade4e34-column-2": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/mujer5.jpg",
+            "image": "shopify://shop_images/mujer5.jpg",
             "title": "Ángela P.T. ⭐⭐⭐⭐⭐",
-            "text": "<p>\"Me encantó que sea libre de gluten y de sabor neutro. Era justo lo que buscaba para tomar diariamente sin complicaciones.\"<\/p>",
+            "text": "<p>\"Me encantó que sea libre de gluten y de sabor neutro. Era justo lo que buscaba para tomar diariamente sin complicaciones.\"</p>",
             "link_label": "",
             "link": ""
           }
@@ -417,9 +417,9 @@
         "template--16985062932724__b6fc2703-d30b-40d4-b2cb-fcc2eade4e34-column-3": {
           "type": "column",
           "settings": {
-            "image": "shopify:\/\/shop_images\/mujer6.jpg",
+            "image": "shopify://shop_images/mujer6.jpg",
             "title": "Natalia S. ⭐⭐⭐⭐⭐",
-            "text": "<p>\"Lo preparo todas las mañanas con café y ni se siente. Los resultados sí.\"<\/p>",
+            "text": "<p>\"Lo preparo todas las mañanas con café y ni se siente. Los resultados sí.\"</p>",
             "link_label": "",
             "link": ""
           }
@@ -460,7 +460,7 @@
         "template--16985062932724__78161370-bfb0-428e-adf1-f106aca5123b-text-1": {
           "type": "text",
           "settings": {
-            "text": "<p>Cada lote probado por laboratorios independientes. Ingredientes verificables en la etiqueta. 21.000+ reseñas verificadas a nivel global. Paga cuando llega — sin riesgo.<\/p>",
+            "text": "<p>Cada lote probado por laboratorios independientes. Ingredientes verificables en la etiqueta. 21.000+ reseñas verificadas a nivel global. Paga cuando llega — sin riesgo.</p>",
             "text_style": "body"
           }
         }
@@ -470,7 +470,7 @@
         "template--16985062932724__78161370-bfb0-428e-adf1-f106aca5123b-text-1"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/mcp-mi_pdp4_cafe.jpg",
+        "image": "shopify://shop_images/mcp-mi_pdp4_cafe.jpg",
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "image_first",
@@ -538,7 +538,7 @@
       "settings": {
         "title": "¿Por qué este colágeno y no otro?",
         "heading_size": "h1",
-        "text": "<p>La mayoría de colágenos solo traen tipo I. Este combina los 5 tipos que tu cuerpo necesita — de 4 fuentes distintas.<\/p>",
+        "text": "<p>La mayoría de colágenos solo traen tipo I. Este combina los 5 tipos que tu cuerpo necesita — de 4 fuentes distintas.</p>",
         "button_label": "",
         "link": "",
         "button_style_secondary": false,
@@ -561,21 +561,21 @@
           "type": "row",
           "settings": {
             "percentage": 94,
-            "row_text": "<p>notaron uñas más fuertes en las primeras 6 semanas<\/p>"
+            "row_text": "<p>notaron uñas más fuertes en las primeras 6 semanas</p>"
           }
         },
         "template--16985062932724__3d28e77d-b7ce-4326-99e5-6a739a02727b-row-2": {
           "type": "row",
           "settings": {
             "percentage": 91,
-            "row_text": "<p>reportaron piel con más firmeza y luminosidad<\/p>"
+            "row_text": "<p>reportaron piel con más firmeza y luminosidad</p>"
           }
         },
         "template--16985062932724__3d28e77d-b7ce-4326-99e5-6a739a02727b-row-3": {
           "type": "row",
           "settings": {
             "percentage": 89,
-            "row_text": "<p>sintieron mayor comodidad en las articulaciones<\/p>"
+            "row_text": "<p>sintieron mayor comodidad en las articulaciones</p>"
           }
         }
       },
@@ -587,13 +587,13 @@
       "settings": {
         "title": "Resultados que se notan",
         "heading_size": "h1",
-        "text": "<p>Basado en más de 21.000 reseñas verificadas de usuarias constantes.<\/p>",
+        "text": "<p>Basado en más de 21.000 reseñas verificadas de usuarias constantes.</p>",
         "color_scheme": "background-1",
         "layout": "percentages_second",
         "percentages_headline": "",
         "percentages_headline_size": "h2",
         "percentages_headline_alignment": "left",
-        "caption": "<p>*Porcentajes basados en reseñas verificadas de usuarias con uso diario constante.<\/p>",
+        "caption": "<p>*Porcentajes basados en reseñas verificadas de usuarias con uso diario constante.</p>",
         "button_label": "",
         "link": "",
         "button_style_secondary": false,
@@ -609,7 +609,7 @@
           "settings": {
             "heading": "¿Cuándo voy a ver los primeros resultados?",
             "icon": "question_mark",
-            "row_content": "<p>Las uñas suelen ser las primeras en notar la diferencia (3-6 semanas). El cabello y la piel necesitan 4-8 semanas de uso diario constante. Por eso el 2x1 viene perfecto: tienes los primeros 2 meses cubiertos sin interrumpir el proceso.<\/p>",
+            "row_content": "<p>Las uñas suelen ser las primeras en notar la diferencia (3-6 semanas). El cabello y la piel necesitan 4-8 semanas de uso diario constante. Por eso el 2x1 viene perfecto: tienes los primeros 2 meses cubiertos sin interrumpir el proceso.</p>",
             "page": ""
           }
         },
@@ -618,7 +618,7 @@
           "settings": {
             "heading": "¿Le cambia el sabor al café o a mis bebidas?",
             "icon": "question_mark",
-            "row_content": "<p>No. Es totalmente neutro — sin sabor y sin textura arenosa. Se disuelve en segundos en cualquier bebida, fría o caliente. No vas a notar que está ahí.<\/p>",
+            "row_content": "<p>No. Es totalmente neutro — sin sabor y sin textura arenosa. Se disuelve en segundos en cualquier bebida, fría o caliente. No vas a notar que está ahí.</p>",
             "page": ""
           }
         },
@@ -627,7 +627,7 @@
           "settings": {
             "heading": "¿En qué se diferencia de otros colágenos?",
             "icon": "question_mark",
-            "row_content": "<p>La mayoría de colágenos traen solo tipo I (que cubre la piel superficialmente). Este combina 5 tipos (I, II, III, V y X) de 4 fuentes animales distintas — res grass-fed, pollo, pescado silvestre y cáscara de huevo — para cubrir piel, cabello, uñas, articulaciones y huesos al mismo tiempo.<\/p>",
+            "row_content": "<p>La mayoría de colágenos traen solo tipo I (que cubre la piel superficialmente). Este combina 5 tipos (I, II, III, V y X) de 4 fuentes animales distintas — res grass-fed, pollo, pescado silvestre y cáscara de huevo — para cubrir piel, cabello, uñas, articulaciones y huesos al mismo tiempo.</p>",
             "page": ""
           }
         },
@@ -636,7 +636,7 @@
           "settings": {
             "heading": "¿Es seguro? ¿Cómo sé que tiene lo que dice?",
             "icon": "question_mark",
-            "row_content": "<p>Fabricado en EE. UU. bajo certificación GMP (normas estrictas de calidad farmacéutica). Cada lote es analizado por laboratorios independientes de terceros. Los ingredientes están en la etiqueta y son verificables. Además, pagas cuando lo recibes — sin riesgo.<\/p>",
+            "row_content": "<p>Fabricado en EE. UU. bajo certificación GMP (normas estrictas de calidad farmacéutica). Cada lote es analizado por laboratorios independientes de terceros. Los ingredientes están en la etiqueta y son verificables. Además, pagas cuando lo recibes — sin riesgo.</p>",
             "page": ""
           }
         }
@@ -669,7 +669,7 @@
           "type": "column",
           "settings": {
             "title": "Mónica R. ⭐⭐⭐⭐⭐",
-            "text": "<p>\"Lo consumo diariamente y me da tranquilidad saber que combina diferentes fuentes de colágeno en una sola fórmula.\"<\/p>",
+            "text": "<p>\"Lo consumo diariamente y me da tranquilidad saber que combina diferentes fuentes de colágeno en una sola fórmula.\"</p>",
             "link_label": "",
             "link": ""
           }
@@ -678,7 +678,7 @@
           "type": "column",
           "settings": {
             "title": "Ángela P.T. ⭐⭐⭐⭐⭐",
-            "text": "<p>\"Me encantó que sea libre de gluten y de sabor neutro. Era justo lo que buscaba para tomar diariamente.\"<\/p>",
+            "text": "<p>\"Me encantó que sea libre de gluten y de sabor neutro. Era justo lo que buscaba para tomar diariamente.\"</p>",
             "link_label": "",
             "link": ""
           }
@@ -687,7 +687,7 @@
           "type": "column",
           "settings": {
             "title": "Natalia S. ⭐⭐⭐⭐⭐",
-            "text": "<p>\"Lo preparo todas las mañanas con café y ni se siente. Los resultados sí.\"<\/p>",
+            "text": "<p>\"Lo preparo todas las mañanas con café y ni se siente. Los resultados sí.\"</p>",
             "link_label": "",
             "link": ""
           }
