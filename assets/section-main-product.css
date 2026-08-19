@@ -494,7 +494,7 @@ a.product__text {
 @media screen and (max-width: 749px) {
   .product__media-list {
     margin-left: -2.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 0.5rem;
     width: calc(100% + 4rem);
   }
 
