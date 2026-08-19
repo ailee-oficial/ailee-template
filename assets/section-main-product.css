@@ -1073,8 +1073,7 @@ a.product__text {
   }
 
   .thumbnail-slider {
-    display: flex;
-    align-items: center;
+    display: none;
   }
 
   .thumbnail-slider .thumbnail-list.slider {
@@ -1427,11 +1426,7 @@ a.product__text {
 @media screen and (max-width: 749px) {
   .product-media-container.constrain-height {
     --viewport-offset: 200px;
-    --constrained-height: min(max(var(--constrained-min-height), calc(100vh - var(--viewport-offset))), 450px);
-  }
-
-  .product-media-container.constrain-height.media-fit-contain {
-    width: 100%;
+    --constrained-height: min(max(var(--constrained-min-height), calc(100vh - var(--viewport-offset))), calc(100vw * 1.25));
   }
 
   .product-media-container.media-fit-cover {
