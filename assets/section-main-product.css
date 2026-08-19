@@ -1430,6 +1430,10 @@ a.product__text {
     --constrained-height: min(max(var(--constrained-min-height), calc(100vh - var(--viewport-offset))), 450px);
   }
 
+  .product-media-container.constrain-height.media-fit-contain {
+    width: 100%;
+  }
+
   .product-media-container.media-fit-cover {
     display: flex;
     align-self: stretch;
