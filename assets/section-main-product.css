@@ -492,10 +492,11 @@ a.product__text {
 }
 
 @media screen and (max-width: 749px) {
+  /* El ancho/margen los gobierna `.grid--peek.slider--mobile` en base.css
+     (margin:0; width:100%). No duplicar aqui: eran reglas muertas que se
+     contradecian con la cascada. */
   .product__media-list {
-    margin-left: -2.5rem;
     margin-bottom: 0.5rem;
-    width: calc(100% + 4rem);
   }
 
   .product__media-wrapper slider-component:not(.thumbnail-slider--no-slide) {
@@ -516,8 +517,18 @@ a.product__text {
     background-color: rgba(var(--color-foreground), 0.2);
   }
 
+  /* Un slide = el ancho completo del carrusel, identico para todos.
+     Antes cada slide media distinto (360 vs 352 en un viewport de 360px). */
   .product__media-list .product__media-item {
-    width: calc(100% - 3rem - var(--grid-mobile-horizontal-spacing));
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+  }
+
+  /* `grid--peek` adelanta el primer slide 1.5rem para insinuar el swipe; eso
+     desalineaba el slide 1 respecto al resto. La afordancia la da el contador. */
+  .product__media-list.grid--peek .product__media-item:first-of-type {
+    margin-left: 0;
   }
 
   .product--mobile-columns .product__media-item {
@@ -1391,79 +1402,60 @@ a.product__text {
   content: "#";
 }
 
-/* Product-thumbnail snippet */
+/* Product-thumbnail snippet
+   ---------------------------------------------------------------------------
+   GEOMETRIA DE LA GALERIA — fuente unica de verdad.
 
+   El contenedor declara su proporcion con `aspect-ratio`; la imagen se adapta
+   DENTRO con `object-fit: contain`. La altura del carrusel NO depende de la
+   proporcion natural de cada imagen, asi que el precio nunca se desplaza y no
+   hay salto de layout al deslizar entre slides.
+
+   Para cambiar la proporcion de toda la galeria basta con tocar
+   `--gallery-aspect-ratio`: un valor, un sitio, todos los breakpoints.
+
+   `--preview-ratio` / `--ratio` los sigue inyectando product-thumbnail.liquid
+   porque el lightbox los usa, pero ya no gobiernan la geometria.
+   --------------------------------------------------------------------------- */
 .product-media-container {
-  --aspect-ratio: var(--preview-ratio);
-  --ratio-percent: calc(1 / var(--aspect-ratio) * 100%);
+  --gallery-aspect-ratio: 1 / 1;
+
   position: relative;
   width: 100%;
-  max-width: calc(100% - calc(var(--media-border-width) * 2));
-}
-
-.product-media-container.constrain-height {
-  /* arbitrary offset value based on average theme spacing and header height */
-  --viewport-offset: 400px;
-  --constrained-min-height: 300px;
-  --constrained-height: max(var(--constrained-min-height), calc(100vh - var(--viewport-offset)));
+  max-width: 100%;
   margin-right: auto;
   margin-left: auto;
+  aspect-ratio: var(--gallery-aspect-ratio);
 }
 
-.product-media-container.constrain-height.media-fit-contain {
-  --contained-width: calc(var(--constrained-height) * var(--aspect-ratio));
-  width: min(var(--contained-width), 100%);
-}
-
+/* Toda la cadena hereda la altura del contenedor: ningun descendiente se mide
+   por su cuenta. Esto es lo que mantiene la geometria estable. */
+.product-media-container .product__modal-opener,
 .product-media-container .media {
-  padding-top: var(--ratio-percent);
+  height: 100%;
 }
 
-.product-media-container.constrain-height .media {
-  padding-top: min(var(--constrained-height), var(--ratio-percent));
+/* El hack historico de altura por porcentaje queda sin efecto: la altura ya la
+   fija `aspect-ratio` en el contenedor. */
+.product-media-container .media {
+  padding-top: 0;
 }
 
-@media screen and (max-width: 749px) {
-  .product-media-container.constrain-height {
-    --viewport-offset: 200px;
-  }
-
-  .product-media-container.media-fit-cover {
-    display: flex;
-    align-self: stretch;
-  }
-
-  .product-media-container.media-fit-cover .media {
-    /* allow media img element to scale relative to modal-opener/product-media-container */
-    position: initial;
-  }
+/* Imagen completa: nunca se recorta, nunca se deforma. */
+.product-media-container .media > img,
+.product-media-container .media > video,
+.product-media-container .media > iframe,
+.product-media-container .media model-viewer {
+  object-fit: contain;
+  object-position: center center;
 }
 
-@media screen and (min-width: 750px) {
-  .product-media-container {
-    max-width: 100%;
-  }
-
-  .product-media-container:not(.media-type-image) {
-    /* override to use actual media ratio (not poster ratio) for video/models on desktop */
-    --aspect-ratio: var(--ratio);
-  }
-
-  .product-media-container.constrain-height {
-    --viewport-offset: 170px;
-    --constrained-min-height: 500px;
-  }
-
-  .product-media-container.media-fit-cover,
-  .product-media-container.media-fit-cover .product__modal-opener,
-  .product-media-container.media-fit-cover .media {
-    height: 100%;
-  }
-
-  .product-media-container.media-fit-cover .deferred-media__poster img {
-    object-fit: cover;
-    width: 100%;
-  }
+/* El ajuste `cover` sigue disponible desde el setting `media_fit` de la seccion.
+   Recorta por definicion: usarlo solo con imagenes con zona segura amplia. */
+.product-media-container.media-fit-cover .media > img,
+.product-media-container.media-fit-cover .media > video,
+.product-media-container.media-fit-cover .deferred-media__poster img {
+  object-fit: cover;
 }
 
 .product-media-container .product__modal-opener {
