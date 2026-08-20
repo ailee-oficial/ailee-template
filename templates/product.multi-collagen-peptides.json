@@ -205,7 +205,7 @@
         "delivery_align": "center",
         "enable_sticky_info": true,
         "media_size": "medium",
-        "constrain_to_viewport": true,
+        "constrain_to_viewport": false,
         "media_fit": "contain",
         "gallery_layout": "thumbnail",
         "media_position": "left",
