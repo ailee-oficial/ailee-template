@@ -92,6 +92,19 @@
     margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
   }
 
+  /* Mobile-first: la cabecera consume alto del fold, y el fold del PDP es donde
+     vive el precio. Se compacta solo en mobile; desktop queda igual. */
+  @media screen and (max-width: 749px) {
+    .header {
+      padding-top: {{ section.settings.padding_top | times: 0.2 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.2 | round: 0 }}px;
+    }
+
+    .section-header {
+      margin-bottom: {{ section.settings.margin_bottom | times: 0.35 | round: 0 }}px;
+    }
+  }
+
   @media screen and (min-width: 750px) {
     .section-header {
       margin-bottom: {{ section.settings.margin_bottom }}px;
