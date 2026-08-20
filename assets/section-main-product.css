@@ -1428,6 +1428,15 @@ a.product__text {
     --viewport-offset: 200px;
   }
 
+  .product-media-container.constrain-height.media-fit-contain .media {
+    overflow: hidden;
+  }
+
+  .product-media-container.constrain-height.media-fit-contain .media > img,
+  .product-media-container.constrain-height.media-fit-contain .media > .product-media-container__media-image {
+    transform: scale(1.25);
+  }
+
   .product-media-container.media-fit-cover {
     display: flex;
     align-self: stretch;
