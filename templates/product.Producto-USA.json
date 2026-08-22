@@ -123,7 +123,7 @@
       ],
       "settings": {
         "new_product_page_media": true,
-        "othergallerystyle": true,
+        "othergallerystyle": false,
         "salebadge": false,
         "freeshipprice": false,
         "shiptextnexttoprice": "+ FREE Shipping",
