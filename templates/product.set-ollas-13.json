@@ -116,7 +116,7 @@
         "atcsavings": false,
         "mostpopularcolor": "#1a1a1a",
         "enable_shipping_calculate": false,
-        "shipping_calculator_label": "Delivery",
+        "shipping_calculator_label": "Entrega estimada:",
         "days_to_start_shipping": 5,
         "approximate_days_for_delivery": 5,
         "delivery_align": "center",
