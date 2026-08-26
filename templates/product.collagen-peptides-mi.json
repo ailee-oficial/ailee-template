@@ -190,7 +190,7 @@
         "freeshipprice": true,
         "shiptextnexttoprice": "+ Envíos GRATIS",
         "enable_gallerybadge": true,
-        "productgalleryimage": "Producto Exclusivo",
+        "productgalleryimage": "Producto Tendencia 🇨🇴",
         "badge_background": "#ffffff",
         "textbadge_background": "#000000",
         "badge_text": "capitalize",
@@ -270,12 +270,12 @@
     "086a98ac-209d-4db2-9d62-5b0fe9663693": {
       "type": "compare-image",
       "settings": {
+        "image1": "shopify://shop_images/mcp-mi_T01_before.webp",
+        "image2": "shopify://shop_images/mcp-mi_T02_after.webp",
         "title": "Tu piel produce menos colágeno cada año",
         "text": "<p>A partir de los 25 años, la producción natural disminuye. Multi Collagen repone los 5 tipos que tu cuerpo necesita para mantener firmeza, elasticidad e hidratación.</p>",
         "before": "SIN COLÁGENO",
-        "after": "CON COLÁGENO",
-        "image1": "shopify://shop_images/mcp-mi_T01_before.webp",
-        "image2": "shopify://shop_images/mcp-mi_T02_after.webp"
+        "after": "CON COLÁGENO"
       }
     },
     "3bc3f381-5c12-4e1e-9f92-289fb87d308d": {
