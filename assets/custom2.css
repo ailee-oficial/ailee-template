@@ -2997,9 +2997,6 @@ section.pro_tab_section {
     }
     .mrk-tab-content {
         background-color: #f15d5d1f;
-        background-image: url(https://cdn.shopify.com/s/files/1/0646/0640/4840/files/pattren_2.png?v=1669809432);
-        background-size: 400px;
-        background-repeat: inherit;
         margin-top: 20px;
     }
 }
@@ -3242,11 +3239,6 @@ section.pro_tab_section {
     }
 }
 @media (max-width: 769px) {
-    .mrk-tab-content .tab-content-item {
-        background-image: url(https://cdn.shopify.com/s/files/1/0646/0640/4840/files/pattren_2.png?v=1669809432);
-        background-size: 400px;
-        background-repeat: inherit;
-    }
     .tab-header-item-mob {
         align-items: center;
         color: inherit;
