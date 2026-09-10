@@ -21,7 +21,13 @@
                 </div>
                 <div class="grid__item medium-up--two-quarters">
                     <div class="FeatureText__ImageWrapper c-image-sliders FeatureText__ContentWrapper" data-before-after-image-container>
-                        <div class="c-image-sliders__comparison" style="padding-bottom: {{ 1 | divided_by: section.settings.image1.aspect_ratio | times: 100 }}%;">
+                        {%- liquid
+  assign ci_ratio = section.settings.image1.aspect_ratio | default: 1.0
+  if ci_ratio == 0
+    assign ci_ratio = 1.0
+  endif
+-%}
+                        <div class="c-image-sliders__comparison" style="padding-bottom: {{ 1 | divided_by: ci_ratio | times: 100 }}%;">
                               <figure class="c-image-sliders__figure"
                                  style="background: url({{section.settings.image2 | img_url: 'master'}})">
                                   <div class="c-image-sliders__handle" data-image-slider-handle="" style="left: 50%;"></div>
