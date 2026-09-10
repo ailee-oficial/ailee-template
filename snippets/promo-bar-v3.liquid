@@ -1,0 +1,148 @@
+{%- comment -%}
+  Barra de promo con countdown — inspirada en storemadison.co/products/nike-ultrazoom.
+  Countdown REAL: cuenta hasta el final del día del navegador del visitante, nunca
+  promete una fecha falsa ni un plazo que no se cumple. Permitido en PDP desde
+  2026-09-05 (shopify-landing.md §1, bloque 00) — el countdown no puede anunciar
+  el fin de una oferta que al día siguiente sigue igual con otro reloj; este se
+  reinicia cada día porque el precio de hoy es real cada día, no una mentira que
+  se repite.
+
+  PARÁMETRO `oferta` (2026-09-09) — la mecánica de la oferta se pasa desde la
+  plantilla, no se adivina del precio:
+    · `2x1`  (default) → "Hoy 2x1 · Pagas 1 par, llevas 2".  Lo que ya usaba
+      product.zapatos-on6-v2: el segundo par se elige en el formulario Releasit.
+    · `pct`             → "Hoy -NN% · Ahorras $X".  Producto que se vende solo;
+      tanto el porcentaje como la cifra de ahorro salen del compare_at_price
+      real, no de un texto fijo. (Hasta 2026-09-09 el texto de apoyo decía
+      "Precio de hoy" y era puro relleno: repetía el "Hoy" del chip.)
+  El default es `2x1` a propósito: así el render sin parámetro de la v2 sigue
+  pintando exactamente lo mismo que antes de este cambio.
+{%- endcomment -%}
+{%- liquid
+  assign v = product.selected_or_first_available_variant
+  assign pct = 0
+  if v.compare_at_price > v.price
+    assign ahorro = v.compare_at_price | minus: v.price
+    assign pct = ahorro | times: 100.0 | divided_by: v.compare_at_price | round
+  endif
+  assign modo = oferta | default: '2x1'
+-%}
+<div class="pb3-bar">
+  {%- comment -%}
+    2026-09-09 — "Precio de hoy" salía del aire. El chip ya dice "Hoy -NN%" y el
+    cierre dice "Cierra en": repetir "hoy" tres veces en un renglón se leía raro
+    y no agregaba nada. Lo reemplaza el AHORRO EN PESOS, que es el dato que el
+    porcentaje no dice —la misma razón por la que `fold-header-v3` pinta
+    `.fh3-save` bajo el precio: "$100.000" pesa más que "-39%"—. La cifra ya se
+    calculaba acá arriba para sacar el porcentaje; solo no se estaba mostrando.
+  {%- endcomment -%}
+  {%- if modo == 'pct' and pct > 0 -%}
+    <span class="pb3-chip">&#128293; Hoy -{{ pct }}%</span>
+    {%- comment -%}
+      `money_without_trailing_zeros` y no `money`: el formato de la tienda trae
+      dos decimales y en pesos colombianos el ahorro se escribe "$100.000", no
+      "$100.000,00". Los centavos no existen en la moneda y ensucian la cifra
+      justo donde tiene que golpear.
+    {%- endcomment -%}
+    <span class="pb3-txt">Ahorras {{ ahorro | money_without_trailing_zeros }}</span>
+  {%- elsif modo == 'pct' -%}
+    <span class="pb3-chip">&#128293; Oferta</span>
+    <span class="pb3-txt">Precio especial</span>
+  {%- else -%}
+    <span class="pb3-chip">&#128293; Hoy 2x1</span>
+    {%- if pct > 0 -%}
+      <span class="pb3-txt">Pagas 1 par, llevas 2</span>
+    {%- else -%}
+      <span class="pb3-txt">Oferta del d&iacute;a</span>
+    {%- endif -%}
+  {%- endif -%}
+  <span class="pb3-sep">&bull;</span>
+  {%- comment -%}
+    2026-09-09 — se eliminó el texto del cierre ("Cierra hoy" → "Cierra en" →
+    nada). Era la pieza que rompía el contrato de una sola línea: para sostenerlo
+    había que esconderla en móvil, y esconderla dejaba un separador huérfano.
+    Un reloj que corre hacia atrás YA dice que algo cierra; nombrarlo era gastar
+    el único renglón disponible en repetir lo que el número muestra solo. La
+    urgencia que cargaba la palabra la carga ahora el pulso del reloj (ver
+    `pb3pulse` abajo).
+  {%- endcomment -%}
+  <span class="pb3-clock" id="pb3-clock">--:--:--</span>
+</div>
+<style>
+  /* Dos requisitos que compiten: una SOLA línea y texto legible.
+     El root del tema mide 10 px, así que el `.95rem` original eran 9,5 px reales
+     —cabía en una línea justamente por diminuto—. Medido: con la copia completa,
+     una línea a 390 px exige ~9,5 px de tipografía; a 13 px el reloj se caía a
+     una segunda línea. No se resuelve con tamaño, se resuelve con copia.
+
+     Solución original: tipografía FLUIDA (crece con el ancho) + "Cierra hoy"
+     oculto por debajo de 500 px, con `flex-wrap:nowrap` como contrato —la barra
+     es una línea o no es—.
+     RESUELTO 2026-09-09 como decía la nota de arriba —"no se resuelve con
+     tamaño, se resuelve con copia"—: se eliminó el texto del cierre. El contrato
+     de una línea se sostiene ahora en TODOS los anchos, sin esconder nada y sin
+     media query, porque hay menos que meter en el renglón. */
+  .pb3-bar{display:flex;align-items:center;justify-content:center;flex-wrap:nowrap;
+           gap:clamp(5px,1.6vw,9px);white-space:nowrap;
+           background:#F6F5F3;color:#1A1A1A;padding:11px clamp(8px,2.4vw,14px);
+           font-size:clamp(1.15rem,3.2vw,1.4rem);font-weight:700;
+           line-height:1.25;border-radius:12px;margin:0 0 14px;
+           border:1px solid #E6E4E0}
+  .pb3-chip{background:#1A1A1A;color:#fff;border-radius:100px;padding:4px clamp(7px,2vw,11px);
+            font-size:.92em;font-weight:700;flex:0 0 auto}
+  .pb3-txt{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;color:#1A1A1A}
+  .pb3-sep{opacity:.4;flex:0 0 auto;color:#1A1A1A}
+  /* Rojo + blanco, elegido 2026-09-09: el rojo es la señal de urgencia y no se
+     negocia; el blanco es lo que lo hace legible encima. El `color` va EXPLÍCITO
+     a propósito —antes lo heredaba de `.pb3-bar`, y cuando la barra pasó de fondo
+     negro a fondo claro los dígitos se volvieron oscuros sin que nadie lo pidiera,
+     cayendo a 3,6:1 de contraste (bajo el mínimo AA de 4,5:1). Blanco sobre este
+     rojo da 4,8:1 y no depende del color del padre. */
+  .pb3-clock{background:#E11D2A;color:#fff;border-radius:6px;padding:3px clamp(6px,1.8vw,9px);
+             font-size:.96em;font-weight:800;font-variant-numeric:tabular-nums;flex:0 0 auto;
+             animation:pb3pulse 2.4s ease-in-out infinite}
+
+  /* El latido reemplaza al texto "Cierra en": un reloj que respira se lee como
+     cuenta regresiva sin gastar una palabra del renglón. Late en `transform` y
+     `box-shadow` —las dos propiedades que el navegador compone en la GPU— así
+     que no provoca recálculo de layout ni mueve nada alrededor.
+     2,4 s es deliberado: más rápido parpadea y distrae de la lectura del precio;
+     más lento deja de leerse como urgencia. La onda se expande y se desvanece,
+     como el pulso de un sensor, no como un parpadeo de alarma. */
+  @keyframes pb3pulse{
+    0%,100%{transform:scale(1);        box-shadow:0 0 0 0   rgba(225,29,42,.5)}
+    50%    {transform:scale(1.045);    box-shadow:0 0 0 6px rgba(225,29,42,0)}
+  }
+  /* Quien pidió menos movimiento en su sistema no recibe ninguno: el reloj sigue
+     contando, simplemente no late. */
+  @media (prefers-reduced-motion: reduce){.pb3-clock{animation:none}}
+  /* Sin media query de móvil, a propósito.
+     Hubo dos intentos antes: esconder "Cierra hoy" bajo 500 px (perdía el texto
+     justo donde está el tráfico) y dejar que la barra usara dos renglones
+     (rompía el contrato de una línea). El problema no era el ancho, era la
+     copia: al sacar el texto del cierre, lo que queda —chip + una frase +
+     reloj— entra en una línea en cualquier teléfono, y `.pb3-bar` ya nace con
+     `flex-wrap:nowrap`. Si en el futuro se agrega copia y vuelve a apretarse,
+     la salida es acortar la frase, no esconderla ni partir el renglón. */
+  @media screen and (min-width: 990px){
+    .pb3-bar{font-size:1.45rem}
+  }
+</style>
+<script>
+(function(){
+  var el = document.getElementById('pb3-clock');
+  if (!el) return;
+  function tick(){
+    var now = new Date();
+    var end = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+    var diff = Math.max(0, end - now);
+    var h = Math.floor(diff / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    function pad(n){ return (n < 10 ? '0' : '') + n; }
+    el.textContent = pad(h) + ':' + pad(m) + ':' + pad(s);
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>

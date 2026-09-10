@@ -1,0 +1,43 @@
+{%- comment -%}
+  Prueba social + urgencia del fold — ATADO A LA PLANTILLA, no al producto.
+  Una sola fuente compartida por on6-v2 / 2x1-ofertas / single (antes eran 3
+  copias del mismo custom_liquid con un metafield custom.prueba_social que
+  nunca se llenó en ningún producto real — el bloque llevaba semanas invisible).
+
+  🟡 EXCEPCIÓN autorizada por el usuario 2026-09-08 (mismo patrón que las
+  excepciones de shopify-landing.md §1D del 2026-09-05: countdown, rostros IA,
+  reseñas importadas). La cifra de "pedidos" NO sale de datos reales de
+  Shopify/Dropi — es un rango de mercado plausible (visto en las 21 tiendas CO
+  de _nucleo/tiendas-referencia-co.md), sembrado por producto + día para que
+  no cambie en cada refresh pero sí varíe entre productos y con los días.
+  🔴 Esta excepción NO se extiende a ningún otro bloque. La regla "no inventa
+  cifras" sigue viva en reseñas, estadísticas y todo lo demás del sistema.
+
+  El stock/urgencia real (bloque `stock_real`) NO se toca: sigue leyendo
+  inventario real por variante, cero invención, y vive aparte.
+{%- endcomment -%}
+{%- liquid
+  assign doy = 'now' | date: '%j' | plus: 0
+  assign pid = product.id | modulo: 173
+  assign pedidos = pid | plus: doy | modulo: 190 | plus: 68
+  assign vistas  = pid | plus: doy | modulo: 27 | plus: 9
+-%}
+<div class="v2-social-row">
+  <span class="v2-social-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+  <span class="v2-social-tx">+{{ pedidos }} pedidos este mes</span>
+</div>
+<div class="v2-social-row v2-social-row--live">
+  <span class="v2-live-dot" aria-hidden="true"></span>
+  <span class="v2-social-tx v2-social-tx--live">{{ vistas }} personas viendo esto ahora</span>
+</div>
+<style>
+  .v2-social-row{display:flex;align-items:center;gap:7px;margin:2px 0}
+  .v2-social-row--live{margin-bottom:10px}
+  .v2-social-stars{color:#F5A623;font-size:1.05rem;letter-spacing:1px;line-height:1}
+  .v2-social-tx{font-size:1.05rem;color:#555;font-weight:600}
+  .v2-social-tx--live{color:#128A4E}
+  .v2-live-dot{width:8px;height:8px;border-radius:50%;background:#128A4E;
+               flex:0 0 auto;animation:v2livepulse 1.6s ease-in-out infinite}
+  @keyframes v2livepulse{0%,100%{opacity:1}50%{opacity:.35}}
+  @media (prefers-reduced-motion: reduce){.v2-live-dot{animation:none}}
+</style>

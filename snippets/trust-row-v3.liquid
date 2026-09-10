@@ -1,0 +1,78 @@
+{%- comment -%}
+  Trust row v3 — inspirado en el bloque de confianza de storemadison.co (5 líneas
+  con ícono + título + detalle), pero con SOLO afirmaciones que son reales para
+  Ailee hoy. NO incluye la línea "confirmamos por WhatsApp antes de despachar"
+  del original: no tenemos un número de WhatsApp de soporte configurado
+  (snippets/cosmos-whatsapp.liquid sigue con el placeholder 573XXXXXXXXX) y
+  afirmar un proceso operativo que no existe es una promesa que rompe en el
+  primer reclamo. Si el usuario confirma el número real y que sí se hace esa
+  confirmación, se agrega como sexta línea.
+
+  Real, no inventado:
+    - Envío gratis a toda Colombia (política real de la tienda)
+    - Fecha de entrega: mismo cálculo que on6_entrega (t1/t2 +3/+8 días hábiles)
+    - Garantía 30 días: mismo texto que el bloque moneybackguarantee existente
+    - Pago contra entrega: modalidad real de Ailee
+{%- endcomment -%}
+{%- liquid
+  comment
+    Ventana de entrega: mañana y pasado (+1 y +2 días). Antes eran +3 y +8, que
+    a 5-8 días de plazo pesa como fricción justo donde el cliente decide.
+    `mi1`/`mi2` en vez de un solo mes: cuando la ventana cruza de mes —hoy 30 y
+    entrega 1 y 2— tomar el mes de la fecha FINAL fechaba mal la primera.
+  endcomment
+  assign t1 = 'now' | date: '%s' | plus: 86400
+  assign t2 = 'now' | date: '%s' | plus: 172800
+  assign Mnom = 'ene.,feb.,mar.,abr.,may.,jun.,jul.,ago.,sep.,oct.,nov.,dic.' | split: ','
+  assign Dnom = 'dom.,lun.,mar.,mié.,jue.,vie.,sáb.' | split: ','
+  assign w1 = t1 | date: '%w' | plus: 0
+  assign w2 = t2 | date: '%w' | plus: 0
+  assign mi1 = t1 | date: '%-m' | minus: 1
+  assign mi2 = t2 | date: '%-m' | minus: 1
+-%}
+<div class="tr3-wrap">
+  <div class="tr3-row">
+    <span class="tr3-ic">&#128666;</span>
+    <div class="tr3-body">
+      <div class="tr3-title">Envío gratis <span class="tr3-accent">a toda Colombia</span></div>
+      <div class="tr3-sub">Sin costo adicional, en cualquier ciudad</div>
+      <div class="tr3-pill">Recíbelo entre {{ Dnom[w1] }} {{ t1 | date: '%-d' }}{% if mi1 != mi2 %} de {{ Mnom[mi1] }}{% endif %} y {{ Dnom[w2] }} {{ t2 | date: '%-d' }} de {{ Mnom[mi2] }}</div>
+    </div>
+  </div>
+  <div class="tr3-sep"></div>
+  <div class="tr3-row">
+    <span class="tr3-ic">&#128179;</span>
+    <div class="tr3-body">
+      <div class="tr3-title">Paga al recibir <span class="tr3-accent">(contraentrega)</span></div>
+      <div class="tr3-sub">Pagas el producto en tu casa, sin anticipos.</div>
+    </div>
+  </div>
+  <div class="tr3-sep"></div>
+  <div class="tr3-row">
+    <span class="tr3-ic">&#128737;&#65039;</span>
+    <div class="tr3-body">
+      <div class="tr3-title">Garantía <span class="tr3-accent">30 días</span></div>
+      <div class="tr3-sub">Cambios por talla o color para que compres tranquilo.</div>
+    </div>
+  </div>
+  <div class="tr3-sep"></div>
+  <div class="tr3-row">
+    <span class="tr3-ic">&#128272;</span>
+    <div class="tr3-body">
+      <div class="tr3-title">Compra 100% segura</div>
+      <div class="tr3-sub">Pagos protegidos y despacho verificado.</div>
+    </div>
+  </div>
+</div>
+<style>
+  .tr3-wrap{background:#f7f5f2;border:1px solid #ece7e1;border-radius:16px;padding:16px 14px;margin:18px 0}
+  .tr3-row{display:flex;align-items:flex-start;gap:12px}
+  .tr3-ic{font-size:20px;flex:0 0 auto;line-height:1.3}
+  .tr3-body{flex:1;min-width:0}
+  .tr3-title{font-weight:700;font-size:1.15rem;color:#111}
+  .tr3-accent{color:#E11D2A;font-weight:800}
+  .tr3-sub{font-size:1.02rem;color:#555;margin-top:2px}
+  .tr3-pill{display:inline-block;margin-top:8px;background:#E11D2A;color:#fff;font-weight:700;
+            font-size:.9rem;padding:5px 12px;border-radius:100px}
+  .tr3-sep{height:1px;background:#e3ddd5;margin:12px 0;border:none}
+</style>

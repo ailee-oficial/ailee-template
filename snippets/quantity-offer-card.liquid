@@ -1,0 +1,55 @@
+{%- comment -%}
+  Una tarjeta de oferta del widget quantity-offers. Markup idéntico al original.
+  Params: product, render_index, of_title, of_badge, of_bg, of_qty,
+          price_cents, compare_cents, is_selected, has_variants
+  La fuente de los datos (metafield custom.ofertas o block.settings) la decide quantity-offers.liquid.
+{%- endcomment -%}
+{%- assign options = product.options_with_values -%}
+<div class="qo-card {% if is_selected %}qo-card--selected{% endif %}"
+     data-offer-index="{{ render_index }}"
+     data-offer-qty="{{ of_qty }}">
+
+  <div class="qo-card__header">
+    <div class="qo-card__info">
+      <div class="qo-card__title">{{ of_title }}</div>
+      {%- if of_badge != blank -%}
+        <div class="qo-card__badge" style="background: {{ of_bg }};">{{ of_badge }}</div>
+      {%- endif -%}
+    </div>
+    <div class="qo-card__prices">
+      {%- if compare_cents != 0 -%}
+        <p class="qo-price-original">{{ compare_cents | money_without_trailing_zeros }}</p>
+      {%- endif -%}
+      <p class="qo-price-sale">{{ price_cents | money_without_trailing_zeros }}</p>
+    </div>
+  </div>
+
+  {%- unless has_variants == false -%}
+  <div class="qo-card__variants {% unless is_selected %}qo-card__variants--hidden{% endunless %}">
+    {%- for n in (1..of_qty) -%}
+      <div class="qo-variant-row">
+        <span class="qo-variant-index">#{{ n }}</span>
+        <div class="qo-variant-selects">
+          {%- for option in options -%}
+            <div class="qo-variant-col">
+              {%- if n == 1 -%}
+                <small class="qo-option-label">{{ option.name }}</small>
+              {%- else -%}
+                <small class="qo-option-label qo-option-label--hidden">{{ option.name }}</small>
+              {%- endif -%}
+              <select class="qo-select"
+                      data-item="{{ n | minus: 1 }}"
+                      data-option-index="{{ forloop.index0 }}">
+                {%- for value in option.values -%}
+                  <option value="{{ value | escape }}">{{ value }}</option>
+                {%- endfor -%}
+              </select>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+  {%- endunless -%}
+
+</div>

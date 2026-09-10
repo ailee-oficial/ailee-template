@@ -1,0 +1,398 @@
+{%- comment -%}
+  Fold header v3 — en producción desde 2026-09-08.  La usan product.zapatos-on6-v2
+  (2x1) y product.zapatos-single (descuento por porcentaje); dejó de ser
+  experimental el día que cinco productos activos empezaron a servirse con ella.
+  Inspirado en el formato de storemadison.co/products/nike-ultrazoom (título
+  grande + check, calificación en línea propia, disponibilidad + entrega,
+  precio con pill de descuento) pero con colores propios (rojo #E11D2A, no
+  el verde/naranja de Madison) y sin marca ajena.
+
+  Reutiliza el MISMO rango de mercado sembrado de prueba-social-fold.liquid
+  (excepción 2026-09-08, autorizada por el usuario) — no es una segunda
+  fuente de cifras inventadas, es la misma extendida con una calificación
+  decimal (4.5–4.8, nunca 5.0 parejo — más creíble).
+
+  Lo único 100% real aquí: disponibilidad (inventario real por variante,
+  igual que stock_real) y la fecha de entrega (mismo cálculo que on6_entrega).
+{%- endcomment -%}
+{%- liquid
+  assign doy = 'now' | date: '%j' | plus: 0
+  assign pid = product.id | modulo: 173
+  assign pedidos = pid | plus: doy | modulo: 190 | plus: 68
+  assign vistas  = pid | plus: doy | modulo: 27 | plus: 9
+  assign rating_opts = '4.5,4.6,4.7,4.8' | split: ','
+  assign rating_idx = pid | modulo: 4
+  assign rating_val = rating_opts[rating_idx]
+
+  comment
+    `oferta` llega desde la plantilla — mismo contrato que promo-bar-v3:
+    '2x1' (default) pinta la pastilla 2x1; 'pct' pinta el descuento medido
+    sobre compare_at_price.  El default conserva intacta la v2.
+  endcomment
+  assign modo = oferta | default: '2x1'
+
+  assign v = product.selected_or_first_available_variant
+  assign hay_oferta = false
+  if v.compare_at_price > v.price
+    assign hay_oferta = true
+    assign ahorro = v.compare_at_price | minus: v.price
+    assign pct = ahorro | times: 100.0 | divided_by: v.compare_at_price | round
+  endif
+
+  assign trackea = false
+  for var in product.variants
+    if var.inventory_management != blank
+      assign trackea = true
+      break
+    endif
+  endfor
+  assign hay_stock = true
+  if trackea and v.inventory_quantity <= 0
+    assign hay_stock = false
+  endif
+
+  comment
+    Ventana de entrega: mañana y pasado (+1 y +2 días). Antes eran +3 y +8, que
+    a 5-8 días de plazo pesa como fricción justo donde el cliente decide.
+    `mi1`/`mi2` en vez de un solo mes: cuando la ventana cruza de mes —hoy 30 y
+    entrega 1 y 2— tomar el mes de la fecha FINAL fechaba mal la primera.
+  endcomment
+  assign t1 = 'now' | date: '%s' | plus: 86400
+  assign t2 = 'now' | date: '%s' | plus: 172800
+  assign Mnom = 'ene.,feb.,mar.,abr.,may.,jun.,jul.,ago.,sep.,oct.,nov.,dic.' | split: ','
+  assign mi1 = t1 | date: '%-m' | minus: 1
+  assign mi2 = t2 | date: '%-m' | minus: 1
+
+  comment
+    El check va pegado a la ÚLTIMA palabra dentro de un nowrap: si el título
+    envuelve, el check baja CON esa palabra en vez de quedarse solo en una línea.
+  endcomment
+  assign palabras = product.title | split: ' '
+  assign n_ult = palabras.size | minus: 1
+  assign titulo_ult = palabras | last
+  assign titulo_ini = ''
+  if n_ult > 0
+    assign titulo_ini = palabras | slice: 0, n_ult | join: ' '
+  endif
+-%}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700;800&display=swap"></noscript>
+<div class="fh3-wrap">
+  <h1 class="fh3-title">{%- if titulo_ini != blank %}{{ titulo_ini }} {% endif -%}
+    <span class="fh3-nb">{{ titulo_ult }}<svg class="fh3-check" viewBox="0 0 24 24" role="img" aria-label="Verificado"><circle cx="12" cy="12" r="12" fill="#3E84F4"/><path d="M6.6 12.3l3.5 3.5 7.3-7.3" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  </h1>
+
+  <div class="fh3-rating">
+    <span class="fh3-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+    <span class="fh3-rating-tx">Calificaci&oacute;n <b>{{ rating_val }}/5</b> basado en <b>+{{ pedidos }}</b> rese&ntilde;as</span>
+  </div>
+
+  <div class="fh3-avail">
+    {%- if hay_stock -%}
+      <svg class="fh3-avail-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#128A4E"/><path d="M6.8 12.4l3.4 3.4 7-7" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="fh3-avail-tx">Disponible</span>
+    {%- else -%}
+      <svg class="fh3-avail-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#B3261E"/><path d="M8.2 8.2l7.6 7.6M15.8 8.2l-7.6 7.6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>
+      <span class="fh3-avail-tx fh3-avail-tx--out">Agotado en esta talla</span>
+    {%- endif -%}
+    <span class="fh3-sep" aria-hidden="true">&middot;</span>
+    <span class="fh3-eta">Entrega: {{ t1 | date: '%-d' }}{% if mi1 != mi2 %} {{ Mnom[mi1] }}{% endif %}&ndash;{{ t2 | date: '%-d' }} {{ Mnom[mi2] }}</span>
+  </div>
+
+  <div class="fh3-price-row">
+    {%- if hay_oferta -%}<span class="fh3-was">{{ v.compare_at_price | money_without_trailing_zeros }}</span>{%- endif -%}
+    <span class="fh3-price-main">
+      <span class="fh3-now">{{ v.price | money_without_trailing_zeros }}</span><span class="fh3-cur">COP</span>
+      {%- if hay_oferta -%}<span class="fh3-pill">{% if modo == 'pct' %}-{{ pct }}%{% else %}2x1{% endif %}</span>{%- endif -%}
+    </span>
+  </div>
+  {%- comment -%}
+    El ahorro en pesos solo vive en modo `pct`. En un 2x1 la cifra absoluta
+    miente: lo que se ahorra es el segundo par, no un descuento sobre el
+    primero, y `compare_at_price` ahí no es el precio de dos pares. Por eso
+    la condición es doble y el modo por defecto queda igual que siempre.
+  {%- endcomment -%}
+  {%- if hay_oferta and modo == 'pct' -%}
+    <p class="fh3-save">Ahorras {{ ahorro | money_without_trailing_zeros }}</p>
+  {%- endif -%}
+
+  <p class="fh3-ship">&#128666; Env&iacute;o gratis a toda Colombia <span class="fh3-sep" aria-hidden="true">&middot;</span> Paga al recibir</p>
+
+  <div class="fh3-live">
+    <span class="fh3-live-dot"></span>
+    <span class="fh3-live-tx">{{ vistas }} personas viendo esto ahora</span>
+  </div>
+</div>
+<style>
+  /* ── Encabezado comercial ──────────────────────────────────────────────────
+     Jerarquía y ritmo tomados de la referencia (título dominante → calificación
+     → disponibilidad/entrega → precio → logística → señal secundaria), con la
+     paleta y la tipografía de Ailee. Todo bajo `.fh3-*`: ni un selector global.
+
+     El root del tema mide 10 px, así que 1rem = 10 px en todas estas medidas.
+     Medido antes del cambio a 587 px: título 19 px en Cormorant serif (lo
+     imponía `h1{font-family:...!important}` de ailee-design.css), calificación
+     y entrega a 10,5 px, precio a 23 px. El bloque no tenía jerarquía: los seis
+     niveles pesaban casi lo mismo. */
+
+  .fh3-wrap{margin:0 0 1.8rem}
+
+  /* Título — la sans real de Ailee. `!important` no es capricho: compite con
+     `h1{font-family:'Cormorant Garamond'…!important}` de ailee-design.css, que
+     es global y no se toca. Gana por especificidad (.fh3-title > h1). */
+  .fh3-title{
+    font-family:'DM Sans',system-ui,sans-serif!important;
+    font-weight:800!important;
+    font-size:clamp(2.4rem,6.3vw,3rem)!important;
+    line-height:1.05!important;
+    letter-spacing:-.02em!important;
+    text-transform:uppercase;
+    color:#111!important;
+    margin:0 0 1.1rem!important;
+    display:block!important;
+    /* Sin `text-wrap:balance`: balance reparte el texto en líneas parejas y por
+       eso cortaba en "NUEVOS TENIS / CLOUD RUNNER" con media línea vacía. El
+       salto normal llena hasta el borde y recién ahí baja. `pretty` tampoco
+       sirve: mueve palabras para evitar huérfanas y también acorta la línea. */
+    text-wrap:wrap;
+  }
+  /* DM Sans llega del tema solo en 300–600; el 700/800 lo pide este snippet y solo
+     se descarga en la plantilla experimental. */
+  .fh3-nb{white-space:nowrap}
+  .fh3-check{width:.62em;height:.62em;vertical-align:.02em;margin-left:.22em;
+             display:inline-block}
+
+  /* Calificación — estrellas ámbar, frase en gris, cifras en verde. El texto es
+     un bloque flexible: al envolver parte la FRASE, no deja palabras sueltas. */
+  .fh3-rating{display:flex;align-items:baseline;gap:.8rem;margin:0 0 .9rem}
+  .fh3-stars{color:#F5A623;font-size:1.45rem;letter-spacing:.1em;line-height:1;
+             flex:0 0 auto}
+  .fh3-rating-tx{font-size:1.35rem;line-height:1.35;color:#555;flex:1 1 auto;min-width:0}
+  .fh3-rating-tx b{color:#128A4E;font-weight:700}
+
+  /* Disponibilidad — círculo verde con check (no un punto): el estado se lee
+     antes que la palabra. La fecha va un escalón por debajo, en gris. */
+  .fh3-avail{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin:0 0 1.6rem}
+  .fh3-avail-ic{width:1.8rem;height:1.8rem;flex:0 0 auto;display:block}
+  .fh3-avail-tx{font-size:1.35rem;color:#128A4E;font-weight:700;line-height:1.2}
+  .fh3-avail-tx--out{color:#B3261E}
+  .fh3-sep{color:#C9C2B8;font-weight:400}
+  .fh3-eta{font-size:1.3rem;color:#555;font-weight:500;line-height:1.2}
+
+  /* Precio — el tachado puede envolver aparte, pero precio + COP + pill viajan
+     juntos en un `nowrap`: el descuento nunca se despega de la cifra. */
+  .fh3-price-row{display:flex;align-items:baseline;flex-wrap:wrap;gap:.4rem 1.1rem;
+                 margin:0 0 1rem}
+  .fh3-was{font-size:1.5rem;color:#8A8178;text-decoration:line-through;line-height:1;
+           flex:0 0 auto}
+  .fh3-price-main{display:inline-flex;align-items:baseline;gap:.45rem;white-space:nowrap}
+  .fh3-now{font-family:'DM Sans',system-ui,sans-serif;font-size:clamp(2.3rem,6vw,2.8rem);
+           font-weight:800;color:#111;line-height:1;letter-spacing:-.02em}
+  .fh3-cur{font-size:1.2rem;font-weight:600;color:#555;letter-spacing:.02em}
+  /* `-50%` decía lo que NO es: "50% en un par" y "2 pares por el precio de uno"
+     dan la misma aritmética, y el cliente leía descuento en una unidad. El pill
+     pasa a `2x1`, que dice la mecánica en tres caracteres y entra inline junto
+     al precio en cualquier ancho. La frase completa —"Pagas 1 par, llevas 2"—
+     la carga la barra de promo, arriba: badge acá, explicación allá. */
+  .fh3-pill{background:#E11D2A;color:#fff;font-weight:800;font-size:1.35rem;
+            letter-spacing:.02em;padding:.5rem 1.1rem;border-radius:100px;
+            line-height:1;align-self:center;white-space:nowrap;flex:0 0 auto}
+
+  /* La cifra absoluta del ahorro, que la pastilla de porcentaje no dice: a este
+     precio "$100.000" pesa más que "-39%". Sube contra el precio con margen
+     negativo para leerse como parte del mismo bloque, no como una línea suelta. */
+  .fh3-save{font-size:1.3rem;font-weight:700;color:#0B7A2E;line-height:1;
+            margin:-.55rem 0 1.1rem;letter-spacing:.01em}
+
+  /* Logística — una sola línea, y dice el modelo real: contraentrega. */
+  .fh3-ship{font-size:1.25rem;color:#555;line-height:1.4;margin:0 0 1.4rem}
+
+  /* Señal secundaria — deliberadamente la más liviana del bloque: antes competía
+     con el precio en tamaño y en verde saturado. */
+  .fh3-live{display:flex;align-items:center;gap:.6rem;margin:0}
+  .fh3-live-dot{width:.7rem;height:.7rem;border-radius:50%;background:#128A4E;
+                flex:0 0 auto;animation:fh3livepulse 1.6s ease-in-out infinite}
+  .fh3-live-tx{font-size:1.1rem;color:#8A8178;font-weight:500}
+  @keyframes fh3livepulse{0%,100%{opacity:1}50%{opacity:.35}}
+  @media (prefers-reduced-motion: reduce){.fh3-live-dot{animation:none}}
+
+  @media screen and (min-width: 990px){
+    .fh3-title{font-size:3.3rem!important}
+    .fh3-now{font-size:3.1rem}
+    .fh3-rating-tx,.fh3-avail-tx{font-size:1.45rem}
+    .fh3-stars{font-size:1.55rem}
+    .fh3-eta,.fh3-ship{font-size:1.4rem}
+  }
+
+  /* Pedido del usuario: sin flechas izq/der en el carrusel principal de fotos
+     — con las miniaturas abajo sobran. Scope al wrapper de la galería para no
+     tocar flechas de otros carruseles (relacionados, colecciones, etc). */
+  .product__media-wrapper .slider-buttons{display:none!important}
+
+  /* ── Galería: deshacer los overrides de assets/custom-productpage.css ──
+     Diagnóstico medido contra storemadison.co (mismo tema Dawn, mismas clases).
+     Ese archivo, cargado globalmente, mata dos cosas que Madison sí tiene:
+
+       .product__media-icon { display: none !important }          → sin botón de zoom
+       .slider--mobile .slider__slide { width: 80%/70% !important } → el slide no
+         ocupa el ancho completo, y el sobrante deja ver el fondo del tema
+         (#FAF8F6) — eso es el "fondo gris" que se veía, no la foto.
+
+     Aquí se revierten SOLO dentro de la galería de producto y SOLO en esta
+     plantilla experimental. No se toca custom-productpage.css (es global y
+     afecta las 12 plantillas vivas). */
+  .product__media-wrapper .product__media-icon,
+  .product__media-wrapper .product__media-icon.motion-reduce.quick-add-hidden{
+    display:flex!important;
+  }
+  /* 🔴 El icono NO es el botón. `.product__media-icon` es un <span> decorativo;
+     el botón real es `.product__media-toggle`, y `assets/custom.css` lo apaga a
+     propósito en TODA la tienda ("Disable zoom product images"). Reactivar solo
+     el icono dejaba una lupa visible que no se podía tocar — el zoom de esta
+     plantilla nunca funcionó, solo lo parecía. Se reactiva el botón acá, con el
+     scope del wrapper, para que la divergencia viva únicamente en la plantilla
+     experimental y las 12 vivas conserven el zoom desactivado.
+     El `::after` nativo de Dawn cubre todo el medio, así que el área de toque es
+     la foto entera, no solo la lupa. */
+  .product__media-wrapper .product__modal-opener .product__media-toggle{
+    display:flex!important;
+  }
+
+  /* ── Zoom que de verdad acerca ─────────────────────────────────────────
+     Medido contra la referencia el 2026-09-08, con el modal ABIERTO a 587 px:
+
+       Madison  imagen 1100x1100, `max-width:none`  -> 1,87x, se recorre
+       Ailee   imagen  587x587,  `max-width:100%`  -> entra completa, nada que ver
+
+     Los dos modales ya traen `overflow:auto` en el contenido; la diferencia
+     entera era que acá la foto se encogía al viewport. Devolverle su tamaño
+     natural es lo que convierte el lightbox en zoom: Shopify sirve la variante
+     grande y el contenedor la deja recorrer con el dedo.
+
+     Fuera del `.product__media-wrapper` a propósito: el modal de Dawn se monta
+     al final del <body>, no dentro de la galería. Sigue confinado a esta
+     plantilla porque este <style> solo se renderiza acá. */
+  .product-media-modal__content > img,
+  .product-media-modal__content > .global-media-settings{
+    max-width:none!important;
+    width:auto!important;
+    height:auto!important;
+  }
+  /* Nada de `display:flex` acá: probado y medido, le colapsa la altura del
+     contenido del modal a 0 y la foto desaparece. El `overflow:auto` nativo ya
+     alcanza para recorrerla. */
+
+  /* El wrapper global usa #f5f5f5 y se alcanza a ver como una banda alrededor
+     del slide. Madison deja el wrapper transparente; aquí hacemos lo mismo
+     para que herede el blanco de `.product`, sin modificar las PDP vivas. */
+  .product__media-wrapper{
+    background-color:transparent!important;
+  }
+
+  /* 🔴 DOS TRAMPAS AQUÍ, las dos medidas en vivo el 2026-09-08:
+
+     1) El selector tiene que apuntar a ul.product__media-list y NO a
+        .slider__slide suelto — el carrusel de MINIATURAS (.thumbnail-list) usa
+        las mismas clases .slider.slider--mobile .slider__slide, y un override
+        genérico le puso 100% de ancho a cada miniatura (quedaron gigantes).
+
+     2) NO va width:100%. El valor correcto es la fórmula NATIVA de Dawn que
+        custom-productpage.css estaba pisando con 70%/80%:
+          .product__media-list .product__media-item {
+            width: calc(100% - 3rem - var(--grid-mobile-horizontal-spacing));
+          }
+        Comprobado contra el HTML de storemadison.co: su slide mide 553 de 587
+        (94%) porque conserva el `grid--peek` nativo. Forzar 100% mata el peek
+        de la siguiente foto. */
+  @media screen and (max-width: 749px){
+    /* ── La aritmética del peek, medida a 587 px el 2026-09-08 ──────────────
+       Con margen M en el primer slide, ancho W y gap G, la foto activa queda
+       centrada si y solo si  W = V - 2M  (V = viewport). Sustituyendo, lo que
+       asoma de la siguiente foto es exactamente:
+
+           peek = M - G
+
+       Por eso la retícula anterior (M=1.5rem=15px, G=4px) solo dejaba ver
+       11 px: no era un problema de `width`, era el margen. Subir el margen y
+       recalcular W con la MISMA identidad mueve el peek sin descentrar nada.
+
+       El gutter es mitad fijo y mitad proporcional para que el peek se sostenga
+       en toda la banda móvil sin comerse la foto en pantallas angostas:
+         390 px → gutter 39,5  peek ~36  ·  foto 311 (80%)
+         587 px → gutter 49,3  peek ~45  ·  foto 488 (83%)
+       Medido, no estimado: ver los números finales en el commit. */
+    .product__media-wrapper{
+      --fh3-gutter:calc(2rem + 5vw);
+    }
+    /* Confinado a la lista principal; thumbnail-list conserva su tamaño. */
+    .product__media-wrapper .slider.slider--mobile{
+      scroll-padding-left:var(--fh3-gutter)!important;
+    }
+    .product__media-wrapper ul.product__media-list{
+      column-gap:.4rem!important;
+    }
+    .product__media-wrapper ul.product__media-list > .product__media-item{
+      width:calc(100% - var(--fh3-gutter) * 2)!important;
+    }
+    .product__media-wrapper ul.product__media-list > .product__media-item:first-of-type{
+      margin-left:var(--fh3-gutter)!important;
+    }
+
+    /* ── El corte en L de la franja ────────────────────────────────────────
+       No era un fondo ni un overflow. Medido: de los 21 slides, 14 son
+       cuadrados (557×557) y 6 no (alturas 562, 607, 490, 549, 605, 398). La
+       fila flex toma la altura del MÁS ALTO (607) y Dawn centra cada
+       `.product-media-container` con `align-items:center`, así que los slides
+       cuadrados quedan pintados solo entre y=111 y y=668 con 25 px muertos
+       arriba y abajo. En la franja del peek eso se lee como una barra que se
+       corta antes de llegar al borde inferior — la L.
+
+       Se normaliza la caja a 1:1 en móvil: todos los slides miden lo mismo, la
+       fila deja de estirarse y el hueco desaparece. `contain` en vez del
+       `cover` heredado para que los slides no cuadrados se ajusten dentro de su
+       caja en lugar de recortarse: ninguna foto pierde píxeles propios. En los
+       14 cuadrados no cambia un solo píxel (contain == cover en 1:1). */
+    .product__media-wrapper ul.product__media-list > .product__media-item > .product-media-container{
+      aspect-ratio:1 / 1!important;
+      height:auto!important;
+      overflow:hidden!important;
+    }
+    /* `aspect-ratio` en el contenedor NO alcanza, y `height:100%` en su hijo
+       tampoco: la altura del ratio nativo vive DOS niveles abajo, en
+       `.product__media`. Medido en el teléfono del usuario y reproducido a
+       587 px: caja de 488 con `.product__media` de 492 / 557 / 531 en los
+       slides no cuadrados. Como el `ul` trae `overflow:auto` en los DOS ejes,
+       esos 70 px sobrantes se convertían en scroll vertical dentro del
+       carrusel — y en iOS ese scroll se come el primer tap, que es por lo que
+       el botón de zoom parecía no funcionar. Un solo defecto, dos síntomas.
+
+       La caja se cierra en toda la cadena con `aspect-ratio` (ancho definido →
+       alto definido, sólido en Safari) en vez de `height:100%`, que Safari
+       resuelve mal cuando el padre saca su altura de un aspect-ratio. */
+    .product__media-wrapper ul.product__media-list > .product__media-item > .product-media-container > modal-opener,
+    .product__media-wrapper ul.product__media-list > .product__media-item > .product-media-container > modal-opener > .product__media,
+    .product__media-wrapper ul.product__media-list > .product__media-item > .product-media-container > .product__media{
+      aspect-ratio:1 / 1!important;
+      height:auto!important;
+      padding-top:0!important;
+      padding-bottom:0!important;
+    }
+    /* Guardia: la tira de fotos jamás debe scrollear en vertical. Si algún medio
+       futuro vuelve a desbordar, se recorta — no se convierte en un scroll que
+       secuestra los taps. `overflow-x` sigue en auto, el carrusel no se toca. */
+    .product__media-wrapper .slider.slider--mobile,
+    .product__media-wrapper ul.product__media-list{
+      overflow-y:hidden!important;
+    }
+    .product__media-wrapper ul.product__media-list > .product__media-item > .product-media-container img{
+      object-fit:contain!important;
+    }
+  }
+  @media screen and (min-width: 750px){
+    /* En layout `thumbnail` Dawn oculta los slides no activos, así que el
+       activo ocupa el ancho completo. */
+    .product__media-wrapper ul.product__media-list > .product__media-item{
+      width:100%!important;
+    }
+  }
+</style>

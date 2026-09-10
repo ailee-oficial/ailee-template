@@ -1,0 +1,172 @@
+{%- comment -%}
+  Punto C — Prueba social manejada por DATOS DEL PRODUCTO (metafields), no por la plantilla.
+  Así una sola plantilla canónica sirve a todos los productos y el contenido es propio de cada uno.
+
+  Metafields que lee (ambos tipo `json`):
+    product.metafields.custom.clientes     → array de URLs de imágenes (fotos de clientes reales)
+    product.metafields.custom.testimonios  → array de objetos:
+        { "texto": "...", "autor": "Nombre", "ciudad": "Ciudad", "estrellas": 5, "img": "https://..." }
+
+  Si un metafield está vacío, esa parte simplemente no se renderiza (degradación elegante).
+  Lo poblan: core/shopify_producto.py (sube las fotos y escribe los metafields).
+{%- endcomment -%}
+
+{%- assign pc_clientes = product.metafields.custom.clientes.value -%}
+{%- assign pc_testimonios = product.metafields.custom.testimonios.value -%}
+
+<style>
+  .pc-clientes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
+  .pc-clientes-grid img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block;aspect-ratio:1/1}
+  @media (max-width:600px){.pc-clientes-grid{gap:6px}}
+
+  /* Carrusel deslizable con "peek" de la siguiente tarjeta — mismo mecanismo
+     de scroll-snap que veníamos usando en otros bloques de reseñas, faltaba
+     aquí (este snippet nunca traía su propio CSS). Inspirado en el estilo de
+     storemadison.co/products/nike-ultrazoom que el usuario pidió replicar. */
+  .testimonials-carousel-wrapper{width:100%;padding:4px 0;overflow:hidden}
+  .testimonials-heading{text-align:center;margin:0 0 4px}
+  .testimonials-heading h2{font-size:1.5rem;font-weight:800;color:#111;margin:0 0 4px}
+  .testimonials-heading p{font-size:1.05rem;color:#8a8178;margin:0}
+  .testimonials-container{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+    gap:12px;padding:14px 15px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .testimonials-container::-webkit-scrollbar{display:none}
+  .testimonial-card{flex:0 0 82%;scroll-snap-align:center;background:#fff;
+    border:1px solid #f0f0f0;border-radius:14px;padding:0;box-sizing:border-box;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);overflow:hidden}
+  .testimonial-card img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+  .testimonial-card .testimonial-body-content{padding:14px}
+  .testimonial-stars{color:#F5A623;font-size:1.05rem;letter-spacing:1px;text-align:center;margin-bottom:8px}
+  .testimonial-text{margin:0 0 10px;font-size:1.15rem;line-height:1.4;color:#333;text-align:center}
+  .testimonial-footer{display:flex;align-items:center;justify-content:center;gap:6px;
+    font-size:1.05rem;color:#555}
+  .testimonial-footer strong{font-size:1.05rem;color:#111}
+  .testimonial-verified{display:inline-flex;align-items:center;gap:3px;color:#3E84F4;font-size:.95rem;font-weight:600}
+  @media (min-width:768px){.testimonial-card{flex:0 0 300px}}
+</style>
+
+{%- if pc_clientes and pc_clientes.size > 0 -%}
+  <div class="pc-clientes-grid">
+    {%- for url in pc_clientes -%}
+      <img src="{{ url }}" loading="lazy" alt="Cliente con el producto">
+    {%- endfor -%}
+  </div>
+{%- endif -%}
+
+{%- comment -%}
+  Esta sección habla de LA TIENDA, no del producto: su trabajo es que un cliente
+  nuevo confíe en Ailee. Por eso el set es único para toda la plantilla y NO hay
+  override por producto — decisión del usuario, 2026-09-09.
+
+  🔴 VACÍO A PROPÓSITO (migración desde Cosmos, 2026-09-10). El set original eran
+  seis capturas de WhatsApp de clientes REALES de Cosmos, con sus textos. Traerlas
+  a Ailee las convertiría en reseñas de una tienda que nunca las recibió — eso es
+  inventar prueba social, no reutilizarla. El mecanismo queda intacto y el bloque
+  se auto-desactiva mientras las tres listas estén vacías.
+
+  Para activarlo cuando Ailee tenga las suyas: subir las capturas a Shopify Files
+  y llenar las tres listas en paralelo, mismo orden y mismo tamaño —
+  `pc_c_txt` (el texto del mensaje), `pc_c_img` (la URL de la captura) y
+  `pc_c_est` (las estrellas, 1 a 5), separando cada ítem con `|`.
+  Solo experiencia de compra (llegó rápido, bien empacado, la talla quedó): eso
+  viaja de un producto a otro. Un testimonio que hable del producto puntual
+  desentona en cuanto la plantilla sirva a otro.
+{%- endcomment -%}
+{%- assign pc_c_txt = '' | split: '|' -%}
+{%- assign pc_c_img = '' | split: '|' -%}
+{%- assign pc_c_est = '' | split: '|' -%}
+
+{%- if pc_c_txt.size > 0 -%}
+  <div class="testimonials-carousel-wrapper">
+    <div class="testimonials-heading">
+      <h2>Lo que dicen nuestros clientes</h2>
+      <p>Opiniones reales de quienes ya recibieron sus pedidos.</p>
+    </div>
+    <div class="testimonials-container">
+      {%- for txt in pc_c_txt -%}
+        {%- assign i = forloop.index0 -%}
+        {%- assign n = pc_c_est[i] | plus: 0 -%}
+        <div class="testimonial-card">
+          {%- if pc_c_img[i] != blank -%}<img src="{{ pc_c_img[i] }}" loading="lazy" alt="Rese&ntilde;a de un cliente de Ailee">{%- endif -%}
+          <div class="testimonial-body-content">
+            <div class="testimonial-stars">{% for s in (1..n) %}&#9733;{% endfor %}</div>
+            <p class="testimonial-text">&ldquo;{{ txt }}&rdquo;</p>
+            <div class="testimonial-footer">
+              <span class="testimonial-verified">&#10003; Verificado</span>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+  <script>
+  (function(){
+    /* Loop infinito por DUPLICACIÓN, el mismo mecanismo que la referencia
+       (medido: su carrusel de reseñas es un Swiper con `loop`, y su tira de
+       texto una marquesina CSS de 15s con 9 clones).
+
+       Antes: al llegar al final se hacía scrollTo(0) con `smooth`, o sea un
+       rebobinado animado a lo largo de TODA la pista — lo que se sentía lento y
+       delataba el final. Ahora se clona el set completo y, al cruzar su ancho,
+       se resta de un salto INSTANTÁNEO: el usuario nunca ve la costura. */
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var GAP = 12, CADENCIA = 2400;
+
+    document.querySelectorAll('.testimonials-container').forEach(function(track){
+      if (track.dataset.pcAuto) return;
+      track.dataset.pcAuto = '1';
+
+      var originales = Array.prototype.slice.call(track.children);
+      if (originales.length < 2) return;
+
+      originales.forEach(function(c){
+        var clon = c.cloneNode(true);
+        clon.setAttribute('aria-hidden', 'true');   // los clones no se anuncian dos veces
+        clon.dataset.pcClon = '1';
+        track.appendChild(clon);
+      });
+
+      var unidad = 0;                                // ancho del set original
+      function medir(){
+        var ult = originales[originales.length - 1];
+        unidad = ult.offsetLeft + ult.offsetWidth + GAP - originales[0].offsetLeft;
+      }
+      medir();
+      window.addEventListener('resize', medir);
+
+      function saltar(x){                            // sin animación, aunque el CSS pida smooth
+        var prev = track.style.scrollBehavior;
+        track.style.scrollBehavior = 'auto';
+        track.scrollLeft = x;
+        void track.offsetHeight;                     // reflow antes de devolver el smooth
+        track.style.scrollBehavior = prev;
+      }
+
+      var pausado = false, temporizador;
+      function avanzar(){
+        if (pausado || reduce) return;
+        if (track.scrollLeft >= unidad) saltar(track.scrollLeft - unidad);
+        var paso = originales[0].getBoundingClientRect().width + GAP;
+        track.scrollTo({ left: track.scrollLeft + paso, behavior: 'smooth' });
+      }
+      if (!reduce) setInterval(avanzar, CADENCIA);
+
+      // Red de seguridad para el arrastre manual: si el dedo cruza el segundo set,
+      // se reengancha al primero sin que se note.
+      track.addEventListener('scroll', function(){
+        if (unidad && track.scrollLeft >= unidad * 2 - track.clientWidth - 1) {
+          saltar(track.scrollLeft - unidad);
+        }
+      }, { passive: true });
+
+      function pausarUnRato(){
+        pausado = true;
+        clearTimeout(temporizador);
+        temporizador = setTimeout(function(){ pausado = false; }, 6000);
+      }
+      track.addEventListener('touchstart', pausarUnRato, { passive: true });
+      track.addEventListener('mousedown', pausarUnRato);
+      track.addEventListener('wheel', pausarUnRato, { passive: true });
+    });
+  })();
+  </script>
+{%- endif -%}
