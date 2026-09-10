@@ -84,14 +84,14 @@
      media query, porque hay menos que meter en el renglón. */
   .pb3-bar{display:flex;align-items:center;justify-content:center;flex-wrap:nowrap;
            gap:clamp(5px,1.6vw,9px);white-space:nowrap;
-           background:#F6F5F3;color:#1A1A1A;padding:11px clamp(8px,2.4vw,14px);
+           background:var(--cm-cream, #FAF7F4);color:var(--cm-text, #1C1C1C);padding:11px clamp(8px,2.4vw,14px);
            font-size:clamp(1.15rem,3.2vw,1.4rem);font-weight:700;
            line-height:1.25;border-radius:12px;margin:0 0 14px;
-           border:1px solid #E6E4E0}
-  .pb3-chip{background:#1A1A1A;color:#fff;border-radius:100px;padding:4px clamp(7px,2vw,11px);
+           border:1px solid var(--cm-blush, #E8D5C8)}
+  .pb3-chip{background:var(--cm-text, #1C1C1C);color:#fff;border-radius:100px;padding:4px clamp(7px,2vw,11px);
             font-size:.92em;font-weight:700;flex:0 0 auto}
-  .pb3-txt{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;color:#1A1A1A}
-  .pb3-sep{opacity:.4;flex:0 0 auto;color:#1A1A1A}
+  .pb3-txt{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;color:var(--cm-text, #1C1C1C)}
+  .pb3-sep{opacity:.4;flex:0 0 auto;color:var(--cm-text, #1C1C1C)}
   /* Rojo + blanco, elegido 2026-09-09: el rojo es la señal de urgencia y no se
      negocia; el blanco es lo que lo hace legible encima. El `color` va EXPLÍCITO
      a propósito —antes lo heredaba de `.pb3-bar`, y cuando la barra pasó de fondo

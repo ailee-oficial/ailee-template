@@ -1,0 +1,402 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "on6_estilos_mejoras": {
+          "type": "custom_liquid",
+          "name": "ON6 estilos + galeria por color",
+          "settings": {
+            "custom_liquid": "<style>.variant-picker--color{margin:8px 0 4px}variant-radios legend{font-size:1.45rem;font-weight:700;text-transform:none;letter-spacing:0;color:#111;margin-bottom:10px;width:100%}.variant-picker--color input[type=radio]{position:absolute!important;width:1px;height:1px;opacity:0;pointer-events:none}.variant-picker--color label{display:inline-block;width:74px;height:74px;min-width:0;padding:0;margin:0 10px 10px 0;border-radius:14px;border:2px solid var(--cm-blush, #E8D5C8);background:#fff center/cover no-repeat;font-size:0;line-height:0;cursor:pointer;position:relative;transition:border-color .15s,box-shadow .15s;box-shadow:none}.variant-picker--color input:checked + label{border-color:#111;box-shadow:0 0 0 2px #111}.variant-picker--color input:checked + label:before{content:'✓';position:absolute;top:-9px;right:-9px;width:22px;height:22px;border-radius:50%;background:#111;color:#fff;font-size:13px;line-height:22px;text-align:center;z-index:3}.variant-picker--color input.disabled + label{opacity:.4}.variant-picker--color input.disabled + label:after{content:'';position:absolute;inset:0;border-radius:14px;background:linear-gradient(to top right,transparent 45%,#d11 46%,#d11 54%,transparent 55%)}.on6-urg{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0 4px}.on6-save{background:#E11D2A;color:#fff;font-weight:800;font-size:1.15rem;padding:3px 10px;border-radius:8px;letter-spacing:.02em}.on6-fire{color:#E11D2A;font-weight:700;font-size:1.25rem}.on6-trust{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}.on6-ti{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--cm-nude-light, #F0E8E0);border-radius:10px;padding:9px 10px;font-size:1.15rem;font-weight:600;color:#111}.on6-ti span{font-size:1.5rem}.product-form__input:not(.variant-picker--color) label{position:relative;overflow:visible}.product-form__input:not(.variant-picker--color) input:checked + label:after{content:'✓';position:absolute;top:-8px;right:-8px;width:20px;height:20px;border-radius:50%;background:#111;color:#fff;font-size:12px;line-height:20px;text-align:center;z-index:3}.guia-talla-link{margin:0}.guia-talla-a{white-space:nowrap;font-size:14px!important}variant-radios .variant-picker--color{gap:8px!important}variant-radios .variant-picker--color label{width:60px!important;height:60px!important;min-width:60px!important;border-radius:14px!important;border:2px solid var(--cm-blush, #E8D5C8)!important;background-color:#fff!important;text-indent:-9999px!important}variant-radios .variant-picker--color input:checked + label{border:2px solid #111!important;box-shadow:none!important}variant-radios .variant-picker--color input:checked + label:before{content:'✓'!important;position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;background:#111;color:#fff;font-size:13px;line-height:22px;text-align:center;text-indent:0!important;z-index:5}.custom-price-container .badge-oferta{background-color:#E11D2A!important;color:#fff!important;border-radius:8px!important;text-transform:uppercase}.custom-price-container .price-item--sale{color:#E11D2A!important}.par-step{margin:24px 0 12px!important}.variant-picker--color{margin:4px 0 26px!important}fieldset.product-form__input:not(.variant-picker--color){margin:14px 0 26px!important}.custom-price-container{margin:18px 0 6px!important}.on6-urg{margin:12px 0 22px!important}.on6-trust{margin:24px 0!important}variant-radios legend{margin-bottom:12px!important}.custom-price-container{display:none!important}.on6-pricebox{background:#fff;border:1px solid var(--cm-nude-light, #F0E8E0);border-radius:16px;box-shadow:0 4px 20px rgba(17,17,17,.06);padding:16px;margin:16px 0 8px}.on6-pb-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.on6-pb-now{font-size:2.7rem;font-weight:600;color:var(--cm-text, #1C1C1C);line-height:1;letter-spacing:-.02em}.on6-pb-was{font-size:1.5rem;color:var(--cm-text-muted, #7A7A7A);text-decoration:line-through}.on6-pb-save{background:#E11D2A;color:#fff;font-weight:800;font-size:0.82rem;padding:3px 7px;border-radius:6px;letter-spacing:.02em;white-space:nowrap}.on6-pb-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.on6-chip{display:inline-flex;align-items:center;gap:5px;font-size:1.15rem;font-weight:700;padding:6px 11px;border-radius:100px}.on6-chip-red{background:#FDECEC;color:#E11D2A}.on6-chip-green{background:#E7F4EC;color:#128A4E}.on6-urgbar{display:flex;align-items:center;gap:10px;margin-top:12px;background:#FDECEC;border:1px dashed #E11D2A;border-radius:12px;padding:10px 12px;font-size:1.2rem;font-weight:700;color:#E11D2A}.on6-bar{flex:1;height:6px;border-radius:100px;background:#F6C9CC;overflow:hidden}.on6-bar i{display:block;height:100%;width:24%;background:#E11D2A;border-radius:100px}.on6-deliv{display:flex;align-items:center;gap:12px;background:#E7F4EC;border-radius:12px;padding:13px 14px;margin:18px 0}.on6-deliv-ic{font-size:22px}.on6-deliv-tx{font-size:1.3rem;color:#111;line-height:1.35}.on6-deliv-tx b{color:#128A4E}.on6-deliv-tx span{display:block;color:var(--cm-text-muted, #7A7A7A);font-size:1.1rem;margin-top:2px}.on6-h2{font-size:1.9rem;font-weight:800;color:#111;margin-bottom:2px;letter-spacing:-.01em}.on6-h2sub{font-size:1.25rem;color:var(--cm-text-muted, #7A7A7A);margin:0 0 14px}.on6-benef{margin:26px 0}.on6-bf{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--cm-nude-light, #F0E8E0)}.on6-bf:last-child{border-bottom:0}.on6-bf-ic{font-size:20px;flex:0 0 auto;line-height:1.4}.on6-bf-t{font-weight:700;font-size:1.4rem;color:#111}.on6-bf-d{font-size:1.25rem;color:var(--cm-text-muted, #7A7A7A);margin-top:2px}.on6-specs{margin-top:18px}.on6-specs .on6-h2sub{margin:0 0 6px}.on6-spec{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:11px 0;border-bottom:1px solid var(--cm-nude-light, #F0E8E0);font-size:1.25rem}.on6-spec:last-child{border-bottom:0}.on6-spec>span{color:var(--cm-text-muted, #7A7A7A);flex:0 0 auto}.on6-spec>b{color:#111;font-weight:700;text-align:right}.on6-rev{margin:26px 0}.on6-rev-card{background:#fff;border:1px solid var(--cm-nude-light, #F0E8E0);border-radius:14px;padding:14px;margin-bottom:10px}.on6-rev-h{display:flex;align-items:center;gap:10px;margin-bottom:8px}.on6-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#ddd3c6,#c7bba9);display:flex;align-items:center;justify-content:center;font-weight:800;color:#7a6f5e;font-size:1.2rem;flex:0 0 auto}.on6-rev-n{font-weight:700;font-size:1.35rem;color:#111}.on6-rev-v{font-size:1.05rem;color:#128A4E;font-weight:700}.on6-rev-s{color:#F5A623;font-size:1.2rem;margin-bottom:6px}.on6-rev-t{font-size:1.3rem;color:#4a453f;line-height:1.5;margin:0}</style><script>(function(){function patchGal(){var C=window.customElements&&customElements.get('media-gallery');if(!C||!C.prototype||C.prototype.__on6nopre)return false;var orig=C.prototype.setActiveMedia;C.prototype.setActiveMedia=function(id,p){return orig.call(this,id,false)};C.prototype.__on6nopre=1;return true}if(window.customElements&&customElements.whenDefined){customElements.whenDefined('media-gallery').then(patchGal)}patchGal();function csel(){return document.querySelector('.variant-picker--color input:checked')}function lbl(){var c=csel();var f=document.querySelector('.variant-picker--color');if(!f)return;var lg=f.querySelector('legend');if(lg&&c)lg.textContent='COLOR: '+c.value}function guide(){var link=document.querySelector('.guia-talla-link');var fss=document.querySelectorAll('variant-radios fieldset.product-form__input');var sz=null;fss.forEach(function(f){if(!f.classList.contains('variant-picker--color'))sz=f});if(!sz)return;var lg=sz.querySelector('legend');if(!lg||lg.getAttribute('data-g'))return;lg.textContent='TALLA:';lg.style.display='flex';lg.style.alignItems='center';lg.style.justifyContent='space-between';lg.style.width='100%';if(link)lg.appendChild(link);lg.setAttribute('data-g','1')}function go(){lbl();guide()}document.addEventListener('change',function(e){if(e.target.closest&&e.target.closest('.variant-picker--color')){lbl()}});document.addEventListener('DOMContentLoaded',function(){setTimeout(go,400)});setTimeout(go,900);})();</script>"
+          }
+        },
+        "on6_confianza": {
+          "type": "custom_liquid",
+          "name": "Trust row v3 (experimental, reemplaza los 4 iconos)",
+          "settings": {
+            "custom_liquid": "{% render 'trust-row-v3' %}"
+          }
+        },
+        "on6_beneficios": {
+          "type": "custom_liquid",
+          "name": "ON6 beneficios",
+          "settings": {
+            "custom_liquid": "<div class='on6-benef'><h2 class='on6-h2'>Características del producto</h2><p class='on6-h2sub'>Materiales y detalles</p><div class='on6-bf'><span class='on6-bf-ic'>✨</span><div><div class='on6-bf-t'>Característica 1</div><div class='on6-bf-d'>Describe aquí la característica 1 de ESTE producto. No heredar de otro.</div></div></div><div class='on6-bf'><span class='on6-bf-ic'>✨</span><div><div class='on6-bf-t'>Característica 2</div><div class='on6-bf-d'>Describe aquí la característica 2 de ESTE producto. No heredar de otro.</div></div></div><div class='on6-bf'><span class='on6-bf-ic'>✨</span><div><div class='on6-bf-t'>Característica 3</div><div class='on6-bf-d'>Describe aquí la característica 3 de ESTE producto. No heredar de otro.</div></div></div></div>"
+          },
+          "disabled": true
+        },
+        "on6_resenas": {
+          "type": "custom_liquid",
+          "name": "Punto C - prueba social real (reemplaza tarjetas de relleno)",
+          "settings": {
+            "custom_liquid": "{% render 'punto-c-social' %}"
+          }
+        },
+        "custom_liquid_9XDG7p": {
+          "type": "custom_liquid",
+          "name": "Reviews",
+          "settings": {
+            "custom_liquid": "<div class=\"review-container\">\n  <div class=\"stars\">\n    {% for i in (1..5) %}\n      <span class=\"star\">★</span>\n    {% endfor %}\n  </div>\n  <span class=\"review-text\"> </span>\n</div>\n\n<style>\n  .review-container {\n    display: flex;\n    align-items: center;\n    font-family: Arial, sans-serif;\nfont-size: 18px;                      font-style: italic;\n    font-weight: normal;\n    margin-top: 0;\n    margin-bottom: 0;\n  }\n\n  .stars {\n    color: #FFD700;\n    font-size: 17px;\n    display: flex;\n    align-items: center;\n  }\n  .star {\n    margin-right: 1px;\n  }\n\n  .review-text {\n    margin-left: 8px;\n    color: #000;\n    font-size: 14px;\n    font-weight: normal;\n  }\n</style>"
+          },
+          "disabled": true
+        },
+        "paso1_label": {
+          "type": "custom_liquid",
+          "name": "Paso 1 (encima de selectores)",
+          "settings": {
+            "custom_liquid": "<div class=\"par-step\"><span class=\"par-step__n\">1</span><span class=\"par-step__t\">Elige color y talla de tu <strong>primer par</strong></span></div><style>.par-step{display:flex;align-items:center;gap:11px;margin:16px 0 10px;font-family:'Jost',sans-serif}.par-step__n{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#111;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center}.par-step__t{font-size:1.5rem;letter-spacing:.01em;color:#111;font-weight:500;line-height:1.35}.par-step__t strong{font-weight:700}</style>"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "custom_size_guide_visual": {
+          "type": "custom_liquid",
+          "name": "guia det tallas",
+          "settings": {
+            "custom_liquid": "{%- liquid\n  assign guia_url = ''\n  for im in product.images\n    assign meta = im.src | append: ' ' | append: im.alt | downcase\n    if meta contains 'talla' or meta contains 'guia' or meta contains 'medida' or meta contains 'size'\n      assign guia_url = im | image_url: width: 800\n    endif\n  endfor\n  if guia_url == ''\n    assign ult = product.images.last\n    assign alt_ult = ult.alt | default: '' | downcase\n    assign es_foto_color = false\n    if alt_ult contains '_'\n      assign partes = alt_ult | split: '_'\n      assign sufijo = partes | last | plus: 0\n      if sufijo > 0\n        assign es_foto_color = true\n      endif\n    endif\n    if ult != blank and es_foto_color == false\n      assign guia_url = ult | image_url: width: 800\n    endif\n  endif\n  if guia_url == ''\n    assign guia_url = ''\n  endif\n-%}\n<div class=\"guia-talla-link\"><span class=\"guia-talla-icon\">📏</span><a href=\"#\" id=\"btnAbrirGuia\" class=\"guia-talla-a\">Encuentra tu talla aquí</a></div>\n\n<div id=\"guiaModal\" style=\"display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;align-items:center;justify-content:center;padding:16px;\">\n  <div style=\"background:var(--cm-cream, #FAF7F4);border-radius:14px;width:100%;max-width:440px;max-height:90vh;max-height:90dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;\">\n    <div style=\"display:flex;align-items:center;justify-content:space-between;padding:12px 16px 8px;border-bottom:1px solid #eee;\">\n      <h3 style=\"font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:#111;margin:0;flex:1;text-align:center;\">Guía de tallas</h3>\n      <button id=\"btnCerrarGuia\" style=\"background:none;border:none;font-size:2.2rem;color:#6B6B6B;cursor:pointer;line-height:1;\">×</button>\n    </div>\n    <div style=\"padding:14px 16px 18px;text-align:center;\">\n      <img src=\"{{ guia_url }}\" alt=\"Guía de tallas\" loading=\"lazy\" decoding=\"async\" style=\"width:100%;border-radius:8px;margin-bottom:14px;\">\n      <p style=\"font-size:1.2rem;color:#000;margin:8px 0 12px;\">Si estás entre dos tallas, <strong>elige la más grande.</strong></p>\n      <button class=\"gtx-close-btn\" id=\"btnCerrarGuia2\">Entendido, cerrar</button>\n    </div>\n  </div>\n</div>\n\n<style>\n.guia-talla-link{display:flex;align-items:center;gap:6px;margin:10px 0;padding:0}\n.guia-talla-icon{font-size:13px;opacity:.7}\n.guia-talla-a{color:#111!important;font-size:12px!important;text-decoration:underline!important;text-underline-offset:2px;cursor:pointer;font-weight:500!important;text-transform:none!important;background:none;border:none}\n.guia-talla-a:hover{color:#111}\n.gtx-close-btn{display:block;width:100%;background:#000;color:var(--cm-cream, #FAF7F4);border:none;padding:10px 0;font-size:1.05rem;font-weight:700;border-radius:6px;cursor:pointer}\n</style>\n<script>(function(){var m=document.getElementById('guiaModal');function a(){m.style.display='flex';document.body.style.overflow='hidden';}function c(){m.style.display='none';document.body.style.overflow='';}document.getElementById('btnAbrirGuia').addEventListener('click',function(e){e.preventDefault();a();});document.getElementById('btnCerrarGuia').addEventListener('click',c);document.getElementById('btnCerrarGuia2').addEventListener('click',c);m.addEventListener('click',function(e){if(e.target===m)c();});})();</script>"
+          }
+        },
+        "paso2_label": {
+          "type": "custom_liquid",
+          "name": "Paso 2 (encima del boton)",
+          "settings": {
+            "custom_liquid": "<div class=\"par-step\"><span class=\"par-step__n\">2</span><span class=\"par-step__t\">El <strong>segundo par</strong> lo eliges en el formulario de compra</span></div><div class=\"par-arrow\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\"><path d=\"M12 4v15\"/><path d=\"M6 13l6 6 6-6\"/></svg></div><style>.par-step{display:flex;align-items:center;gap:11px;margin:16px 0 10px;font-family:'Jost',sans-serif}.par-step__n{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#111;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center}.par-step__t{font-size:1.5rem;letter-spacing:.01em;color:#111;font-weight:500;line-height:1.35}.par-step__t strong{font-weight:700}</style><style>.par-arrow{display:flex;justify-content:center;margin:2px 0 10px}.par-arrow svg{width:22px;height:22px;fill:none;stroke:#111;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;animation:par-bounce 1.4s ease-in-out infinite}@keyframes par-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}@media (prefers-reduced-motion:reduce){.par-arrow svg{animation:none}}</style>"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "custom_liquid_TJNJiE": {
+          "type": "custom_liquid",
+          "name": "Prueba social",
+          "settings": {
+            "custom_liquid": "<div class=\"testimonials-carousel-wrapper\">\n   <div class=\"testimonials-container\">\n   \n               <div class=\"testimonial-card\">\n         <div class=\"testimonial-main-layout\">\n            <div class=\"testimonial-image\">\n               <img src=\"\" alt=\"Cliente\">\n            </div>\n            <div class=\"testimonial-body-content\">\n               <div class=\"testimonial-stars\">★★★★★</div>\n               <p class=\"testimonial-text\">\"Muy comodos, valoro especialmente el servicio al cliente, me equivoque con la talla y no tuvieron problema para cambiarla. Muy recomendados.\"</p>\n               <div class=\"testimonial-footer\">\n                  <span class=\"verified-icon\">\n                     <svg viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n                        <path d=\"M10.2426 16.3137L6 12.071L7.41421 10.6568L10.2426 13.4853L15.8995 7.8284L17.3137 9.24264L10.2426 16.3137Z\" fill=\"#3E84F4\"/>\n                        <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21ZM12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23Z\" fill=\"#3E84F4\"/>\n                     </svg>\n                  </span>\n                  <span class=\"client-info\"><strong>Luisa R.</strong> (Bucaramanga) 🇨🇴</span>\n               </div>\n            </div>\n         </div>\n      </div>\n   \n   \n      <div class=\"testimonial-card\">\n         <div class=\"testimonial-main-layout\">\n            <div class=\"testimonial-image\">\n               <img src=\"\" alt=\"Cliente\">\n            </div>\n            <div class=\"testimonial-body-content\">\n               <div class=\"testimonial-stars\">★★★★★</div>\n               <p class=\"testimonial-text\">\"La calidad de los materiales superó mis expectativas. Son muy cómodos para el diario y el color es idéntico a la foto.\"</p>\n               <div class=\"testimonial-footer\">\n                  <span class=\"verified-icon\">\n                     <svg viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n                        <path d=\"M10.2426 16.3137L6 12.071L7.41421 10.6568L10.2426 13.4853L15.8995 7.8284L17.3137 9.24264L10.2426 16.3137Z\" fill=\"#3E84F4\"/>\n                        <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21ZM12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23Z\" fill=\"#3E84F4\"/>\n                     </svg>\n                  </span>\n                  <span class=\"client-info\"><strong>Luis R.</strong> (Medellín) 🇨🇴</span>\n               </div>\n            </div>\n         </div>\n      </div>\n      <div class=\"testimonial-card\">\n         <div class=\"testimonial-main-layout\">\n            <div class=\"testimonial-image\">\n               <img src=\"\" alt=\"Cliente\">\n            </div>\n            <div class=\"testimonial-body-content\">\n               <div class=\"testimonial-stars\">★★★★</div>\n               <p class=\"testimonial-text\">\"Llegaron en 2 días a Cartagena. El pago contra entrega me dio mucha seguridad. Excelente servicio al cliente.\"</p>\n               <div class=\"testimonial-footer\">\n                  <span class=\"verified-icon\">\n                     <svg viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n                        <path d=\"M10.2426 16.3137L6 12.071L7.41421 10.6568L10.2426 13.4853L15.8995 7.8284L17.3137 9.24264L10.2426 16.3137Z\" fill=\"#3E84F4\"/>\n                        <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21ZM12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23Z\" fill=\"#3E84F4\"/>\n                     </svg>\n                  </span>\n                  <span class=\"client-info\"><strong>Paula M.</strong> (Cartagena) 🇨🇴</span>\n               </div>\n            </div>\n         </div>\n      </div>\n      \n      <div class=\"testimonial-card\">\n         <div class=\"testimonial-main-layout\">\n            <div class=\"testimonial-image\">\n               <img src=\"\" alt=\"Cliente\">\n            </div>\n            <div class=\"testimonial-body-content\">\n               <div class=\"testimonial-stars\">★★★★★</div>\n               <p class=\"testimonial-text\">\"Súper livianos y la talla es exacta según la guía. El envío gratis es un ahorro real. Muy recomendados.\"</p>\n               <div class=\"testimonial-footer\">\n                  <span class=\"verified-icon\">\n                     <svg viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n                        <path d=\"M10.2426 16.3137L6 12.071L7.41421 10.6568L10.2426 13.4853L15.8995 7.8284L17.3137 9.24264L10.2426 16.3137Z\" fill=\"#3E84F4\"/>\n                        <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21ZM12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23Z\" fill=\"#3E84F4\"/>\n                     </svg>\n                  </span>\n                  <span class=\"client-info\"><strong>Camilo G.</strong> (Cali) 🇨🇴</span>\n               </div>\n            </div>\n         </div>\n      </div>\n      \n      \n   </div>\n</div>\n<style>\n   .testimonials-carousel-wrapper {\n   width: 100%;\n   \n   padding: 0px 0; \n   margin-top: 0;\n   margin-bottom: 0;\n   overflow: hidden;\n   }\n   .testimonials-container {\n   display: flex;\n   overflow-x: auto;\n   scroll-snap-type: x mandatory;\n   gap: 12px;\n   \n   padding: 5px 15px; \n   scrollbar-width: none;\n   -webkit-overflow-scrolling: touch;\n   }\n   .testimonials-container::-webkit-scrollbar { display: none; }\n   .testimonial-card {\n   flex: 0 0 88%; \n   scroll-snap-align: center;\n   background: #fff;\n   border: 1px solid var(--cm-nude-light, #F0E8E0);\n   border-radius: 10px;\n   padding: 14px;\n   box-sizing: border-box;\n   box-shadow: 0 2px 6px rgba(0,0,0,0.03);\n   }\n   .testimonial-main-layout {\n   display: flex;\n   align-items: flex-start;\n   gap: 12px;\n   }\n   .testimonial-image img {\n   width: 50px;\n   height: 50px;\n   border-radius: 50%;\n   object-fit: cover;\n   background: #f9f9f9;\n   flex-shrink: 0;\n   }\n   .testimonial-body-content {\n   flex: 1;\n   min-width: 0;\n   }\n   .testimonial-stars {\n   font-size: 0.9rem;\n   margin-bottom: 4px;\n   }\n   .testimonial-text {\n   margin: 0;\n   font-size: 1.3rem;\n   line-height: 1.3;\n   color: #333;\n   word-break: break-word;\n   }\n   .testimonial-footer {\n   display: flex;\n   align-items: center;\n   gap: 5px;\n   margin-top: 10px;\n   padding-top: 8px;\n   border-top: 1px solid var(--cm-nude-light, #F0E8E0);\n   }\n   .verified-icon svg {\n   width: 15px;\n   height: 15px;\n   }\n   .client-info {\n   font-size: 1.1rem;\n   color: #666;\n   }\n   @media (min-width: 768px) {\n   .testimonial-card { flex: 0 0 350px; }\n   .testimonials-container { justify-content: center; }\n   }\n</style>"
+          },
+          "disabled": true
+        },
+        "3122dfde-b867-4a3c-9e0f-cf61bd664e99": {
+          "type": "moneybackguarantee",
+          "settings": {
+            "moneybackguarantee": "30 DÍAS PARA DEVOLUCIONES"
+          }
+        },
+        "2c100155-1d2d-4504-a37e-f2abd070099f": {
+          "type": "iconss",
+          "settings": {
+            "text1": "Garantía Satisfacción",
+            "text2": "Pagos Contraentrega",
+            "iconcolorreturns": "#1C1C1C"
+          }
+        },
+        "collapsible_tab_AUafHX": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Que Incluye",
+            "icon": "clipboard",
+            "content": "<h5>• <em><strong>Par de Calzado:</strong></em> Tus zapatos seleccionados, fabricados con materiales de alta resistencia y acabados de primera calidad.</h5><h5>• <em><strong>Caja (Opcional):</strong></em><em> </em>Despachamos en caja para asegurar que el calzado llegue impecable y protegido durante el trayecto. (Se debe de solicitar al momento de la confirmación)</h5>",
+            "page": ""
+          }
+        },
+        "c11bfb2f-901d-4b03-90cf-b6b766353d13": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Información de Envío",
+            "icon": "truck",
+            "content": "<h5>• <em><strong>Envío Totalmente Gratis:</strong></em> No pagues ni un peso más por el transporte; nosotros cubrimos el envío a cualquier rincón del país.</h5><h5>• <em><strong>Tiempos de Entrega: </strong></em>Procesamos tu pedido en 24 horas. Recibe tus zapatos en la puerta de tu casa en un plazo de 3 a 8 días hábiles.</h5><h5>• <em><strong>Rastreo en Tiempo Real: </strong></em>Una vez despachado, te enviaremos un número de guía para que puedas seguir el camino de tu paquete hasta tu hogar.</h5><h5>• <em><strong>Modalidad Pago Contra Entrega: </strong></em>Compra con total tranquilidad; pide hoy y paga en efectivo únicamente cuando recibas el producto en tus manos.</h5>",
+            "page": ""
+          }
+        },
+        "e6778313-45ad-4d6d-8260-2498242a6df0": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Devoluciones",
+            "icon": "return",
+            "content": "<h5>• <em><strong>Satisfacción Garantizada:</strong></em> Si el producto llega con algún defecto de fábrica, nos encargamos de la reposición inmediata sin costos adicionales para ti.</h5><h5>•<strong> </strong><em><strong>Compra Sin Riesgos:</strong></em><em> </em>Tu dinero y tu pedido están protegidos. Si no recibes lo que pediste, te devolvemos tu dinero o gestionamos el cambio de inmediato.</h5><h5>•<strong> </strong><em><strong>Proceso Sencillo:</strong></em><em> </em>Para iniciar un cambio, solo escríbenos a nuestro WhatsApp de atención y un asesor te guiará paso a paso para que tengas tus zapatos ideales.</h5>",
+            "page": ""
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "stock_real": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{%- comment -%}\n  Escasez CONCRETA con el inventario real de la variante elegida.\n  Sustituye al \"🔥 Últimos días de oferta\" de la v1, que era escasez genérica y\n  violaba nuestra propia regla (\"escasez concreta o nada\").\n\n  Solo se pinta si Shopify trackea inventario y quedan pocas unidades de ESA\n  talla y color. El JSON de abajo lo lee el script para actualizar el número al\n  cambiar de variante, sin recargar la página.\n{%- endcomment -%}\n{%- liquid\n  assign umbral = product.metafields.custom.stock_umbral | default: 25 | plus: 0\n  comment\n    OJO: `product.tracks_inventory` NO existe en Liquid — es un campo de la Admin\n    API y evaluarlo devuelve nil, así que el bloque entero desaparecía en silencio.\n    En Liquid el inventario se pregunta POR VARIANTE con inventory_management.\n  endcomment\n  assign trackea = false\n  for var in product.variants\n    if var.inventory_management != blank\n      assign trackea = true\n      break\n    endif\n  endfor\n-%}\n{%- if trackea -%}\n  {%- capture inv_json -%}\n    {\n    {%- for var in product.variants -%}\n      \"{{ var.id }}\": {{ var.inventory_quantity | default: 0 }}{%- unless forloop.last -%},{%- endunless -%}\n    {%- endfor -%}\n    }\n  {%- endcapture -%}\n  <script type=\"application/json\" id=\"v2-inv\">{{ inv_json }}</script>\n  <div class=\"v2-stock\" id=\"v2-stock\" data-umbral=\"{{ umbral }}\" hidden>\n    <span class=\"v2-stock-dot\"></span>\n    <span class=\"v2-stock-tx\"></span>\n  </div>\n  <style>\n    .v2-stock{display:flex;align-items:center;gap:8px;margin:10px 0 4px;\n              font-size:1.05rem;font-weight:600;color:#B3261E}\n    .v2-stock-dot{width:9px;height:9px;border-radius:50%;background:#B3261E;\n                  animation:v2pulse 1.6s ease-in-out infinite;flex:0 0 auto}\n    @keyframes v2pulse{0%,100%{opacity:1}50%{opacity:.35}}\n    @media (prefers-reduced-motion: reduce){.v2-stock-dot{animation:none}}\n  </style>\n  <script>\n  (function(){\n    var caja = document.getElementById('v2-stock');\n    var datos = document.getElementById('v2-inv');\n    if (!caja || !datos) return;\n    var inv;\n    try { inv = JSON.parse(datos.textContent); } catch (e) { return; }\n    var umbral = parseInt(caja.dataset.umbral, 10) || 25;\n    var tx = caja.querySelector('.v2-stock-tx');\n\n    function idVariante() {\n      var u = new URL(window.location.href);\n      var v = u.searchParams.get('variant');\n      if (v) return v;\n      var campo = document.querySelector('form[action*=\"/cart/add\"] [name=\"id\"]');\n      return campo ? campo.value : null;\n    }\n    function pintar() {\n      var id = idVariante();\n      var n = id ? inv[id] : undefined;\n      if (typeof n !== 'number' || n <= 0 || n > umbral) { caja.hidden = true; return; }\n      tx.textContent = n === 1 ? 'Queda 1 par en esta talla' : 'Quedan ' + n + ' pares en esta talla';\n      caja.hidden = false;\n    }\n    // Este bloque se renderiza ANTES que buy_buttons, así que al ejecutarse el\n    // formulario todavía no existe. Observar el form directamente registraba el\n    // observer sobre null y el número no se pintaba nunca; observar el body con\n    // {subtree, attributes} dispara miles de veces y cuelga la página. La vía\n    // sana: esperar al form con reintentos acotados y observar SOLO ese form.\n    var intentos = 0;\n    function engancharse() {\n      var form = document.querySelector('form[action*=\"/cart/add\"]');\n      if (!form) {\n        if (++intentos > 20) return;          // ~6 s y se rinde, sin bucles vivos\n        return setTimeout(engancharse, 300);\n      }\n      pintar();\n      new MutationObserver(pintar).observe(form, {\n        subtree: true, attributes: true, attributeFilter: ['value']\n      });\n      form.addEventListener('change', pintar);\n    }\n    engancharse();\n    window.addEventListener('popstate', pintar);\n  })();\n  </script>\n{%- endif -%}\n"
+          }
+        },
+        "fold_header": {
+          "type": "custom_liquid",
+          "name": "Fold header v3 (experimental)",
+          "settings": {
+            "custom_liquid": "{% render 'fold-header-v3' %}"
+          }
+        },
+        "promo_bar": {
+          "type": "custom_liquid",
+          "name": "Promo bar + countdown (experimental)",
+          "settings": {
+            "custom_liquid": "{% render 'promo-bar-v3' %}"
+          }
+        }
+      },
+      "block_order": [
+        "on6_estilos_mejoras",
+        "promo_bar",
+        "fold_header",
+        "paso1_label",
+        "variant_picker",
+        "stock_real",
+        "custom_size_guide_visual",
+        "paso2_label",
+        "buy_buttons",
+        "on6_confianza",
+        "on6_resenas",
+        "3122dfde-b867-4a3c-9e0f-cf61bd664e99",
+        "2c100155-1d2d-4504-a37e-f2abd070099f",
+        "collapsible_tab_AUafHX",
+        "c11bfb2f-901d-4b03-90cf-b6b766353d13",
+        "e6778313-45ad-4d6d-8260-2498242a6df0",
+        "description",
+        "on6_beneficios"
+      ],
+      "custom_css": [
+        "div.product__title > h1 {font-size: 17px !important;}",
+        ".button--secondary {background-color: #000000; color: #ffffff;}"
+      ],
+      "settings": {
+        "new_product_page_media": true,
+        "othergallerystyle": false,
+        "salebadge": true,
+        "freeshipprice": true,
+        "shiptextnexttoprice": "+ Envíos GRATIS",
+        "enable_gallerybadge": false,
+        "productgalleryimage": "Producto Exclusivo",
+        "badge_background": "#FAF7F4",
+        "textbadge_background": "#000000",
+        "badge_text": "capitalize",
+        "stickybutton": true,
+        "stickybuttontext": "Comprar ahora",
+        "atcicon": true,
+        "atcsavings": false,
+        "mostpopularcolor": "#1C1C1C",
+        "enable_shipping_calculate": false,
+        "shipping_calculator_label": "Entrega estimada:",
+        "days_to_start_shipping": 5,
+        "approximate_days_for_delivery": 10,
+        "delivery_align": "center",
+        "enable_sticky_info": true,
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "mobile_thumbnails": "show",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "También te puede gustar",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "background-1",
+        "image_ratio": "adapt",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 68
+      }
+    },
+    "b6fc2703-d30b-40d4-b2cb-fcc2eade4e34": {
+      "type": "multicolumn",
+      "disabled": true,
+      "blocks": {
+        "template--16985062932724__b6fc2703-d30b-40d4-b2cb-fcc2eade4e34-column-1": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "title": "Nombre del cliente 1 (Ciudad)",
+            "text": "<h5>⭐️⭐️⭐️⭐️⭐️</h5><h5><em>Testimonio real de un cliente de Ailee. Nunca inventado.</em></h5>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "template--16985062932724__b6fc2703-d30b-40d4-b2cb-fcc2eade4e34-column-2": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "title": "Nombre del cliente 2 (Ciudad)",
+            "text": "<h5>⭐️⭐️⭐️⭐️⭐️</h5><h5><em>Testimonio real de un cliente de Ailee. Nunca inventado.</em></h5>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "template--16985062932724__b6fc2703-d30b-40d4-b2cb-fcc2eade4e34-column-3": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "title": "Nombre del cliente 3 (Ciudad)",
+            "text": "<h5>⭐️⭐️⭐️⭐️⭐️</h5><h5><em>Testimonio real de un cliente de Ailee. Nunca inventado.</em></h5>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_38AXm4": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "title": "Nombre del cliente 4 (Ciudad)",
+            "text": "<h5>⭐️⭐️⭐️⭐️⭐️</h5><h5><em>Testimonio real de un cliente de Ailee. Nunca inventado.</em></h5>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_3tk8Gw": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "title": "Nombre del cliente 5 (Ciudad)",
+            "text": "<h5>⭐️⭐️⭐️⭐️⭐️</h5><h5><em>Testimonio real de un cliente de Ailee. Nunca inventado.</em></h5>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16985062932724__b6fc2703-d30b-40d4-b2cb-fcc2eade4e34-column-1",
+        "template--16985062932724__b6fc2703-d30b-40d4-b2cb-fcc2eade4e34-column-2",
+        "template--16985062932724__b6fc2703-d30b-40d4-b2cb-fcc2eade4e34-column-3",
+        "column_38AXm4",
+        "column_3tk8Gw"
+      ],
+      "settings": {
+        "title": "Nuestros Clientes",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "inverse",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "ffa79f40-3ca5-4c0f-842b-5fa404007924": {
+      "type": "collapsible-content",
+      "blocks": {
+        "template--19239854407957__ffa79f40-3ca5-4c0f-842b-5fa404007924-1685852323c73bd29d-0": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Cómo sé cuál es mi talla correcta?",
+            "icon": "question_mark",
+            "row_content": "<p>Contamos con una <strong>Guía de Tallas</strong> exacta en la descripción del producto. Te recomendamos medir tu pie en centímetros desde el talón hasta la punta del dedo gordo para asegurar un ajuste perfecto. Si estás entre dos tallas, elige siempre la más grande.</p>",
+            "page": ""
+          }
+        },
+        "40c59e33-8ce9-492f-ad4d-9d0fddb2fb10": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Qué pasa si los zapatos no me quedan o llegan dañados?",
+            "icon": "question_mark",
+            "row_content": "<p>Tu satisfacción es nuestra prioridad. Tienes hasta <strong>5 días después de recibir tu pedido</strong> para solicitar un cambio por talla. Si el producto presenta algún defecto de fábrica, gestionamos la reposición de inmediato sin costo adicional para ti.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_dKGxBq": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Realizan envíos a zonas rurales o veredas?",
+            "icon": "question_mark",
+            "row_content": "<p>Llegamos a casi cualquier lugar de Colombia. Sin embargo, en algunas veredas o zonas de difícil acceso, la transportadora podría dejar el paquete en la oficina principal del municipio más cercano. Si tienes dudas sobre tu cobertura, pregúntanos por WhatsApp antes de pedir.</p>",
+            "page": ""
+          }
+        },
+        "f68ace48-4162-4c3e-bc8c-5518a8de0427": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Puedo abrir el paquete antes de pagarle al repartidor?",
+            "icon": "question_mark",
+            "row_content": "<p>Por políticas de seguridad de las empresas de mensajería (Servientrega, Envía, Interrapidísimo), no se permite abrir el paquete antes de realizar el pago en la modalidad de Pago Contra Entrega. No obstante, cuentas con nuestra garantía de satisfacción para cualquier cambio posterior.</p>",
+            "page": ""
+          }
+        },
+        "524169b2-9412-4aeb-b45b-7c0e4edd9cba": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "¿Los productos son originales o réplicas de alta calidad?",
+            "icon": "question_mark",
+            "row_content": "<p>En <strong>AILEE</strong> nos especializamos en calzado de alta gama (Top Quality 1.1). Esto significa que utilizamos los mismos materiales y procesos de fabricación que las marcas originales, garantizando una durabilidad y estética idéntica, pero a un precio mucho más accesible.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--19239854407957__ffa79f40-3ca5-4c0f-842b-5fa404007924-1685852323c73bd29d-0",
+        "40c59e33-8ce9-492f-ad4d-9d0fddb2fb10",
+        "collapsible_row_dKGxBq",
+        "f68ace48-4162-4c3e-bc8c-5518a8de0427",
+        "524169b2-9412-4aeb-b45b-7c0e4edd9cba"
+      ],
+      "name": "Preguntas Frecuentes",
+      "settings": {
+        "caption": "Todo lo que necesitas saber para estrenar hoy",
+        "heading": "<strong>RESOLVEMOS TUS DUDAS</strong>",
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "background-1",
+        "container_color_scheme": "background-2",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 4,
+        "padding_bottom": 4
+      }
+    },
+    "ce002b21-24e0-4d65-87ca-18c9770b24d4": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related-products",
+    "b6fc2703-d30b-40d4-b2cb-fcc2eade4e34",
+    "ffa79f40-3ca5-4c0f-842b-5fa404007924",
+    "ce002b21-24e0-4d65-87ca-18c9770b24d4"
+  ]
+}

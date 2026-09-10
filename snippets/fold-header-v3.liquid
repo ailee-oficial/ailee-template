@@ -183,7 +183,7 @@
      juntos en un `nowrap`: el descuento nunca se despega de la cifra. */
   .fh3-price-row{display:flex;align-items:baseline;flex-wrap:wrap;gap:.4rem 1.1rem;
                  margin:0 0 1rem}
-  .fh3-was{font-size:1.5rem;color:#8A8178;text-decoration:line-through;line-height:1;
+  .fh3-was{font-size:1.5rem;color:var(--cm-text-muted, #7A7A7A);text-decoration:line-through;line-height:1;
            flex:0 0 auto}
   .fh3-price-main{display:inline-flex;align-items:baseline;gap:.45rem;white-space:nowrap}
   .fh3-now{font-family:'DM Sans',system-ui,sans-serif;font-size:clamp(2.3rem,6vw,2.8rem);
@@ -212,7 +212,7 @@
   .fh3-live{display:flex;align-items:center;gap:.6rem;margin:0}
   .fh3-live-dot{width:.7rem;height:.7rem;border-radius:50%;background:#128A4E;
                 flex:0 0 auto;animation:fh3livepulse 1.6s ease-in-out infinite}
-  .fh3-live-tx{font-size:1.1rem;color:#8A8178;font-weight:500}
+  .fh3-live-tx{font-size:1.1rem;color:var(--cm-text-muted, #7A7A7A);font-weight:500}
   @keyframes fh3livepulse{0%,100%{opacity:1}50%{opacity:.35}}
   @media (prefers-reduced-motion: reduce){.fh3-live-dot{animation:none}}
 
@@ -236,7 +236,7 @@
        .product__media-icon { display: none !important }          → sin botón de zoom
        .slider--mobile .slider__slide { width: 80%/70% !important } → el slide no
          ocupa el ancho completo, y el sobrante deja ver el fondo del tema
-         (#FAF8F6) — eso es el "fondo gris" que se veía, no la foto.
+         (var(--cm-cream, #FAF7F4)) — eso es el "fondo gris" que se veía, no la foto.
 
      Aquí se revierten SOLO dentro de la galería de producto y SOLO en esta
      plantilla experimental. No se toca custom-productpage.css (es global y
@@ -282,7 +282,7 @@
      contenido del modal a 0 y la foto desaparece. El `overflow:auto` nativo ya
      alcanza para recorrerla. */
 
-  /* El wrapper global usa #f5f5f5 y se alcanza a ver como una banda alrededor
+  /* El wrapper global usa var(--cm-nude-light, #F0E8E0) y se alcanza a ver como una banda alrededor
      del slide. Madison deja el wrapper transparente; aquí hacemos lo mismo
      para que herede el blanco de `.product`, sin modificar las PDP vivas. */
   .product__media-wrapper{
