@@ -9,8 +9,8 @@
 
   PARÁMETRO `oferta` (2026-09-09) — la mecánica de la oferta se pasa desde la
   plantilla, no se adivina del precio:
-    · `2x1`  (default) → "Hoy 2x1 · Pagas 1 par, llevas 2".  Lo que ya usaba
-      product.zapatos-on6-v2: el segundo par se elige en el formulario Releasit.
+    · `2x1`  (default) → "Hoy 2x1 · Pagas 1 unidad, llevas 2".  Lo que ya usaba
+      product.moda-2x1: la segunda unidad se elige en el formulario Releasit.
     · `pct`             → "Hoy -NN% · Ahorras $X".  Producto que se vende solo;
       tanto el porcentaje como la cifra de ahorro salen del compare_at_price
       real, no de un texto fijo. (Hasta 2026-09-09 el texto de apoyo decía
@@ -51,7 +51,7 @@
   {%- else -%}
     <span class="pb3-chip">&#128293; Hoy 2x1</span>
     {%- if pct > 0 -%}
-      <span class="pb3-txt">Pagas 1 par, llevas 2</span>
+      <span class="pb3-txt">Pagas 1 unidad, llevas 2</span>
     {%- else -%}
       <span class="pb3-txt">Oferta del d&iacute;a</span>
     {%- endif -%}

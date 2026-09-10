@@ -1,6 +1,6 @@
 {%- comment -%}
   Fold header v3 — en producción desde 2026-09-08.  La usan product.zapatos-on6-v2
-  (2x1) y product.zapatos-single (descuento por porcentaje); dejó de ser
+  (2x1) y product.moda-single (descuento por porcentaje); dejó de ser
   experimental el día que cinco productos activos empezaron a servirse con ella.
   Inspirado en el formato de storemadison.co/products/nike-ultrazoom (título
   grande + check, calificación en línea propia, disponibilidad + entrega,
@@ -108,7 +108,7 @@
   </div>
   {%- comment -%}
     El ahorro en pesos solo vive en modo `pct`. En un 2x1 la cifra absoluta
-    miente: lo que se ahorra es el segundo par, no un descuento sobre el
+    miente: lo que se ahorra es la segunda unidad, no un descuento sobre el
     primero, y `compare_at_price` ahí no es el precio de dos pares. Por eso
     la condición es doble y el modo por defecto queda igual que siempre.
   {%- endcomment -%}
@@ -189,10 +189,10 @@
   .fh3-now{font-family:'DM Sans',system-ui,sans-serif;font-size:clamp(2.3rem,6vw,2.8rem);
            font-weight:800;color:#111;line-height:1;letter-spacing:-.02em}
   .fh3-cur{font-size:1.2rem;font-weight:600;color:#555;letter-spacing:.02em}
-  /* `-50%` decía lo que NO es: "50% en un par" y "2 pares por el precio de uno"
+  /* `-50%` decía lo que NO es: "50% en una unidad" y "2 unidades por el precio de una"
      dan la misma aritmética, y el cliente leía descuento en una unidad. El pill
      pasa a `2x1`, que dice la mecánica en tres caracteres y entra inline junto
-     al precio en cualquier ancho. La frase completa —"Pagas 1 par, llevas 2"—
+     al precio en cualquier ancho. La frase completa —"Pagas 1 unidad, llevas 2"—
      la carga la barra de promo, arriba: badge acá, explicación allá. */
   .fh3-pill{background:#E11D2A;color:#fff;font-weight:800;font-size:1.35rem;
             letter-spacing:.02em;padding:.5rem 1.1rem;border-radius:100px;
