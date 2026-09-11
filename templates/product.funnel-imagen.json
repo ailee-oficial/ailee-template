@@ -141,7 +141,7 @@
       ],
       "name": "Preguntas Frecuentes",
       "settings": {
-        "caption": "Lo que preguntan antes de pedirlo",
+        "caption": "Preguntas frecuentes",
         "heading": "<strong>RESOLVEMOS TUS DUDAS</strong>",
         "heading_size": "h2",
         "heading_alignment": "center",
@@ -154,10 +154,20 @@
         "padding_top": 4,
         "padding_bottom": 4
       }
+    },
+    "cierre": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "{%- comment -%}\n  CIERRE · el bloque 12 del contrato. Quien termina de leer las FAQ es el que MÁS cerca está de\n  comprar, y hasta hoy se quedaba sin botón: el último CTA vivía antes de las preguntas.\n  La reversión va con nombre propio para que no se lea como una frase de relleno.\n  Textos por metafield: la plantilla no sabe de qué producto se trata.\n{%- endcomment -%}\n{%- liquid\n  assign cta_texto = product.metafields.custom.funnel_cta | default: 'PEDIR AHORA — PAGAS AL RECIBIR'\n  assign rev = product.metafields.custom.reversion | default: ''\n-%}\n<div class=\"fi-cierre\">\n  <a class=\"fi-cta\" href=\"/rsi-btn-hook\">{{ cta_texto | escape }}<small>Env&iacute;o gratis a toda Colombia</small></a>\n  {%- if rev != '' -%}<p class=\"fi-rev\">{{ rev }}</p>{%- endif -%}\n</div>\n<style>\n  .fi-cierre { width:100vw; max-width:100vw; margin-left:calc(50% - 50vw); padding:0 0 26px; }\n  .fi-rev { margin:14px 18px 0; text-align:center; font-size:.95rem; line-height:1.45; color:#3a3a3a; }\n  .fi-rev strong { color:#750911; }\n</style>",
+        "color_scheme": "background-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
     "main",
-    "faq"
+    "faq",
+    "cierre"
   ]
 }
