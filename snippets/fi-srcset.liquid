@@ -1,0 +1,31 @@
+{%- comment -%}
+  fi-srcset · candidatos de `srcset` para una pieza a ancho completo (100vw).
+
+  Por qué existe: sin `srcset` el CDN de Shopify sirve el mismo archivo de 1200 px a un celular
+  de 390 CSS px. En la landing del sérum eso eran 106 KB de JPEG para el hero — el navegador
+  in-app de Meta es Safari y recibe JPEG, no WebP, así que manda el número alto (techo: 60 KB).
+
+  Nunca se ofrece un ancho mayor que el del archivo: Shopify no hace upscale y esa URL da 404.
+
+  Uso:  <img srcset="{% render 'fi-srcset', imagen: im %}" sizes="100vw" …>
+{%- endcomment -%}
+{%- liquid
+  assign anchos = '390,540,750,828,1080,1200' | split: ','
+  assign partes = ''
+  for a in anchos
+    assign an = a | times: 1
+    if an <= imagen.width
+      assign url = imagen | image_url: width: an
+      assign parte = url | append: ' ' | append: an | append: 'w'
+      if partes == ''
+        assign partes = parte
+      else
+        assign partes = partes | append: ', ' | append: parte
+      endif
+    endif
+  endfor
+  if partes == ''
+    assign partes = imagen | image_url: width: imagen.width | append: ' ' | append: imagen.width | append: 'w'
+  endif
+-%}
+{{- partes -}}
