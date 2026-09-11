@@ -170,7 +170,7 @@
             {%- when 'description' -%}
               {%- if product.description != blank -%}
                 <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
-                  {{ product.description }}
+                  {{ product.description | replace: '<img ', '<img loading="lazy" decoding="async" ' }}
                 </div>
               {%- endif -%}
             {%- when 'sku' -%}
@@ -202,6 +202,8 @@
                   </div>
                 </details>
               </div>
+            {%- when 'quantity_offers' -%}
+              {%- render 'quantity-offers', block: block, product: product -%}
             {%- when 'quantity_selector' -%}
               <div
                 id="Quantity-Form-{{ section.id }}"
@@ -839,6 +841,203 @@
 
 
  {
+      "type": "quantity_offers",
+      "name": "Ofertas por cantidad",
+      "settings": [
+        {
+          "type": "color",
+          "id": "selected_border",
+          "label": "Color del borde (oferta elegida)",
+          "default": "#0f172a"
+        },
+        {
+          "type": "select",
+          "id": "default_offer",
+          "label": "Oferta seleccionada por defecto",
+          "info": "Cuál oferta aparece marcada al cargar la página.",
+          "options": [
+            { "value": "1", "label": "Oferta 1" },
+            { "value": "2", "label": "Oferta 2" },
+            { "value": "3", "label": "Oferta 3" }
+          ],
+          "default": "2"
+        },
+        {
+          "type": "header",
+          "content": "Oferta 1"
+        },
+        {
+          "type": "checkbox",
+          "id": "offer_1_enabled",
+          "label": "Mostrar oferta 1",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "offer_1_title",
+          "label": "Título",
+          "default": "1 UNIDAD"
+        },
+        {
+          "type": "text",
+          "id": "offer_1_badge",
+          "label": "Mensaje / badge (vacío = ocultar)"
+        },
+        {
+          "type": "color_background",
+          "id": "offer_1_badge_bg",
+          "label": "Color del badge",
+          "default": "linear-gradient(270deg, #888 0%, #555 100%)"
+        },
+        {
+          "type": "number",
+          "id": "offer_1_qty",
+          "label": "Cantidad de unidades",
+          "default": 1
+        },
+        {
+          "type": "number",
+          "id": "offer_1_pay",
+          "label": "Unidades que paga (dinámico; 0 = usar descuento fijo COP)",
+          "default": 0
+        },
+        {
+          "type": "number",
+          "id": "offer_1_pct",
+          "label": "Descuento % dinámico (0 = sin %)",
+          "default": 0
+        },
+        {
+          "type": "number",
+          "id": "offer_1_discount",
+          "label": "Descuento fijo (COP, 0 = sin descuento)",
+          "default": 0
+        },
+        {
+          "type": "number",
+          "id": "offer_1_compare",
+          "label": "Precio tachado (0 = ocultar)",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Oferta 2"
+        },
+        {
+          "type": "checkbox",
+          "id": "offer_2_enabled",
+          "label": "Mostrar oferta 2",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "offer_2_title",
+          "label": "Título",
+          "default": "PAGA 1 LLEVA 2"
+        },
+        {
+          "type": "text",
+          "id": "offer_2_badge",
+          "label": "Mensaje / badge (vacío = ocultar)",
+          "default": "AHORRA MÁS 💸"
+        },
+        {
+          "type": "color_background",
+          "id": "offer_2_badge_bg",
+          "label": "Color del badge",
+          "default": "linear-gradient(270deg, #F1E408 0%, #0AD64A 100%)"
+        },
+        {
+          "type": "number",
+          "id": "offer_2_qty",
+          "label": "Cantidad de unidades",
+          "default": 2
+        },
+        {
+          "type": "number",
+          "id": "offer_2_pay",
+          "label": "Unidades que paga (dinámico; 0 = usar descuento fijo COP)",
+          "default": 0
+        },
+        {
+          "type": "number",
+          "id": "offer_2_pct",
+          "label": "Descuento % dinámico (0 = sin %)",
+          "default": 0
+        },
+        {
+          "type": "number",
+          "id": "offer_2_discount",
+          "label": "Descuento fijo (COP, 0 = sin descuento)",
+          "default": 0
+        },
+        {
+          "type": "number",
+          "id": "offer_2_compare",
+          "label": "Precio tachado (0 = ocultar)",
+          "default": 131800
+        },
+        {
+          "type": "header",
+          "content": "Oferta 3"
+        },
+        {
+          "type": "checkbox",
+          "id": "offer_3_enabled",
+          "label": "Mostrar oferta 3",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "offer_3_title",
+          "label": "Título",
+          "default": "PAGA 2 LLEVA 3"
+        },
+        {
+          "type": "text",
+          "id": "offer_3_badge",
+          "label": "Mensaje / badge (vacío = ocultar)",
+          "default": "MÁS VENDIDO 🔥"
+        },
+        {
+          "type": "color_background",
+          "id": "offer_3_badge_bg",
+          "label": "Color del badge",
+          "default": "linear-gradient(0deg, #23AEFE 0%, #083EFF 97%)"
+        },
+        {
+          "type": "number",
+          "id": "offer_3_qty",
+          "label": "Cantidad de unidades",
+          "default": 3
+        },
+        {
+          "type": "number",
+          "id": "offer_3_pay",
+          "label": "Unidades que paga (dinámico; 0 = usar descuento fijo COP)",
+          "default": 0
+        },
+        {
+          "type": "number",
+          "id": "offer_3_pct",
+          "label": "Descuento % dinámico (0 = sin %)",
+          "default": 0
+        },
+        {
+          "type": "number",
+          "id": "offer_3_discount",
+          "label": "Descuento fijo (COP, 0 = sin descuento)",
+          "default": 0
+        },
+        {
+          "type": "number",
+          "id": "offer_3_compare",
+          "label": "Precio tachado (0 = ocultar)",
+          "default": 197700
+        }
+      ]
+    },
+    {
       "type": "icons",
       "name": "Icons with Text",
       "settings": [
