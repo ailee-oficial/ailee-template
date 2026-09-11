@@ -1,0 +1,388 @@
+{%- comment -%}
+  MOLDE — Landing AIDA (estilo landing-brochasol-spf50 de Sanavitt, adaptado a la paleta Ailee).
+  Sin producto asignado todavía: todo el copy vive en settings/blocks del editor de temas, con
+  placeholders entre [corchetes]. Al clonar para un producto real, reemplazar cada placeholder —
+  nunca dejar cifras ni testimonios de ejemplo publicados (ver CLAUDE.md § Fidelidad).
+  El botón de pedido usa el bloque de app "Releasit COD Form" — agrégalo desde el editor de temas
+  después de crear la página; no viene precargado porque su UUID de instalación es propio de cada
+  tienda (ver landing-brochasol-spf50 en Sanavitt para la referencia).
+{%- endcomment -%}
+<style>
+  .ail-landing {
+    --ail-primary: var(--cm-brown-mid, #C9A96E);
+    --ail-primary-dark: #7A5C33;
+    --ail-accent: #C77B54;
+    --ail-accent-dark: #A8623F;
+    --ail-bg-light: var(--cm-nude-light, #F0E8E0);
+    --ail-card-border: var(--cm-blush, #E8D5C8);
+    --ail-text: var(--cm-text, #1C1C1C);
+    --ail-body: #444;
+    --ail-muted: #555;
+    --ail-star: #FFB800;
+    --ail-heading-font: var(--font-heading-family, 'Cormorant Garamond', Georgia, serif);
+    --ail-body-font: var(--font-body-family, 'DM Sans', 'Inter', system-ui, sans-serif);
+  }
+  .ail-landing * { box-sizing: border-box; margin: 0; padding: 0; }
+  .ail-landing {
+    font-family: var(--ail-body-font);
+    color: var(--ail-text); background: #fff; max-width: 480px; margin: 0 auto;
+  }
+  .ail-editor-hint { background: #FFF3CD; border: 1px dashed #C99A2E; color: #6b5417; font-size: 12px; padding: 10px 14px; line-height: 1.5; }
+  .ail-img-placeholder { width: 100%; display: flex; align-items: center; justify-content: center; background: var(--ail-bg-light); border: 1.5px dashed var(--ail-card-border); border-radius: 16px; color: var(--ail-muted); font-size: 13px; text-align: center; padding: 20px; }
+  .ail-hero { background: linear-gradient(160deg, #FFF8F3 0%, var(--ail-bg-light) 100%); padding: 20px 20px 0; text-align: center; }
+  .ail-badge { display: inline-block; background: var(--ail-accent); color: #fff; font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 20px; margin-bottom: 12px; }
+  .ail-hero h1 { font-family: var(--ail-heading-font); font-size: 30px; font-weight: 700; line-height: 1.25; color: var(--ail-primary-dark); margin-bottom: 10px; }
+  .ail-hero h1 span { color: var(--ail-accent); }
+  .ail-subhead { font-size: 15px; color: var(--ail-body); line-height: 1.5; margin-bottom: 16px; padding: 0 4px; }
+  .ail-hero-img, .ail-hero .ail-img-placeholder { width: 100%; max-width: 320px; height: auto; aspect-ratio: 1 / 1; border-radius: 16px; margin: 0 auto; display: block; }
+  .ail-price-pill { display: flex; flex-direction: column; align-items: center; background: #fff; border-radius: 20px; padding: 18px 28px 14px; margin: 16px auto; max-width: 290px; box-shadow: 0 6px 24px rgba(122,92,51,0.18); }
+  .ail-price-pill s { font-size: 13px; color: #bbb; font-weight: 400; margin-bottom: 2px; }
+  .ail-price-current { font-size: 40px; font-weight: 800; color: var(--ail-primary-dark); line-height: 1; margin-bottom: 8px; }
+  .ail-price-hero-badge { display: inline-block; background: linear-gradient(135deg, var(--ail-accent), var(--ail-accent-dark)); color: #fff; font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 20px; box-shadow: 0 2px 8px rgba(168,98,63,0.4); }
+  .ail-app-cta { margin: 16px 0 10px; padding: 0 2px; }
+  .ail-app-cta button, .ail-app-cta input[type="submit"], .ail-app-cta .btn, .ail-app-cta .btn-primary,
+  .ail-app-cta [type="button"], .ail-app-cta .releasit-button, .ail-app-cta .releasit-cod-form__submit,
+  .ail-app-cta .product-form__submit {
+    width: 100% !important; background: linear-gradient(135deg, var(--ail-accent) 0%, var(--ail-accent-dark) 100%) !important;
+    color: #fff !important; font-size: 17px !important; font-weight: 700 !important; letter-spacing: 0.4px !important;
+    text-transform: uppercase !important; padding: 17px 24px !important; border-radius: 50px !important; border: none !important;
+    cursor: pointer !important; display: block !important; text-align: center !important;
+    box-shadow: 0 5px 20px rgba(168,98,63,0.4) !important; animation: ail-cta-pulse 2.2s ease-in-out infinite !important;
+    transition: transform 0.15s ease !important;
+  }
+  .ail-app-cta button:hover, .ail-app-cta .btn:hover, .ail-app-cta .releasit-button:hover { transform: scale(1.03) !important; }
+  @keyframes ail-cta-pulse { 0%,100% { box-shadow: 0 5px 20px rgba(168,98,63,0.4); transform: scale(1); } 50% { box-shadow: 0 8px 30px rgba(168,98,63,0.6); transform: scale(1.025); } }
+  .ail-app-cta input[type="text"], .ail-app-cta input[type="tel"], .ail-app-cta input[type="email"], .ail-app-cta select, .ail-app-cta textarea {
+    width: 100% !important; padding: 12px 14px !important; border: 1.5px solid var(--ail-card-border) !important; border-radius: 10px !important;
+    font-size: 14px !important; margin-bottom: 10px !important; color: var(--ail-text) !important; background: #fff !important;
+  }
+  .ail-app-cta input[type="text"]:focus, .ail-app-cta input[type="tel"]:focus { border-color: var(--ail-primary-dark) !important; outline: none !important; box-shadow: 0 0 0 3px rgba(122,92,51,0.12) !important; }
+  .ail-cta-sub { font-size: 12px; color: var(--ail-muted); text-align: center; margin-bottom: 20px; }
+  .ail-scroll-cta { display: block; width: 100%; box-sizing: border-box; text-align: center; text-decoration: none; background: linear-gradient(135deg, var(--ail-accent) 0%, var(--ail-accent-dark) 100%); color: #fff; font-size: 17px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; padding: 17px 24px; border-radius: 50px; box-shadow: 0 5px 20px rgba(168,98,63,0.4); }
+  #ail-pedir { scroll-margin-top: 70px; }
+  .ail-trust { background: var(--ail-primary-dark); padding: 14px 20px; display: flex; justify-content: space-around; gap: 8px; }
+  .ail-trust-item { text-align: center; color: #fff; flex: 1; }
+  .ail-trust-item .icon { font-size: 20px; margin-bottom: 2px; }
+  .ail-trust-item p { font-size: 11px; line-height: 1.3; opacity: 0.9; }
+  .ail-trust-item strong { font-size: 12px; }
+  .ail-section { padding: 32px 20px; }
+  .ail-section-title { font-family: var(--ail-heading-font); font-size: 24px; font-weight: 700; color: var(--ail-primary-dark); text-align: center; margin-bottom: 20px; line-height: 1.3; }
+  .ail-section-title span { color: var(--ail-accent); }
+  .ail-bg-light { background: var(--ail-bg-light); }
+  .ail-problem-list { list-style: none; }
+  .ail-problem-list li { display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; background: #fff; border-radius: 10px; margin-bottom: 10px; border-left: 3px solid var(--ail-accent); font-size: 14px; line-height: 1.4; color: var(--ail-body); }
+  .ail-problem-list li .em { font-size: 20px; flex-shrink: 0; }
+  .ail-benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .ail-benefit-card { background: #fff; border-radius: 14px; padding: 18px 14px; text-align: center; border: 1.5px solid var(--ail-card-border); }
+  .ail-benefit-card .icon { font-size: 28px; margin-bottom: 8px; }
+  .ail-benefit-card h4 { font-size: 13px; font-weight: 700; color: var(--ail-primary-dark); margin-bottom: 4px; }
+  .ail-benefit-card p { font-size: 12px; color: var(--ail-muted); line-height: 1.4; }
+  .ail-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .ail-stat { text-align: center; background: #fff; padding: 16px 8px; border-radius: 12px; }
+  .ail-stat .num { font-size: 26px; font-weight: 800; color: var(--ail-primary-dark); }
+  .ail-stat p { font-size: 11px; color: var(--ail-muted); line-height: 1.3; margin-top: 4px; }
+  .ail-steps { display: flex; flex-direction: column; gap: 16px; }
+  .ail-step { display: flex; align-items: flex-start; gap: 16px; background: #fff; padding: 16px; border-radius: 12px; }
+  .ail-step-num { width: 36px; height: 36px; background: var(--ail-primary-dark); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; flex-shrink: 0; }
+  .ail-step h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--ail-text); }
+  .ail-step p { font-size: 13px; color: var(--ail-muted); line-height: 1.4; }
+  .ail-reviews { display: flex; flex-direction: column; gap: 14px; }
+  .ail-review { background: #fff; border-radius: 14px; padding: 16px; border: 1.5px solid var(--ail-card-border); }
+  .ail-review-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .ail-avatar { width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: var(--ail-primary); color: #fff; font-weight: 700; font-size: 16px; font-family: var(--ail-heading-font); }
+  .ail-review-name { font-weight: 700; font-size: 14px; color: var(--ail-text); }
+  .ail-review-stars { color: var(--ail-star); font-size: 13px; }
+  .ail-review-tag { font-size: 11px; color: var(--ail-primary-dark); font-weight: 600; }
+  .ail-review-text { font-size: 13px; color: var(--ail-body); line-height: 1.5; font-style: italic; }
+  .ail-faq { display: flex; flex-direction: column; gap: 10px; }
+  .ail-faq-item { background: #fff; border-radius: 12px; padding: 16px; border: 1.5px solid var(--ail-card-border); }
+  .ail-faq-q { font-size: 14px; font-weight: 700; color: var(--ail-primary-dark); margin-bottom: 8px; }
+  .ail-faq-a { font-size: 13px; color: var(--ail-muted); line-height: 1.5; }
+  .ail-pricing { background: linear-gradient(160deg, #4a3620 0%, var(--ail-primary-dark) 50%, #8a6a3d 100%); padding: 40px 20px 36px; text-align: center; color: #fff; position: relative; overflow: hidden; }
+  .ail-pricing::before { content: ''; position: absolute; top: -80px; right: -80px; width: 240px; height: 240px; background: rgba(255,255,255,0.04); border-radius: 50%; pointer-events: none; }
+  .ail-pricing::after { content: ''; position: absolute; bottom: -60px; left: -60px; width: 180px; height: 180px; background: rgba(255,255,255,0.04); border-radius: 50%; pointer-events: none; }
+  .ail-pricing-eyebrow { display: inline-block; background: var(--ail-accent); color: #fff; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; padding: 5px 18px; border-radius: 20px; margin-bottom: 14px; }
+  .ail-pricing h2 { font-family: var(--ail-heading-font); font-size: 26px; font-weight: 700; color: #fff !important; margin-bottom: 8px; line-height: 1.3; }
+  .ail-pricing-sub { font-size: 13px; color: rgba(255,255,255,0.78); margin-bottom: 24px; }
+  .ail-price-display { background: #fff; border-radius: 20px; padding: 24px 20px 20px; margin-bottom: 20px; box-shadow: 0 10px 36px rgba(0,0,0,0.18); position: relative; }
+  .ail-price-tachado { font-size: 13px; color: #aaa; text-decoration: line-through; margin-bottom: 4px; }
+  .ail-price-main { font-size: 46px; font-weight: 800; color: var(--ail-primary-dark); line-height: 1; margin-bottom: 10px; }
+  .ail-price-save { display: inline-block; background: linear-gradient(135deg, var(--ail-accent), var(--ail-accent-dark)); color: #fff; font-size: 13px; font-weight: 700; padding: 5px 16px; border-radius: 20px; box-shadow: 0 3px 10px rgba(168,98,63,0.4); }
+  .ail-value-stack { text-align: left; margin-bottom: 20px; }
+  .ail-value-stack li { list-style: none; display: flex; align-items: center; gap: 10px; padding: 9px 0; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.12); }
+  .ail-value-stack li:last-child { border-bottom: none; }
+  .ail-guarantee { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 14px; padding: 16px; font-size: 13px; color: rgba(255,255,255,0.92); margin-top: 20px; line-height: 1.6; }
+  .ail-footer-trust { background: #1A1A1A; padding: 20px; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 16px; }
+  .ail-footer-item { text-align: center; color: #ccc; }
+  .ail-footer-item .icon { font-size: 22px; margin-bottom: 4px; }
+  .ail-footer-item p { font-size: 11px; line-height: 1.3; }
+  .ail-footer-item strong { color: var(--ail-primary); font-size: 12px; }
+</style>
+
+{%- assign _v = product.selected_or_first_available_variant -%}
+{%- assign _dolores = section.blocks | where: "type", "dolor" -%}
+{%- assign _beneficios = section.blocks | where: "type", "beneficio" -%}
+{%- assign _stats = section.blocks | where: "type", "stat" -%}
+{%- assign _pasos = section.blocks | where: "type", "paso" -%}
+{%- assign _testimonios = section.blocks | where: "type", "testimonio" -%}
+{%- assign _preguntas = section.blocks | where: "type", "pregunta" -%}
+{%- assign _valores = section.blocks | where: "type", "valor" -%}
+{%- assign _apps = section.blocks | where: "type", "@app" -%}
+
+<div class="ail-landing">
+  {%- if request.design_mode and _apps.size == 0 -%}
+    <div class="ail-editor-hint">⚠️ Falta el bloque "Releasit COD Form" (visible solo en el editor). Agrégalo desde "Agregar bloque → Apps" para que el botón de pedido funcione.</div>
+  {%- endif -%}
+
+  <!-- HERO -->
+  <div class="ail-hero">
+    {%- if section.settings.badge_texto != blank -%}<div class="ail-badge">{{ section.settings.badge_texto }}</div>{%- endif -%}
+    <h1>{{ section.settings.heading_dolor }}{%- if section.settings.heading_promesa != blank -%}<br><span>{{ section.settings.heading_promesa }}</span>{%- endif -%}</h1>
+    {%- if section.settings.subheading != blank -%}<p class="ail-subhead">{{ section.settings.subheading }}</p>{%- endif -%}
+    {%- if section.settings.hero_image -%}
+      <img class="ail-hero-img" src="{{ section.settings.hero_image | image_url: width: 640 }}" alt="{{ product.title | escape }}" width="640" height="640" fetchpriority="high" loading="eager" decoding="async">
+    {%- else -%}
+      <div class="ail-img-placeholder">📷 Foto principal del producto</div>
+    {%- endif -%}
+    <div class="ail-price-pill">
+      {%- if _v.compare_at_price > _v.price -%}
+        <s>Precio normal: {{ _v.compare_at_price | money }}</s>
+        <span class="ail-price-current">{{ _v.price | money }}</span>
+        {%- assign _savings = _v.compare_at_price | minus: _v.price -%}
+        <span class="ail-price-hero-badge">¡Ahorras {{ _savings | money }}!</span>
+      {%- else -%}
+        <span class="ail-price-current">{{ _v.price | money }}</span>
+      {%- endif -%}
+    </div>
+    <div class="ail-app-cta">{%- for block in _apps -%}{%- render block -%}{%- endfor -%}</div>
+    {%- if section.settings.cta_sub != blank -%}<p class="ail-cta-sub">{{ section.settings.cta_sub }}</p>{%- endif -%}
+  </div>
+
+  <!-- TRUST BAR -->
+  {%- if section.settings.trust_1_texto != blank or section.settings.trust_2_texto != blank or section.settings.trust_3_texto != blank -%}
+  <div class="ail-trust">
+    {%- if section.settings.trust_1_texto != blank -%}<div class="ail-trust-item"><div class="icon">👥</div><strong>{{ section.settings.trust_1_numero }}</strong><p>{{ section.settings.trust_1_texto }}</p></div>{%- endif -%}
+    {%- if section.settings.trust_2_texto != blank -%}<div class="ail-trust-item"><div class="icon">⭐</div><strong>{{ section.settings.trust_2_numero }}</strong><p>{{ section.settings.trust_2_texto }}</p></div>{%- endif -%}
+    {%- if section.settings.trust_3_texto != blank -%}<div class="ail-trust-item"><div class="icon">🌿</div><strong>{{ section.settings.trust_3_numero }}</strong><p>{{ section.settings.trust_3_texto }}</p></div>{%- endif -%}
+  </div>
+  {%- endif -%}
+
+  <!-- PROBLEMA -->
+  {%- if _dolores.size > 0 -%}
+  <div class="ail-section ail-bg-light">
+    <h2 class="ail-section-title">¿Te ha pasado esto?</h2>
+    <ul class="ail-problem-list">
+      {%- for block in _dolores -%}
+        <li {{ block.shopify_attributes }}><span class="em">{{ block.settings.emoji }}</span> {{ block.settings.texto }}</li>
+      {%- endfor -%}
+    </ul>
+  </div>
+  {%- endif -%}
+
+  <!-- LIFESTYLE -->
+  <div style="width:100%;overflow:hidden;">
+    {%- if section.settings.lifestyle_image -%}
+      {%- assign _limg = section.settings.lifestyle_image -%}
+      {%- assign _lheight = 896 | times: _limg.height | divided_by: _limg.width -%}
+      <img src="{{ _limg | image_url: width: 896 }}" alt="{{ product.title | escape }}" width="896" height="{{ _lheight }}" style="width:100%;display:block;height:auto;" loading="lazy" decoding="async">
+    {%- else -%}
+      <div class="ail-img-placeholder" style="aspect-ratio:4/5;border-radius:0;">📷 Foto de estilo de vida</div>
+    {%- endif -%}
+  </div>
+
+  <!-- BENEFICIOS -->
+  {%- if _beneficios.size > 0 -%}
+  <div class="ail-section">
+    <h2 class="ail-section-title">Lo que lo hace <span>diferente</span></h2>
+    <div class="ail-benefits-grid">
+      {%- for block in _beneficios -%}
+        <div class="ail-benefit-card" {{ block.shopify_attributes }}><div class="icon">{{ block.settings.icono }}</div><h4>{{ block.settings.titulo }}</h4><p>{{ block.settings.texto }}</p></div>
+      {%- endfor -%}
+    </div>
+  </div>
+  {%- endif -%}
+
+  <!-- BEFORE / AFTER -->
+  {%- if section.settings.before_after_image -%}
+  <div class="ail-section ail-bg-light">
+    <h2 class="ail-section-title">Antes vs <span>Después</span></h2>
+    {%- assign _baimg = section.settings.before_after_image -%}
+    {%- assign _baheight = 896 | times: _baimg.height | divided_by: _baimg.width -%}
+    <img src="{{ _baimg | image_url: width: 896 }}" alt="Antes y después" width="896" height="{{ _baheight }}" style="width:100%;border-radius:16px;display:block;height:auto;" loading="lazy" decoding="async">
+  </div>
+  {%- endif -%}
+
+  <!-- STATS -->
+  {%- if _stats.size > 0 -%}
+  <div class="ail-section">
+    <h2 class="ail-section-title">Los números <span>no mienten</span></h2>
+    <div class="ail-stats">
+      {%- for block in _stats -%}
+        <div class="ail-stat" {{ block.shopify_attributes }}><div class="num">{{ block.settings.numero }}</div><p>{{ block.settings.texto }}</p></div>
+      {%- endfor -%}
+    </div>
+    <a href="#ail-pedir" class="ail-scroll-cta">{{ section.settings.scroll_cta_texto | default: "🛒 Pídelo ahora" }}</a>
+  </div>
+  {%- endif -%}
+
+  <!-- CÓMO FUNCIONA -->
+  {%- if _pasos.size > 0 -%}
+  <div class="ail-section ail-bg-light">
+    <h2 class="ail-section-title">Tan fácil como parece</h2>
+    <div class="ail-steps">
+      {%- for block in _pasos -%}
+        <div class="ail-step" {{ block.shopify_attributes }}><div class="ail-step-num">{{ forloop.index }}</div><div><h4>{{ block.settings.titulo }}</h4><p>{{ block.settings.texto }}</p></div></div>
+      {%- endfor -%}
+    </div>
+  </div>
+  {%- endif -%}
+
+  <!-- RESEÑAS -->
+  {%- if _testimonios.size > 0 -%}
+  <div class="ail-section">
+    <h2 class="ail-section-title">Lo que dicen nuestras <span>clientas</span></h2>
+    <div class="ail-reviews">
+      {%- for block in _testimonios -%}
+        <div class="ail-review" {{ block.shopify_attributes }}>
+          <div class="ail-review-header">
+            <div class="ail-avatar">{{ block.settings.nombre | slice: 0, 1 | upcase }}</div>
+            <div><div class="ail-review-name">{{ block.settings.nombre }}</div><div class="ail-review-stars">⭐⭐⭐⭐⭐</div>{%- if block.settings.etiqueta != blank -%}<div class="ail-review-tag">✅ {{ block.settings.etiqueta }}</div>{%- endif -%}</div>
+          </div>
+          <p class="ail-review-text">"{{ block.settings.texto }}"</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+  {%- endif -%}
+
+  <!-- FAQ -->
+  {%- if _preguntas.size > 0 -%}
+  <div class="ail-section ail-bg-light">
+    <h2 class="ail-section-title">Preguntas frecuentes</h2>
+    <div class="ail-faq">
+      {%- for block in _preguntas -%}
+        <div class="ail-faq-item" {{ block.shopify_attributes }}><p class="ail-faq-q">{{ block.settings.pregunta }}</p><p class="ail-faq-a">{{ block.settings.respuesta }}</p></div>
+      {%- endfor -%}
+    </div>
+  </div>
+  {%- endif -%}
+
+  <!-- PRICING -->
+  <div class="ail-pricing">
+    {%- if section.settings.pricing_eyebrow != blank -%}<div class="ail-pricing-eyebrow">{{ section.settings.pricing_eyebrow }}</div>{%- endif -%}
+    {%- if section.settings.pricing_heading != blank -%}<h2>{{ section.settings.pricing_heading }}</h2>{%- endif -%}
+    {%- if section.settings.pricing_sub != blank -%}<p class="ail-pricing-sub">{{ section.settings.pricing_sub }}</p>{%- endif -%}
+    <div class="ail-price-display">
+      {%- if _v.compare_at_price > _v.price -%}
+        {%- assign _savings = _v.compare_at_price | minus: _v.price -%}
+        <p class="ail-price-tachado">Precio normal: {{ _v.compare_at_price | money }}</p>
+        <p class="ail-price-main">{{ _v.price | money }}</p>
+        <span class="ail-price-save">¡Ahorras {{ _savings | money }}!</span>
+      {%- else -%}
+        <p class="ail-price-main">{{ _v.price | money }}</p>
+      {%- endif -%}
+    </div>
+    {%- if _valores.size > 0 -%}
+    <ul class="ail-value-stack">
+      {%- for block in _valores -%}
+        <li {{ block.shopify_attributes }}>✅ {{ block.settings.texto }}</li>
+      {%- endfor -%}
+    </ul>
+    {%- endif -%}
+    <div class="ail-app-cta" id="ail-pedir">{%- for block in _apps -%}{%- render block -%}{%- endfor -%}</div>
+    {%- if section.settings.guarantee_texto != blank -%}<div class="ail-guarantee">{{ section.settings.guarantee_texto }}</div>{%- endif -%}
+  </div>
+
+  <!-- FOOTER -->
+  <div class="ail-footer-trust">
+    <div class="ail-footer-item"><div class="icon">🚚</div><strong>Envío gratis</strong><p>A todo Colombia</p></div>
+    <div class="ail-footer-item"><div class="icon">💵</div><strong>Contraentrega</strong><p>Pagas al recibir</p></div>
+    <div class="ail-footer-item"><div class="icon">🛡️</div><strong>Garantía</strong><p>Compra sin riesgo</p></div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Landing AIDA (molde)",
+  "tag": "div",
+  "class": "landing-cod-section",
+  "settings": [
+    { "type": "header", "content": "Hero" },
+    { "type": "text", "id": "badge_texto", "label": "Badge sobre el titular", "default": "☀️ Oferta especial" },
+    { "type": "textarea", "id": "heading_dolor", "label": "Titular — línea 1 (dolor o pregunta)", "default": "[Titular — nombra el dolor o la pregunta que engancha]" },
+    { "type": "text", "id": "heading_promesa", "label": "Titular — línea 2 (promesa, en acento)", "default": "[Promesa en una frase corta]" },
+    { "type": "textarea", "id": "subheading", "label": "Subtítulo", "default": "[Propuesta de valor en 1-2 líneas: qué es, para quién, por qué ahora]" },
+    { "type": "image_picker", "id": "hero_image", "label": "Imagen principal (hero)" },
+    { "type": "text", "id": "cta_sub", "label": "Texto bajo el botón (hero)", "default": "🚚 Envío gratis · 🛡️ Garantía · 💵 Pago contraentrega" },
+
+    { "type": "header", "content": "Barra de confianza" },
+    { "type": "paragraph", "content": "Deja en blanco cualquier fila para ocultarla. Nunca publicar cifras que no se puedan sustentar." },
+    { "type": "text", "id": "trust_1_numero", "label": "Fila 1 — cifra", "default": "[cifra]" },
+    { "type": "text", "id": "trust_1_texto", "label": "Fila 1 — texto (vacío = oculta la fila)" },
+    { "type": "text", "id": "trust_2_numero", "label": "Fila 2 — cifra", "default": "[cifra]" },
+    { "type": "text", "id": "trust_2_texto", "label": "Fila 2 — texto (vacío = oculta la fila)" },
+    { "type": "text", "id": "trust_3_numero", "label": "Fila 3 — cifra", "default": "[cifra]" },
+    { "type": "text", "id": "trust_3_texto", "label": "Fila 3 — texto (vacío = oculta la fila)" },
+
+    { "type": "header", "content": "Imágenes de apoyo" },
+    { "type": "image_picker", "id": "lifestyle_image", "label": "Foto de estilo de vida" },
+    { "type": "image_picker", "id": "before_after_image", "label": "Imagen antes/después (opcional)" },
+    { "type": "text", "id": "scroll_cta_texto", "label": "Texto del botón de scroll (sección Stats)", "default": "🛒 Pídelo ahora" },
+
+    { "type": "header", "content": "Cierre y precio" },
+    { "type": "text", "id": "pricing_eyebrow", "label": "Eyebrow del cierre", "default": "⏰ Oferta por tiempo limitado" },
+    { "type": "textarea", "id": "pricing_heading", "label": "Titular del cierre", "default": "[Titular de cierre — refuerza la promesa principal]" },
+    { "type": "text", "id": "pricing_sub", "label": "Subtítulo del cierre", "default": "[Refuerzo de oferta: envío, garantía, pago]" },
+    { "type": "textarea", "id": "guarantee_texto", "label": "Texto de garantía", "default": "🛡️ [Garantía] — [condición en una frase, ej. devolución en N días]" },
+
+    { "type": "header", "content": "Botón de pedido" },
+    { "type": "paragraph", "content": "Después de agregar esta sección al producto, ve a \"Agregar bloque → Apps\" y añade el bloque \"Releasit COD Form\". No viene incluido porque su referencia de instalación es propia de cada tienda." }
+  ],
+  "blocks": [
+    { "type": "dolor", "name": "Dolor / problema", "settings": [
+      { "type": "text", "id": "emoji", "label": "Emoji", "default": "😣" },
+      { "type": "text", "id": "texto", "label": "Texto", "default": "[Dolor real del cliente — completar]" }
+    ]},
+    { "type": "beneficio", "name": "Beneficio", "settings": [
+      { "type": "text", "id": "icono", "label": "Ícono/emoji", "default": "✨" },
+      { "type": "text", "id": "titulo", "label": "Título", "default": "[Beneficio]" },
+      { "type": "textarea", "id": "texto", "label": "Descripción", "default": "[Explica el beneficio en una frase]" }
+    ]},
+    { "type": "stat", "name": "Cifra / estadística", "settings": [
+      { "type": "text", "id": "numero", "label": "Cifra", "default": "[%]" },
+      { "type": "textarea", "id": "texto", "label": "Qué mide", "default": "[Completar con dato real y verificable]" }
+    ]},
+    { "type": "paso", "name": "Paso (cómo funciona)", "settings": [
+      { "type": "text", "id": "titulo", "label": "Título del paso", "default": "[Paso]" },
+      { "type": "textarea", "id": "texto", "label": "Descripción", "default": "[Qué hace el cliente en este paso]" }
+    ]},
+    { "type": "testimonio", "name": "Testimonio (solo reales)", "settings": [
+      { "type": "paragraph", "content": "La cita se recoge o se importa de un cliente real; nunca se redacta. Ver doctrina de fidelidad." },
+      { "type": "text", "id": "nombre", "label": "Nombre real", "default": "[Nombre real]" },
+      { "type": "text", "id": "etiqueta", "label": "Etiqueta", "default": "Compra verificada" },
+      { "type": "textarea", "id": "texto", "label": "Cita textual", "default": "[Cita textual real del cliente]" }
+    ]},
+    { "type": "pregunta", "name": "Pregunta frecuente", "settings": [
+      { "type": "text", "id": "pregunta", "label": "Pregunta", "default": "[Pregunta frecuente real]" },
+      { "type": "textarea", "id": "respuesta", "label": "Respuesta", "default": "[Respuesta clara y honesta]" }
+    ]},
+    { "type": "valor", "name": "Valor incluido", "settings": [
+      { "type": "text", "id": "texto", "label": "Texto (sin el ✅, se agrega solo)", "default": "[Qué incluye el paquete]" }
+    ]},
+    { "type": "@app" }
+  ],
+  "presets": [
+    {
+      "name": "Landing AIDA (molde Ailee)",
+      "blocks": [
+        { "type": "dolor" }, { "type": "dolor" }, { "type": "dolor" },
+        { "type": "beneficio" }, { "type": "beneficio" }, { "type": "beneficio" }, { "type": "beneficio" },
+        { "type": "stat" }, { "type": "stat" }, { "type": "stat" },
+        { "type": "paso" }, { "type": "paso" }, { "type": "paso" },
+        { "type": "pregunta" }, { "type": "pregunta" }, { "type": "pregunta" },
+        { "type": "valor" }, { "type": "valor" }, { "type": "valor" }, { "type": "valor" }
+      ]
+    }
+  ]
+}
+{% endschema %}
