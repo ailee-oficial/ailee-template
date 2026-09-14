@@ -331,11 +331,43 @@
     .product__media-wrapper ul.product__media-list{
       column-gap:.4rem!important;
     }
+    /* Ailee: section-main-product.css fija el slide a ancho completo para toda
+       la tienda (width/min-width/max-width:100%, estándar 1:1 sin peek). Como
+       `min-width` le gana a `width`, el slide seguía midiendo 100% y el margen
+       del gutter lo empujaba fuera de pantalla: foto corrida a la derecha y
+       cortada. Medido 2026-09-13 a 375 px: slide 375 en x=39. Se liberan los
+       topes solo aquí; el resto de plantillas conserva su galería. */
     .product__media-wrapper ul.product__media-list > .product__media-item{
       width:calc(100% - var(--fh3-gutter) * 2)!important;
+      min-width:0!important;
+      max-width:none!important;
     }
     .product__media-wrapper ul.product__media-list > .product__media-item:first-of-type{
       margin-left:var(--fh3-gutter)!important;
+    }
+
+    /* Miniaturas con flechas bajo la foto, como en Cosmos. El tema de Ailee las
+       oculta en móvil para toda la tienda y además no trae el estilo de los
+       botones redondos (en Cosmos vive en main-product.liquid). */
+    .product__media-wrapper .thumbnail-slider{
+      display:flex!important;
+      align-items:center;
+    }
+    .product__media-wrapper .thumbnail-slider .slider-button{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+      width:35px;
+      height:35px;
+      margin:0 10px;
+      padding:0;
+      border-radius:50%;
+      background:#fff;
+    }
+    .product__media-wrapper .thumbnail-slider .slider-button .icon-caret{
+      width:20px;
+      height:20px;
     }
 
     /* ── El corte en L de la franja ────────────────────────────────────────
