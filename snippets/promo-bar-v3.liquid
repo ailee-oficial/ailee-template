@@ -9,8 +9,8 @@
 
   PARÁMETRO `oferta` (2026-09-09) — la mecánica de la oferta se pasa desde la
   plantilla, no se adivina del precio:
-    · `2x1`  (default) → "Hoy 2x1 · Pagas 1 unidad, llevas 2".  Lo que ya usaba
-      product.moda-2x1: la segunda unidad se elige en el formulario Releasit.
+    · `2x1`  (default) → "Promo activa · Pagas 1, llevas 2 · Cierra hoy".  Lo que
+      usa product.moda-2x1: la segunda unidad se elige en el formulario Releasit.
     · `pct`             → "Hoy -NN% · Ahorras $X".  Producto que se vende solo;
       tanto el porcentaje como la cifra de ahorro salen del compare_at_price
       real, no de un texto fijo. (Hasta 2026-09-09 el texto de apoyo decía
@@ -49,61 +49,62 @@
     <span class="pb3-chip">&#128293; Oferta</span>
     <span class="pb3-txt">Precio especial</span>
   {%- else -%}
-    <span class="pb3-chip">&#128293; Hoy 2x1</span>
+    {%- comment -%}
+      2026-09-14 — "Promo activa" + "Pagas 1, llevas 2", igual que Cosmos. La
+      mecánica 2x1 la dice la frase, no el chip; sin "par" ni "unidad" sirve para
+      calzado y para ropa.
+    {%- endcomment -%}
+    <span class="pb3-chip">&#128293; Promo activa</span>
     {%- if pct > 0 -%}
-      <span class="pb3-txt">Pagas 1 unidad, llevas 2</span>
+      <span class="pb3-txt">Pagas 1, llevas 2</span>
     {%- else -%}
       <span class="pb3-txt">Oferta del d&iacute;a</span>
     {%- endif -%}
   {%- endif -%}
   <span class="pb3-sep">&bull;</span>
   {%- comment -%}
-    2026-09-09 — se eliminó el texto del cierre ("Cierra hoy" → "Cierra en" →
-    nada). Era la pieza que rompía el contrato de una sola línea: para sostenerlo
-    había que esconderla en móvil, y esconderla dejaba un separador huérfano.
-    Un reloj que corre hacia atrás YA dice que algo cierra; nombrarlo era gastar
-    el único renglón disponible en repetir lo que el número muestra solo. La
-    urgencia que cargaba la palabra la carga ahora el pulso del reloj (ver
-    `pb3pulse` abajo).
+    2026-09-14 — "Cierra hoy" vuelve, solo en modo 2x1. Se había quitado el 09-09
+    porque partía la barra en dos renglones; ahora cabe porque la tipografía
+    escala con el ancho (ver `.pb3-bar` abajo) en vez de esconder texto. En modo
+    `pct` no va: el chip ya dice "Hoy" y repetirlo se leía raro.
   {%- endcomment -%}
+  {%- unless modo == 'pct' -%}<span class="pb3-close">Cierra hoy</span>{%- endunless -%}
   <span class="pb3-clock" id="pb3-clock">--:--:--</span>
 </div>
 <style>
   /* Dos requisitos que compiten: una SOLA línea y texto legible.
-     El root del tema mide 10 px, así que el `.95rem` original eran 9,5 px reales
-     —cabía en una línea justamente por diminuto—. Medido: con la copia completa,
-     una línea a 390 px exige ~9,5 px de tipografía; a 13 px el reloj se caía a
-     una segunda línea. No se resuelve con tamaño, se resuelve con copia.
-
-     Solución original: tipografía FLUIDA (crece con el ancho) + "Cierra hoy"
-     oculto por debajo de 500 px, con `flex-wrap:nowrap` como contrato —la barra
-     es una línea o no es—.
-     RESUELTO 2026-09-09 como decía la nota de arriba —"no se resuelve con
-     tamaño, se resuelve con copia"—: se eliminó el texto del cierre. El contrato
-     de una línea se sostiene ahora en TODOS los anchos, sin esconder nada y sin
-     media query, porque hay menos que meter en el renglón. */
+     2026-09-14 — mismo diseño que Cosmos (chip que resalta, "Cierra hoy" de
+     vuelta) pero en la paleta de Ailee, no en negro: fondo camel nude (el
+     principal de la marca) con texto negro suave, y el chip en blanco cálido
+     —el tono de la gama que más contrasta con el camel; dorado y rose nude
+     quedan demasiado cerca y no se notan—. El reloj
+     sigue en rojo: es color de urgencia, no de marca. TODO lo interno —gap, padding, radios— va en `em`:
+     la barra escala como una pieza con su `font-size`, que sale del ancho (`vw`).
+     Medido por CDP sobre las PDP en vivo de Ailee (moda-2x1 y moda-single, DM Sans):
+     una línea de 320 a 430 px (9,4 → 12,7 px de letra) y a 1280 px (13 px), con
+     9–18 px de aire a los lados y sin overflow.
+     Si se agrega copia, bajar el coeficiente `vw` y volver a medir; nunca
+     `flex-wrap` ni esconder texto. */
   .pb3-bar{display:flex;align-items:center;justify-content:center;flex-wrap:nowrap;
-           gap:clamp(5px,1.6vw,9px);white-space:nowrap;
-           background:var(--cm-cream, #FAF7F4);color:var(--cm-text, #1C1C1C);padding:11px clamp(8px,2.4vw,14px);
-           font-size:clamp(1.15rem,3.2vw,1.4rem);font-weight:700;
-           line-height:1.25;border-radius:12px;margin:0 0 14px;
-           border:1px solid var(--cm-blush, #E8D5C8)}
-  .pb3-chip{background:var(--cm-text, #1C1C1C);color:#fff;border-radius:100px;padding:4px clamp(7px,2vw,11px);
-            font-size:.92em;font-weight:700;flex:0 0 auto}
-  .pb3-txt{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;color:var(--cm-text, #1C1C1C)}
-  .pb3-sep{opacity:.4;flex:0 0 auto;color:var(--cm-text, #1C1C1C)}
+           gap:.45em;white-space:nowrap;
+           background:var(--cm-brown, #C4A882);color:var(--cm-text, #1C1C1C);padding:.85em .8em;
+           font-size:min(2.95vw,1.3rem);font-weight:700;
+           line-height:1.25;border-radius:12px;margin:0 0 14px}
+  .pb3-chip{background:var(--cm-cream, #FAF7F4);color:var(--cm-text, #1C1C1C);border-radius:100px;padding:.35em .8em;
+            font-size:.92em;font-weight:600;flex:0 0 auto}
+  .pb3-txt,.pb3-close{flex:0 0 auto;color:var(--cm-text, #1C1C1C)}
+  .pb3-sep{opacity:.45;flex:0 0 auto;color:var(--cm-text, #1C1C1C)}
   /* Rojo + blanco, elegido 2026-09-09: el rojo es la señal de urgencia y no se
      negocia; el blanco es lo que lo hace legible encima. El `color` va EXPLÍCITO
      a propósito —antes lo heredaba de `.pb3-bar`, y cuando la barra pasó de fondo
      negro a fondo claro los dígitos se volvieron oscuros sin que nadie lo pidiera,
      cayendo a 3,6:1 de contraste (bajo el mínimo AA de 4,5:1). Blanco sobre este
      rojo da 4,8:1 y no depende del color del padre. */
-  .pb3-clock{background:#E11D2A;color:#fff;border-radius:6px;padding:3px clamp(6px,1.8vw,9px);
+  .pb3-clock{background:#E11D2A;color:#fff;border-radius:6px;padding:.25em .6em;
              font-size:.96em;font-weight:800;font-variant-numeric:tabular-nums;flex:0 0 auto;
              animation:pb3pulse 2.4s ease-in-out infinite}
 
-  /* El latido reemplaza al texto "Cierra en": un reloj que respira se lee como
-     cuenta regresiva sin gastar una palabra del renglón. Late en `transform` y
+  /* El latido hace que el reloj se lea como cuenta regresiva viva. Late en `transform` y
      `box-shadow` —las dos propiedades que el navegador compone en la GPU— así
      que no provoca recálculo de layout ni mueve nada alrededor.
      2,4 s es deliberado: más rápido parpadea y distrae de la lectura del precio;
@@ -116,16 +117,9 @@
   /* Quien pidió menos movimiento en su sistema no recibe ninguno: el reloj sigue
      contando, simplemente no late. */
   @media (prefers-reduced-motion: reduce){.pb3-clock{animation:none}}
-  /* Sin media query de móvil, a propósito.
-     Hubo dos intentos antes: esconder "Cierra hoy" bajo 500 px (perdía el texto
-     justo donde está el tráfico) y dejar que la barra usara dos renglones
-     (rompía el contrato de una línea). El problema no era el ancho, era la
-     copia: al sacar el texto del cierre, lo que queda —chip + una frase +
-     reloj— entra en una línea en cualquier teléfono, y `.pb3-bar` ya nace con
-     `flex-wrap:nowrap`. Si en el futuro se agrega copia y vuelve a apretarse,
-     la salida es acortar la frase, no esconderla ni partir el renglón. */
+  /* Escritorio: la columna de info mide ~410 px; 1.3rem es el tope que cabe. */
   @media screen and (min-width: 990px){
-    .pb3-bar{font-size:1.45rem}
+    .pb3-bar{font-size:1.3rem}
   }
 </style>
 <script>
