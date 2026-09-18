@@ -131,5 +131,6 @@
     try { if (window._rsi && _rsi.productPage && _rsi.productPage.oldCart === 'empty') _rsi.productPage.oldCart = false; } catch (err) {}
   }
   window.addEventListener('click', limpiar, true);
+  window.RSI_CARRITO_LIMPIO = '2026-09-18'; // marca en código: Shopify borra los comentarios al servir; G12 de pdp_auditar la busca
 })();
 /* RELEASIT-CARRITO-LIMPIO:fin */
