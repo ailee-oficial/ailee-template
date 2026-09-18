@@ -116,3 +116,20 @@
         window.addEventListener('load', function(){ onReady(start); });
     }
 })();
+/* RELEASIT-CARRITO-LIMPIO:inicio (2026-09-18) — las ofertas de cantidad SIEMPRE salen.
+   Releasit mira el carrito UNA vez, al cargar la página. Si estaba vacío (oldCart = "empty"), al abrir el
+   formulario NO lo vacía: solo agrega este producto. Si entretanto entró otro (otra pestaña, volver atrás
+   desde otro producto), el carrito queda con 2 productos y Releasit NO pinta las ofertas: solo las pinta
+   con exactamente 1 línea, la del producto de la página. Justo antes de su clic se le dice que no sabe
+   cómo está el carrito: vacía y agrega, y el carrito queda siempre con este producto solo. Cuesta una
+   llamada más (~350 ms) solo en la primera apertura. Doctrina: producto-shopify/references/plantillas-y-ofertas.md
+   §Esqueleto de carga. Revertir = borrar hasta la marca fin. */
+(function () {
+  function limpiar(e) {
+    var t = e.target;
+    if (!t || !t.closest || !t.closest('._rsi-buy-now-button, #_rsi-buy-now-button')) return;
+    try { if (window._rsi && _rsi.productPage && _rsi.productPage.oldCart === 'empty') _rsi.productPage.oldCart = false; } catch (err) {}
+  }
+  window.addEventListener('click', limpiar, true);
+})();
+/* RELEASIT-CARRITO-LIMPIO:fin */
