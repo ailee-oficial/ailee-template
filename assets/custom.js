@@ -128,14 +128,19 @@
     if (sessionStorage.getItem('rsiDiag') !== '1') return;
   } catch (e) { if (!/[?&]diag=1\b/.test(q)) return; }
   window.RSI_DIAG = 1;
-  var T0 = 0, lineas = [], cuerpo = null, veredicto = '', fallos = [], iv = null;
+  var T0 = 0, lineas = [], cuerpo = null, panel = null, veredicto = '', fallos = [], iv = null;
   function ms() { return Math.round(performance.now()); }
   function log(txt) { lineas.push((T0 ? '+' + (ms() - T0) : '@' + ms()) + ' ' + txt); pintar(); }
-  function pintar() { if (cuerpo) cuerpo.textContent = (veredicto ? veredicto + '\n\n' : '') + lineas.slice(-40).join('\n'); }
+  function pintar() {
+    if (!cuerpo) return;
+    cuerpo.textContent = (veredicto ? veredicto + '\n\n' : '') + lineas.slice(-40).join('\n');
+    // Releasit abre su formulario con la misma capa máxima y más abajo en la página: sin esto el panel queda detrás.
+    if (panel && document.body && document.body.lastElementChild !== panel) document.body.appendChild(panel);
+  }
   function nav() { var u = navigator.userAgent; return /Instagram/.test(u) ? 'Instagram' : /FBAN|FBAV/.test(u) ? 'Facebook' : /CriOS/.test(u) ? 'Chrome iOS' : /iPhone|iPad/.test(u) ? 'Safari iOS' : /Android/.test(u) ? 'Android' : 'otro'; }
   function montar() {
-    var p = document.createElement('div');
-    p.setAttribute('style', 'position:fixed;left:4px;right:4px;bottom:4px;max-height:42vh;overflow:auto;z-index:2147483647;background:rgba(0,0,0,.88);color:#fff;font:11px/1.35 Menlo,monospace;padding:6px 8px;border-radius:8px;white-space:pre-wrap;word-break:break-word');
+    var p = panel = document.createElement('div');
+    p.setAttribute('style', 'position:fixed;left:4px;right:4px;top:4px;max-height:45vh;overflow:auto;z-index:2147483647;background:rgba(0,0,0,.88);color:#fff;font:11px/1.35 Menlo,monospace;padding:6px 8px;border-radius:8px;white-space:pre-wrap;word-break:break-word');
     var b = document.createElement('div');
     b.setAttribute('style', 'font-weight:700;margin-bottom:4px');
     b.textContent = 'DIAG FORMULARIO · ' + nav() + ' · toca aquí para ocultar/mostrar';
