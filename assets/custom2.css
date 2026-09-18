@@ -3861,3 +3861,33 @@ section#logo-list {
 .slick-arrow.slick-hidden {
     display: none;
 }
+/* ──────────────────────────────────────────────────────────────────────────
+   FORMULARIO COD (Releasit) · impedir el ZOOM de Safari en iOS — 2026-09-17
+
+   Safari en iPhone hace zoom al enfocar un campo que mida MENOS de 16px, y el
+   tráfico de Meta entra por el navegador in-app, que es WebKit: las mismas
+   reglas. Con 6-8 campos obligatorios, son 6-8 saltos de pantalla para
+   completar un pedido.
+
+   Medido en somos-cosmos el 2026-09-17: los campos del formulario de Releasit
+   medían 15,96px — `calc(16.8px)` de la app × 0,95. Cuatro centésimas por
+   debajo del límite. Ahí se verificó que forzar 16px lo elimina: 8 campos
+   disparaban zoom, 0 después.
+
+   ⚠️ En ESTA tienda no se pudo medir el formulario renderizado (el panel del
+   navegador no respondía) y el CSS del modal lo inyecta Releasit por JS, así
+   que no aparece en el HTML servido. Se aplica igual porque es inocuo: forzar
+   16px en un campo que YA mide 16px no cambia nada, y si mide menos lo
+   arregla. Confirmar en un iPhone: abrir el formulario y tocar el primer
+   campo — no debe saltar la pantalla.
+
+   Guardián: G10 de `core/pdp_auditar.py`.
+   ────────────────────────────────────────────────────────────────────────── */
+#_rsi-cod-form-modal-form input,
+#_rsi-cod-form-modal-form select,
+#_rsi-cod-form-modal-form textarea,
+._rsi-cod-form input,
+._rsi-cod-form select,
+._rsi-cod-form textarea {
+  font-size: 16px !important;
+}
