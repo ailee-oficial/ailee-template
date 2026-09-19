@@ -13,7 +13,8 @@
   decimal (4.5–4.8, nunca 5.0 parejo — más creíble).
 
   Lo único 100% real aquí: disponibilidad (inventario real por variante,
-  igual que stock_real) y la fecha de entrega (mismo cálculo que on6_entrega).
+  igual que stock_real) y la fecha de entrega (3 a 5 días hábiles, snippet
+  `entrega-habil`).
 {%- endcomment -%}
 {%- liquid
   assign doy = 'now' | date: '%j' | plus: 0
@@ -52,16 +53,10 @@
   endif
 
   comment
-    Ventana de entrega: mañana y pasado (+1 y +2 días). Antes eran +3 y +8, que
-    a 5-8 días de plazo pesa como fricción justo donde el cliente decide.
-    `mi1`/`mi2` en vez de un solo mes: cuando la ventana cruza de mes —hoy 30 y
-    entrega 1 y 2— tomar el mes de la fecha FINAL fechaba mal la primera.
+    La fecha de entrega ya no se calcula aquí: sale de `entrega-habil` (3 a 5 días
+    hábiles, lunes a sábado sin festivos). Antes eran «mañana y pasado» fijos, que
+    prometían entrega al día siguiente —hasta un domingo—.
   endcomment
-  assign t1 = 'now' | date: '%s' | plus: 86400
-  assign t2 = 'now' | date: '%s' | plus: 172800
-  assign Mnom = 'ene.,feb.,mar.,abr.,may.,jun.,jul.,ago.,sep.,oct.,nov.,dic.' | split: ','
-  assign mi1 = t1 | date: '%-m' | minus: 1
-  assign mi2 = t2 | date: '%-m' | minus: 1
 
   comment
     El check va pegado a la ÚLTIMA palabra dentro de un nowrap: si el título
@@ -96,7 +91,7 @@
       <span class="fh3-avail-tx fh3-avail-tx--out">Agotado en esta talla</span>
     {%- endif -%}
     <span class="fh3-sep" aria-hidden="true">&middot;</span>
-    <span class="fh3-eta">Entrega: {{ t1 | date: '%-d' }}{% if mi1 != mi2 %} {{ Mnom[mi1] }}{% endif %}&ndash;{{ t2 | date: '%-d' }} {{ Mnom[mi2] }}</span>
+    <span class="fh3-eta">Entrega: {% render 'entrega-habil', formato: 'rango' %}</span>
   </div>
 
   <div class="fh3-price-row">

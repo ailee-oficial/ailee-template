@@ -10,33 +10,17 @@
 
   Real, no inventado:
     - Envío gratis a toda Colombia (política real de la tienda)
-    - Fecha de entrega: mismo cálculo que on6_entrega (t1/t2 +3/+8 días hábiles)
+    - Fecha de entrega: 3 a 5 días hábiles (lunes a sábado, sin festivos), snippet `entrega-habil`
     - Garantía 30 días: mismo texto que el bloque moneybackguarantee existente
     - Pago contra entrega: modalidad real de Ailee
 {%- endcomment -%}
-{%- liquid
-  comment
-    Ventana de entrega: mañana y pasado (+1 y +2 días). Antes eran +3 y +8, que
-    a 5-8 días de plazo pesa como fricción justo donde el cliente decide.
-    `mi1`/`mi2` en vez de un solo mes: cuando la ventana cruza de mes —hoy 30 y
-    entrega 1 y 2— tomar el mes de la fecha FINAL fechaba mal la primera.
-  endcomment
-  assign t1 = 'now' | date: '%s' | plus: 86400
-  assign t2 = 'now' | date: '%s' | plus: 172800
-  assign Mnom = 'ene.,feb.,mar.,abr.,may.,jun.,jul.,ago.,sep.,oct.,nov.,dic.' | split: ','
-  assign Dnom = 'dom.,lun.,mar.,mié.,jue.,vie.,sáb.' | split: ','
-  assign w1 = t1 | date: '%w' | plus: 0
-  assign w2 = t2 | date: '%w' | plus: 0
-  assign mi1 = t1 | date: '%-m' | minus: 1
-  assign mi2 = t2 | date: '%-m' | minus: 1
--%}
 <div class="tr3-wrap">
   <div class="tr3-row">
     <span class="tr3-ic">&#128666;</span>
     <div class="tr3-body">
       <div class="tr3-title">Envío gratis <span class="tr3-accent">a toda Colombia</span></div>
       <div class="tr3-sub">Sin costo adicional, en cualquier ciudad</div>
-      <div class="tr3-pill">Recíbelo entre {{ Dnom[w1] }} {{ t1 | date: '%-d' }}{% if mi1 != mi2 %} de {{ Mnom[mi1] }}{% endif %} y {{ Dnom[w2] }} {{ t2 | date: '%-d' }} de {{ Mnom[mi2] }}</div>
+      <div class="tr3-pill">Recíbelo entre {% render 'entrega-habil', formato: 'entre' %}</div>
     </div>
   </div>
   <div class="tr3-sep"></div>
