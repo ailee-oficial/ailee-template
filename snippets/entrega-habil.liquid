@@ -1,0 +1,99 @@
+{%- comment -%}
+  entrega-habil — ventana de entrega en DÍAS HÁBILES de Colombia. Una sola fuente para toda la PDP:
+  el encabezado («Entrega: …») y el bloque de confianza («Recíbelo entre …») piden la fecha a este
+  snippet en vez de sumar días cada uno por su cuenta. Antes sumaban «mañana y pasado» (+1 y +2 días
+  corridos): prometían entrega al día siguiente, hasta un domingo, cuando el envío tarda 3 a 5 días hábiles.
+
+  Regla (usuario, 2026-09-18): el pedido llega entre el día hábil 3 y el 5.
+    · Día hábil = lunes a sábado. No cuentan los domingos ni los festivos de Colombia.
+    · El día del pedido cuenta como día 1 cuando es hábil. Viernes 18-sep: vie 18 (1), sáb 19 (2),
+      lun 21 (3), mar 22 (4), mié 23 (5) → «21–23 sep.». Si el día 1 debe ser MAÑANA (→ 22–24), basta
+      poner `contar_hoy` en false aquí abajo: es la única diferencia entre las dos lecturas.
+
+  Uso (el prefijo de cada frase lo pone quien llama):
+    render 'entrega-habil', formato: 'rango'     → 21–23 sep.                       (tras «Entrega: »)
+    render 'entrega-habil', formato: 'entre'     → lun. 21 y mié. 23 de sep.        (tras «Recíbelo entre »)
+    render 'entrega-habil', formato: 'entre_b'   → <b>lun. 21</b> y <b>mié. 23 de sep.</b>
+  Opcionales: dias_min / dias_max (por defecto 3 y 5) para un producto con otro plazo, y `ahora`
+  (segundos Unix) para probar una fecha concreta en vez de la de hoy.
+
+  Por qué es seguro fiarse de `'now'`: Shopify lo evalúa en la zona horaria de la TIENDA (las tres son
+  America/Bogota, UTC-5, sin horario de verano), no en UTC. Medido el 2026-09-18 a las 20:10 hora
+  Colombia —ya 19 en UTC—: la PDP seguía diciendo «hoy es 18».
+
+  La lista de festivos NO se edita a mano: la genera `core/lib/entrega_habil.py`, que es la referencia
+  contra la que se prueba este Liquid. Cubre 2026–2040; para ampliarla:
+      python3 core/lib/entrega_habil.py --liquid 2041 2055
+  y se pega entre las dos marcas. Fuera de la lista el snippet sigue funcionando: solo dejaría de
+  saltarse los festivos, nunca falla ni deja la frase vacía.
+{%- endcomment -%}
+{%- comment -%}FESTIVOS-COLOMBIA:inicio{%- endcomment -%}
+{%- assign festivos = ',2026-01-01,2026-01-12,2026-03-23,2026-04-02,2026-04-03,2026-05-01,2026-05-18,2026-06-08,2026-06-15,2026-06-29,2026-07-20,2026-08-07,2026-08-17,2026-10-12,2026-11-02,2026-11-16,2026-12-08,2026-12-25,2027-01-01,2027-01-11,2027-03-22,2027-03-25,2027-03-26,2027-05-01,2027-05-10,2027-05-31,2027-06-07,2027-07-05,2027-07-20,2027-08-07,2027-08-16,2027-10-18,2027-11-01,2027-11-15,2027-12-08,2027-12-25,2028-01-01,2028-01-10,2028-03-20,2028-04-13,2028-04-14,2028-05-01,2028-05-29,2028-06-19,2028-06-26,2028-07-03,2028-07-20,2028-08-07,2028-08-21,2028-10-16,2028-11-06,2028-11-13,2028-12-08,2028-12-25,2029-01-01,2029-01-08,2029-03-19,2029-03-29,2029-03-30,2029-05-01,2029-05-14,2029-06-04,2029-06-11,2029-07-02,2029-07-20,2029-08-07,2029-08-20,2029-10-15,2029-11-05,2029-11-12,2029-12-08,2029-12-25,2030-01-01,2030-01-07,2030-03-25,2030-04-18,2030-04-19,2030-05-01,2030-06-03,2030-06-24,2030-07-01,2030-07-20,2030-08-07,2030-08-19,2030-10-14,2030-11-04,2030-11-11,2030-12-08,2030-12-25,2031-01-01,2031-01-06,2031-03-24,2031-04-10,2031-04-11,2031-05-01,2031-05-26,2031-06-16,2031-06-23,2031-06-30,2031-07-20,2031-08-07,2031-08-18,2031-10-13,2031-11-03,2031-11-17,2031-12-08,2031-12-25,2032-01-01,2032-01-12,2032-03-22,2032-03-25,2032-03-26,2032-05-01,2032-05-10,2032-05-31,2032-06-07,2032-07-05,2032-07-20,2032-08-07,2032-08-16,2032-10-18,2032-11-01,2032-11-15,2032-12-08,2032-12-25,2033-01-01,2033-01-10,2033-03-21,2033-04-14,2033-04-15,2033-05-01,2033-05-30,2033-06-20,2033-06-27,2033-07-04,2033-07-20,2033-08-07,2033-08-15,2033-10-17,2033-11-07,2033-11-14,2033-12-08,2033-12-25,2034-01-01,2034-01-09,2034-03-20,2034-04-06,2034-04-07,2034-05-01,2034-05-22,2034-06-12,2034-06-19,2034-07-03,2034-07-20,2034-08-07,2034-08-21,2034-10-16,2034-11-06,2034-11-13,2034-12-08,2034-12-25,2035-01-01,2035-01-08,2035-03-19,2035-03-22,2035-03-23,2035-05-01,2035-05-07,2035-05-28,2035-06-04,2035-07-02,2035-07-20,2035-08-07,2035-08-20,2035-10-15,2035-11-05,2035-11-12,2035-12-08,2035-12-25,2036-01-01,2036-01-07,2036-03-24,2036-04-10,2036-04-11,2036-05-01,2036-05-26,2036-06-16,2036-06-23,2036-06-30,2036-07-20,2036-08-07,2036-08-18,2036-10-13,2036-11-03,2036-11-17,2036-12-08,2036-12-25,2037-01-01,2037-01-12,2037-03-23,2037-04-02,2037-04-03,2037-05-01,2037-05-18,2037-06-08,2037-06-15,2037-06-29,2037-07-20,2037-08-07,2037-08-17,2037-10-12,2037-11-02,2037-11-16,2037-12-08,2037-12-25,2038-01-01,2038-01-11,2038-03-22,2038-04-22,2038-04-23,2038-05-01,2038-06-07,2038-06-28,2038-07-05,2038-07-20,2038-08-07,2038-08-16,2038-10-18,2038-11-01,2038-11-15,2038-12-08,2038-12-25,2039-01-01,2039-01-10,2039-03-21,2039-04-07,2039-04-08,2039-05-01,2039-05-23,2039-06-13,2039-06-20,2039-07-04,2039-07-20,2039-08-07,2039-08-15,2039-10-17,2039-11-07,2039-11-14,2039-12-08,2039-12-25,2040-01-01,2040-01-09,2040-03-19,2040-03-29,2040-03-30,2040-05-01,2040-05-14,2040-06-04,2040-06-11,2040-07-02,2040-07-20,2040-08-07,2040-08-20,2040-10-15,2040-11-05,2040-11-12,2040-12-08,2040-12-25,' -%}
+{%- comment -%}FESTIVOS-COLOMBIA:fin{%- endcomment -%}
+{%- liquid
+  assign contar_hoy = true
+  assign hab_min = dias_min | default: 3
+  assign hab_max = dias_max | default: 5
+
+  assign t = ahora | default: 'now' | date: '%s' | plus: 0
+  unless contar_hoy
+    assign t = t | plus: 86400
+  endunless
+
+  comment
+    Se recorre día a día (máx. 30) hasta el día hábil `hab_max`; en el `hab_min`-ésimo se anota el
+    primer día de la ventana. `t` es un instante en segundos: sumar 86400 es pasar al día siguiente
+    porque Colombia no cambia de hora. `clave` = ',AAAA-MM-DD,' se busca en la lista con `contains`.
+  endcomment
+  assign n = 0
+  assign ini = 0
+  assign fin = 0
+  for i in (1..30)
+    assign w = t | date: '%w' | plus: 0
+    assign clave = t | date: ',%Y-%m-%d,'
+    assign habil = true
+    if w == 0
+      assign habil = false
+    endif
+    if festivos contains clave
+      assign habil = false
+    endif
+    if habil
+      assign n = n | plus: 1
+      if n == hab_min
+        assign ini = t
+      endif
+      if n == hab_max
+        assign fin = t
+        break
+      endif
+    endif
+    assign t = t | plus: 86400
+  endfor
+
+  assign meses_abrev = 'ene.,feb.,mar.,abr.,may.,jun.,jul.,ago.,sep.,oct.,nov.,dic.' | split: ','
+  assign dias_abrev = 'dom.,lun.,mar.,mié.,jue.,vie.,sáb.' | split: ','
+  assign d1 = ini | date: '%-d'
+  assign d2 = fin | date: '%-d'
+  assign w1 = ini | date: '%w' | plus: 0
+  assign w2 = fin | date: '%w' | plus: 0
+  comment
+    `m1`/`m2` en vez de un solo mes: cuando la ventana cruza de mes —hoy 28 y entrega 30 y 2— tomar
+    el mes de la fecha FINAL fecharía mal la primera.
+  endcomment
+  assign m1 = ini | date: '%-m' | minus: 1
+  assign m2 = fin | date: '%-m' | minus: 1
+-%}
+{%- if fin == 0 -%}
+  {%- comment -%}Imposible con 30 días de margen; si pasara, la frase sigue siendo cierta.{%- endcomment -%}
+  {%- if formato == 'rango' -%}{{ hab_min }}&ndash;{{ hab_max }} días hábiles{%- else -%}{{ hab_min }} y {{ hab_max }} días hábiles{%- endif -%}
+{%- else -%}
+  {%- case formato -%}
+    {%- when 'entre' -%}
+      {{ dias_abrev[w1] }} {{ d1 }}{% if m1 != m2 %} de {{ meses_abrev[m1] }}{% endif %} y {{ dias_abrev[w2] }} {{ d2 }} de {{ meses_abrev[m2] }}
+    {%- when 'entre_b' -%}
+      <b>{{ dias_abrev[w1] }} {{ d1 }}{% if m1 != m2 %} de {{ meses_abrev[m1] }}{% endif %}</b> y <b>{{ dias_abrev[w2] }} {{ d2 }} de {{ meses_abrev[m2] }}</b>
+    {%- else -%}
+      {{ d1 }}{% if m1 != m2 %} {{ meses_abrev[m1] }}{% endif %}&ndash;{{ d2 }} {{ meses_abrev[m2] }}
+  {%- endcase -%}
+{%- endif -%}
