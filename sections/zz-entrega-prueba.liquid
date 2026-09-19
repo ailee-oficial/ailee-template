@@ -1,11 +1,16 @@
-{%- comment -%}SONDA TEMPORAL de entrega-habil (se borra al terminar). No la enlaza ninguna plantilla.{%- endcomment -%}
-{%- assign formatos = 'rango,entre,entre_b,otro' | split: ',' -%}
+{%- comment -%}PRUEBA TEMPORAL de entrega-habil (se borra al terminar). No la enlaza ninguna plantilla.{%- endcomment -%}
 <pre id="zz-entrega-prueba">
-{%- for f in formatos -%}
-{%- capture o -%}{% render 'entrega-habil', formato: f, ahora: 1789750800 %}{%- endcapture -%}
-S|{{ f }}|{{ o | json }}
+{%- for i in (0..899) -%}
+{%- assign ahora = i | times: 86400 | plus: 1789750800 -%}
+R|m|{{ ahora }}|{{ ahora | date: '%Y-%m-%d' }}|{% render 'entrega-habil', formato: 'rango', ahora: ahora %}|{% render 'entrega-habil', formato: 'entre', ahora: ahora %}|{% render 'entrega-habil', formato: 'entre_b', ahora: ahora %}
 {% endfor -%}
-{%- capture o -%}{% render 'entrega-habil', formato: 'rango', ahora: 1789750800, dias_min: 1, dias_max: 1 %}{%- endcapture -%}
-S|min1max1|{{ o | json }}
+{%- for i in (0..119) -%}
+{%- assign ahora = i | times: 86400 | plus: 1789707630 -%}
+R|s|{{ ahora }}|{{ ahora | date: '%Y-%m-%d' }}|{% render 'entrega-habil', formato: 'rango', ahora: ahora %}|{% render 'entrega-habil', formato: 'entre', ahora: ahora %}|{% render 'entrega-habil', formato: 'entre_b', ahora: ahora %}
+{% endfor -%}
+{%- for i in (0..119) -%}
+{%- assign ahora = i | times: 86400 | plus: 1789793970 -%}
+R|e|{{ ahora }}|{{ ahora | date: '%Y-%m-%d' }}|{% render 'entrega-habil', formato: 'rango', ahora: ahora %}|{% render 'entrega-habil', formato: 'entre', ahora: ahora %}|{% render 'entrega-habil', formato: 'entre_b', ahora: ahora %}
+{% endfor -%}
 </pre>
 {% schema %}{"name": "zz prueba entrega"}{% endschema %}
