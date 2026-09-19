@@ -83,17 +83,38 @@
   endcomment
   assign m1 = ini | date: '%-m' | minus: 1
   assign m2 = fin | date: '%-m' | minus: 1
+
+  comment
+    La salida se arma con `echo` dentro de este bloque, no con texto suelto entre `when`: los espacios
+    entre una variable y un `when` con guion dejaban un salto de línea colado en dos de las tres ramas
+    (medido en la tienda real, 2026-09-18). Así la frase sale exacta, sin nada antes ni después.
+  endcomment
+  if fin == 0
+    comment
+      Imposible con 30 días de margen; si pasara, la frase sigue siendo cierta.
+    endcomment
+    if formato == 'rango'
+      echo hab_min | append: '&ndash;' | append: hab_max | append: ' días hábiles'
+    else
+      echo hab_min | append: ' y ' | append: hab_max | append: ' días hábiles'
+    endif
+  else
+    assign texto_ini = dias_abrev[w1] | append: ' ' | append: d1
+    assign texto_fin = dias_abrev[w2] | append: ' ' | append: d2 | append: ' de ' | append: meses_abrev[m2]
+    if m1 != m2
+      assign texto_ini = texto_ini | append: ' de ' | append: meses_abrev[m1]
+    endif
+    case formato
+      when 'entre'
+        echo texto_ini | append: ' y ' | append: texto_fin
+      when 'entre_b'
+        echo '<b>' | append: texto_ini | append: '</b> y <b>' | append: texto_fin | append: '</b>'
+      else
+        assign rango_ini = d1
+        if m1 != m2
+          assign rango_ini = d1 | append: ' ' | append: meses_abrev[m1]
+        endif
+        echo rango_ini | append: '&ndash;' | append: d2 | append: ' ' | append: meses_abrev[m2]
+    endcase
+  endif
 -%}
-{%- if fin == 0 -%}
-  {%- comment -%}Imposible con 30 días de margen; si pasara, la frase sigue siendo cierta.{%- endcomment -%}
-  {%- if formato == 'rango' -%}{{ hab_min }}&ndash;{{ hab_max }} días hábiles{%- else -%}{{ hab_min }} y {{ hab_max }} días hábiles{%- endif -%}
-{%- else -%}
-  {%- case formato -%}
-    {%- when 'entre' -%}
-      {{ dias_abrev[w1] }} {{ d1 }}{% if m1 != m2 %} de {{ meses_abrev[m1] }}{% endif %} y {{ dias_abrev[w2] }} {{ d2 }} de {{ meses_abrev[m2] }}
-    {%- when 'entre_b' -%}
-      <b>{{ dias_abrev[w1] }} {{ d1 }}{% if m1 != m2 %} de {{ meses_abrev[m1] }}{% endif %}</b> y <b>{{ dias_abrev[w2] }} {{ d2 }} de {{ meses_abrev[m2] }}</b>
-    {%- else -%}
-      {{ d1 }}{% if m1 != m2 %} {{ meses_abrev[m1] }}{% endif %}&ndash;{{ d2 }} {{ meses_abrev[m2] }}
-  {%- endcase -%}
-{%- endif -%}
