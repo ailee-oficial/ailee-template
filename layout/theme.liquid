@@ -369,6 +369,15 @@
     </script>
 
     {%- if settings.predictive_search_enabled -%}
+      {%- comment -%}
+        search-form.js define la clase SearchForm de la que hereda PredictiveSearch.
+        Sin él, predictive-search.js revienta con "SearchForm is not defined" y el
+        custom element <predictive-search> nunca se registra: el buscador queda muerto
+        en toda la tienda y cada visita cuenta como sesión con error de JS en Clarity.
+        Detectado en Cosmos el 2026-09-08 y arreglado allí; Ailee arrastraba el mismo
+        fallo hasta el 2026-09-20 (10% de sesiones con error de JS en sueco-045).
+      {%- endcomment -%}
+      <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
