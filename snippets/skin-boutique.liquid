@@ -1,0 +1,25 @@
+{%- comment -%}
+  skin-boutique — VARIANTE DE PRUEBA (2026-09-20). Solo CSS: reviste fold-header-v3 y el bloque
+  de escasez SIN tocarlos, porque están al aire en moda-single y moda-2x1. Se carga únicamente
+  desde product.moda-single-boutique.
+  Qué cambia y por qué (hipótesis, no verdad medida):
+    · Título en Cormorant (la tipografía de marca de Ailee) y sin mayúsculas forzadas: el DM Sans
+      800 en versales es la voz de la tienda de tenis de hombre de donde vino la plantilla.
+    · Sin insignia azul de «verificado»: es un código de hype, aquí no significa nada.
+    · Sin «N personas viendo esto ahora»: la cifra sale de una fórmula, no de tráfico real, y
+      junto a «Quedan N unidades» daba DOS contadores de presión en la misma pantalla.
+    · La píldora del descuento y la escasez dejan el rojo de alarma: negro suave y terracota.
+  Lo que NO cambia: precio, ahorro en pesos, envío gratis, pago al recibir, fecha de entrega,
+  estrellas y escasez con inventario real. La mecánica de venta es la misma; cambia el tono.
+{%- endcomment -%}
+<style>
+  .fh3-title{font-family:'Cormorant Garamond','EB Garamond',Georgia,serif!important;font-weight:600!important;
+             text-transform:none!important;letter-spacing:0!important;line-height:1.08!important;
+             font-size:clamp(3rem,8vw,3.6rem)!important;color:#1C1C1C!important}
+  .fh3-check{display:none!important}
+  .fh3-live{display:none!important}
+  .fh3-pill{background:#1C1C1C!important;color:#FAF7F4!important;font-weight:600!important}
+  .fh3-save{color:#8A6D47!important}
+  .v2-stock,.v2-stock *{color:#A4492F!important}
+  .v2-stock .v2-stock-dot,.v2-stock [class*=dot]{background:#A4492F!important}
+</style>

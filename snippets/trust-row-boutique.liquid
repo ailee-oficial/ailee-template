@@ -1,0 +1,68 @@
+{%- comment -%}
+  trust-row-boutique — VARIANTE DE PRUEBA de trust-row-v3 (2026-09-20). Mismas cuatro
+  afirmaciones, todas reales. Cambia: iconos de línea en vez de emoji de colores, el acento
+  pasa de rojo a camel oscuro, la fecha deja de ir en una píldora roja y el texto le habla
+  a una MUJER («para que compres tranquila»; la v3 venía de Cosmos y decía «tranquilo»).
+{%- endcomment -%}
+{%- comment -%}
+  Trust row v3 — inspirado en el bloque de confianza de storemadison.co (5 líneas
+  con ícono + título + detalle), pero con SOLO afirmaciones que son reales para
+  Ailee hoy. NO incluye la línea "confirmamos por WhatsApp antes de despachar"
+  del original: no tenemos un número de WhatsApp de soporte configurado
+  (snippets/cosmos-whatsapp.liquid sigue con el placeholder 573XXXXXXXXX) y
+  afirmar un proceso operativo que no existe es una promesa que rompe en el
+  primer reclamo. Si el usuario confirma el número real y que sí se hace esa
+  confirmación, se agrega como sexta línea.
+
+  Real, no inventado:
+    - Envío gratis a toda Colombia (política real de la tienda)
+    - Fecha de entrega: 3 a 5 días hábiles (lunes a sábado, sin festivos), snippet `entrega-habil`
+    - Garantía 30 días: mismo texto que el bloque moneybackguarantee existente
+    - Pago contra entrega: modalidad real de Ailee
+{%- endcomment -%}
+<div class="tr3-wrap">
+  <div class="tr3-row">
+    <span class="tr3-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#8A6D47" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="17.5" cy="17.5" r="1.5"/></svg></span>
+    <div class="tr3-body">
+      <div class="tr3-title">Envío gratis <span class="tr3-accent">a toda Colombia</span></div>
+      <div class="tr3-sub">Sin costo adicional, en cualquier ciudad</div>
+      <div class="tr3-pill">Recíbelo entre {% render 'entrega-habil', formato: 'entre' %}</div>
+    </div>
+  </div>
+  <div class="tr3-sep"></div>
+  <div class="tr3-row">
+    <span class="tr3-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#8A6D47" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg></span>
+    <div class="tr3-body">
+      <div class="tr3-title">Paga al recibir <span class="tr3-accent">(contraentrega)</span></div>
+      <div class="tr3-sub">Pagas el producto en tu casa, sin anticipos.</div>
+    </div>
+  </div>
+  <div class="tr3-sep"></div>
+  <div class="tr3-row">
+    <span class="tr3-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#8A6D47" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.500-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+    <div class="tr3-body">
+      <div class="tr3-title">Garantía <span class="tr3-accent">30 días</span></div>
+      <div class="tr3-sub">Cambios por talla o color para que compres tranquila.</div>
+    </div>
+  </div>
+  <div class="tr3-sep"></div>
+  <div class="tr3-row">
+    <span class="tr3-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#8A6D47" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+    <div class="tr3-body">
+      <div class="tr3-title">Compra 100% segura</div>
+      <div class="tr3-sub">Pagos protegidos y despacho verificado.</div>
+    </div>
+  </div>
+</div>
+<style>
+  .tr3-wrap{background:var(--cm-cream, #FAF7F4);border:1px solid var(--cm-nude-light, #F0E8E0);border-radius:16px;padding:16px 14px;margin:18px 0}
+  .tr3-row{display:flex;align-items:flex-start;gap:12px}
+  .tr3-ic{font-size:20px;flex:0 0 auto;line-height:1.3}
+  .tr3-body{flex:1;min-width:0}
+  .tr3-title{font-weight:700;font-size:1.15rem;color:#111}
+  .tr3-accent{color:#8A6D47;font-weight:700}
+  .tr3-sub{font-size:1.02rem;color:#555;margin-top:2px}
+  .tr3-pill{display:inline-block;margin-top:8px;background:#F1E6DC;color:#1C1C1C;font-weight:700;
+            font-size:.9rem;padding:5px 12px;border-radius:100px}
+  .tr3-sep{height:1px;background:var(--cm-blush, #E8D5C8);margin:12px 0;border:none}
+</style>
