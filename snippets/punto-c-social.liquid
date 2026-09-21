@@ -19,79 +19,84 @@
   .pc-clientes-grid img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block;aspect-ratio:1/1}
   @media (max-width:600px){.pc-clientes-grid{gap:6px}}
 
-  /* Carrusel deslizable con "peek" de la siguiente tarjeta — mismo mecanismo
-     de scroll-snap que veníamos usando en otros bloques de reseñas, faltaba
-     aquí (este snippet nunca traía su propio CSS). Inspirado en el estilo de
-     storemadison.co/products/nike-ultrazoom que el usuario pidió replicar. */
-  .testimonials-carousel-wrapper{width:100%;padding:4px 0;overflow:hidden}
-  .testimonials-heading{text-align:center;margin:0 0 4px}
-  .testimonials-heading h2{font-size:1.5rem;font-weight:800;color:#111;margin:0 0 4px}
-  .testimonials-heading p{font-size:1.05rem;color:var(--cm-text-muted, #7A7A7A);margin:0}
+  /* Carrusel deslizable con "peek" de la siguiente tarjeta — mismo mecanismo de
+     scroll-snap que Cosmos (de donde vino la plantilla). Lo que cambia aquí es el
+     TONO: Cormorant en el titular, escala nude de Ailee, estrellas en dorado nude
+     y verificado en camel — nada de ambar ni del azul de hype, igual que hizo
+     skin-boutique con el fold. La mecanica es identica. */
+  .testimonials-carousel-wrapper{width:100%;padding:10px 0 4px;overflow:hidden}
+  .testimonials-heading{text-align:center;margin:0 0 2px;padding:0 16px}
+  .testimonials-heading h2{font-family:'Cormorant Garamond','EB Garamond',Georgia,serif;
+    font-size:clamp(2rem,6.4vw,2.6rem);font-weight:600;line-height:1.1;letter-spacing:0;
+    text-transform:none;color:var(--cm-text, #1C1C1C);margin:0 0 6px}
+  .testimonials-heading p{font-size:1.02rem;line-height:1.4;color:var(--cm-text-muted, #7A7A7A);margin:0}
+  .testimonials-heading .tc-rule{display:block;width:46px;height:1px;border:0;margin:12px auto 0;
+    background:var(--cm-brown, #C4A882);opacity:.7}
   .testimonials-container{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
-    gap:12px;padding:14px 15px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    gap:12px;padding:16px 15px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .testimonials-container::-webkit-scrollbar{display:none}
-  .testimonial-card{flex:0 0 82%;scroll-snap-align:center;background:#fff;
-    border:1px solid var(--cm-nude-light, #F0E8E0);border-radius:14px;padding:0;box-sizing:border-box;
-    box-shadow:0 2px 10px rgba(0,0,0,.05);overflow:hidden}
+  .testimonial-card{flex:0 0 82%;scroll-snap-align:center;background:var(--cm-white, #FAF7F4);
+    border:1px solid var(--cm-nude-light, #F0E8E0);border-radius:16px;padding:0;box-sizing:border-box;
+    box-shadow:0 6px 18px rgba(28,28,28,.06);overflow:hidden}
   .testimonial-card img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
-  .testimonial-card .testimonial-body-content{padding:14px}
-  .testimonial-stars{color:#F5A623;font-size:1.05rem;letter-spacing:1px;text-align:center;margin-bottom:8px}
-  .testimonial-text{margin:0 0 10px;font-size:1.15rem;line-height:1.4;color:#333;text-align:center}
+  .testimonial-card .testimonial-body-content{padding:14px 16px 16px}
+  .testimonial-stars{color:var(--cm-brown-mid, #C9A96E);font-size:1rem;letter-spacing:2px;text-align:center;margin-bottom:8px}
+  .testimonial-text{margin:0 0 12px;font-size:1.1rem;line-height:1.45;color:var(--cm-text, #1C1C1C);text-align:center}
   .testimonial-footer{display:flex;align-items:center;justify-content:center;gap:6px;
-    font-size:1.05rem;color:#555}
-  .testimonial-footer strong{font-size:1.05rem;color:#111}
-  .testimonial-verified{display:inline-flex;align-items:center;gap:3px;color:#3E84F4;font-size:.95rem;font-weight:600}
+    font-size:.95rem;color:var(--cm-text-muted, #7A7A7A)}
+  .testimonial-verified{display:inline-flex;align-items:center;gap:4px;color:var(--cm-brown, #C4A882);
+    font-size:.9rem;font-weight:600;letter-spacing:.02em}
   @media (min-width:768px){.testimonial-card{flex:0 0 300px}}
 </style>
 
 {%- if pc_clientes and pc_clientes.size > 0 -%}
   <div class="pc-clientes-grid">
     {%- for url in pc_clientes -%}
-      <img src="{{ url }}" loading="lazy" alt="Cliente con el producto">
+      <img src="{{ url }}" loading="lazy" alt="Clienta con el producto">
     {%- endfor -%}
   </div>
 {%- endif -%}
 
 {%- comment -%}
-  Esta sección habla de LA TIENDA, no del producto: su trabajo es que un cliente
-  nuevo confíe en Ailee. Por eso el set es único para toda la plantilla y NO hay
+  Esta sección habla de LA TIENDA, no del producto: su trabajo es que una clienta
+  nueva confíe en Ailee. Por eso el set es único para toda la plantilla y NO hay
   override por producto — decisión del usuario, 2026-09-09.
 
-  🔴 VACÍO A PROPÓSITO (migración desde Cosmos, 2026-09-10). El set original eran
-  seis capturas de WhatsApp de clientes REALES de Cosmos, con sus textos. Traerlas
-  a Ailee las convertiría en reseñas de una tienda que nunca las recibió — eso es
-  inventar prueba social, no reutilizarla. El mecanismo queda intacto y el bloque
-  se auto-desactiva mientras las tres listas estén vacías.
+  ✅ LLENO con clientas REALES de Ailee (2026-09-21). Son cinco mensajes de WhatsApp
+  que enviaron ellas mismas al recibir el pedido, transcritos LITERAL —con sus
+  errores de tipeo, que es justo lo que los hace creíbles— y sin nombre ni ciudad,
+  porque el mensaje no los traía y aquí no se inventa nada (RUL-prueba-social-real).
+  La foto de cada tarjeta es el recorte 1:1 de la foto que mandó la clienta en esa
+  misma captura; el texto va transcrito abajo para que se lea sin hacer zoom.
+  Originales y recortes: ailee/productos/_prueba-social/.
 
-  Para activarlo cuando Ailee tenga las suyas: subir las capturas a Shopify Files
-  y llenar las tres listas en paralelo, mismo orden y mismo tamaño —
-  `pc_c_txt` (el texto del mensaje), `pc_c_img` (la URL de la captura) y
-  `pc_c_est` (las estrellas, 1 a 5), separando cada ítem con `|`.
+  Para agregar otra: subir la foto recortada 1:1 a Shopify Files y sumar el texto,
+  la URL y las estrellas a las TRES listas en el mismo orden, separando con `|`.
   Solo experiencia de compra (llegó rápido, bien empacado, la talla quedó): eso
-  viaja de un producto a otro. Un testimonio que hable del producto puntual
-  desentona en cuanto la plantilla sirva a otro.
+  viaja de un producto a otro. El bloque se auto-desactiva si las listas se vacían.
 {%- endcomment -%}
-{%- assign pc_c_txt = '' | split: '|' -%}
-{%- assign pc_c_img = '' | split: '|' -%}
-{%- assign pc_c_est = '' | split: '|' -%}
+{%- assign pc_c_txt = 'Ay Dios mio quedaron divinos!! ya los estrené hoy y toda la gente preguntando donde los compré jsjs|Hola buenas! ya me llegaron las sandalias, quedaron divinas, super comodas desde que me las puse|Buenas tardes, ya recibí mi sandalia sueca, la calidad me sorprendió, mil gracias|Buenas noches, ya tengo puesta la sandalia sueca, quedó perfecta de talla y súper fresquita para el pie|hola,ya me llegaron,la verdad son muy comodos y he caminado bastante con ellos,muchas gracias por la atencion' | split: '|' -%}
+{%- assign pc_c_img = 'https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-01.webp|https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-02.webp|https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-03.webp|https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-04.webp|https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-05.webp' | split: '|' -%}
+{%- assign pc_c_est = '5|5|5|5|5' | split: '|' -%}
 
 {%- if pc_c_txt.size > 0 -%}
   <div class="testimonials-carousel-wrapper">
     <div class="testimonials-heading">
-      <h2>Lo que dicen nuestros clientes</h2>
-      <p>Opiniones reales de quienes ya recibieron sus pedidos.</p>
+      <h2>Lo que dicen nuestras clientas</h2>
+      <p>Mensajes que nos escriben ellas mismas al recibir su pedido.</p>
+      <hr class="tc-rule">
     </div>
     <div class="testimonials-container">
       {%- for txt in pc_c_txt -%}
         {%- assign i = forloop.index0 -%}
         {%- assign n = pc_c_est[i] | plus: 0 -%}
         <div class="testimonial-card">
-          {%- if pc_c_img[i] != blank -%}<img src="{{ pc_c_img[i] }}" loading="lazy" alt="Rese&ntilde;a de un cliente de Ailee">{%- endif -%}
+          {%- if pc_c_img[i] != blank -%}<img src="{{ pc_c_img[i] }}" loading="lazy" alt="Mensaje de una clienta de Ailee al recibir su pedido">{%- endif -%}
           <div class="testimonial-body-content">
             <div class="testimonial-stars">{% for s in (1..n) %}&#9733;{% endfor %}</div>
             <p class="testimonial-text">&ldquo;{{ txt }}&rdquo;</p>
             <div class="testimonial-footer">
-              <span class="testimonial-verified">&#10003; Verificado</span>
+              <span class="testimonial-verified">&#10003; Compra verificada</span>
             </div>
           </div>
         </div>
