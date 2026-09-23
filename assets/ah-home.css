@@ -136,7 +136,7 @@
 .ah-coleccion__foto img { width: 100%; height: 100%; object-fit: cover; }
 
 /* ── Productos ────────────────────────────────────────────────────────────── */
-.ah-productos__grilla { display: grid; grid-template-columns: repeat(var(--ah-cols, 4), minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 22px); }
+.ah-productos__grilla { display: grid; grid-template-columns: repeat(var(--ah-cols, 4), minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 22px); max-width: calc(var(--ah-cols, 4) * 330px); }
 .ah-producto { text-decoration: none; display: block; }
 .ah-producto__foto { position: relative; aspect-ratio: 3 / 4; overflow: hidden; background: var(--ah-soft); }
 .ah-producto__foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .45s ease, transform .6s ease; }
