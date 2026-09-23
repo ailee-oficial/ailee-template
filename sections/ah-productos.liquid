@@ -4,9 +4,14 @@
 {%- endcomment -%}
 {%- assign ah_col = section.settings.coleccion -%}
 {%- if ah_col == blank -%}{%- assign ah_col = collections.all -%}{%- endif -%}
-{%- comment -%} Con menos productos que columnas, la grilla se ajusta para no dejar huecos. {%- endcomment -%}
+{%- comment -%}
+  En una página de producto no se repite el producto que se está viendo («También te puede encantar»).
+  Con menos productos que columnas, la grilla se ajusta para no dejar huecos.
+{%- endcomment -%}
+{%- assign ah_actual = product.id -%}
 {%- assign ah_cols = section.settings.columnas -%}
 {%- assign ah_total = ah_col.products.size -%}
+{%- if ah_actual != blank -%}{%- assign ah_total = ah_total | minus: 1 -%}{%- endif -%}
 {%- if ah_total > section.settings.cantidad -%}{%- assign ah_total = section.settings.cantidad -%}{%- endif -%}
 {%- if ah_total > 0 and ah_total < ah_cols -%}{%- assign ah_cols = ah_total -%}{%- endif -%}
 {{ 'ah-home.css' | asset_url | stylesheet_tag }}
@@ -26,10 +31,12 @@
       {%- endif -%}
     </div>
 
-    {%- if ah_col.products.size > 0 -%}
+    {%- if ah_total > 0 -%}
       <div class="ah-productos__grilla">
+        {%- assign ah_mostrados = 0 -%}
         {%- for product in ah_col.products -%}
-          {%- if forloop.index <= section.settings.cantidad -%}
+          {%- if product.id != ah_actual and ah_mostrados < section.settings.cantidad -%}
+            {%- assign ah_mostrados = ah_mostrados | plus: 1 -%}
             <a class="ah-producto" href="{{ product.url }}">
               <div class="ah-producto__foto">
                 {%- if product.compare_at_price > product.price -%}<span class="ah-producto__etiqueta">Oferta</span>{%- endif -%}

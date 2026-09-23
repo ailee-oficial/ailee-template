@@ -1,0 +1,77 @@
+{{ 'ah-home.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  #shopify-section-{{ section.id }} .ah-espacio { --ah-pt: {{ section.settings.pt }}px; --ah-pb: {{ section.settings.pb }}px; }
+{%- endstyle -%}
+
+<section class="ah">
+  <div class="ah-contenedor ah-espacio">
+    <div class="ah-detalles">
+      <div class="ah-detalles__principal">
+        {%- render 'ah-img', imagen: section.settings.imagen, respaldo: section.settings.respaldo, alt: section.settings.titulo, sizes: '(min-width: 990px) 45vw, 100vw', ancho: 1080, alto: 1350 -%}
+      </div>
+      <div class="ah-detalles__lista">
+        {%- if section.settings.eyebrow != blank -%}<p class="ah-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="ah-titulo ah-titulo--recto">{{ section.settings.titulo | escape }}</h2>
+        <ul>
+          {%- for block in section.blocks -%}
+            <li class="ah-detalle" {{ block.shopify_attributes }}>
+              <span class="ah-detalle__foto">
+                {%- render 'ah-img', imagen: block.settings.imagen, respaldo: block.settings.respaldo, alt: block.settings.texto, sizes: '160px', ancho: 1080, alto: 1080 -%}
+              </span>
+              <span class="ah-detalle__texto">{{ block.settings.texto | escape | newline_to_br }}</span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .ah-detalles { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 64px); align-items: center; }
+  .ah-detalles__principal { aspect-ratio: 4 / 5; overflow: hidden; background: var(--ah-soft); border-radius: 4px; }
+  .ah-detalles__principal img { width: 100%; height: 100%; object-fit: cover; }
+  .ah-detalles__lista ul { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 14px; }
+  .ah-detalle { display: flex; align-items: center; gap: 18px; }
+  .ah-detalle__foto { flex: none; width: 76px; height: 76px; border-radius: 50%; overflow: hidden; background: var(--ah-soft); }
+  .ah-detalle__foto img { width: 100%; height: 100%; object-fit: cover; }
+  .ah-detalle__texto { font-size: 15px; line-height: 1.45; }
+  @media (max-width: 749px) {
+    .ah-detalles { grid-template-columns: 1fr; }
+    .ah-detalles__principal { display: none; }
+    .ah-detalles__lista ul { gap: 10px; }
+    .ah-detalle { background: var(--ah-soft); border-radius: 4px; overflow: hidden; gap: 16px; }
+    .ah-detalle__foto { width: 120px; height: 120px; border-radius: 0; }
+    .ah-detalle__texto { font-size: 14px; padding-right: 14px; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Ailee · Detalles",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo (opcional)" },
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Detalles que enamoran" },
+    { "type": "image_picker", "id": "imagen", "label": "Imagen grande (escritorio)", "info": "Vertical 4:5. En móvil se oculta y quedan solo los detalles." },
+    { "type": "text", "id": "respaldo", "label": "Imagen provisional del tema" },
+    { "type": "range", "id": "pt", "label": "Espacio arriba", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 },
+    { "type": "range", "id": "pb", "label": "Espacio abajo", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 }
+  ],
+  "blocks": [
+    {
+      "type": "detalle",
+      "name": "Detalle",
+      "settings": [
+        { "type": "image_picker", "id": "imagen", "label": "Imagen", "info": "Primer plano cuadrado." },
+        { "type": "text", "id": "respaldo", "label": "Imagen provisional del tema" },
+        { "type": "textarea", "id": "texto", "label": "Texto", "default": "Un detalle real del producto" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    { "name": "Ailee · Detalles", "blocks": [{ "type": "detalle" }, { "type": "detalle" }, { "type": "detalle" }, { "type": "detalle" }] }
+  ]
+}
+{% endschema %}

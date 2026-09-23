@@ -1,0 +1,41 @@
+{%- comment -%}
+  ah-pdp-estilos — tono boutique de la ficha (main-product) en las plantillas boutique de Ailée.
+  Solo CSS y solo donde se renderiza (bloque custom_liquid de la ficha): no toca otras plantillas.
+  Título en Cormorant, precio limpio, selectores tipo píldora, botón negro redondeado y
+  miniaturas visibles también en móvil (la galería del diseño).
+{%- endcomment -%}
+{{ 'ah-home.css' | asset_url | stylesheet_tag }}
+{%- if template.suffix == 'ailee-boutique' and request.design_mode -%}
+  <div style="background:#b3261e;color:#fff;padding:10px 14px;font:600 13px/1.4 system-ui;text-align:center;margin-bottom:12px">
+    PLANTILLA BASE — no la edites ni la asignes a un producto. Cada producto recibe su copia (product.&lt;slug&gt;.json).
+  </div>
+{%- endif -%}
+<style>
+  .product__info-container { font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif; color: #1c1c1c; }
+  .product__title h1, .product__title h2, h1.product__title {
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif !important; font-weight: 500 !important;
+    font-size: clamp(30px, 3.2vw, 40px) !important; line-height: 1.08 !important; letter-spacing: 0 !important;
+    text-transform: none !important; color: #1c1c1c !important; margin: 0 0 4px !important;
+  }
+  .product__info-container .product__text { margin: 0 0 10px; }
+  .product__info-container .product__text.subtitle,
+  .product__info-container .product__text p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 20px; color: #6b6560; letter-spacing: 0; text-transform: none; }
+  .product__info-container .price { font-family: 'DM Sans', sans-serif; }
+  .product__info-container .price-item--regular, .product__info-container .price-item--sale { font-size: 26px !important; font-weight: 500 !important; color: #1c1c1c !important; }
+  .product__info-container .price__compare .price-item, .product__info-container s.price-item { font-size: 16px !important; color: #9a918a !important; }
+  .product__info-container .price__badge-sale { background: #1c1c1c !important; color: #fff !important; border-radius: 99px !important; border: 0 !important; font-size: 11px !important; letter-spacing: .08em; }
+  .product__info-container variant-radios legend, .product__info-container .form__label { font-size: 14px !important; font-weight: 500 !important; color: #1c1c1c !important; text-transform: none !important; letter-spacing: 0 !important; }
+  .product__info-container variant-radios input[type=radio] + label {
+    border-radius: 10px !important; border: 1px solid #ddd3c8 !important; background: #fff !important; color: #1c1c1c !important;
+    min-width: 52px; font-size: 14px !important; padding: 10px 14px !important;
+  }
+  .product__info-container variant-radios input[type=radio]:checked + label { border-color: #1c1c1c !important; background: #1c1c1c !important; color: #fff !important; }
+  .product__info-container .product-form__submit, .product__info-container ._rsi-buy-now-button { border-radius: 999px !important; }
+  .product__info-container .product__description { font-size: 15px; line-height: 1.65; color: #4d4843; }
+  .product__info-container .product__accordion summary { font-size: 14px; }
+  /* Miniaturas también en móvil, como en el diseño */
+  @media (max-width: 749px) {
+    .product__media-wrapper .thumbnail-slider { display: flex !important; }
+    .product__info-container { padding: 0 4px; }
+  }
+</style>

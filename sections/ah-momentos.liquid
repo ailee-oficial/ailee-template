@@ -2,8 +2,10 @@
 {%- style -%}
   #shopify-section-{{ section.id }} .ah-espacio { --ah-pt: {{ section.settings.pt }}px; --ah-pb: {{ section.settings.pb }}px; }
   #shopify-section-{{ section.id }} .ah-momentos__fila { --ah-cols: {{ section.blocks.size }}; }
+  #shopify-section-{{ section.id }} .ah-momento__foto { aspect-ratio: {{ section.settings.proporcion }}; }
 {%- endstyle -%}
 
+{%- if section.settings.proporcion == '4 / 5' -%}{%- assign ah_ancho = 1080 -%}{%- assign ah_alto = 1350 -%}{%- else -%}{%- assign ah_ancho = 1024 -%}{%- assign ah_alto = 768 -%}{%- endif -%}
 <section class="ah">
   <div class="ah-contenedor ah-espacio">
     <div class="ah-cabecera">
@@ -16,7 +18,7 @@
       {%- for block in section.blocks -%}
         <a class="ah-momento" href="{{ block.settings.enlace | default: '/collections/all' }}" {{ block.shopify_attributes }}>
           <div class="ah-momento__foto">
-            {%- render 'ah-img', imagen: block.settings.imagen, respaldo: block.settings.respaldo, alt: block.settings.nombre, sizes: '(min-width: 990px) 25vw, 76vw', ancho: 1024, alto: 768 -%}
+            {%- render 'ah-img', imagen: block.settings.imagen, respaldo: block.settings.respaldo, alt: block.settings.nombre, sizes: '(min-width: 990px) 25vw, 76vw', ancho: ah_ancho, alto: ah_alto -%}
           </div>
           <p class="ah-momento__nombre">{{ block.settings.nombre | escape }}</p>
         </a>
@@ -33,6 +35,8 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Inspírate" },
     { "type": "text", "id": "titulo", "label": "Título", "default": "Un estilo, mil momentos" },
+    { "type": "select", "id": "proporcion", "label": "Forma de las fotos", "default": "4 / 3",
+      "options": [{ "value": "4 / 3", "label": "Horizontal" }, { "value": "4 / 5", "label": "Vertical" }] },
     { "type": "range", "id": "pt", "label": "Espacio arriba", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 72 },
     { "type": "range", "id": "pb", "label": "Espacio abajo", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 72 }
   ],
