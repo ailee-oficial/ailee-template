@@ -65,15 +65,24 @@
         "titulo_2": {
           "type": "titulo",
           "settings": {
-            "texto": "Titular de impacto del ángulo",
+            "texto": "Titular de impacto",
             "nivel": "h1",
+            "tamano": 44
+          }
+        },
+        "titulo_3": {
+          "type": "titulo",
+          "settings": {
+            "texto": "del ángulo",
+            "nivel": "h2",
             "tamano": 44
           }
         }
       },
       "block_order": [
         "insignia_1",
-        "titulo_2"
+        "titulo_2",
+        "titulo_3"
       ]
     },
     "main": {
