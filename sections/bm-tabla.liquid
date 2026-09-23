@@ -1,0 +1,96 @@
+{%- comment -%}
+  Tabla HTML editable: especificaciones (etiqueta → valor), guía de tallas (hasta 3 columnas con
+  encabezado) o comparativa (nuestro producto frente a la alternativa, con ✓/✗). En la comparativa
+  «sí», «si», «✓» dibujan un check y «no», «✗» una cruz; cualquier otro texto se muestra tal cual.
+  Una comparativa solo se publica con datos comprobables (`claim_fuente` del plan).
+  Fuente canónica: claude-skills/core/tema_landing.
+{%- endcomment -%}
+{{ 'bm-landing.css' | asset_url | stylesheet_tag }}
+{%- assign s = section.settings -%}
+<div class="bm-sec bm-tabla bm-tabla--{{ s.modo }}" data-bm-landing="tabla" data-bm-sec="{{ section.id }}" style="{% if s.fondo != blank %}--bm-sec-bg:{{ s.fondo }};{% endif %}{% if s.texto != blank %}--bm-sec-fg:{{ s.texto }};{% endif %}{% if s.linea != blank %}--bm-linea:{{ s.linea }};{% endif %}{% if s.destacado_fondo != blank %}--bm-destacado-bg:{{ s.destacado_fondo }};{% endif %}{% if s.destacado_texto != blank %}--bm-destacado-fg:{{ s.destacado_texto }};{% endif %}--bm-pad-top:{{ s.padding_top }}px;--bm-pad-bottom:{{ s.padding_bottom }}px;--bm-pad-x:{{ s.padding_lateral }}px;--bm-align:{{ s.alineacion }};">
+  <div class="bm-sec__in">
+    {%- if s.antetitulo != blank or s.titulo != blank -%}
+      <div class="bm-cabecera">
+        {%- if s.antetitulo != blank -%}<p class="bm-oferta__ante">{{ s.antetitulo | escape }}</p>{%- endif -%}
+        {%- if s.titulo != blank -%}<h2>{{ s.titulo | escape }}</h2>{%- endif -%}
+      </div>
+    {%- endif -%}
+    <table class="bm-tabla__t">
+      {%- if s.modo != 'lista' -%}
+        <thead><tr>
+          <th scope="col">{{ s.encabezado_1 | escape }}</th>
+          <th scope="col" class="bm-tabla__nos">{{ s.encabezado_2 | escape }}</th>
+          {%- if s.modo == 'comparativa' or s.encabezado_3 != blank -%}<th scope="col">{{ s.encabezado_3 | escape }}</th>{%- endif -%}
+        </tr></thead>
+      {%- endif -%}
+      <tbody>
+        {%- for block in section.blocks -%}
+          {%- assign b = block.settings -%}
+          <tr data-bm-bloque="fila" {{ block.shopify_attributes }}>
+            <th scope="row">{{ b.c1 | escape }}</th>
+            {%- if s.modo == 'comparativa' -%}
+              {%- assign v2 = b.c2 | downcase | strip -%}
+              {%- assign v3 = b.c3 | downcase | strip -%}
+              <td class="bm-tabla__nos">{% if v2 == 'sí' or v2 == 'si' or v2 == '✓' %}<span class="bm-tabla__si" aria-label="sí">✓</span>{% elsif v2 == 'no' or v2 == '✗' %}<span class="bm-tabla__no" aria-label="no">✕</span>{% else %}{{ b.c2 | escape }}{% endif %}</td>
+              <td>{% if v3 == 'sí' or v3 == 'si' or v3 == '✓' %}<span class="bm-tabla__si" aria-label="sí">✓</span>{% elsif v3 == 'no' or v3 == '✗' %}<span class="bm-tabla__no" aria-label="no">✕</span>{% else %}{{ b.c3 | escape }}{% endif %}</td>
+            {%- else -%}
+              <td class="{% if s.modo == 'tabla' %}bm-tabla__nos{% endif %}">{{ b.c2 | escape }}</td>
+              {%- if s.modo == 'tabla' and s.encabezado_3 != blank -%}<td>{{ b.c3 | escape }}</td>{%- endif -%}
+            {%- endif -%}
+          </tr>
+        {%- endfor -%}
+      </tbody>
+    </table>
+    {%- if s.nota != blank -%}<p class="bm-tabla__nota">{{ s.nota | escape }}</p>{%- endif -%}
+  </div>
+  {%- if s.cta_mostrar -%}
+    {%- render 'bm-cta', texto: s.cta_texto, subtexto: s.cta_subtexto, fondo: blank, color: blank, franja: blank, ancho: 'completo', alineacion: 'center', pad_y: 14, pulso: false -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Landing · Tabla",
+  "tag": "section",
+  "enabled_on": { "templates": ["product"] },
+  "max_blocks": 20,
+  "settings": [
+    { "type": "select", "id": "modo", "label": "Tipo de tabla", "options": [
+      { "value": "lista", "label": "Especificaciones (etiqueta → valor)" },
+      { "value": "tabla", "label": "Tabla con encabezados (guía de tallas)" },
+      { "value": "comparativa", "label": "Comparativa (✓/✗)" }
+    ], "default": "lista" },
+    { "type": "text", "id": "antetitulo", "label": "Antetítulo" },
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Detalles técnicos" },
+    { "type": "text", "id": "encabezado_1", "label": "Encabezado columna 1", "default": "Talla" },
+    { "type": "text", "id": "encabezado_2", "label": "Encabezado columna 2", "default": "Largo del pie (cm)" },
+    { "type": "text", "id": "encabezado_3", "label": "Encabezado columna 3" },
+    { "type": "text", "id": "nota", "label": "Nota bajo la tabla" },
+    { "type": "select", "id": "alineacion", "label": "Alineación del título", "options": [
+      { "value": "left", "label": "Izquierda" }, { "value": "center", "label": "Centro" }
+    ], "default": "left" },
+    { "type": "header", "content": "Colores" },
+    { "type": "color", "id": "fondo", "label": "Fondo", "info": "Vacío: el de la página." },
+    { "type": "color", "id": "texto", "label": "Texto" },
+    { "type": "color", "id": "linea", "label": "Líneas" },
+    { "type": "color", "id": "destacado_fondo", "label": "Fondo de la columna destacada" },
+    { "type": "color", "id": "destacado_texto", "label": "Texto de la columna destacada" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24 },
+    { "type": "range", "id": "padding_lateral", "label": "Margen lateral", "min": 0, "max": 32, "step": 2, "unit": "px", "default": 16 },
+    { "type": "header", "content": "Botón de compra" },
+    { "type": "checkbox", "id": "cta_mostrar", "label": "Mostrar botón al final", "default": false },
+    { "type": "text", "id": "cta_texto", "label": "Texto del botón", "default": "Comprar ahora — Pago contra entrega" },
+    { "type": "text", "id": "cta_subtexto", "label": "Línea bajo el botón" }
+  ],
+  "blocks": [
+    { "type": "fila", "name": "Fila", "settings": [
+      { "type": "text", "id": "c1", "label": "Columna 1 (etiqueta)", "default": "Material" },
+      { "type": "text", "id": "c2", "label": "Columna 2 (valor o nuestro producto)", "default": "Valor" },
+      { "type": "text", "id": "c3", "label": "Columna 3 (comparativa u otra medida)" }
+    ] }
+  ],
+  "presets": [{ "name": "Landing · Tabla", "blocks": [{ "type": "fila" }, { "type": "fila" }, { "type": "fila" }] }]
+}
+{% endschema %}

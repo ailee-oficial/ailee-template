@@ -1,0 +1,91 @@
+{%- comment -%}
+  Beneficios, pasos de uso o señales de confianza como elementos HTML editables (icono o número,
+  título y texto). Fuente canónica: claude-skills/core/tema_landing.
+{%- endcomment -%}
+{{ 'bm-landing.css' | asset_url | stylesheet_tag }}
+{%- assign s = section.settings -%}
+<div class="bm-sec bm-items bm-items--{{ s.estilo }}" data-bm-landing="items" data-bm-sec="{{ section.id }}" style="{% if s.fondo != blank %}--bm-sec-bg:{{ s.fondo }};{% endif %}{% if s.texto != blank %}--bm-sec-fg:{{ s.texto }};{% endif %}{% if s.tarjeta_fondo != blank %}--bm-item-bg:{{ s.tarjeta_fondo }};{% endif %}{% if s.acento != blank %}--bm-acento:{{ s.acento }};{% endif %}{% if s.acento_texto != blank %}--bm-acento-fg:{{ s.acento_texto }};{% endif %}--bm-pad-top:{{ s.padding_top }}px;--bm-pad-bottom:{{ s.padding_bottom }}px;--bm-pad-x:{{ s.padding_lateral }}px;--bm-item-pad:{{ s.item_padding }}px;--bm-item-radio:{{ s.radio }}px;--bm-icono:{{ s.icono_tam }}px;--bm-cols-movil:{{ s.cols_movil }};--bm-cols-escritorio:{{ s.cols_escritorio }};--bm-align:{{ s.alineacion }};">
+  <div class="bm-sec__in">
+    {%- if s.titulo != blank or s.subtitulo != blank -%}
+      <div class="bm-cabecera">
+        {%- if s.titulo != blank -%}<h2>{{ s.titulo | escape }}</h2>{%- endif -%}
+        {%- if s.subtitulo != blank -%}<p>{{ s.subtitulo | escape }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+    <div class="bm-items__grid">
+      {%- for block in section.blocks -%}
+        {%- assign b = block.settings -%}
+        <div class="bm-item" data-bm-bloque="item" {{ block.shopify_attributes }}>
+          {%- if b.icono != blank -%}
+            <div class="bm-item__icono">{{ b.icono | image_url: width: 200 | image_tag: loading: 'lazy', widths: '100, 200', alt: '' }}</div>
+          {%- elsif b.simbolo != blank -%}
+            <span class="bm-item__simbolo" aria-hidden="true">{{ b.simbolo | escape }}</span>
+          {%- elsif s.numerar -%}
+            <span class="bm-item__simbolo" aria-hidden="true">{{ forloop.index }}</span>
+          {%- endif -%}
+          <div>
+            {%- if b.titulo != blank -%}<p class="bm-item__titulo">{{ b.titulo | escape }}</p>{%- endif -%}
+            {%- if b.texto != blank -%}<p class="bm-item__texto">{{ b.texto | escape }}</p>{%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+  {%- if s.cta_mostrar -%}
+    {%- render 'bm-cta', texto: s.cta_texto, subtexto: s.cta_subtexto, fondo: blank, color: blank, franja: blank, ancho: 'completo', alineacion: 'center', pad_y: 14, pulso: false -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Landing · Beneficios",
+  "tag": "section",
+  "enabled_on": { "templates": ["product"] },
+  "max_blocks": 12,
+  "settings": [
+    { "type": "paragraph", "content": "Beneficios, pasos de uso o señales de confianza como elementos editables." },
+    { "type": "text", "id": "titulo", "label": "Título" },
+    { "type": "text", "id": "subtitulo", "label": "Subtítulo" },
+    { "type": "select", "id": "estilo", "label": "Disposición", "options": [
+      { "value": "fila", "label": "Icono al lado del texto" },
+      { "value": "tarjeta", "label": "Tarjeta centrada" }
+    ], "default": "fila" },
+    { "type": "select", "id": "cols_movil", "label": "Columnas en móvil", "options": [
+      { "value": "1", "label": "1" }, { "value": "2", "label": "2" }
+    ], "default": "1" },
+    { "type": "select", "id": "cols_escritorio", "label": "Columnas en escritorio", "options": [
+      { "value": "1", "label": "1" }, { "value": "2", "label": "2" }, { "value": "3", "label": "3" }, { "value": "4", "label": "4" }
+    ], "default": "3" },
+    { "type": "checkbox", "id": "numerar", "label": "Numerar cuando no hay icono (pasos)", "default": false },
+    { "type": "select", "id": "alineacion", "label": "Alineación del título", "options": [
+      { "value": "left", "label": "Izquierda" }, { "value": "center", "label": "Centro" }
+    ], "default": "left" },
+    { "type": "header", "content": "Colores" },
+    { "type": "color", "id": "fondo", "label": "Fondo de la sección", "info": "Vacío: el de la página." },
+    { "type": "color", "id": "texto", "label": "Texto", "info": "Vacío: el de la página." },
+    { "type": "color", "id": "tarjeta_fondo", "label": "Fondo de cada elemento", "info": "Vacío: transparente." },
+    { "type": "color", "id": "acento", "label": "Acento (números y símbolos)" },
+    { "type": "color", "id": "acento_texto", "label": "Texto sobre el acento" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 20 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 20 },
+    { "type": "range", "id": "padding_lateral", "label": "Margen lateral", "min": 0, "max": 32, "step": 2, "unit": "px", "default": 16 },
+    { "type": "range", "id": "item_padding", "label": "Espacio interno de cada elemento", "min": 6, "max": 32, "step": 2, "unit": "px", "default": 14 },
+    { "type": "range", "id": "radio", "label": "Redondeo de cada elemento", "min": 0, "max": 24, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "icono_tam", "label": "Tamaño del icono", "min": 24, "max": 96, "step": 4, "unit": "px", "default": 44 },
+    { "type": "header", "content": "Botón de compra" },
+    { "type": "checkbox", "id": "cta_mostrar", "label": "Mostrar botón al final", "default": false },
+    { "type": "text", "id": "cta_texto", "label": "Texto del botón", "default": "Pedir ahora · pago contra entrega" },
+    { "type": "text", "id": "cta_subtexto", "label": "Línea bajo el botón", "default": "Pagas al recibir" }
+  ],
+  "blocks": [
+    { "type": "item", "name": "Elemento", "settings": [
+      { "type": "image_picker", "id": "icono", "label": "Icono o foto pequeña" },
+      { "type": "text", "id": "simbolo", "label": "Símbolo o número (si no hay icono)" },
+      { "type": "text", "id": "titulo", "label": "Título", "default": "Beneficio" },
+      { "type": "textarea", "id": "texto", "label": "Texto", "default": "Qué cambia para el cliente." }
+    ] }
+  ],
+  "presets": [{ "name": "Landing · Beneficios", "blocks": [{ "type": "item" }, { "type": "item" }, { "type": "item" }] }]
+}
+{% endschema %}
