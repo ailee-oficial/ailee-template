@@ -7,7 +7,7 @@
         "aplicar_fondo": true,
         "fondo_pagina": "#faf7f4",
         "texto_pagina": "#1c1c1c",
-        "ancho_max": 1200,
+        "ancho_max": 640,
         "ficha_modo": "completa",
         "ficha_margen_lateral": 16,
         "ocultar_galeria": true,

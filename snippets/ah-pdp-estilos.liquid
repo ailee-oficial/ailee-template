@@ -46,6 +46,10 @@
   {%- if descripcion == 'oculta' %}
   .product__description > :not(style):not(script) { display: none !important; }
   {%- endif %}
+  /* Escritorio: la portada no se come la pantalla (la compra se ve sin bajar tanto) */
+  @media (min-width: 750px) {
+    [data-bm-landing="escena"] .bm-escena--texto_sobre img { max-height: 70vh; width: 100%; object-fit: cover; object-position: 60% 70%; }
+  }
   /* Miniaturas también en móvil, como en el diseño */
   @media (max-width: 749px) {
     .product__media-wrapper .thumbnail-slider { display: flex !important; }
