@@ -1,0 +1,88 @@
+{%- comment -%}
+  ah-talla-ayuda — «¿No sabes qué talla elegir?»: abre la guía de tallas del producto y ofrece WhatsApp.
+  Lo usan la ficha boutique (bloque custom_liquid bajo el botón) y la sección ah-ayuda.
+
+  La guía es la misma que usan las plantillas de moda: la imagen del producto cuyo nombre o alt diga
+  talla, guia, medida o size. Sin esa imagen el botón de la guía no aparece (una tabla de tallas
+  equivocada es peor que ninguna) y queda solo WhatsApp.
+
+  Parámetros: id (único en la página), numero, mensaje, titulo, texto, boton_guia, boton_wa,
+              compacto (true = versión de la ficha)
+{%- endcomment -%}
+{%- assign aht_guia = '' -%}
+{%- if product -%}
+  {%- for im in product.images -%}
+    {%- assign aht_meta = im.src | append: ' ' | append: im.alt | downcase -%}
+    {%- if aht_guia == blank -%}
+      {%- if aht_meta contains 'talla' or aht_meta contains 'guia' or aht_meta contains 'medida' or aht_meta contains 'size' -%}
+        {%- assign aht_guia = im | image_url: width: 1400 -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- assign aht_numero = numero | strip | remove: ' ' | remove: '+' -%}
+{%- assign aht_mensaje = mensaje | default: 'Hola Ailée, quiero ayuda con mi talla de' | append: ' ' | append: product.title -%}
+
+<div class="ah-ayuda{% if compacto %} ah-ayuda--compacto{% endif %}" id="ah-talla-{{ id }}">
+  <span class="ah-ayuda__icono">
+    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="10" width="26" height="12" rx="6"/><path d="M9 10v4M13 10v3M17 10v4M21 10v3M25 10v4"/></svg>
+  </span>
+  <div class="ah-ayuda__texto">
+    {%- if compacto -%}
+      <p class="ah-ayuda__titulo">{{ titulo | default: '¿No sabes qué talla elegir?' | escape }}</p>
+    {%- else -%}
+      <h2 class="ah-titulo ah-titulo--recto">{{ titulo | default: '¿No sabes qué talla elegir?' | escape }}</h2>
+    {%- endif -%}
+    <p class="ah-texto">{{ texto | default: 'Consulta la guía de tallas o escríbenos y te ayudamos a encontrar tu talla perfecta.' | escape }}</p>
+  </div>
+  <div class="ah-ayuda__botones">
+    {%- if aht_guia != blank -%}
+      <button type="button" class="ah-boton ah-boton--borde" data-ah-guia-abrir>{{ boton_guia | default: 'Ver guía de tallas' | escape }} {%- render 'ah-icono', icono: 'flecha' -%}</button>
+    {%- endif -%}
+    {%- if aht_numero != blank -%}
+      <a class="ah-boton" href="https://wa.me/{{ aht_numero }}?text={{ aht_mensaje | url_encode }}" target="_blank" rel="noopener">{%- render 'ah-icono', icono: 'whatsapp' -%} {{ boton_wa | default: 'Te ayudamos por WhatsApp' | escape }}</a>
+    {%- endif -%}
+  </div>
+  {%- if aht_guia != blank -%}
+    <dialog class="ah-guia" data-ah-guia>
+      <button type="button" class="ah-guia__cerrar" data-ah-guia-cerrar aria-label="Cerrar">×</button>
+      <img src="{{ aht_guia }}" alt="Guía de tallas de {{ product.title | escape }}" loading="lazy" width="1400" height="1400">
+    </dialog>
+  {%- endif -%}
+</div>
+<style>
+  .ah-ayuda { display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center; background: #f3ede7; border-radius: 6px; padding: clamp(22px, 3vw, 36px); color: #1c1c1c; }
+  .ah-ayuda__icono { width: 64px; height: 64px; border-radius: 50%; background: #fff; display: grid; place-items: center; }
+  .ah-ayuda__icono svg { width: 32px; height: 32px; }
+  .ah-ayuda .ah-titulo { font-size: clamp(26px, 3vw, 34px); margin-bottom: 6px; }
+  .ah-ayuda__botones { display: grid; gap: 10px; }
+  .ah-ayuda__botones .ah-boton { justify-content: center; }
+  /* Versión de la ficha: tarjeta compacta, botones a lo ancho */
+  .ah-ayuda--compacto { grid-template-columns: auto 1fr; gap: 12px 14px; padding: 18px 16px; border-radius: 14px; margin: 12px 0 6px; font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif; }
+  .ah-ayuda--compacto .ah-ayuda__icono { width: 48px; height: 48px; }
+  .ah-ayuda--compacto .ah-ayuda__icono svg { width: 26px; height: 26px; }
+  .ah-ayuda--compacto .ah-ayuda__titulo { margin: 0 0 2px; font-family: 'Cormorant Garamond', serif !important; font-size: 21px !important; font-weight: 500; line-height: 1.15; color: #1c1c1c; }
+  .ah-ayuda--compacto .ah-texto { margin: 0; font-size: 13px !important; line-height: 1.45; color: #6b6560; }
+  .ah-ayuda--compacto .ah-ayuda__botones { grid-column: 1 / -1; }
+  .ah-ayuda--compacto .ah-boton { min-height: 44px; font-size: 14px; width: 100%; }
+  .ah-guia { border: 0; border-radius: 8px; padding: 0; max-width: min(92vw, 720px); background: #fff; }
+  .ah-guia::backdrop { background: rgba(28,28,28,.55); }
+  .ah-guia img { display: block; width: 100%; height: auto; }
+  .ah-guia__cerrar { position: absolute; top: 8px; right: 8px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: #fff; font-size: 22px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.15); }
+  @media (max-width: 749px) {
+    .ah-ayuda { grid-template-columns: auto 1fr; }
+    .ah-ayuda__botones { grid-column: 1 / -1; }
+    .ah-ayuda__icono { width: 52px; height: 52px; }
+  }
+</style>
+<script>
+  (function () {
+    var raiz = document.getElementById('ah-talla-{{ id }}');
+    if (!raiz) return;
+    var d = raiz.querySelector('[data-ah-guia]'), a = raiz.querySelector('[data-ah-guia-abrir]');
+    if (!d || !a) return;
+    a.addEventListener('click', function () { d.showModal ? d.showModal() : d.setAttribute('open', ''); });
+    raiz.querySelector('[data-ah-guia-cerrar]').addEventListener('click', function () { d.close ? d.close() : d.removeAttribute('open'); });
+    d.addEventListener('click', function (e) { if (e.target === d && d.close) d.close(); });
+  })();
+</script>
