@@ -22,7 +22,7 @@
         "e28ab570-0615-4f77-9ede-8701b8284dd4": {
           "type": "caption",
           "settings": {
-            "caption": "(Promociones todos los días)",
+            "caption": "",
             "text_style": "subtitle",
             "text_size": "medium"
           }
@@ -81,7 +81,6 @@
         "306c2cf4-48be-4db4-8b93-7ad7b75d6ae1"
       ],
       "settings": {
-        "image": "shopify://shop_images/amorina_mision_optimized.jpg",
         "height": "small",
         "desktop_image_width": "medium",
         "layout": "text_first",
