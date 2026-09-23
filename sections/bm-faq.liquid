@@ -1,0 +1,55 @@
+{%- comment -%}
+  Preguntas frecuentes editables, salidas de las objeciones reales del avatar.
+  Fuente canónica: claude-skills/core/tema_landing.
+{%- endcomment -%}
+{{ 'bm-landing.css' | asset_url | stylesheet_tag }}
+{%- assign s = section.settings -%}
+<div class="bm-sec bm-faq" data-bm-landing="faq" data-bm-sec="{{ section.id }}" style="{% if s.fondo != blank %}--bm-sec-bg:{{ s.fondo }};{% endif %}{% if s.texto != blank %}--bm-sec-fg:{{ s.texto }};{% endif %}{% if s.linea != blank %}--bm-linea:{{ s.linea }};{% endif %}--bm-pad-top:{{ s.padding_top }}px;--bm-pad-bottom:{{ s.padding_bottom }}px;--bm-pad-x:{{ s.padding_lateral }}px;--bm-align:{{ s.alineacion }};">
+  <div class="bm-sec__in">
+    {%- if s.titulo != blank -%}
+      <div class="bm-cabecera"><h2>{{ s.titulo | escape }}</h2></div>
+    {%- endif -%}
+    {%- for block in section.blocks -%}
+      <details class="bm-faq__item" data-bm-bloque="pregunta" {% if forloop.first and s.abrir_primera %}open{% endif %} {{ block.shopify_attributes }}>
+        <summary>{{ block.settings.pregunta | escape }}</summary>
+        <div class="bm-faq__resp">{{ block.settings.respuesta }}</div>
+      </details>
+    {%- endfor -%}
+  </div>
+  {%- if s.cta_mostrar -%}
+    {%- render 'bm-cta', texto: s.cta_texto, subtexto: s.cta_subtexto, fondo: blank, color: blank, franja: blank, ancho: 'completo', alineacion: 'center', pad_y: 14, pulso: false -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Landing · Preguntas",
+  "tag": "section",
+  "enabled_on": { "templates": ["product"] },
+  "max_blocks": 16,
+  "settings": [
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Preguntas frecuentes" },
+    { "type": "select", "id": "alineacion", "label": "Alineación del título", "options": [
+      { "value": "left", "label": "Izquierda" }, { "value": "center", "label": "Centro" }
+    ], "default": "left" },
+    { "type": "checkbox", "id": "abrir_primera", "label": "Abrir la primera pregunta", "default": false },
+    { "type": "color", "id": "fondo", "label": "Fondo de la sección", "info": "Vacío: el de la página." },
+    { "type": "color", "id": "texto", "label": "Texto" },
+    { "type": "color", "id": "linea", "label": "Línea divisoria" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 20 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 20 },
+    { "type": "range", "id": "padding_lateral", "label": "Margen lateral", "min": 0, "max": 32, "step": 2, "unit": "px", "default": 16 },
+    { "type": "header", "content": "Botón de compra" },
+    { "type": "checkbox", "id": "cta_mostrar", "label": "Mostrar botón al final", "default": false },
+    { "type": "text", "id": "cta_texto", "label": "Texto del botón", "default": "Pedir ahora · pago contra entrega" },
+    { "type": "text", "id": "cta_subtexto", "label": "Línea bajo el botón", "default": "Pagas al recibir" }
+  ],
+  "blocks": [
+    { "type": "pregunta", "name": "Pregunta", "settings": [
+      { "type": "text", "id": "pregunta", "label": "Pregunta", "default": "¿Cómo pago?" },
+      { "type": "richtext", "id": "respuesta", "label": "Respuesta", "default": "<p>Pagas en efectivo cuando recibes el pedido.</p>" }
+    ] }
+  ],
+  "presets": [{ "name": "Landing · Preguntas", "blocks": [{ "type": "pregunta" }, { "type": "pregunta" }] }]
+}
+{% endschema %}

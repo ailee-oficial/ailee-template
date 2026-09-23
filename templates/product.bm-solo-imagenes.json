@@ -1,0 +1,287 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ajustes": {
+      "type": "bm-ajustes",
+      "settings": {
+        "aplicar_fondo": true,
+        "fondo_pagina": "#FFFFFF",
+        "texto_pagina": "#111827",
+        "ancho_max": 780,
+        "ficha_modo": "solo_boton",
+        "ficha_margen_lateral": 16,
+        "ocultar_galeria": true,
+        "ocultar_descripcion": true,
+        "ficha_padding": 12,
+        "cta_fondo": "#111827",
+        "cta_texto": "#FFFFFF",
+        "cta_radio": 12,
+        "cta_alto": 54,
+        "cta_letra": 17,
+        "rsi_aplicar": true
+      }
+    },
+    "apertura": {
+      "type": "bm-laminas",
+      "blocks": {
+        "hero": {
+          "type": "lamina",
+          "settings": {
+            "texto_alt": "",
+            "titulo_oculto": "Promesa del anuncio",
+            "nivel": "h1",
+            "prioridad": true,
+            "abre_formulario": false
+          }
+        }
+      },
+      "block_order": [
+        "hero"
+      ],
+      "settings": {
+        "espacio": 0,
+        "radio_imagen": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "ancho": "contenido"
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "comprar": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "descripcion": {
+          "type": "description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "comprar",
+        "descripcion"
+      ],
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "laminas": {
+      "type": "bm-laminas",
+      "blocks": {
+        "lamina_2": {
+          "type": "lamina",
+          "settings": {
+            "texto_alt": "",
+            "titulo_oculto": "",
+            "nivel": "h2",
+            "prioridad": false,
+            "abre_formulario": false
+          }
+        },
+        "lamina_3": {
+          "type": "lamina",
+          "settings": {
+            "texto_alt": "",
+            "titulo_oculto": "",
+            "nivel": "h2",
+            "prioridad": false,
+            "abre_formulario": false
+          }
+        },
+        "cta_2": {
+          "type": "cta",
+          "settings": {
+            "texto": "Pedir ahora · pago contra entrega",
+            "subtexto": "Pagas al recibir",
+            "ancho": "completo",
+            "alineacion": "center",
+            "pad_y": 14,
+            "pulso": false
+          }
+        },
+        "colores": {
+          "type": "lamina",
+          "settings": {
+            "texto_alt": "",
+            "titulo_oculto": "Colores disponibles",
+            "nivel": "h2",
+            "prioridad": false,
+            "abre_formulario": false
+          }
+        },
+        "tallas": {
+          "type": "lamina",
+          "settings": {
+            "texto_alt": "",
+            "titulo_oculto": "Guía de tallas",
+            "nivel": "h2",
+            "prioridad": false,
+            "abre_formulario": false
+          }
+        },
+        "cta_3": {
+          "type": "cta",
+          "settings": {
+            "texto": "Pedir ahora · pago contra entrega",
+            "subtexto": "Pagas al recibir",
+            "ancho": "completo",
+            "alineacion": "center",
+            "pad_y": 14,
+            "pulso": false
+          }
+        },
+        "lamina_4": {
+          "type": "lamina",
+          "settings": {
+            "texto_alt": "",
+            "titulo_oculto": "",
+            "nivel": "h2",
+            "prioridad": false,
+            "abre_formulario": false
+          }
+        },
+        "lamina_5": {
+          "type": "lamina",
+          "settings": {
+            "texto_alt": "",
+            "titulo_oculto": "",
+            "nivel": "h2",
+            "prioridad": false,
+            "abre_formulario": false
+          }
+        },
+        "cta_4": {
+          "type": "cta",
+          "settings": {
+            "texto": "Pedir ahora · pago contra entrega",
+            "subtexto": "Pagas al recibir",
+            "ancho": "completo",
+            "alineacion": "center",
+            "pad_y": 14,
+            "pulso": false
+          }
+        }
+      },
+      "block_order": [
+        "lamina_2",
+        "lamina_3",
+        "cta_2",
+        "colores",
+        "tallas",
+        "cta_3",
+        "lamina_4",
+        "lamina_5",
+        "cta_4"
+      ],
+      "settings": {
+        "espacio": 0,
+        "radio_imagen": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "ancho": "contenido"
+      }
+    },
+    "cierre": {
+      "type": "bm-laminas",
+      "blocks": {
+        "lamina_cierre": {
+          "type": "lamina",
+          "settings": {
+            "texto_alt": "",
+            "titulo_oculto": "",
+            "nivel": "h2",
+            "prioridad": false,
+            "abre_formulario": false
+          }
+        },
+        "confianza": {
+          "type": "nota",
+          "settings": {
+            "texto": "<p>Envío a toda Colombia · Pagas al recibir</p>",
+            "alineacion": "center",
+            "padding": 12,
+            "tamano": 15
+          }
+        },
+        "cta_final": {
+          "type": "cta",
+          "settings": {
+            "texto": "Pedir ahora · pago contra entrega",
+            "subtexto": "Pagas al recibir",
+            "ancho": "completo",
+            "alineacion": "center",
+            "pad_y": 14,
+            "pulso": false
+          }
+        }
+      },
+      "block_order": [
+        "lamina_cierre",
+        "confianza",
+        "cta_final"
+      ],
+      "settings": {
+        "espacio": 0,
+        "radio_imagen": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "ancho": "contenido"
+      }
+    },
+    "videos": {
+      "type": "bm-videos",
+      "blocks": {
+        "v1": {
+          "type": "video",
+          "settings": {
+            "leyenda": ""
+          }
+        },
+        "v2": {
+          "type": "video",
+          "settings": {
+            "leyenda": ""
+          }
+        }
+      },
+      "block_order": [
+        "v1",
+        "v2"
+      ],
+      "settings": {
+        "antetitulo": "En video",
+        "titulo": "Míralo en acción",
+        "subtitulo": "Así lo usan en su día a día",
+        "ancho_tarjeta": 60,
+        "alineacion": "center",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_lateral": 16,
+        "cta_mostrar": true,
+        "cta_texto": "Comprar ahora — Pago contra entrega",
+        "cta_subtexto": ""
+      }
+    }
+  },
+  "order": [
+    "ajustes",
+    "apertura",
+    "main",
+    "videos",
+    "laminas",
+    "cierre"
+  ]
+}
