@@ -2,6 +2,7 @@
   ah-talla-ayuda — «¿No sabes qué talla elegir?»: abre la guía de tallas del producto y ofrece WhatsApp.
   Lo usan la ficha boutique (bloque custom_liquid bajo el botón) y la sección ah-ayuda.
 
+  Lleva la clase .ah para heredar los colores de ah-home.css (botones), también fuera de una sección ah-*.
   La guía es la misma que usan las plantillas de moda: la imagen del producto cuyo nombre o alt diga
   talla, guia, medida o size. Sin esa imagen el botón de la guía no aparece (una tabla de tallas
   equivocada es peor que ninguna) y queda solo WhatsApp.
@@ -23,7 +24,7 @@
 {%- assign aht_numero = numero | strip | remove: ' ' | remove: '+' -%}
 {%- assign aht_mensaje = mensaje | default: 'Hola Ailée, quiero ayuda con mi talla de' | append: ' ' | append: product.title -%}
 
-<div class="ah-ayuda{% if compacto %} ah-ayuda--compacto{% endif %}" id="ah-talla-{{ id }}">
+<div class="ah ah-ayuda{% if compacto %} ah-ayuda--compacto{% endif %}" id="ah-talla-{{ id }}">
   <span class="ah-ayuda__icono">
     <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="10" width="26" height="12" rx="6"/><path d="M9 10v4M13 10v3M17 10v4M21 10v3M25 10v4"/></svg>
   </span>
@@ -51,7 +52,7 @@
   {%- endif -%}
 </div>
 <style>
-  .ah-ayuda { display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center; background: #f3ede7; border-radius: 6px; padding: clamp(22px, 3vw, 36px); color: #1c1c1c; }
+  .ah.ah-ayuda, .ah-ayuda { display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center; background: #f3ede7; border-radius: 6px; padding: clamp(22px, 3vw, 36px); color: #1c1c1c; }
   .ah-ayuda__icono { width: 64px; height: 64px; border-radius: 50%; background: #fff; display: grid; place-items: center; }
   .ah-ayuda__icono svg { width: 32px; height: 32px; }
   .ah-ayuda .ah-titulo { font-size: clamp(26px, 3vw, 34px); margin-bottom: 6px; }
