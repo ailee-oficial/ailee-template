@@ -49,6 +49,9 @@
   /* Escritorio: la portada no se come la pantalla (la compra se ve sin bajar tanto) */
   @media (min-width: 750px) {
     [data-bm-landing="escena"] .bm-escena--texto_sobre img { max-height: 70vh; width: 100%; object-fit: cover; object-position: 60% 70%; }
+    /* Sin galería, la columna de compra queda sola: se centra con un ancho de lectura cómodo */
+    .product.grid { justify-content: center !important; }
+    .product__info-wrapper { flex: 0 0 100% !important; max-width: 620px !important; width: 100% !important; margin: 0 auto !important; padding-left: 0 !important; }
   }
   /* Miniaturas también en móvil, como en el diseño */
   @media (max-width: 749px) {
