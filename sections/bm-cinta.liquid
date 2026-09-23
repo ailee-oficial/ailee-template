@@ -1,6 +1,8 @@
 {%- comment -%}
   Cinta de frases (arriba o entre bloques): promesas operativas que la tienda sí cumple — pago contra
   entrega, envío, cambios, garantía. Animada o fija; se detiene con «reducir movimiento».
+  Las dos landings abren con ella en lugar del encabezado del tema (sin logo de la tienda).
+  Cada línea admite un ícono antes de «|»: `camion|Envío gratis`.
   Fuente canónica: claude-skills/core/tema_landing.
 {%- endcomment -%}
 {{ 'bm-landing.css' | asset_url | stylesheet_tag }}
@@ -9,7 +11,33 @@
 {%- capture fila -%}
   {%- for frase in frases -%}
     {%- assign f = frase | strip -%}
-    {%- if f != blank -%}<span class="bm-cinta__frase">{{ f | escape }}</span><span class="bm-cinta__sep" aria-hidden="true">{{ s.separador | escape }}</span>{%- endif -%}
+    {%- if f != blank -%}
+      {%- assign partes = f | split: '|' -%}
+      {%- assign icono = '' -%}
+      {%- assign texto = f -%}
+      {%- if partes[1] != blank -%}
+        {%- assign icono = partes[0] | strip -%}
+        {%- assign texto = partes[1] | strip -%}
+      {%- endif -%}
+      <span class="bm-cinta__frase">
+        {%- if icono != blank -%}
+          <span class="bm-cinta__icono" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            {%- case icono -%}
+              {%- when 'camion' -%}<path d="M1 4h14v12H1z"/><path d="M15 8h4l3 3.5V16h-7z"/><circle cx="5.5" cy="18.5" r="2"/><circle cx="18.5" cy="18.5" r="2"/>
+              {%- when 'pago' -%}<rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 10v4M18 10v4"/>
+              {%- when 'tarjeta' -%}<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>
+              {%- when 'estrella' -%}<path fill="currentColor" stroke="none" d="M12 2.2l2.95 6.4 7 .78-5.2 4.74 1.45 6.9L12 17.5l-6.2 3.52 1.45-6.9L2.05 9.38l7-.78z"/>
+              {%- when 'check' -%}<path d="M4.5 12.5l5 5 10-11"/>
+              {%- when 'escudo' -%}<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              {%- when 'reloj' -%}<circle cx="12" cy="12" r="9.5"/><path d="M12 6.5V12l3.5 2"/>
+              {%- when 'cambio' -%}<path d="M21 4v5h-5"/><path d="M3 20v-5h5"/><path d="M4.6 9A8 8 0 0 1 19 7l2 2M3 15l2 2a8 8 0 0 0 14.4-2"/>
+            {%- endcase -%}
+          </svg></span>
+        {%- endif -%}
+        {{- texto | escape -}}
+      </span>
+      {%- if icono == blank and s.separador != blank -%}<span class="bm-cinta__sep" aria-hidden="true">{{ s.separador | escape }}</span>{%- endif -%}
+    {%- endif -%}
   {%- endfor -%}
 {%- endcapture -%}
 <div class="bm-sec bm-cinta{% if s.animada %} bm-cinta--animada{% endif %}" data-bm-landing="cinta" data-bm-sec="{{ section.id }}" style="{% if s.fondo != blank %}--bm-sec-bg:{{ s.fondo }};{% endif %}{% if s.texto != blank %}--bm-sec-fg:{{ s.texto }};{% endif %}--bm-cinta-pad:{{ s.padding }}px;--bm-cinta-tam:{{ s.tamano }}px;--bm-cinta-dur:{{ s.duracion }}s;">
@@ -25,8 +53,8 @@
   "tag": "section",
   "enabled_on": { "templates": ["product"] },
   "settings": [
-    { "type": "textarea", "id": "frases", "label": "Frases (una por línea)", "default": "Pago contra entrega\nEnvío a toda Colombia\nCambios sin costo" },
-    { "type": "text", "id": "separador", "label": "Separador", "default": "·" },
+    { "type": "textarea", "id": "frases", "label": "Frases (una por línea)", "info": "Ícono opcional antes de «|»: camion, pago, tarjeta, estrella, check, escudo, reloj, cambio. Ej.: camion|Envío gratis", "default": "pago|Pago contra entrega\ncamion|Envío a toda Colombia\ncambio|Cambios sin costo" },
+    { "type": "text", "id": "separador", "label": "Separador (frases sin ícono)", "default": "·" },
     { "type": "checkbox", "id": "animada", "label": "Desplazamiento continuo", "default": true },
     { "type": "range", "id": "duracion", "label": "Duración de una vuelta", "min": 8, "max": 60, "step": 2, "unit": "s", "default": 24 },
     { "type": "range", "id": "tamano", "label": "Tamaño del texto", "min": 12, "max": 18, "step": 1, "unit": "px", "default": 14 },

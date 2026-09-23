@@ -29,6 +29,19 @@
         "rsi_aplicar": true
       }
     },
+    "cinta": {
+      "type": "bm-cinta",
+      "settings": {
+        "frases": "pago|Pago contra entrega\ncamion|Envío a toda Colombia\ncambio|Cambios sin costo",
+        "separador": "·",
+        "animada": true,
+        "duracion": 24,
+        "tamano": 14,
+        "padding": 9,
+        "fondo": "#111827",
+        "texto": "#FFFFFF"
+      }
+    },
     "apertura": {
       "type": "bm-laminas",
       "blocks": {
@@ -278,6 +291,7 @@
   },
   "order": [
     "ajustes",
+    "cinta",
     "apertura",
     "main",
     "videos",

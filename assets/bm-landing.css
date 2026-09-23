@@ -149,7 +149,9 @@
 .bm-cinta{padding:var(--bm-cinta-pad,9px) 0;font-size:var(--bm-cinta-tam,14px);font-weight:700;line-height:1.2;white-space:nowrap}
 .bm-cinta__pista{display:flex;width:max-content;margin:0 auto}
 .bm-cinta__fila{display:flex;align-items:center;flex:0 0 auto}
-.bm-cinta__frase{padding:0 10px}
+.bm-cinta__frase{display:inline-flex;align-items:center;gap:.45em;padding:0 14px}
+.bm-cinta__icono{display:inline-flex;line-height:0}
+.bm-cinta__icono svg{width:1.25em;height:1.25em}
 .bm-cinta__sep{opacity:.7}
 .bm-cinta--animada .bm-cinta__pista{margin:0;animation:bm-cinta var(--bm-cinta-dur,24s) linear infinite}
 @keyframes bm-cinta{from{transform:translateX(0)}to{transform:translateX(-50%)}}

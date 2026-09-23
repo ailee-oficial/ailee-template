@@ -32,7 +32,7 @@
     "cinta": {
       "type": "bm-cinta",
       "settings": {
-        "frases": "Pago contra entrega\nEnvío a toda Colombia\nCambios sin costo",
+        "frases": "pago|Pago contra entrega\ncamion|Envío a toda Colombia\ncambio|Cambios sin costo",
         "separador": "·",
         "animada": true,
         "duracion": 24,
@@ -60,11 +60,11 @@
         "portada"
       ],
       "settings": {
-        "ancho": "contenido",
         "espacio": 0,
         "radio_imagen": 0,
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "ancho": "contenido"
       }
     },
     "oferta": {
@@ -263,10 +263,6 @@
         "texto"
       ],
       "settings": {
-        "texto_alt": "",
-        "titulo_oculto": "",
-        "nivel_oculto": "h2",
-        "prioridad": false,
         "disposicion": "texto_arriba",
         "posicion_texto": "end",
         "sobre_degradado": true,
@@ -275,7 +271,11 @@
         "panel_padding": 20,
         "separacion": 10,
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "prioridad": false,
+        "nivel_oculto": "h2",
+        "titulo_oculto": "",
+        "texto_alt": ""
       }
     },
     "especificaciones": {
@@ -336,25 +336,25 @@
         "p1": {
           "type": "item",
           "settings": {
-            "simbolo": "",
             "titulo": "Paso 1",
-            "texto": "Instrucción fiel al producto."
+            "texto": "Instrucción fiel al producto.",
+            "simbolo": ""
           }
         },
         "p2": {
           "type": "item",
           "settings": {
-            "simbolo": "",
             "titulo": "Paso 2",
-            "texto": "Instrucción fiel al producto."
+            "texto": "Instrucción fiel al producto.",
+            "simbolo": ""
           }
         },
         "p3": {
           "type": "item",
           "settings": {
-            "simbolo": "",
             "titulo": "Paso 3",
-            "texto": "Instrucción fiel al producto."
+            "texto": "Instrucción fiel al producto.",
+            "simbolo": ""
           }
         }
       },
@@ -525,10 +525,6 @@
         "cta"
       ],
       "settings": {
-        "texto_alt": "",
-        "titulo_oculto": "",
-        "nivel_oculto": "h2",
-        "prioridad": false,
         "disposicion": "solo_texto",
         "posicion_texto": "end",
         "sobre_degradado": true,
@@ -537,7 +533,11 @@
         "panel_padding": 24,
         "separacion": 10,
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "prioridad": false,
+        "nivel_oculto": "h2",
+        "titulo_oculto": "",
+        "texto_alt": ""
       }
     },
     "videos": {
