@@ -1,0 +1,127 @@
+{{ 'ah-home.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  #shopify-section-{{ section.id }} .ah-hero { --ah-alto: {{ section.settings.alto }}px; }
+{%- endstyle -%}
+
+<section class="ah ah-hero" data-ah-slider data-intervalo="{{ section.settings.intervalo }}" aria-roledescription="carrusel" aria-label="{{ section.settings.etiqueta | escape }}">
+  <div class="ah-hero__pista" data-ah-pista>
+    {%- for block in section.blocks -%}
+      {%- if forloop.first -%}{%- assign ah_carga = 'eager' -%}{%- else -%}{%- assign ah_carga = 'lazy' -%}{%- endif -%}
+      <div class="ah-hero__slide ah-hero__slide--{{ block.settings.tono }}" style="--ah-foco: {{ block.settings.foco }}% center; --ah-foco-movil: {{ block.settings.foco_movil }}% center;" aria-roledescription="diapositiva" aria-label="{{ forloop.index }} de {{ forloop.length }}" {{ block.shopify_attributes }}>
+        <div class="ah-hero__media">
+          {%- render 'ah-img', imagen: block.settings.imagen, respaldo: block.settings.respaldo, alt: block.settings.titulo, carga: ah_carga, sizes: '100vw', ancho: 2048, alto: 1152 -%}
+        </div>
+        <div class="ah-hero__velo"></div>
+        {%- if block.settings.firma != blank -%}
+          <p class="ah-hero__firma ah-script">{{ block.settings.firma | escape | newline_to_br }}</p>
+        {%- endif -%}
+        <div class="ah-hero__contenido">
+          {%- if block.settings.titulo != blank -%}
+            {%- if forloop.first -%}
+              <h1 class="ah-hero__titulo">{{ block.settings.titulo | escape | newline_to_br }}</h1>
+            {%- else -%}
+              <h2 class="ah-hero__titulo">{{ block.settings.titulo | escape | newline_to_br }}</h2>
+            {%- endif -%}
+          {%- endif -%}
+          {%- if block.settings.subtitulo != blank -%}
+            <div class="ah-hero__linea"></div>
+            <p class="ah-hero__sub">{{ block.settings.subtitulo | escape }}</p>
+          {%- endif -%}
+          {%- if block.settings.boton != blank -%}
+            {%- if block.settings.tono == 'claro' -%}{%- assign ah_btn = 'ah-boton ah-boton--claro' -%}{%- else -%}{%- assign ah_btn = 'ah-boton' -%}{%- endif -%}
+            <a class="{{ ah_btn }}" href="{{ block.settings.enlace | default: '/collections/all' }}">
+              {{ block.settings.boton | escape }} {%- render 'ah-icono', icono: 'flecha' -%}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+
+  {%- if section.blocks.size > 1 -%}
+    <button type="button" class="ah-hero__flecha ah-hero__flecha--prev" data-ah-prev aria-label="Anterior">{%- render 'ah-icono', icono: 'flecha-izq' -%}</button>
+    <button type="button" class="ah-hero__flecha ah-hero__flecha--next" data-ah-next aria-label="Siguiente">{%- render 'ah-icono', icono: 'flecha-der' -%}</button>
+    <div class="ah-hero__puntos">
+      {%- for block in section.blocks -%}
+        <button type="button" class="ah-hero__punto" data-ah-punto="{{ forloop.index0 }}" aria-label="Ir a la diapositiva {{ forloop.index }}"{% if forloop.first %} aria-current="true"{% endif %}></button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</section>
+
+<script>
+  (function () {
+    function iniciar(raiz) {
+      if (!raiz || raiz.dataset.ahListo) return;
+      raiz.dataset.ahListo = '1';
+      var pista = raiz.querySelector('[data-ah-pista]');
+      var total = pista ? pista.children.length : 0;
+      if (total < 2) return;
+      var puntos = raiz.querySelectorAll('[data-ah-punto]');
+      var actual = 0, reloj = null, ms = (parseInt(raiz.dataset.intervalo, 10) || 0) * 1000;
+      var reducir = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function ir(i) {
+        actual = (i + total) % total;
+        pista.style.transform = 'translateX(' + (-100 * actual) + '%)';
+        for (var p = 0; p < puntos.length; p++) puntos[p].setAttribute('aria-current', p === actual ? 'true' : 'false');
+      }
+      function programar() {
+        if (reloj) clearInterval(reloj);
+        if (ms && !reducir) reloj = setInterval(function () { ir(actual + 1); }, ms);
+      }
+      raiz.querySelector('[data-ah-prev]').addEventListener('click', function () { ir(actual - 1); programar(); });
+      raiz.querySelector('[data-ah-next]').addEventListener('click', function () { ir(actual + 1); programar(); });
+      for (var p = 0; p < puntos.length; p++) {
+        puntos[p].addEventListener('click', function () { ir(parseInt(this.dataset.ahPunto, 10)); programar(); });
+      }
+      var x0 = null;
+      pista.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+      pista.addEventListener('touchend', function (e) {
+        if (x0 === null) return;
+        var dx = e.changedTouches[0].clientX - x0; x0 = null;
+        if (Math.abs(dx) > 40) { ir(actual + (dx < 0 ? 1 : -1)); programar(); }
+      });
+      raiz.addEventListener('mouseenter', function () { if (reloj) clearInterval(reloj); });
+      raiz.addEventListener('mouseleave', programar);
+      programar();
+    }
+    document.querySelectorAll('[data-ah-slider]').forEach(iniciar);
+    document.addEventListener('shopify:section:load', function (e) { iniciar(e.target.querySelector('[data-ah-slider]')); });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Ailee · Banner principal",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "etiqueta", "label": "Nombre del carrusel (accesibilidad)", "default": "Destacados de Ailée" },
+    { "type": "range", "id": "alto", "label": "Alto en escritorio", "min": 440, "max": 800, "step": 20, "unit": "px", "default": 620 },
+    { "type": "range", "id": "intervalo", "label": "Cambio automático (0 = apagado)", "min": 0, "max": 10, "step": 1, "unit": "s", "default": 6 }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Diapositiva",
+      "settings": [
+        { "type": "image_picker", "id": "imagen", "label": "Imagen", "info": "Horizontal, mínimo 2000 px de ancho. Deja el lado izquierdo despejado para el texto." },
+        { "type": "text", "id": "respaldo", "label": "Imagen provisional del tema", "info": "Se usa mientras no elijas una imagen arriba." },
+        { "type": "select", "id": "tono", "label": "Color del texto", "default": "oscuro",
+          "options": [{ "value": "oscuro", "label": "Negro (foto clara)" }, { "value": "claro", "label": "Blanco (foto oscura)" }] },
+        { "type": "range", "id": "foco", "label": "Encuadre horizontal (escritorio)", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 70 },
+        { "type": "range", "id": "foco_movil", "label": "Encuadre horizontal (móvil)", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 72 },
+        { "type": "textarea", "id": "titulo", "label": "Título", "default": "Tu estilo.\nTu esencia.\nTu manera de brillar." },
+        { "type": "text", "id": "subtitulo", "label": "Subtítulo", "default": "Estilo que te acompaña en cada momento" },
+        { "type": "text", "id": "boton", "label": "Texto del botón", "default": "Descubre la colección" },
+        { "type": "url", "id": "enlace", "label": "Enlace del botón" },
+        { "type": "textarea", "id": "firma", "label": "Frase manuscrita (opcional)" }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    { "name": "Ailee · Banner principal", "blocks": [{ "type": "slide" }] }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,59 @@
+{{ 'ah-home.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  #shopify-section-{{ section.id }} .ah-espacio { --ah-pt: {{ section.settings.pt }}px; --ah-pb: {{ section.settings.pb }}px; }
+{%- endstyle -%}
+
+<section class="ah">
+  <div class="ah-contenedor ah-espacio">
+    <div class="ah-coleccion">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}<p class="ah-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="ah-coleccion__titulo">{{ section.settings.titulo | escape }}</h2>
+        {%- if section.settings.texto != blank -%}<p class="ah-texto ah-coleccion__texto">{{ section.settings.texto | escape }}</p>{%- endif -%}
+        {%- if section.settings.boton != blank -%}
+          <a class="ah-boton" href="{{ section.settings.enlace | default: '/collections/all' }}">{{ section.settings.boton | escape }} {%- render 'ah-icono', icono: 'flecha' -%}</a>
+        {%- endif -%}
+      </div>
+      <div class="ah-coleccion__fotos ah-scroll">
+        {%- for block in section.blocks -%}
+          <a class="ah-coleccion__foto" href="{{ block.settings.enlace | default: section.settings.enlace | default: '/collections/all' }}" {{ block.shopify_attributes }}>
+            {%- render 'ah-img', imagen: block.settings.imagen, respaldo: block.settings.respaldo, alt: block.settings.alt, sizes: '(min-width: 990px) 18vw, 62vw', ancho: 675, alto: 900 -%}
+          </a>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ailee · Colección",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Nueva colección" },
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Esencia" },
+    { "type": "textarea", "id": "texto", "label": "Texto", "default": "Prendas versátiles, femeninas y atemporales, pensadas para realzar tu esencia en cada ocasión." },
+    { "type": "text", "id": "boton", "label": "Texto del botón", "default": "Ver colección" },
+    { "type": "url", "id": "enlace", "label": "Enlace" },
+    { "type": "range", "id": "pt", "label": "Espacio arriba", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 72 },
+    { "type": "range", "id": "pb", "label": "Espacio abajo", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 }
+  ],
+  "blocks": [
+    {
+      "type": "foto",
+      "name": "Foto",
+      "settings": [
+        { "type": "image_picker", "id": "imagen", "label": "Imagen", "info": "Vertical 3:4." },
+        { "type": "text", "id": "respaldo", "label": "Imagen provisional del tema" },
+        { "type": "text", "id": "alt", "label": "Descripción de la imagen" },
+        { "type": "url", "id": "enlace", "label": "Enlace (opcional)" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    { "name": "Ailee · Colección", "blocks": [{ "type": "foto" }, { "type": "foto" }, { "type": "foto" }, { "type": "foto" }] }
+  ]
+}
+{% endschema %}

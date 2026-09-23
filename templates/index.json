@@ -9,284 +9,334 @@
  */
 {
   "sections": {
-    "c8b3c1e5-1c7f-454e-a20d-b5d59424986d": {
-      "type": "rich-text",
+    "ah_hero": {
+      "type": "ah-hero",
+      "settings": {
+        "etiqueta": "Destacados de Ailée",
+        "alto": 620,
+        "intervalo": 6
+      },
       "blocks": {
-        "template--19583287034172__c8b3c1e5-1c7f-454e-a20d-b5d59424986d-16871189565c65cc6e-0": {
-          "type": "heading",
+        "slide_1": {
+          "type": "slide",
           "settings": {
-            "heading": "Productos Exclusivos",
-            "heading_size": "h2"
+            "respaldo": "ah-hero-1.webp",
+            "foco": 70,
+            "foco_movil": 72,
+            "titulo": "Tu estilo.\nTu esencia.\nTu manera de brillar.",
+            "subtitulo": "Estilo que te acompaña en cada momento",
+            "boton": "Descubre la tienda",
+            "firma": "",
+            "tono": "oscuro"
           }
         },
-        "e28ab570-0615-4f77-9ede-8701b8284dd4": {
-          "type": "caption",
+        "slide_2": {
+          "type": "slide",
           "settings": {
-            "caption": "",
-            "text_style": "subtitle",
-            "text_size": "medium"
+            "respaldo": "ah-hero-2.webp",
+            "foco": 70,
+            "foco_movil": 75,
+            "titulo": "Comodidad\nque se nota.",
+            "subtitulo": "Sandalias, suecos y tenis para cada día",
+            "boton": "Ver calzado",
+            "firma": "",
+            "tono": "oscuro"
+          }
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {
+            "respaldo": "ah-hero-3.webp",
+            "foco": 70,
+            "foco_movil": 70,
+            "titulo": "Elegancia\nsin esfuerzo.",
+            "subtitulo": "Envío gratis a toda Colombia · paga al recibir",
+            "boton": "Comprar ahora",
+            "firma": "",
+            "tono": "oscuro"
           }
         }
       },
       "block_order": [
-        "template--19583287034172__c8b3c1e5-1c7f-454e-a20d-b5d59424986d-16871189565c65cc6e-0",
-        "e28ab570-0615-4f77-9ede-8701b8284dd4"
-      ],
+        "slide_1",
+        "slide_2",
+        "slide_3"
+      ]
+    },
+    "ah_categorias": {
+      "type": "ah-categorias",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "background-1",
-        "full_width": true,
-        "padding_top": 8,
-        "padding_bottom": 8
+        "titulo": "",
+        "pt": 44,
+        "pb": 40
+      },
+      "blocks": {
+        "categoria_1": {
+          "type": "categoria",
+          "settings": {
+            "respaldo": "ah-cat-sandalias.webp",
+            "nombre": "Sandalias",
+            "enlace": "/products/sandalia-unisex-y54-2"
+          }
+        },
+        "categoria_2": {
+          "type": "categoria",
+          "settings": {
+            "respaldo": "ah-cat-suecos.webp",
+            "nombre": "Suecos",
+            "enlace": "/products/sueco-045"
+          }
+        },
+        "categoria_3": {
+          "type": "categoria",
+          "settings": {
+            "respaldo": "ah-cat-tenis.webp",
+            "nombre": "Tenis",
+            "enlace": "/products/tenis-easy-walk"
+          }
+        }
+      },
+      "block_order": [
+        "categoria_1",
+        "categoria_2",
+        "categoria_3"
+      ]
+    },
+    "ah_beneficios": {
+      "type": "ah-beneficios",
+      "settings": {
+        "pt": 28,
+        "pb": 28
+      },
+      "blocks": {
+        "beneficio_1": {
+          "type": "beneficio",
+          "settings": {
+            "icono": "envio",
+            "titulo": "Envío gratis",
+            "texto": "a toda Colombia"
+          }
+        },
+        "beneficio_2": {
+          "type": "beneficio",
+          "settings": {
+            "icono": "contraentrega",
+            "titulo": "Paga al recibir",
+            "texto": "pago contraentrega"
+          }
+        },
+        "beneficio_3": {
+          "type": "beneficio",
+          "settings": {
+            "icono": "garantia",
+            "titulo": "Garantía 30 días",
+            "texto": "cambios por talla o color"
+          }
+        },
+        "beneficio_4": {
+          "type": "beneficio",
+          "settings": {
+            "icono": "segura",
+            "titulo": "Compra segura",
+            "texto": "tus datos protegidos"
+          }
+        },
+        "beneficio_5": {
+          "type": "beneficio",
+          "settings": {
+            "icono": "whatsapp",
+            "titulo": "Te asesoramos",
+            "texto": "por WhatsApp"
+          }
+        }
+      },
+      "block_order": [
+        "beneficio_1",
+        "beneficio_2",
+        "beneficio_3",
+        "beneficio_4",
+        "beneficio_5"
+      ]
+    },
+    "ah_coleccion": {
+      "type": "ah-coleccion",
+      "settings": {
+        "eyebrow": "Calzado",
+        "titulo": "Pasos con estilo",
+        "texto": "Sandalias, suecos y tenis pensados para acompañarte todo el día: cómodos, femeninos y fáciles de combinar.",
+        "boton": "Ver calzado",
+        "pt": 72,
+        "pb": 40
+      },
+      "blocks": {
+        "foto_1": {
+          "type": "foto",
+          "settings": {
+            "respaldo": "ah-calzado-1.webp",
+            "alt": "Sandalias nude de dos correas"
+          }
+        },
+        "foto_2": {
+          "type": "foto",
+          "settings": {
+            "respaldo": "ah-calzado-2.webp",
+            "alt": "Suecos negros con moño"
+          }
+        },
+        "foto_3": {
+          "type": "foto",
+          "settings": {
+            "respaldo": "ah-calzado-3.webp",
+            "alt": "Tenis rosados sin cordones"
+          }
+        },
+        "foto_4": {
+          "type": "foto",
+          "settings": {
+            "respaldo": "ah-calzado-4.webp",
+            "alt": "Mocasines color crema"
+          }
+        }
+      },
+      "block_order": [
+        "foto_1",
+        "foto_2",
+        "foto_3",
+        "foto_4"
+      ]
+    },
+    "ah_productos": {
+      "type": "ah-productos",
+      "settings": {
+        "eyebrow": "Best sellers",
+        "titulo": "Lo que más aman",
+        "cantidad": 8,
+        "columnas": 4,
+        "segunda_foto": true,
+        "ver_todos": "Ver todos",
+        "pt": 40,
+        "pb": 72
       }
     },
-    "image-with-text": {
-      "type": "image-with-text",
+    "ah_banners": {
+      "type": "ah-banners",
+      "settings": {
+        "alto": 460
+      },
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "banner_1": {
+          "type": "banner",
           "settings": {
-            "heading": "Es momento de comprar",
-            "heading_size": "h2"
+            "respaldo": "ah-banner-looks.webp",
+            "tono": "oscuro",
+            "titulo": "Comodidad para\ntu día a día",
+            "texto": "Tenis y suecos que te acompañan de la mañana a la noche.",
+            "boton": "Ver tenis",
+            "enlace": "/products/tenis-easy-walk"
           }
         },
-        "8cb5fb1f-50bf-4494-b647-c1ce7ed28b11": {
-          "type": "text",
+        "banner_2": {
+          "type": "banner",
           "settings": {
-            "text": "<p>¡Siéntete seguro de ti mismo! En nuestra tienda tenemos pagos contraentrega</p>",
-            "text_style": "body"
-          }
-        },
-        "button": {
-          "type": "button",
-          "settings": {
-            "button_label": "Comprar Ahora",
-            "button_link": "shopify://collections/all"
-          }
-        },
-        "306c2cf4-48be-4db4-8b93-7ad7b75d6ae1": {
-          "type": "caption",
-          "settings": {
-            "caption": "MÁS DE 72,500+ CLIENTES FELICES",
-            "text_style": "caption-with-letter-spacing",
-            "text_size": "medium"
+            "respaldo": "ah-banner-detalles.webp",
+            "tono": "oscuro",
+            "titulo": "Los detalles\ntambién cuentan",
+            "texto": "Hebillas, moños y texturas suaves que hacen la diferencia.",
+            "boton": "Ver sandalias",
+            "enlace": "/products/sandalia-unisex-y54-2"
           }
         }
       },
       "block_order": [
-        "heading",
-        "8cb5fb1f-50bf-4494-b647-c1ce7ed28b11",
-        "button",
-        "306c2cf4-48be-4db4-8b93-7ad7b75d6ae1"
-      ],
+        "banner_1",
+        "banner_2"
+      ]
+    },
+    "ah_momentos": {
+      "type": "ah-momentos",
       "settings": {
-        "height": "small",
-        "desktop_image_width": "medium",
-        "layout": "text_first",
-        "desktop_content_position": "bottom",
-        "desktop_content_alignment": "center",
-        "content_layout": "no-overlap",
-        "color_scheme": "background-1",
-        "image_behavior": "none",
-        "mobile_content_alignment": "left",
-        "padding_top": 0,
-        "padding_bottom": 0
+        "eyebrow": "Inspírate",
+        "titulo": "Un estilo, mil momentos",
+        "pt": 72,
+        "pb": 48
+      },
+      "blocks": {
+        "momento_1": {
+          "type": "momento",
+          "settings": {
+            "respaldo": "ah-momento-diario.webp",
+            "nombre": "Día a día"
+          }
+        },
+        "momento_2": {
+          "type": "momento",
+          "settings": {
+            "respaldo": "ah-momento-oficina.webp",
+            "nombre": "Oficina / Universidad"
+          }
+        },
+        "momento_3": {
+          "type": "momento",
+          "settings": {
+            "respaldo": "ah-momento-noche.webp",
+            "nombre": "Una cena especial"
+          }
+        },
+        "momento_4": {
+          "type": "momento",
+          "settings": {
+            "respaldo": "ah-momento-finde.webp",
+            "nombre": "Fin de semana"
+          }
+        }
+      },
+      "block_order": [
+        "momento_1",
+        "momento_2",
+        "momento_3",
+        "momento_4"
+      ]
+    },
+    "ah_whatsapp": {
+      "type": "ah-whatsapp",
+      "settings": {
+        "numero": "573128860515",
+        "mensaje": "Hola Ailée, quiero asesoría con mi compra.",
+        "respaldo": "ah-whatsapp.webp",
+        "eyebrow": "Asesoría personalizada",
+        "titulo": "¿Tienes dudas? Te asesoramos por WhatsApp",
+        "texto": "Escríbenos y te ayudamos a elegir la talla, el color y el estilo perfecto para ti.",
+        "puntos": "Te ayudamos a elegir tu talla\nTe damos ideas para combinar\nResolvemos tus dudas de envío y pago",
+        "boton": "Escríbenos por WhatsApp",
+        "nota": "",
+        "pt": 24,
+        "pb": 72
       }
     },
-    "85737c2a-678d-45f4-9cb2-9a4a311a30f6": {
-      "type": "multicolumn",
-      "blocks": {
-        "template--19239854047509__85737c2a-678d-45f4-9cb2-9a4a311a30f6-16859164819852504b-0": {
-          "type": "column",
-          "settings": {
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "template--19239854047509__85737c2a-678d-45f4-9cb2-9a4a311a30f6-16859164819852504b-1": {
-          "type": "column",
-          "settings": {
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "template--19239854047509__85737c2a-678d-45f4-9cb2-9a4a311a30f6-16859164819852504b-2": {
-          "type": "column",
-          "settings": {
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "4946b2f8-c16c-4642-af23-751381c8be93": {
-          "type": "column",
-          "settings": {
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "template--19239854047509__85737c2a-678d-45f4-9cb2-9a4a311a30f6-16859164819852504b-0",
-        "template--19239854047509__85737c2a-678d-45f4-9cb2-9a4a311a30f6-16859164819852504b-1",
-        "template--19239854047509__85737c2a-678d-45f4-9cb2-9a4a311a30f6-16859164819852504b-2",
-        "4946b2f8-c16c-4642-af23-751381c8be93"
-      ],
-      "disabled": true,
+    "ah_newsletter": {
+      "type": "ah-newsletter",
       "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "columns_desktop": 4,
-        "column_alignment": "center",
-        "background_style": "primary",
-        "button_label": "",
-        "button_link": "",
-        "color_scheme": "inverse",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 0,
-        "padding_bottom": 20
-      }
-    },
-    "4db7499b-96e7-445e-8b7e-92c78186e9b7": {
-      "type": "compare-chart",
-      "blocks": {
-        "template--19569037607228__4db7499b-96e7-445e-8b7e-92c78186e9b7-1687024082f903de43-0": {
-          "type": "row",
-          "settings": {
-            "benefit": "Pago Contraentrega",
-            "us": true,
-            "others": false
-          }
-        },
-        "template--19569037607228__4db7499b-96e7-445e-8b7e-92c78186e9b7-1687024082f903de43-1": {
-          "type": "row",
-          "settings": {
-            "benefit": "Envíos Gratis",
-            "us": true,
-            "others": false
-          }
-        },
-        "template--19569037607228__4db7499b-96e7-445e-8b7e-92c78186e9b7-1687024082f903de43-2": {
-          "type": "row",
-          "settings": {
-            "benefit": "Garantía Segura",
-            "us": true,
-            "others": false
-          }
-        },
-        "8d4ce2b0-311a-473c-823f-1c2a7cddabb0": {
-          "type": "row",
-          "settings": {
-            "benefit": "Productos Exclusivos",
-            "us": true,
-            "others": false
-          }
-        },
-        "ca9c466f-7056-4b1a-820d-c61162d61899": {
-          "type": "row",
-          "settings": {
-            "benefit": "Precios Altos",
-            "us": false,
-            "others": true
-          }
-        }
-      },
-      "block_order": [
-        "template--19569037607228__4db7499b-96e7-445e-8b7e-92c78186e9b7-1687024082f903de43-0",
-        "template--19569037607228__4db7499b-96e7-445e-8b7e-92c78186e9b7-1687024082f903de43-1",
-        "template--19569037607228__4db7499b-96e7-445e-8b7e-92c78186e9b7-1687024082f903de43-2",
-        "8d4ce2b0-311a-473c-823f-1c2a7cddabb0",
-        "ca9c466f-7056-4b1a-820d-c61162d61899"
-      ],
-      "settings": {
-        "title": "Que hace especial a nuestra tienda",
-        "heading_size": "h1",
-        "text": "<p>Descubra porque nos encanta satisfacer a nuestros clientes</p>",
-        "button_label": "",
-        "link": "",
-        "button_style_secondary": false,
-        "layout": "table_second",
-        "color_scheme": "background-1",
-        "logo_width": 75,
-        "us_label": "Nosotros",
-        "others_label": "Otros",
-        "benefit_color_scheme": "accent-1",
-        "checkmark_color": "#53af01",
-        "icon_cells_color_scheme": "background-1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "4e844363-4d64-4537-ba07-47b167d9e3be": {
-      "type": "multicolumn",
-      "blocks": {
-        "565aee10-4107-4e1d-a2e9-50367180f2c2": {
-          "type": "column",
-          "settings": {
-            "title": "Envíos Gratis",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "1653cbe6-bcc6-4f67-b1be-1bef1168ffc1": {
-          "type": "column",
-          "settings": {
-            "title": "30-Dias de Garantia",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "e822a487-88b5-4df0-8012-7c1cfc026f91": {
-          "type": "column",
-          "settings": {
-            "title": "Devoluciones Faciles",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "565aee10-4107-4e1d-a2e9-50367180f2c2",
-        "1653cbe6-bcc6-4f67-b1be-1bef1168ffc1",
-        "e822a487-88b5-4df0-8012-7c1cfc026f91"
-      ],
-      "settings": {
-        "title": "Pruébenos sin riesgos",
-        "heading_size": "h2",
-        "image_width": "third",
-        "image_ratio": "adapt",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "primary",
-        "button_label": "",
-        "button_link": "",
-        "color_scheme": "background-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 0,
-        "padding_bottom": 20
+        "titulo": "Únete a Ailée",
+        "texto": "Recibe novedades, lanzamientos y descuentos especiales.",
+        "placeholder": "Tu correo electrónico",
+        "boton": "Suscribirme",
+        "gracias": "¡Gracias por unirte! Pronto recibirás nuestras novedades.",
+        "legal": "Puedes darte de baja cuando quieras.",
+        "firma": "Más que moda,\nuna forma de ser",
+        "pt": 56,
+        "pb": 56
       }
     }
   },
   "order": [
-    "c8b3c1e5-1c7f-454e-a20d-b5d59424986d",
-    "image-with-text",
-    "85737c2a-678d-45f4-9cb2-9a4a311a30f6",
-    "4db7499b-96e7-445e-8b7e-92c78186e9b7",
-    "4e844363-4d64-4537-ba07-47b167d9e3be"
+    "ah_hero",
+    "ah_categorias",
+    "ah_beneficios",
+    "ah_coleccion",
+    "ah_productos",
+    "ah_banners",
+    "ah_momentos",
+    "ah_whatsapp",
+    "ah_newsletter"
   ]
 }

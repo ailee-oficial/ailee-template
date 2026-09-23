@@ -1,0 +1,56 @@
+{{ 'ah-home.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  #shopify-section-{{ section.id }} .ah-banner { --ah-alto: {{ section.settings.alto }}px; }
+{%- endstyle -%}
+
+<section class="ah">
+  <div class="ah-banners">
+    {%- for block in section.blocks -%}
+      <div class="ah-banner ah-banner--{{ block.settings.tono }}" {{ block.shopify_attributes }}>
+        <div class="ah-banner__media">
+          {%- render 'ah-img', imagen: block.settings.imagen, respaldo: block.settings.respaldo, alt: block.settings.titulo, sizes: '(min-width: 750px) 50vw, 100vw', ancho: 1600, alto: 1200 -%}
+        </div>
+        <div class="ah-banner__velo"></div>
+        <div class="ah-banner__contenido">
+          <h2 class="ah-banner__titulo">{{ block.settings.titulo | escape | newline_to_br }}</h2>
+          {%- if block.settings.texto != blank -%}<p class="ah-banner__texto">{{ block.settings.texto | escape }}</p>{%- endif -%}
+          {%- if block.settings.boton != blank -%}
+            {%- if block.settings.tono == 'claro' -%}{%- assign ah_btn = 'ah-boton ah-boton--claro' -%}{%- else -%}{%- assign ah_btn = 'ah-boton' -%}{%- endif -%}
+            <a class="{{ ah_btn }}" href="{{ block.settings.enlace | default: '/collections/all' }}">{{ block.settings.boton | escape }} {%- render 'ah-icono', icono: 'flecha' -%}</a>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ailee · Banners dobles",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "range", "id": "alto", "label": "Alto en escritorio", "min": 320, "max": 640, "step": 20, "unit": "px", "default": 460 }
+  ],
+  "blocks": [
+    {
+      "type": "banner",
+      "name": "Banner",
+      "settings": [
+        { "type": "image_picker", "id": "imagen", "label": "Imagen", "info": "Horizontal 4:3. El texto va a la derecha." },
+        { "type": "text", "id": "respaldo", "label": "Imagen provisional del tema" },
+        { "type": "select", "id": "tono", "label": "Color del texto", "default": "claro",
+          "options": [{ "value": "claro", "label": "Blanco (foto oscura)" }, { "value": "oscuro", "label": "Negro (foto clara)" }] },
+        { "type": "textarea", "id": "titulo", "label": "Título", "default": "Looks para\ntu día a día" },
+        { "type": "text", "id": "texto", "label": "Texto", "default": "Comodidad y estilo en perfecta armonía." },
+        { "type": "text", "id": "boton", "label": "Texto del botón", "default": "Ver looks" },
+        { "type": "url", "id": "enlace", "label": "Enlace" }
+      ]
+    }
+  ],
+  "max_blocks": 2,
+  "presets": [
+    { "name": "Ailee · Banners dobles", "blocks": [{ "type": "banner" }, { "type": "banner" }] }
+  ]
+}
+{% endschema %}

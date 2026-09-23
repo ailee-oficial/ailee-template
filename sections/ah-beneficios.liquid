@@ -1,0 +1,65 @@
+{{ 'ah-home.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  #shopify-section-{{ section.id }} .ah-espacio { --ah-pt: {{ section.settings.pt }}px; --ah-pb: {{ section.settings.pb }}px; }
+  #shopify-section-{{ section.id }} .ah-beneficios__fila { --ah-cols: {{ section.blocks.size }}; }
+{%- endstyle -%}
+
+<section class="ah ah-fondo-suave">
+  <div class="ah-contenedor ah-espacio">
+    <div class="ah-beneficios__fila ah-scroll">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.enlace != blank -%}
+          <a class="ah-beneficio" href="{{ block.settings.enlace }}" {{ block.shopify_attributes }}>
+        {%- else -%}
+          <div class="ah-beneficio" {{ block.shopify_attributes }}>
+        {%- endif -%}
+          {%- render 'ah-icono', icono: block.settings.icono -%}
+          <div>
+            <p class="ah-beneficio__titulo">{{ block.settings.titulo | escape }}</p>
+            <p class="ah-beneficio__texto">{{ block.settings.texto | escape }}</p>
+          </div>
+        {%- if block.settings.enlace != blank -%}</a>{%- else -%}</div>{%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ailee · Beneficios",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "range", "id": "pt", "label": "Espacio arriba", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 28 },
+    { "type": "range", "id": "pb", "label": "Espacio abajo", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 28 }
+  ],
+  "blocks": [
+    {
+      "type": "beneficio",
+      "name": "Beneficio",
+      "settings": [
+        {
+          "type": "select", "id": "icono", "label": "Ícono", "default": "envio",
+          "options": [
+            { "value": "envio", "label": "Camión (envío)" },
+            { "value": "contraentrega", "label": "Billete (pago al recibir)" },
+            { "value": "garantia", "label": "Escudo (garantía)" },
+            { "value": "cambios", "label": "Caja (cambios)" },
+            { "value": "segura", "label": "Candado (compra segura)" },
+            { "value": "whatsapp", "label": "WhatsApp" },
+            { "value": "corazon", "label": "Corazón" },
+            { "value": "calidad", "label": "Diamante (calidad)" }
+          ]
+        },
+        { "type": "text", "id": "titulo", "label": "Título", "default": "Envío gratis" },
+        { "type": "text", "id": "texto", "label": "Texto", "default": "a toda Colombia" },
+        { "type": "url", "id": "enlace", "label": "Enlace (opcional)" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    { "name": "Ailee · Beneficios", "blocks": [{ "type": "beneficio" }, { "type": "beneficio" }, { "type": "beneficio" }] }
+  ]
+}
+{% endschema %}

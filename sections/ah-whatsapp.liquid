@@ -1,0 +1,67 @@
+{{ 'ah-home.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  #shopify-section-{{ section.id }} .ah-espacio { --ah-pt: {{ section.settings.pt }}px; --ah-pb: {{ section.settings.pb }}px; }
+{%- endstyle -%}
+{%- comment -%}
+  Sin número configurado la sección no se muestra a las clientas (un botón que no lleva a nadie
+  es peor que no tener botón); en el editor aparece un aviso para completarlo.
+{%- endcomment -%}
+{%- assign ah_numero = section.settings.numero | strip | remove: ' ' | remove: '+' | remove: '-' -%}
+
+{%- if ah_numero != blank or request.design_mode -%}
+<section class="ah">
+  <div class="ah-contenedor ah-espacio">
+    <div class="ah-wa">
+      <div class="ah-wa__foto">
+        {%- render 'ah-img', imagen: section.settings.imagen, respaldo: section.settings.respaldo, alt: section.settings.titulo, sizes: '(min-width: 750px) 45vw, 100vw', ancho: 675, alto: 900 -%}
+      </div>
+      <div class="ah-wa__contenido">
+        <span class="ah-wa__icono">{%- render 'ah-icono', icono: 'whatsapp' -%}</span>
+        {%- if section.settings.eyebrow != blank -%}<p class="ah-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="ah-titulo">{{ section.settings.titulo | escape }}</h2>
+        {%- if section.settings.texto != blank -%}<p class="ah-texto">{{ section.settings.texto | escape }}</p>{%- endif -%}
+        {%- if section.settings.puntos != blank -%}
+          <ul class="ah-wa__lista">
+            {%- assign ah_puntos = section.settings.puntos | newline_to_br | split: '<br />' -%}
+            {%- for punto in ah_puntos -%}
+              {%- assign ah_p = punto | strip -%}
+              {%- if ah_p != blank -%}<li>{%- render 'ah-icono', icono: 'check' -%}{{ ah_p | escape }}</li>{%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+        {%- if ah_numero != blank -%}
+          <a class="ah-boton" href="https://wa.me/{{ ah_numero }}?text={{ section.settings.mensaje | url_encode }}" target="_blank" rel="noopener">
+            {%- render 'ah-icono', icono: 'whatsapp' -%} {{ section.settings.boton | escape }}
+          </a>
+        {%- else -%}
+          <p class="ah-aviso-editor">Falta el número de WhatsApp: esta sección no se muestra en la tienda hasta que lo completes.</p>
+        {%- endif -%}
+        {%- if section.settings.nota != blank -%}<p class="ah-wa__nota">{{ section.settings.nota | escape }}</p>{%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Ailee · WhatsApp",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "numero", "label": "Número de WhatsApp", "info": "Con indicativo y sin espacios, ej. 573001234567. Sin número la sección no se muestra." },
+    { "type": "textarea", "id": "mensaje", "label": "Mensaje que se escribe solo", "default": "Hola Ailée, quiero asesoría con mi compra." },
+    { "type": "image_picker", "id": "imagen", "label": "Imagen", "info": "Vertical u horizontal; se recorta sola." },
+    { "type": "text", "id": "respaldo", "label": "Imagen provisional del tema" },
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Asesoría personalizada" },
+    { "type": "text", "id": "titulo", "label": "Título", "default": "¿Tienes dudas? Te asesoramos por WhatsApp" },
+    { "type": "textarea", "id": "texto", "label": "Texto", "default": "Escríbenos y te ayudamos a elegir la talla, el color y el estilo perfecto para ti." },
+    { "type": "textarea", "id": "puntos", "label": "Puntos (uno por línea)", "default": "Te ayudamos a elegir tu talla\nTe damos ideas para combinar\nResolvemos tus dudas de envío y pago" },
+    { "type": "text", "id": "boton", "label": "Texto del botón", "default": "Escríbenos por WhatsApp" },
+    { "type": "text", "id": "nota", "label": "Nota bajo el botón (opcional)" },
+    { "type": "range", "id": "pt", "label": "Espacio arriba", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 24 },
+    { "type": "range", "id": "pb", "label": "Espacio abajo", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 72 }
+  ],
+  "presets": [{ "name": "Ailee · WhatsApp" }]
+}
+{% endschema %}

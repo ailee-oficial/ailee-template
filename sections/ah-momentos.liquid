@@ -1,0 +1,56 @@
+{{ 'ah-home.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  #shopify-section-{{ section.id }} .ah-espacio { --ah-pt: {{ section.settings.pt }}px; --ah-pb: {{ section.settings.pb }}px; }
+  #shopify-section-{{ section.id }} .ah-momentos__fila { --ah-cols: {{ section.blocks.size }}; }
+{%- endstyle -%}
+
+<section class="ah">
+  <div class="ah-contenedor ah-espacio">
+    <div class="ah-cabecera">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}<p class="ah-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="ah-titulo">{{ section.settings.titulo | escape }}</h2>
+      </div>
+    </div>
+    <div class="ah-momentos__fila ah-scroll">
+      {%- for block in section.blocks -%}
+        <a class="ah-momento" href="{{ block.settings.enlace | default: '/collections/all' }}" {{ block.shopify_attributes }}>
+          <div class="ah-momento__foto">
+            {%- render 'ah-img', imagen: block.settings.imagen, respaldo: block.settings.respaldo, alt: block.settings.nombre, sizes: '(min-width: 990px) 25vw, 76vw', ancho: 1024, alto: 768 -%}
+          </div>
+          <p class="ah-momento__nombre">{{ block.settings.nombre | escape }}</p>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ailee · Momentos",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Inspírate" },
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Un estilo, mil momentos" },
+    { "type": "range", "id": "pt", "label": "Espacio arriba", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 72 },
+    { "type": "range", "id": "pb", "label": "Espacio abajo", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 72 }
+  ],
+  "blocks": [
+    {
+      "type": "momento",
+      "name": "Momento",
+      "settings": [
+        { "type": "image_picker", "id": "imagen", "label": "Imagen", "info": "Horizontal 4:3." },
+        { "type": "text", "id": "respaldo", "label": "Imagen provisional del tema" },
+        { "type": "text", "id": "nombre", "label": "Nombre", "default": "Día a día" },
+        { "type": "url", "id": "enlace", "label": "Enlace" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    { "name": "Ailee · Momentos", "blocks": [{ "type": "momento" }, { "type": "momento" }, { "type": "momento" }, { "type": "momento" }] }
+  ]
+}
+{% endschema %}

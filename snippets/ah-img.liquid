@@ -1,0 +1,19 @@
+{%- comment -%}
+  ah-img — imagen de las secciones ah-* del home.
+  Si en el editor se eligió una imagen (image_picker), se usa esa, con tamaños responsivos.
+  Si no, se muestra la imagen provisional del tema (`respaldo`, archivo en assets/).
+  Así el home se ve completo desde el primer día y cada foto se reemplaza desde el editor.
+
+  Parámetros: imagen, respaldo, alt, clase, carga ('lazy' | 'eager'), sizes,
+  ancho y alto (medidas de la imagen provisional, para reservar su espacio)
+{%- endcomment -%}
+{%- assign ah_carga = carga | default: 'lazy' -%}
+{%- assign ah_sizes = sizes | default: '100vw' -%}
+{%- if imagen != blank -%}
+  {%- assign ah_alt = alt | default: imagen.alt -%}
+  {{ imagen | image_url: width: 2000 | image_tag: loading: ah_carga, sizes: ah_sizes, widths: '375, 550, 750, 1100, 1500, 2000', alt: ah_alt, class: clase }}
+{%- elsif respaldo != blank -%}
+  <img src="{{ respaldo | asset_url }}" alt="{{ alt | escape }}" width="{{ ancho | default: 1200 }}" height="{{ alto | default: 1500 }}" loading="{{ ah_carga }}" class="{{ clase }}">
+{%- else -%}
+  {{ 'image' | placeholder_svg_tag: clase }}
+{%- endif -%}

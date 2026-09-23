@@ -1,0 +1,54 @@
+{{ 'ah-home.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  #shopify-section-{{ section.id }} .ah-espacio { --ah-pt: {{ section.settings.pt }}px; --ah-pb: {{ section.settings.pb }}px; }
+  #shopify-section-{{ section.id }} .ah-categorias__fila { --ah-cols: {{ section.blocks.size }}; }
+{%- endstyle -%}
+
+<section class="ah">
+  <div class="ah-contenedor ah-espacio">
+    {%- if section.settings.titulo != blank -%}
+      <div class="ah-cabecera">
+        <h2 class="ah-titulo">{{ section.settings.titulo | escape }}</h2>
+      </div>
+    {%- endif -%}
+    <div class="ah-categorias__fila ah-scroll">
+      {%- for block in section.blocks -%}
+        <a class="ah-categoria" href="{{ block.settings.enlace | default: '/collections/all' }}" {{ block.shopify_attributes }}>
+          <div class="ah-categoria__arco">
+            {%- render 'ah-img', imagen: block.settings.imagen, respaldo: block.settings.respaldo, alt: block.settings.nombre, sizes: '(min-width: 990px) 16vw, 32vw', ancho: 675, alto: 900 -%}
+          </div>
+          <p class="ah-categoria__nombre">{{ block.settings.nombre | escape }}</p>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ailee · Categorías",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "titulo", "label": "Título (opcional)" },
+    { "type": "range", "id": "pt", "label": "Espacio arriba", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 40 },
+    { "type": "range", "id": "pb", "label": "Espacio abajo", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "categoria",
+      "name": "Categoría",
+      "settings": [
+        { "type": "image_picker", "id": "imagen", "label": "Imagen", "info": "Vertical 4:5." },
+        { "type": "text", "id": "respaldo", "label": "Imagen provisional del tema" },
+        { "type": "text", "id": "nombre", "label": "Nombre", "default": "Vestidos" },
+        { "type": "url", "id": "enlace", "label": "Enlace", "info": "Normalmente la colección de esa categoría." }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    { "name": "Ailee · Categorías", "blocks": [{ "type": "categoria" }, { "type": "categoria" }, { "type": "categoria" }] }
+  ]
+}
+{% endschema %}

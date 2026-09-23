@@ -1,0 +1,270 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   ah-home.css — Home de Ailée Boutique (secciones ah-*)
+   Estética: marfil cálido, serif en cursiva para títulos, sans ligera para texto.
+   Todo vive bajo .ah para no tocar el resto del tema.
+   ───────────────────────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Allura&display=swap');
+
+.ah {
+  --ah-bg: #faf7f4;       /* blanco cálido Ailée */
+  --ah-soft: #f3ede7;
+  --ah-sand: #e8d5c8;     /* blush nude */
+  --ah-ink: #1c1c1c;      /* negro suave */
+  --ah-muted: #6b6560;
+  --ah-line: #e2d8cc;
+  --ah-camel: #8a6d47;    /* camel oscuro: el camel nude #C4A882 no da contraste en texto */
+  --ah-nude: #c4a882;
+  --ah-serif: 'Cormorant Garamond', 'Times New Roman', serif;
+  --ah-sans: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  --ah-script: 'Allura', 'Brush Script MT', cursive;
+  --ah-ancho: 1320px;
+  --ah-gutter: clamp(16px, 4vw, 40px);
+  background: var(--ah-bg);
+  color: var(--ah-ink);
+  font-family: var(--ah-sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+.ah *, .ah *::before, .ah *::after { box-sizing: border-box; }
+.ah img { display: block; max-width: 100%; }
+.ah a { color: inherit; }
+.ah p { margin: 0; }
+
+.ah-contenedor { max-width: var(--ah-ancho); margin: 0 auto; padding: 0 var(--ah-gutter); }
+.ah-espacio { padding-top: var(--ah-pt, 64px); padding-bottom: var(--ah-pb, 64px); }
+.ah-fondo-suave { background: var(--ah-soft); }
+
+/* Tipografía */
+.ah-eyebrow {
+  font-family: var(--ah-sans); font-size: 12px; font-weight: 500;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--ah-ink); margin: 0 0 10px;
+}
+.ah-titulo {
+  font-family: var(--ah-serif); font-weight: 400; font-style: italic;
+  font-size: clamp(30px, 4vw, 44px); line-height: 1.08; letter-spacing: -.005em; margin: 0;
+}
+.ah-titulo--recto { font-style: normal; }
+.ah-texto { font-size: 15px; line-height: 1.65; color: var(--ah-muted); font-weight: 300; }
+.ah-script { font-family: var(--ah-script); font-weight: 400; line-height: 1.05; }
+
+/* Botones */
+.ah-boton {
+  display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 26px;
+  border-radius: 999px; border: 1px solid var(--ah-ink); background: var(--ah-ink); color: #fff !important;
+  font-family: var(--ah-sans); font-size: 14px; font-weight: 500; letter-spacing: .02em;
+  text-decoration: none; cursor: pointer; transition: background .25s, color .25s, border-color .25s;
+}
+.ah-boton:hover { background: #3a332c; border-color: #3a332c; }
+.ah-boton--claro { background: #fff; border-color: #fff; color: var(--ah-ink) !important; }
+.ah-boton--claro:hover { background: var(--ah-soft); border-color: var(--ah-soft); }
+.ah-boton--borde { background: transparent; color: var(--ah-ink) !important; }
+.ah-boton--borde:hover { background: var(--ah-ink); color: #fff !important; }
+.ah-boton svg { width: 16px; height: 16px; flex: none; }
+.ah-enlace {
+  display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500;
+  text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;
+}
+.ah-enlace svg { width: 15px; height: 15px; }
+
+.ah-cabecera { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 28px; }
+
+/* ── Hero ──────────────────────────────────────────────────────────────────── */
+.ah-hero { position: relative; overflow: hidden; background: var(--ah-sand); }
+.ah-hero__pista { display: flex; transition: transform .7s cubic-bezier(.65,.05,.36,1); }
+.ah-hero__slide { position: relative; flex: 0 0 100%; height: var(--ah-alto, 620px); }
+.ah-hero__media, .ah-hero__media img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ah-hero__media img { object-fit: cover; object-position: var(--ah-foco, 70% center); }
+.ah-hero__velo { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(31,27,23,.55) 0%, rgba(31,27,23,.25) 38%, rgba(31,27,23,0) 62%); }
+.ah-hero__contenido {
+  position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center;
+  max-width: var(--ah-ancho); margin: 0 auto; padding: 0 calc(var(--ah-gutter) + 32px); color: #fff;
+}
+.ah-hero__titulo {
+  font-family: var(--ah-serif); font-style: italic; font-weight: 400; margin: 0;
+  font-size: clamp(40px, 5.4vw, 72px); line-height: 1.04; max-width: 20ch; text-shadow: 0 1px 24px rgba(0,0,0,.12);
+}
+.ah-hero__linea { width: 56px; height: 1px; background: rgba(255,255,255,.8); margin: 28px 0 22px; }
+.ah-hero__sub { font-size: 13px; letter-spacing: .28em; text-transform: uppercase; line-height: 1.9; max-width: 34ch; font-weight: 400; }
+.ah-hero__contenido .ah-boton { margin-top: 30px; align-self: flex-start; }
+.ah-hero__firma {
+  position: absolute; z-index: 2; right: clamp(20px, 5vw, 72px); top: 14%; color: rgba(255,255,255,.92);
+  font-size: clamp(26px, 2.6vw, 38px); transform: rotate(-8deg); text-align: center; pointer-events: none;
+}
+.ah-hero__flecha {
+  position: absolute; z-index: 3; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%;
+  border: 0; background: rgba(255,255,255,.88); color: var(--ah-ink); display: grid; place-items: center; cursor: pointer;
+  box-shadow: 0 4px 18px rgba(0,0,0,.08);
+}
+.ah-hero__flecha svg { width: 16px; height: 16px; }
+.ah-hero__flecha--prev { left: 16px; }
+.ah-hero__flecha--next { right: 16px; }
+.ah-hero__puntos { position: absolute; z-index: 3; left: 0; right: 0; bottom: 22px; display: flex; justify-content: center; gap: 8px; }
+.ah-hero__punto { width: 8px; height: 8px; border-radius: 99px; border: 0; padding: 0; background: rgba(255,255,255,.55); cursor: pointer; transition: width .3s, background .3s; }
+.ah-hero__punto[aria-current="true"] { width: 26px; background: #fff; }
+/* Texto oscuro sobre foto clara (marfil): velo crema desde la izquierda */
+.ah-hero__slide--oscuro .ah-hero__velo { background: linear-gradient(90deg, rgba(250,247,244,.92) 0%, rgba(250,247,244,.7) 34%, rgba(250,247,244,0) 60%); }
+.ah-hero__slide--oscuro .ah-hero__contenido { color: var(--ah-ink); }
+.ah-hero__slide--oscuro .ah-hero__titulo { text-shadow: none; }
+.ah-hero__slide--oscuro .ah-hero__linea { background: var(--ah-ink); }
+.ah-hero__slide--oscuro .ah-hero__firma { color: var(--ah-camel); }
+.ah-hero__puntos { filter: drop-shadow(0 0 3px rgba(0,0,0,.25)); }
+
+/* ── Categorías en arco ───────────────────────────────────────────────────── */
+.ah-categorias__fila { display: grid; grid-template-columns: repeat(var(--ah-cols, 6), minmax(0, 220px)); justify-content: center; gap: clamp(12px, 2.4vw, 36px); }
+.ah-categoria { text-decoration: none; text-align: center; display: block; }
+.ah-categoria__arco { aspect-ratio: 4 / 5; border-radius: 999px 999px 0 0; overflow: hidden; background: var(--ah-sand); }
+.ah-categoria__arco img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.ah-categoria:hover .ah-categoria__arco img { transform: scale(1.04); }
+.ah-categoria__nombre { margin-top: 14px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; font-weight: 500; }
+
+/* ── Beneficios ───────────────────────────────────────────────────────────── */
+.ah-beneficios__fila { display: grid; grid-template-columns: repeat(var(--ah-cols, 5), minmax(0, 1fr)); }
+.ah-beneficio { display: flex; align-items: center; gap: 14px; padding: 4px clamp(10px, 2vw, 26px); text-decoration: none; }
+.ah-beneficio + .ah-beneficio { border-left: 1px solid var(--ah-line); }
+.ah-beneficio svg { width: 30px; height: 30px; flex: none; color: var(--ah-ink); }
+.ah-beneficio__titulo { font-size: 14px; font-weight: 500; line-height: 1.3; }
+.ah-beneficio__texto { font-size: 13px; color: var(--ah-muted); font-weight: 300; line-height: 1.35; }
+
+/* ── Nueva colección ──────────────────────────────────────────────────────── */
+.ah-coleccion { display: grid; grid-template-columns: minmax(260px, 1fr) 2.4fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
+.ah-coleccion__titulo { font-family: var(--ah-serif); font-style: italic; font-size: clamp(48px, 6vw, 76px); line-height: 1; margin: 6px 0 22px; font-weight: 400; }
+.ah-coleccion__texto { max-width: 34ch; margin-bottom: 28px; }
+.ah-coleccion__fotos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.ah-coleccion__foto { aspect-ratio: 3 / 4.3; overflow: hidden; background: var(--ah-sand); }
+.ah-coleccion__foto img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ── Productos ────────────────────────────────────────────────────────────── */
+.ah-productos__grilla { display: grid; grid-template-columns: repeat(var(--ah-cols, 4), minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 22px); }
+.ah-producto { text-decoration: none; display: block; }
+.ah-producto__foto { position: relative; aspect-ratio: 3 / 4; overflow: hidden; background: var(--ah-soft); }
+.ah-producto__foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .45s ease, transform .6s ease; }
+.ah-producto__foto img + img { opacity: 0; }
+.ah-producto:hover .ah-producto__foto img + img { opacity: 1; }
+.ah-producto:hover .ah-producto__foto img:only-child { transform: scale(1.03); }
+.ah-producto__etiqueta { position: absolute; z-index: 2; top: 10px; left: 10px; background: #fff; color: var(--ah-ink); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; padding: 5px 10px; border-radius: 99px; }
+.ah-producto__nombre { margin-top: 12px; font-size: 14px; line-height: 1.35; }
+.ah-producto__precio { margin-top: 4px; font-size: 14px; font-weight: 500; }
+.ah-producto__antes { color: var(--ah-muted); font-weight: 300; text-decoration: line-through; margin-left: 6px; }
+.ah-productos__vacio { padding: 40px; text-align: center; background: var(--ah-soft); color: var(--ah-muted); }
+
+/* ── Banners dobles ───────────────────────────────────────────────────────── */
+.ah-banners { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.ah-banner { position: relative; min-height: var(--ah-alto, 440px); overflow: hidden; display: flex; align-items: center; background: var(--ah-sand); }
+.ah-banner__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s ease; }
+.ah-banner:hover .ah-banner__media img { transform: scale(1.03); }
+.ah-banner__velo { position: absolute; inset: 0; }
+.ah-banner--claro .ah-banner__velo { background: linear-gradient(270deg, rgba(31,27,23,.5), rgba(31,27,23,0) 65%); }
+.ah-banner--oscuro .ah-banner__velo { background: linear-gradient(270deg, rgba(250,247,244,.95) 0%, rgba(250,247,244,.88) 42%, rgba(250,247,244,0) 72%); }
+.ah-banner__contenido { position: relative; z-index: 2; margin-left: auto; width: min(58%, 380px); padding: 32px clamp(24px, 4vw, 48px) 32px 0; }
+.ah-banner--claro .ah-banner__contenido { color: #fff; }
+.ah-banner__titulo { font-family: var(--ah-serif); font-style: italic; font-weight: 400; font-size: clamp(30px, 3.2vw, 44px); line-height: 1.05; margin: 0 0 12px; }
+.ah-banner__texto { font-size: 15px; line-height: 1.55; font-weight: 300; margin-bottom: 22px; }
+
+/* ── Momentos ─────────────────────────────────────────────────────────────── */
+.ah-momentos__fila { display: grid; grid-template-columns: repeat(var(--ah-cols, 4), minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 22px); }
+.ah-momento { display: block; text-decoration: none; background: var(--ah-soft); }
+.ah-momento__foto { aspect-ratio: 4 / 3; overflow: hidden; }
+.ah-momento__foto img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.ah-momento:hover .ah-momento__foto img { transform: scale(1.04); }
+.ah-momento__nombre { padding: 14px 10px; text-align: center; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; font-weight: 500; }
+
+/* ── WhatsApp ─────────────────────────────────────────────────────────────── */
+.ah-wa { display: grid; grid-template-columns: 1fr 1.15fr; background: var(--ah-soft); overflow: hidden; border-radius: 4px; }
+.ah-wa__foto { position: relative; min-height: 420px; }
+.ah-wa__foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ah-wa__contenido { padding: clamp(32px, 5vw, 72px); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+.ah-wa__icono { width: 54px; height: 54px; border-radius: 50%; background: #fff; display: grid; place-items: center; margin-bottom: 22px; }
+.ah-wa__icono svg { width: 28px; height: 28px; color: var(--ah-ink); }
+.ah-wa__contenido .ah-titulo { margin-bottom: 14px; }
+.ah-wa__contenido .ah-texto { max-width: 42ch; margin-bottom: 20px; }
+.ah-wa__lista { list-style: none; padding: 0; margin: 0 0 28px; display: grid; gap: 10px; }
+.ah-wa__lista li { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+.ah-wa__lista svg { width: 16px; height: 16px; color: var(--ah-camel); flex: none; }
+.ah-wa__nota { margin-top: 14px; font-size: 13px; color: var(--ah-muted); font-weight: 300; }
+.ah-aviso-editor { margin-top: 14px; padding: 10px 14px; border: 1px dashed #b3261e; color: #b3261e; font-size: 13px; background: #fff; }
+
+/* ── Newsletter ───────────────────────────────────────────────────────────── */
+.ah-news { display: grid; grid-template-columns: 1fr 1.3fr auto; align-items: center; gap: clamp(20px, 4vw, 56px); }
+.ah-news__titulo { font-family: var(--ah-serif); font-style: italic; font-weight: 400; font-size: clamp(32px, 3.4vw, 44px); margin: 0 0 6px; line-height: 1.05; }
+.ah-news__form { display: flex; background: #fff; border-radius: 999px; padding: 5px; border: 1px solid var(--ah-line); }
+.ah-news__form input[type="email"] {
+  flex: 1; min-width: 0; border: 0; background: transparent; padding: 0 20px; font-family: var(--ah-sans);
+  font-size: 15px; color: var(--ah-ink); outline: none; box-shadow: none;
+}
+.ah-news__form .ah-boton { min-height: 44px; }
+.ah-news__firma { font-size: clamp(28px, 2.6vw, 38px); color: var(--ah-camel); transform: rotate(-6deg); white-space: nowrap; }
+.ah-news__ok { margin-top: 10px; font-size: 14px; color: var(--ah-camel); }
+.ah-news__legal { margin-top: 10px; font-size: 12px; color: var(--ah-muted); font-weight: 300; }
+
+/* Carrusel horizontal en móvil (categorías, beneficios, colección, productos, momentos) */
+.ah-scroll { scrollbar-width: none; }
+.ah-scroll::-webkit-scrollbar { display: none; }
+
+/* ── Tablet ───────────────────────────────────────────────────────────────── */
+@media (max-width: 989px) {
+  .ah-espacio { padding-top: calc(var(--ah-pt, 64px) * .75); padding-bottom: calc(var(--ah-pb, 64px) * .75); }
+  .ah-coleccion { grid-template-columns: 1fr; }
+  .ah-productos__grilla { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ah-beneficios__fila { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 22px; }
+  .ah-beneficio:nth-child(3n + 1) { border-left: 0; }
+  .ah-news { grid-template-columns: 1fr; text-align: center; }
+  .ah-news__form { max-width: 520px; margin: 0 auto; width: 100%; }
+  .ah-news__firma { justify-self: center; }
+}
+
+/* ── Móvil ────────────────────────────────────────────────────────────────── */
+@media (max-width: 749px) {
+  .ah-titulo { font-size: 32px; }
+  .ah-cabecera { margin-bottom: 20px; }
+
+  /* En móvil: foto arriba (el calzado a la vista) y texto debajo sobre fondo liso */
+  .ah-hero__slide { height: auto; display: flex; flex-direction: column; background: var(--ah-bg); }
+  .ah-hero__media { position: relative; inset: auto; height: 50svh; min-height: 320px; }
+  .ah-hero__media img { object-position: var(--ah-foco-movil, 72% center); }
+  .ah-hero__velo, .ah-hero__slide--oscuro .ah-hero__velo { display: none; }
+  .ah-hero__contenido, .ah-hero__slide--oscuro .ah-hero__contenido { height: auto; justify-content: flex-start; padding: 26px 22px 52px; color: var(--ah-ink); margin: 0; }
+  .ah-hero__titulo { font-size: 38px; text-shadow: none; }
+  .ah-hero__linea { margin: 16px 0 12px; background: var(--ah-ink); }
+  .ah-hero__sub { font-size: 11px; letter-spacing: .22em; }
+  .ah-hero__contenido .ah-boton { margin-top: 20px; }
+  .ah-hero .ah-boton--claro { background: var(--ah-ink); border-color: var(--ah-ink); color: #fff !important; }
+  .ah-hero__firma { display: none; }
+  .ah-hero__puntos { bottom: 20px; filter: none; }
+  .ah-hero__punto { background: rgba(28,28,28,.25); }
+  .ah-hero__punto[aria-current="true"] { background: var(--ah-ink); }
+  .ah-hero__flecha { display: none; }
+
+  .ah-categorias__fila, .ah-coleccion__fotos, .ah-momentos__fila {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px;
+    margin: 0 calc(var(--ah-gutter) * -1); padding: 0 var(--ah-gutter); scroll-padding-inline: var(--ah-gutter);
+  }
+  .ah-categoria { flex: 0 0 31%; scroll-snap-align: start; }
+  .ah-categoria__nombre { font-size: 11px; letter-spacing: .14em; margin-top: 10px; }
+  .ah-coleccion__foto { flex: 0 0 62%; scroll-snap-align: start; }
+  .ah-momento { flex: 0 0 76%; scroll-snap-align: start; }
+
+  .ah-beneficios__fila { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 calc(var(--ah-gutter) * -1); padding: 0 var(--ah-gutter); scroll-padding-inline: var(--ah-gutter); }
+  .ah-beneficio { flex: 0 0 auto; scroll-snap-align: start; padding: 4px 18px; border-left: 1px solid var(--ah-line) !important; white-space: nowrap; }
+  .ah-beneficio svg { width: 26px; height: 26px; }
+  .ah-beneficio:first-child { border-left: 0 !important; padding-left: 0; }
+
+  .ah-productos__grilla { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 12px; }
+  .ah-producto__nombre, .ah-producto__precio { font-size: 13px; }
+
+  /* En móvil: foto arriba y texto debajo sobre fondo liso, así nunca compite con la imagen */
+  .ah-banners { grid-template-columns: 1fr; gap: 0; }
+  .ah-banner { display: block; min-height: 0; background: var(--ah-soft); }
+  .ah-banner__media { position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
+  .ah-banner__velo { display: none; }
+  .ah-banner__contenido, .ah-banner--claro .ah-banner__contenido { width: 100%; margin: 0; padding: 24px 20px 32px; color: var(--ah-ink); }
+  .ah-banner__titulo { font-size: 32px; }
+  .ah-banner .ah-boton--claro { background: var(--ah-ink); border-color: var(--ah-ink); color: #fff !important; }
+
+  .ah-wa { grid-template-columns: 1fr; }
+  .ah-wa__foto { min-height: 300px; }
+  .ah-wa__contenido { padding: 30px 22px 36px; }
+  .ah-wa__contenido .ah-boton { width: 100%; justify-content: center; }
+
+  .ah-news__form input[type="email"] { padding: 0 14px; font-size: 14px; }
+  .ah-news__form .ah-boton { padding: 0 18px; }
+}

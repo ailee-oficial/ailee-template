@@ -1,0 +1,62 @@
+{{ 'ah-home.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  #shopify-section-{{ section.id }} .ah-espacio { --ah-pt: {{ section.settings.pt }}px; --ah-pb: {{ section.settings.pb }}px; }
+{%- endstyle -%}
+{%- comment -%}
+  Formulario de cliente de Shopify escrito a mano (es el mismo HTML que genera {% form 'customer' %}):
+  crea la clienta con la etiqueta «newsletter» y acepta marketing. Shopify vuelve a la página con
+  ?customer_posted=true y el script muestra el mensaje de gracias.
+{%- endcomment -%}
+<section class="ah ah-fondo-suave" id="ah-news-{{ section.id }}">
+  <div class="ah-contenedor ah-espacio">
+    <div class="ah-news">
+      <div>
+        <h2 class="ah-news__titulo">{{ section.settings.titulo | escape }}</h2>
+        <p class="ah-texto">{{ section.settings.texto | escape }}</p>
+      </div>
+      <div>
+        <form method="post" action="/contact#ah-news-{{ section.id }}" accept-charset="UTF-8" class="ah-news__form">
+          <input type="hidden" name="form_type" value="customer">
+          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <input type="hidden" name="contact[accepts_marketing]" value="true">
+          <label class="visually-hidden" for="ah-news-correo-{{ section.id }}">Correo electrónico</label>
+          <input id="ah-news-correo-{{ section.id }}" type="email" name="contact[email]" required autocomplete="email" placeholder="{{ section.settings.placeholder | escape }}">
+          <button type="submit" class="ah-boton">{{ section.settings.boton | escape }} {%- render 'ah-icono', icono: 'flecha' -%}</button>
+        </form>
+        <p class="ah-news__ok" data-ah-news-ok hidden>{{ section.settings.gracias | escape }}</p>
+        {%- if section.settings.legal != blank -%}<p class="ah-news__legal">{{ section.settings.legal | escape }}</p>{%- endif -%}
+      </div>
+      {%- if section.settings.firma != blank -%}
+        <p class="ah-news__firma ah-script">{{ section.settings.firma | escape | newline_to_br }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+<script>
+  (function () {
+    if (location.search.indexOf('customer_posted=true') === -1) return;
+    var ok = document.querySelector('#ah-news-{{ section.id }} [data-ah-news-ok]');
+    if (ok) ok.hidden = false;
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Ailee · Suscripción",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Únete a Ailée" },
+    { "type": "text", "id": "texto", "label": "Texto", "default": "Recibe novedades, lanzamientos y descuentos especiales." },
+    { "type": "text", "id": "placeholder", "label": "Texto del campo", "default": "Tu correo electrónico" },
+    { "type": "text", "id": "boton", "label": "Texto del botón", "default": "Suscribirme" },
+    { "type": "text", "id": "gracias", "label": "Mensaje al suscribirse", "default": "¡Gracias por unirte! Pronto recibirás nuestras novedades." },
+    { "type": "text", "id": "legal", "label": "Nota legal (opcional)", "default": "Puedes darte de baja cuando quieras." },
+    { "type": "textarea", "id": "firma", "label": "Frase manuscrita (opcional)", "default": "Más que moda,\nuna forma de ser" },
+    { "type": "range", "id": "pt", "label": "Espacio arriba", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 },
+    { "type": "range", "id": "pb", "label": "Espacio abajo", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 }
+  ],
+  "presets": [{ "name": "Ailee · Suscripción" }]
+}
+{% endschema %}
