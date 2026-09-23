@@ -30,6 +30,8 @@
 .ah a { color: inherit; }
 .ah p { margin: 0; }
 
+/* El tema separa cada sección con 4 px (.section + .section): entre fondos crema se ve como una franja */
+.section:has(> .ah) { margin-top: 0 !important; }
 .ah-contenedor { max-width: var(--ah-ancho); margin: 0 auto; padding: 0 var(--ah-gutter); }
 .ah-espacio { padding-top: var(--ah-pt, 64px); padding-bottom: var(--ah-pb, 64px); }
 .ah-fondo-suave { background: var(--ah-soft); }

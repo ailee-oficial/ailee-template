@@ -3,6 +3,10 @@
   Solo CSS y solo donde se renderiza (bloque custom_liquid de la ficha): no toca otras plantillas.
   Título en Cormorant, precio limpio, selectores tipo píldora, botón negro redondeado y
   miniaturas visibles también en móvil (la galería del diseño).
+
+  Parámetro opcional descripcion: 'oculta' — esconde lo visible de la descripción (body_html) cuando el
+  producto trae ahí una landing vieja que duplicaría la plantilla. Los <style> y <script> siguen en la
+  página: ahí vive el esqueleto de las ofertas de Releasit (RSI-ESQUELETO-OFERTAS, G14) y no se toca.
 {%- endcomment -%}
 {{ 'ah-home.css' | asset_url | stylesheet_tag }}
 {%- if template.suffix == 'ailee-boutique' and request.design_mode -%}
@@ -33,6 +37,10 @@
   .product__info-container .product-form__submit, .product__info-container ._rsi-buy-now-button { border-radius: 999px !important; }
   .product__info-container .product__description { font-size: 15px; line-height: 1.65; color: #4d4843; }
   .product__info-container .product__accordion summary { font-size: 14px; }
+  .section:has(> .bm-sec) { margin-top: 0 !important; }
+  {%- if descripcion == 'oculta' %}
+  .product__description > :not(style):not(script) { display: none !important; }
+  {%- endif %}
   /* Miniaturas también en móvil, como en el diseño */
   @media (max-width: 749px) {
     .product__media-wrapper .thumbnail-slider { display: flex !important; }

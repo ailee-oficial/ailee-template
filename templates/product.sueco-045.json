@@ -13,7 +13,7 @@
         "ah_estilos": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "{% render 'ah-pdp-estilos' %}"
+            "custom_liquid": "{% render 'ah-pdp-estilos', descripcion: 'oculta' %}"
           }
         },
         "title": {
@@ -30,6 +30,13 @@
         "price": {
           "type": "price",
           "settings": {}
+        },
+        "resumen": {
+          "type": "text",
+          "settings": {
+            "text": "Plataforma plana de una sola pieza y cuerpo de mula que se calza deslizando el pie: te lo pones en un segundo y cambias el look de tu jean de siempre, sin tacón.",
+            "text_style": "body"
+          }
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -95,6 +102,7 @@
         "title",
         "subtitulo",
         "price",
+        "resumen",
         "variant_picker",
         "custom_size_guide_visual",
         "buy_buttons",
