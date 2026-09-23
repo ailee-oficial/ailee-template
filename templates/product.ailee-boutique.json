@@ -198,24 +198,28 @@
         "momento_1": {
           "type": "momento",
           "settings": {
+            "respaldo": "ah-momento-diario.webp",
             "nombre": "Día a día"
           }
         },
         "momento_2": {
           "type": "momento",
           "settings": {
+            "respaldo": "ah-momento-oficina.webp",
             "nombre": "Oficina / Universidad"
           }
         },
         "momento_3": {
           "type": "momento",
           "settings": {
+            "respaldo": "ah-momento-noche.webp",
             "nombre": "Una salida especial"
           }
         },
         "momento_4": {
           "type": "momento",
           "settings": {
+            "respaldo": "ah-momento-finde.webp",
             "nombre": "Fin de semana"
           }
         }
@@ -231,6 +235,7 @@
       "type": "ah-detalles",
       "settings": {
         "titulo": "Detalles que enamoran",
+        "respaldo": "ah-calzado-2.webp",
         "pt": 40,
         "pb": 40
       },
@@ -238,24 +243,28 @@
         "detalle_1": {
           "type": "detalle",
           "settings": {
+            "respaldo": "ah-calzado-1.webp",
             "texto": "Primer detalle real del producto"
           }
         },
         "detalle_2": {
           "type": "detalle",
           "settings": {
+            "respaldo": "ah-calzado-2.webp",
             "texto": "Segundo detalle real"
           }
         },
         "detalle_3": {
           "type": "detalle",
           "settings": {
+            "respaldo": "ah-calzado-3.webp",
             "texto": "Tercer detalle real"
           }
         },
         "detalle_4": {
           "type": "detalle",
           "settings": {
+            "respaldo": "ah-calzado-4.webp",
             "texto": "Cuarto detalle real"
           }
         }

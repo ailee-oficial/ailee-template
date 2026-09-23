@@ -367,6 +367,8 @@
           "settings": {
             "origen": "ia_recreada",
             "texto": "Con el mismo jean de siempre el look cambia por completo, me encantan.",
+            "foto": "shopify://shop_images/ailee-sueco-045-resena-ia-1.webp",
+            "foto_alt": "Foto del producto (no es de una clienta)",
             "estrellas": 0
           }
         },
@@ -375,6 +377,8 @@
           "settings": {
             "origen": "ia_recreada",
             "texto": "Son muy fáciles de poner: meto el pie y salgo.",
+            "foto": "shopify://shop_images/ailee-sueco-045-resena-ia-2.webp",
+            "foto_alt": "Foto del producto (no es de una clienta)",
             "estrellas": 0
           }
         }
