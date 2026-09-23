@@ -63,7 +63,7 @@
 .ah-boton--borde:hover { background: var(--ah-ink); color: #fff !important; }
 .ah-boton svg { width: 16px; height: 16px; flex: none; }
 .ah-enlace {
-  display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500;
+  display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; white-space: nowrap;
   text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;
 }
 .ah-enlace svg { width: 15px; height: 15px; }
