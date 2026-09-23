@@ -1,0 +1,72 @@
+{%- comment -%}
+  Galería de escenas con etiqueta: el producto puesto en varias ocasiones («Versátiles para cada
+  ocasión»), clave cuando el eje es deseo. También sirve para capturas REALES de clientes. Carrusel
+  o cuadrícula; cada foto con su etiqueta. Fuente canónica: claude-skills/core/tema_landing.
+{%- endcomment -%}
+{{ 'bm-landing.css' | asset_url | stylesheet_tag }}
+{%- assign s = section.settings -%}
+<div class="bm-sec bm-galeria bm-galeria--{{ s.disposicion }}" data-bm-landing="galeria" data-bm-sec="{{ section.id }}" style="{% if s.fondo != blank %}--bm-sec-bg:{{ s.fondo }};{% endif %}{% if s.texto != blank %}--bm-sec-fg:{{ s.texto }};{% endif %}--bm-pad-top:{{ s.padding_top }}px;--bm-pad-bottom:{{ s.padding_bottom }}px;--bm-pad-x:{{ s.padding_lateral }}px;--bm-radio-img:{{ s.radio }}px;--bm-galeria-ancho:{{ s.ancho_tarjeta }}%;--bm-align:{{ s.alineacion }};">
+  <div class="bm-sec__in">
+    {%- if s.antetitulo != blank or s.titulo != blank or s.subtitulo != blank -%}
+      <div class="bm-cabecera">
+        {%- if s.antetitulo != blank -%}<p class="bm-oferta__ante">{{ s.antetitulo | escape }}</p>{%- endif -%}
+        {%- if s.titulo != blank -%}<h2>{{ s.titulo | escape }}</h2>{%- endif -%}
+        {%- if s.subtitulo != blank -%}<p>{{ s.subtitulo | escape }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+    <div class="bm-galeria__lista">
+      {%- for block in section.blocks -%}
+        <figure class="bm-galeria__item" data-bm-bloque="escena" {{ block.shopify_attributes }}>
+          {%- if block.settings.imagen != blank -%}
+            {{ block.settings.imagen | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 360px, 75vw', widths: '360, 540, 720, 900', alt: block.settings.etiqueta }}
+          {%- elsif request.design_mode -%}
+            {{ 'image' | placeholder_svg_tag: 'bm-placeholder' }}
+          {%- endif -%}
+          {%- if block.settings.etiqueta != blank -%}<figcaption>{{ block.settings.etiqueta | escape }}</figcaption>{%- endif -%}
+        </figure>
+      {%- endfor -%}
+    </div>
+  </div>
+  {%- if s.cta_mostrar -%}
+    {%- render 'bm-cta', texto: s.cta_texto, subtexto: s.cta_subtexto, fondo: blank, color: blank, franja: blank, ancho: 'completo', alineacion: 'center', pad_y: 14, pulso: false -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Landing · Galería",
+  "tag": "section",
+  "enabled_on": { "templates": ["product"] },
+  "max_blocks": 12,
+  "settings": [
+    { "type": "paragraph", "content": "El producto en varias ocasiones, o capturas reales de clientes." },
+    { "type": "text", "id": "antetitulo", "label": "Antetítulo" },
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Para cada ocasión" },
+    { "type": "text", "id": "subtitulo", "label": "Subtítulo" },
+    { "type": "select", "id": "disposicion", "label": "Disposición", "options": [
+      { "value": "carrusel", "label": "Carrusel horizontal" }, { "value": "cuadricula", "label": "Cuadrícula de 2" }
+    ], "default": "carrusel" },
+    { "type": "range", "id": "ancho_tarjeta", "label": "Ancho de cada foto en el carrusel", "min": 50, "max": 90, "step": 5, "unit": "%", "default": 75 },
+    { "type": "range", "id": "radio", "label": "Redondeo de las fotos", "min": 0, "max": 24, "step": 2, "unit": "px", "default": 12 },
+    { "type": "select", "id": "alineacion", "label": "Alineación del título", "options": [
+      { "value": "left", "label": "Izquierda" }, { "value": "center", "label": "Centro" }
+    ], "default": "left" },
+    { "type": "color", "id": "fondo", "label": "Fondo", "info": "Vacío: el de la página." },
+    { "type": "color", "id": "texto", "label": "Texto" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24 },
+    { "type": "range", "id": "padding_lateral", "label": "Margen lateral", "min": 0, "max": 32, "step": 2, "unit": "px", "default": 16 },
+    { "type": "header", "content": "Botón de compra" },
+    { "type": "checkbox", "id": "cta_mostrar", "label": "Mostrar botón al final", "default": false },
+    { "type": "text", "id": "cta_texto", "label": "Texto del botón", "default": "Comprar ahora — Pago contra entrega" },
+    { "type": "text", "id": "cta_subtexto", "label": "Línea bajo el botón" }
+  ],
+  "blocks": [
+    { "type": "escena", "name": "Escena", "settings": [
+      { "type": "image_picker", "id": "imagen", "label": "Foto" },
+      { "type": "text", "id": "etiqueta", "label": "Etiqueta", "default": "En la oficina" }
+    ] }
+  ],
+  "presets": [{ "name": "Landing · Galería", "blocks": [{ "type": "escena" }, { "type": "escena" }, { "type": "escena" }] }]
+}
+{% endschema %}

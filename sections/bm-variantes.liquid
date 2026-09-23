@@ -1,0 +1,118 @@
+{%- comment -%}
+  Variantes mostradas VISUALMENTE (landing «imágenes + HTML»): una tarjeta por color u opción con su
+  foto. No es un selector: el cliente completa color y talla en el formulario de Releasit (su oferta
+  de cantidad debe tener activa la elección de variantes). En modo automático las tarjetas salen del
+  producto (opción, foto de la variante y disponibilidad): agregar un color en Shopify lo agrega aquí.
+  Fuente canónica: claude-skills/core/tema_landing.
+{%- endcomment -%}
+{{ 'bm-landing.css' | asset_url | stylesheet_tag }}
+{%- assign s = section.settings -%}
+{%- assign buscada = s.opcion | downcase | strip -%}
+<div class="bm-sec bm-variantes bm-variantes--{{ s.disposicion }}" data-bm-landing="variantes" data-bm-sec="{{ section.id }}" style="{% if s.fondo != blank %}--bm-sec-bg:{{ s.fondo }};{% endif %}{% if s.texto != blank %}--bm-sec-fg:{{ s.texto }};{% endif %}{% if s.tarjeta_fondo != blank %}--bm-tarjeta-bg:{{ s.tarjeta_fondo }};{% endif %}{% if s.tarjeta_texto != blank %}--bm-tarjeta-fg:{{ s.tarjeta_texto }};{% endif %}--bm-pad-top:{{ s.padding_top }}px;--bm-pad-bottom:{{ s.padding_bottom }}px;--bm-pad-x:{{ s.padding_lateral }}px;--bm-cols-movil:{{ s.cols_movil }};--bm-align:{{ s.alineacion }};">
+  <div class="bm-sec__in">
+    {%- if s.titulo != blank or s.subtitulo != blank -%}
+      <div class="bm-cabecera">
+        {%- if s.titulo != blank -%}<h2>{{ s.titulo | escape }}</h2>{%- endif -%}
+        {%- if s.subtitulo != blank -%}<p>{{ s.subtitulo | escape }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+    <div class="bm-variantes__lista">
+      {%- if s.modo == 'automatico' and product != blank -%}
+        {%- for opcion in product.options_with_values -%}
+          {%- assign nombre_opcion = opcion.name | downcase | strip -%}
+          {%- if nombre_opcion == buscada -%}
+            {%- for valor in opcion.values -%}
+              {%- assign nombre_valor = valor.name | default: valor -%}
+              {%- assign imagen = blank -%}
+              {%- assign disponible = false -%}
+              {%- for v in product.variants -%}
+                {%- case opcion.position -%}
+                  {%- when 1 -%}{%- assign valor_v = v.option1 -%}
+                  {%- when 2 -%}{%- assign valor_v = v.option2 -%}
+                  {%- else -%}{%- assign valor_v = v.option3 -%}
+                {%- endcase -%}
+                {%- if valor_v == nombre_valor -%}
+                  {%- if imagen == blank and v.featured_image != blank -%}{%- assign imagen = v.featured_image -%}{%- endif -%}
+                  {%- if v.available -%}{%- assign disponible = true -%}{%- endif -%}
+                {%- endif -%}
+              {%- endfor -%}
+              {%- if disponible or s.mostrar_agotados -%}
+                <figure class="bm-variante{% unless disponible %} bm-variante--agotada{% endunless %}" data-bm-bloque="variante">
+                  {%- if imagen != blank -%}
+                    <div class="bm-variante__foto">{{ imagen | image_url: width: 700 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 240px, 45vw', widths: '240, 360, 480, 700', alt: nombre_valor }}</div>
+                  {%- endif -%}
+                  <figcaption>{{ nombre_valor | escape }}{% unless disponible %} · {{ s.agotado_texto | default: 'Agotado' | escape }}{% endunless %}</figcaption>
+                </figure>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for block in section.blocks -%}
+          <figure class="bm-variante" data-bm-bloque="variante" {{ block.shopify_attributes }}>
+            {%- if block.settings.imagen != blank -%}
+              <div class="bm-variante__foto">{{ block.settings.imagen | image_url: width: 700 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 240px, 45vw', widths: '240, 360, 480, 700', alt: block.settings.nombre }}</div>
+            {%- endif -%}
+            <figcaption>{{ block.settings.nombre | escape }}{% if block.settings.detalle != blank %}<small>{{ block.settings.detalle | escape }}</small>{% endif %}</figcaption>
+          </figure>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+    {%- if s.nota != blank -%}<p class="bm-variantes__nota">{{ s.nota | escape }}</p>{%- endif -%}
+  </div>
+  {%- if s.cta_mostrar -%}
+    {%- render 'bm-cta', texto: s.cta_texto, subtexto: s.cta_subtexto, fondo: blank, color: blank, franja: blank, ancho: 'completo', alineacion: 'center', pad_y: 14, pulso: false -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Landing · Variantes",
+  "tag": "section",
+  "enabled_on": { "templates": ["product"] },
+  "max_blocks": 24,
+  "settings": [
+    { "type": "paragraph", "content": "Muestra los colores u opciones; la elección se completa en el formulario de Releasit." },
+    { "type": "select", "id": "modo", "label": "Origen de las tarjetas", "options": [
+      { "value": "automatico", "label": "Automático desde el producto" },
+      { "value": "manual", "label": "Manual (bloques)" }
+    ], "default": "automatico" },
+    { "type": "text", "id": "opcion", "label": "Opción a mostrar (modo automático)", "default": "Color" },
+    { "type": "checkbox", "id": "mostrar_agotados", "label": "Mostrar opciones agotadas", "default": false },
+    { "type": "text", "id": "agotado_texto", "label": "Texto de agotado", "default": "Agotado" },
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Elige tu color" },
+    { "type": "text", "id": "subtitulo", "label": "Subtítulo" },
+    { "type": "text", "id": "nota", "label": "Nota", "default": "Eliges color y talla en el formulario al hacer tu pedido." },
+    { "type": "select", "id": "disposicion", "label": "Disposición", "options": [
+      { "value": "cuadricula", "label": "Cuadrícula" }, { "value": "carrusel", "label": "Carrusel horizontal" }
+    ], "default": "cuadricula" },
+    { "type": "select", "id": "cols_movil", "label": "Columnas en móvil (cuadrícula)", "options": [
+      { "value": "2", "label": "2" }, { "value": "3", "label": "3" }
+    ], "default": "2" },
+    { "type": "select", "id": "alineacion", "label": "Alineación del título", "options": [
+      { "value": "center", "label": "Centro" }, { "value": "left", "label": "Izquierda" }
+    ], "default": "center" },
+    { "type": "header", "content": "Colores" },
+    { "type": "color", "id": "fondo", "label": "Fondo", "info": "Vacío: el de la página." },
+    { "type": "color", "id": "texto", "label": "Texto" },
+    { "type": "color", "id": "tarjeta_fondo", "label": "Fondo de las tarjetas" },
+    { "type": "color", "id": "tarjeta_texto", "label": "Texto de las tarjetas" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 20 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 20 },
+    { "type": "range", "id": "padding_lateral", "label": "Margen lateral", "min": 0, "max": 32, "step": 2, "unit": "px", "default": 16 },
+    { "type": "header", "content": "Botón de compra" },
+    { "type": "checkbox", "id": "cta_mostrar", "label": "Mostrar botón al final", "default": true },
+    { "type": "text", "id": "cta_texto", "label": "Texto del botón", "default": "Comprar ahora — Pago contra entrega" },
+    { "type": "text", "id": "cta_subtexto", "label": "Línea bajo el botón" }
+  ],
+  "blocks": [
+    { "type": "variante", "name": "Variante (modo manual)", "settings": [
+      { "type": "image_picker", "id": "imagen", "label": "Foto" },
+      { "type": "text", "id": "nombre", "label": "Nombre", "default": "Negro" },
+      { "type": "text", "id": "detalle", "label": "Detalle" }
+    ] }
+  ],
+  "presets": [{ "name": "Landing · Variantes" }]
+}
+{% endschema %}

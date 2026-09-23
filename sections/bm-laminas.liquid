@@ -1,0 +1,147 @@
+{%- comment -%}
+  Láminas verticales a ancho completo con el texto de arte integrado en la imagen, más botones de
+  compra (Releasit) y notas HTML intercaladas. Sin marco ni hueco entre piezas salvo el espacio
+  que se elija aquí. Fuente canónica: claude-skills/core/tema_landing.
+{%- endcomment -%}
+{{ 'bm-landing.css' | asset_url | stylesheet_tag }}
+{%- assign s = section.settings -%}
+<div class="bm-sec bm-laminas{% if s.ancho == 'completo' %} bm-sec--completo{% endif %}" data-bm-landing="laminas" data-bm-sec="{{ section.id }}" style="{% if s.fondo != blank %}--bm-sec-bg:{{ s.fondo }};{% endif %}{% if s.texto != blank %}--bm-sec-fg:{{ s.texto }};{% endif %}--bm-pad-top:{{ s.padding_top }}px;--bm-pad-bottom:{{ s.padding_bottom }}px;--bm-gap:{{ s.espacio }}px;--bm-radio-img:{{ s.radio_imagen }}px;">
+  <div class="bm-sec__in bm-pila">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'lamina' -%}
+          {%- assign b = block.settings -%}
+          {%- if b.prioridad -%}
+            {%- assign carga = 'eager' -%}
+            {%- assign prioridad = 'high' -%}
+          {%- else -%}
+            {%- assign carga = 'lazy' -%}
+            {%- assign prioridad = 'auto' -%}
+          {%- endif -%}
+          <figure class="bm-lamina" data-bm-bloque="lamina" data-bm-id="{{ block.id }}" {{ block.shopify_attributes }}>
+            {%- if b.titulo_oculto != blank -%}
+              {%- if b.nivel == 'h1' -%}
+                <h1 class="bm-sr">{{ b.titulo_oculto | escape }}</h1>
+              {%- elsif b.nivel == 'h2' -%}
+                <h2 class="bm-sr">{{ b.titulo_oculto | escape }}</h2>
+              {%- endif -%}
+            {%- endif -%}
+            {%- if b.imagen != blank -%}
+              {%- capture lamina_imagen -%}
+                <picture>
+                  {%- if b.imagen_escritorio != blank -%}
+                    <source media="(min-width: 750px)" srcset="{{ b.imagen_escritorio | image_url: width: 1600 }}">
+                  {%- endif -%}
+                  {{ b.imagen | image_url: width: 1600 | image_tag: loading: carga, fetchpriority: prioridad, sizes: '(min-width: 750px) 780px, 100vw', widths: '360, 540, 720, 900, 1080, 1280, 1600', alt: b.texto_alt }}
+                </picture>
+              {%- endcapture -%}
+              {%- if b.abre_formulario -%}
+                <button type="button" class="bm-lamina__boton" data-bm-cta="lamina" aria-haspopup="dialog" onclick="event.preventDefault();var a=this,f=function(){return Array.prototype.slice.call(document.querySelectorAll('#_rsi-buy-now-button,._rsi-buy-now-button,._rsi-buy-now-button-product')).find(function(x){return x.offsetWidth*x.offsetHeight})};if(f()){f().click();return}if(window.__rsiW)return;window.__rsiW=1;var n=0;var i=setInterval(function(){var x=f();if(x){clearInterval(i);window.__rsiW=0;x.click()}else if(++n===200){clearInterval(i);window.__rsiW=0}},150)">{{ lamina_imagen }}</button>
+              {%- else -%}
+                {{ lamina_imagen }}
+              {%- endif -%}
+            {%- elsif request.design_mode -%}
+              {{ 'image' | placeholder_svg_tag: 'bm-placeholder' }}
+            {%- endif -%}
+          </figure>
+        {%- when 'cta' -%}
+          <div data-bm-bloque="cta" data-bm-id="{{ block.id }}" {{ block.shopify_attributes }}>
+            {%- render 'bm-cta', texto: block.settings.texto, subtexto: block.settings.subtexto, fondo: block.settings.fondo, color: block.settings.color, franja: block.settings.franja, ancho: block.settings.ancho, alineacion: block.settings.alineacion, pad_y: block.settings.pad_y, pulso: block.settings.pulso -%}
+          </div>
+        {%- when 'nota' -%}
+          <div class="bm-nota" data-bm-bloque="nota" data-bm-id="{{ block.id }}" style="--bm-nota-pad:{{ block.settings.padding }}px;--bm-nota-tam:{{ block.settings.tamano }}px;--bm-nota-align:{{ block.settings.alineacion }};{% if block.settings.fondo != blank %}--bm-nota-bg:{{ block.settings.fondo }};{% endif %}{% if block.settings.color != blank %}--bm-nota-fg:{{ block.settings.color }};{% endif %}" {{ block.shopify_attributes }}>
+            {{ block.settings.texto }}
+          </div>
+        {%- when 'etiqueta_ia' -%}
+          <p class="bm-nota bm-nota--ia" data-bm-bloque="etiqueta_ia" data-bm-id="{{ block.id }}" data-origen="ia_recreada" {{ block.shopify_attributes }}>{{ block.settings.texto | default: 'Recreación ilustrativa generada con IA; no es la reseña de un comprador.' | escape }}</p>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Landing · Láminas",
+  "tag": "section",
+  "enabled_on": { "templates": ["product"] },
+  "max_blocks": 50,
+  "settings": [
+    { "type": "paragraph", "content": "Láminas verticales con el texto integrado en la imagen. Para no dejar franjas, deja el espacio entre láminas en 0." },
+    { "type": "color", "id": "fondo", "label": "Fondo de la sección", "info": "Vacío: usa el fondo de la página." },
+    { "type": "color", "id": "texto", "label": "Texto de notas y botones", "info": "Vacío: usa el de la página." },
+    { "type": "select", "id": "ancho", "label": "Ancho en escritorio", "options": [
+      { "value": "contenido", "label": "Ancho del contenido" },
+      { "value": "completo", "label": "Pantalla completa" }
+    ], "default": "contenido" },
+    { "type": "range", "id": "espacio", "label": "Espacio entre láminas", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "radio_imagen", "label": "Redondeo de las láminas", "min": 0, "max": 24, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 0 }
+  ],
+  "blocks": [
+    {
+      "type": "lamina",
+      "name": "Lámina",
+      "settings": [
+        { "type": "image_picker", "id": "imagen", "label": "Imagen (móvil y escritorio)" },
+        { "type": "image_picker", "id": "imagen_escritorio", "label": "Imagen solo para escritorio (opcional)" },
+        { "type": "textarea", "id": "texto_alt", "label": "Texto integrado en la imagen", "info": "Se usa como texto alternativo. Copia aquí el texto que se lee en la lámina." },
+        { "type": "text", "id": "titulo_oculto", "label": "Título para buscadores (no visible)" },
+        { "type": "select", "id": "nivel", "label": "Nivel del título", "options": [
+          { "value": "h1", "label": "H1 (solo la primera pantalla)" },
+          { "value": "h2", "label": "H2" },
+          { "value": "ninguno", "label": "Sin título" }
+        ], "default": "h2" },
+        { "type": "checkbox", "id": "prioridad", "label": "Es la primera pantalla (carga prioritaria)", "default": false },
+        { "type": "checkbox", "id": "abre_formulario", "label": "Tocar la lámina abre el formulario", "info": "Úsalo si la lámina dibuja un botón. El botón real sigue siendo necesario.", "default": false }
+      ]
+    },
+    {
+      "type": "cta",
+      "name": "Botón de compra",
+      "settings": [
+        { "type": "text", "id": "texto", "label": "Texto del botón", "default": "Pedir ahora · pago contra entrega" },
+        { "type": "text", "id": "subtexto", "label": "Línea bajo el botón", "default": "Pagas al recibir" },
+        { "type": "color", "id": "fondo", "label": "Fondo del botón", "info": "Vacío: usa el de «Landing · Ajustes y botón»." },
+        { "type": "color", "id": "color", "label": "Texto del botón", "info": "Vacío: usa el de «Landing · Ajustes y botón»." },
+        { "type": "color", "id": "franja", "label": "Fondo alrededor del botón", "info": "Vacío: transparente." },
+        { "type": "select", "id": "ancho", "label": "Ancho del botón", "options": [
+          { "value": "completo", "label": "Completo" },
+          { "value": "auto", "label": "Según el texto" }
+        ], "default": "completo" },
+        { "type": "select", "id": "alineacion", "label": "Alineación", "options": [
+          { "value": "center", "label": "Centro" },
+          { "value": "flex-start", "label": "Izquierda" },
+          { "value": "flex-end", "label": "Derecha" }
+        ], "default": "center" },
+        { "type": "range", "id": "pad_y", "label": "Espacio vertical alrededor", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 14 },
+        { "type": "checkbox", "id": "pulso", "label": "Animación suave de pulso", "default": false }
+      ]
+    },
+    {
+      "type": "nota",
+      "name": "Nota HTML",
+      "settings": [
+        { "type": "richtext", "id": "texto", "label": "Texto", "default": "<p>Envío a toda Colombia · Pagas al recibir</p>" },
+        { "type": "color", "id": "fondo", "label": "Fondo", "info": "Vacío: el de la sección." },
+        { "type": "color", "id": "color", "label": "Texto", "info": "Vacío: el de la sección." },
+        { "type": "select", "id": "alineacion", "label": "Alineación", "options": [
+          { "value": "center", "label": "Centro" },
+          { "value": "left", "label": "Izquierda" }
+        ], "default": "center" },
+        { "type": "range", "id": "padding", "label": "Espacio interno", "min": 4, "max": 32, "step": 2, "unit": "px", "default": 12 },
+        { "type": "range", "id": "tamano", "label": "Tamaño del texto", "min": 12, "max": 20, "step": 1, "unit": "px", "default": 15 }
+      ]
+    },
+    {
+      "type": "etiqueta_ia",
+      "name": "Aviso de recreación IA",
+      "settings": [
+        { "type": "paragraph", "content": "Obligatorio después de una lámina con reseñas o testimonios recreados con IA." },
+        { "type": "text", "id": "texto", "label": "Aviso", "default": "Recreación ilustrativa generada con IA; no es la reseña de un comprador." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Landing · Láminas", "blocks": [{ "type": "lamina" }, { "type": "cta" }] }]
+}
+{% endschema %}

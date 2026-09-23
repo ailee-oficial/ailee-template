@@ -1,0 +1,12 @@
+{%- comment -%}
+  CTA de landing BreitMarket: abre el formulario COD de Releasit y nunca navega (G11).
+  Es un <button type="button">, no un enlace /rsi-btn-hook: Releasit no lo reemplaza, así que su
+  texto y color siguen siendo los de la plantilla. Fuente canónica: claude-skills/core/tema_landing.
+  Parámetros: texto, subtexto, fondo, color, franja, ancho ('completo'|'auto'), alineacion, pad_y, pulso.
+{%- endcomment -%}
+<div class="bm-cta{% if pulso %} bm-cta--pulso{% endif %}" style="--bm-cta-pad-y:{{ pad_y | default: 14 }}px;{% if franja != blank %}--bm-cta-franja:{{ franja }};{% endif %}{% if fondo != blank %}--bm-cta-bg:{{ fondo }};{% endif %}{% if color != blank %}--bm-cta-fg:{{ color }};{% endif %}{% if ancho == 'auto' %}--bm-cta-ancho:auto;{% endif %}{% if alineacion != blank %}--bm-cta-align:{{ alineacion }};{% endif %}">
+  <button type="button" class="bm-cta__boton" data-bm-cta aria-haspopup="dialog" onclick="event.preventDefault();var a=this,f=function(){return Array.prototype.slice.call(document.querySelectorAll('#_rsi-buy-now-button,._rsi-buy-now-button,._rsi-buy-now-button-product')).find(function(x){return x.offsetWidth*x.offsetHeight})};if(f()){f().click();return}if(window.__rsiW)return;window.__rsiW=1;var t=a.textContent,n=0;a.textContent='Cargando...';var i=setInterval(function(){var x=f();if(x){clearInterval(i);window.__rsiW=0;a.textContent=t;x.click()}else if(++n===200){clearInterval(i);window.__rsiW=0;a.textContent=t}},150)">{{ texto | default: 'Pedir ahora' | escape }}</button>
+  {%- if subtexto != blank -%}
+    <p class="bm-cta__sub">{{ subtexto | escape }}</p>
+  {%- endif -%}
+</div>

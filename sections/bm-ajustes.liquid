@@ -1,0 +1,111 @@
+{%- comment -%}
+  Ajustes de la landing de ESTE producto: fondo de página, ficha de compra y color del botón de
+  Releasit. Solo imprime CSS; cada producto tiene su plantilla, así que nada de esto toca otras
+  páginas ni la configuración global de Releasit. Fuente canónica: claude-skills/core/tema_landing.
+
+  Releasit pinta su botón con estilos en línea `!important` (medido 2026-09-22 en Cosmos): una regla
+  de hoja de estilo no puede cambiar su `background`. Por eso el color se pinta en una capa
+  `::before` por encima de su fondo y por debajo del texto, `clip-path` fija las esquinas y el texto
+  se colorea en los `span` hijos. `core/landing_qa.mjs` mide el color efectivo por píxel.
+{%- endcomment -%}
+{%- assign s = section.settings -%}
+{%- style -%}
+  :root {
+    --bm-ancho-pagina: {{ s.ancho_max }}px;
+    --bm-page-bg: {{ s.fondo_pagina }};
+    --bm-page-fg: {{ s.texto_pagina }};
+    --bm-cta-bg: {{ s.cta_fondo }};
+    --bm-cta-fg: {{ s.cta_texto }};
+    --bm-cta-radio: {{ s.cta_radio }}px;
+    --bm-cta-alto: {{ s.cta_alto }}px;
+    --bm-cta-letra: {{ s.cta_letra }}px;
+    --bm-rsi-bg: {{ s.cta_fondo }};
+    --bm-rsi-fg: {{ s.cta_texto }};
+    --bm-rsi-radio: {{ s.cta_radio }}px;
+  }
+  {%- if s.aplicar_fondo %}
+  body, #MainContent { background: var(--bm-page-bg) !important; }
+  #MainContent { color: var(--bm-page-fg); }
+  {%- endif %}
+  {%- if s.ocultar_galeria %}
+  section[id^="MainProduct-"] .product__media-wrapper { display: none !important; }
+  section[id^="MainProduct-"] .product__info-wrapper { width: 100% !important; max-width: 100% !important; flex: 0 0 100% !important; padding: 0 !important; }
+  {%- endif %}
+  section[id^="MainProduct-"] {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    {%- if s.ficha_fondo != blank %}
+    background: {{ s.ficha_fondo }};
+    {%- endif %}
+    {%- if s.ficha_texto != blank %}
+    color: {{ s.ficha_texto }};
+    --color-foreground: {{ s.ficha_texto.red }}, {{ s.ficha_texto.green }}, {{ s.ficha_texto.blue }};
+    {%- endif %}
+  }
+  section[id^="MainProduct-"].page-width { padding-left: {{ s.ficha_margen_lateral }}px !important; padding-right: {{ s.ficha_margen_lateral }}px !important; }
+  section[id^="MainProduct-"] .product__info-container {
+    max-width: var(--bm-ancho-pagina);
+    margin: 0 auto !important;
+    padding: {{ s.ficha_padding }}px 0 !important;
+  }
+  section[id^="MainProduct-"] .product__info-container > * { margin-top: 0; }
+  {%- case s.ficha_modo -%}
+    {%- when 'solo_boton' %}
+  /* Solo imágenes: de la ficha solo queda el botón de Releasit; precio y variantes van en las láminas. */
+  section[id^="MainProduct-"] :is([id^="price-"], .price, .product__title, .product__tax, .installment, variant-radios, variant-selects, .product-form__input, .product-form__quantity) { display: none !important; }
+  section[id^="MainProduct-"] ._rsi-buy-now-button { margin-top: 0 !important; margin-bottom: 0 !important; }
+    {%- when 'oculta' %}
+  /* Imágenes + HTML: la ficha no se ve, pero su botón de Releasit sigue en la página con tamaño real
+     para que los botones de la landing lo pulsen (el onclick canónico busca un control con área). */
+  section[id^="MainProduct-"] { position: absolute !important; left: -10000px !important; top: 0 !important; width: 360px !important; visibility: hidden !important; }
+  {%- endcase %}
+  {%- if s.ocultar_descripcion %}
+  section[id^="MainProduct-"] .product__description > :not(style) { display: none !important; }
+  section[id^="MainProduct-"] .product__description { margin: 0 !important; padding: 0 !important; }
+  {%- endif %}
+  {%- if s.rsi_aplicar %}
+  html body ._rsi-buy-now-button { position: relative !important; isolation: isolate !important; clip-path: inset(0 round var(--bm-rsi-radio)) !important; }
+  html body ._rsi-buy-now-button::before { content: "" !important; position: absolute !important; inset: 0 !important; z-index: -1 !important; background: var(--bm-rsi-bg) !important; border-radius: var(--bm-rsi-radio) !important; pointer-events: none !important; }
+  html body ._rsi-buy-now-button > span, html body ._rsi-buy-now-button > span * { color: var(--bm-rsi-fg) !important; }
+  html body ._rsi-buy-now-button svg, html body ._rsi-buy-now-button svg * { fill: var(--bm-rsi-fg) !important; }
+  {%- endif %}
+{%- endstyle -%}
+<div hidden data-bm-ajustes data-ficha-modo="{{ s.ficha_modo }}" data-rsi-aplicar="{{ s.rsi_aplicar }}" data-rsi-fondo="{{ s.cta_fondo }}" data-rsi-texto="{{ s.cta_texto }}" data-cta-fondo="{{ s.cta_fondo }}" data-cta-texto="{{ s.cta_texto }}"></div>
+
+{% schema %}
+{
+  "name": "Landing · Ajustes y botón",
+  "tag": "div",
+  "limit": 1,
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "paragraph", "content": "Colores y ancho de la landing de este producto. No cambia otras páginas ni el formulario global de Releasit." },
+    { "type": "header", "content": "Página" },
+    { "type": "checkbox", "id": "aplicar_fondo", "label": "Aplicar el fondo a toda la página", "default": true },
+    { "type": "color", "id": "fondo_pagina", "label": "Fondo de la página", "default": "#FFFFFF" },
+    { "type": "color", "id": "texto_pagina", "label": "Texto de la página", "default": "#111827" },
+    { "type": "range", "id": "ancho_max", "label": "Ancho máximo del contenido (escritorio)", "min": 480, "max": 1200, "step": 20, "unit": "px", "default": 780 },
+    { "type": "header", "content": "Ficha de compra (Información del producto)" },
+    { "type": "select", "id": "ficha_modo", "label": "Qué muestra la ficha", "options": [
+      { "value": "completa", "label": "Completa (según sus bloques)" },
+      { "value": "solo_boton", "label": "Solo el botón de Releasit (solo imágenes)" },
+      { "value": "oculta", "label": "Oculta: compra desde los botones de la landing" }
+    ], "default": "completa", "info": "Oculta sigue cargando Releasit; no la uses si la landing no tiene botones de compra." },
+    { "type": "range", "id": "ficha_margen_lateral", "label": "Margen lateral de la ficha", "min": 0, "max": 24, "step": 2, "unit": "px", "default": 16 },
+    { "type": "checkbox", "id": "ocultar_galeria", "label": "Ocultar la galería del producto", "info": "Las láminas y escenas reemplazan la galería. Las fotos siguen en el producto para catálogos.", "default": true },
+    { "type": "checkbox", "id": "ocultar_descripcion", "label": "Ocultar la descripción visible", "info": "Conserva el esqueleto del formulario COD que vive en la descripción.", "default": true },
+    { "type": "color", "id": "ficha_fondo", "label": "Fondo de la ficha", "info": "Vacío: usa el fondo de la página." },
+    { "type": "color", "id": "ficha_texto", "label": "Texto de la ficha", "info": "Vacío: usa el del tema." },
+    { "type": "range", "id": "ficha_padding", "label": "Espacio interno vertical de la ficha", "min": 0, "max": 48, "step": 2, "unit": "px", "default": 12 },
+    { "type": "header", "content": "Botón de compra" },
+    { "type": "paragraph", "content": "Se aplica a los botones de la landing y, si está activado, al botón de Releasit de esta página." },
+    { "type": "color", "id": "cta_fondo", "label": "Fondo del botón", "default": "#111827" },
+    { "type": "color", "id": "cta_texto", "label": "Texto del botón", "default": "#FFFFFF" },
+    { "type": "range", "id": "cta_radio", "label": "Redondeo del botón", "min": 0, "max": 30, "step": 1, "unit": "px", "default": 12 },
+    { "type": "range", "id": "cta_alto", "label": "Alto mínimo del botón", "min": 44, "max": 72, "step": 2, "unit": "px", "default": 54 },
+    { "type": "range", "id": "cta_letra", "label": "Tamaño del texto del botón", "min": 14, "max": 22, "step": 1, "unit": "px", "default": 17 },
+    { "type": "checkbox", "id": "rsi_aplicar", "label": "Aplicar estos colores al botón de Releasit", "default": true }
+  ],
+  "presets": [{ "name": "Landing · Ajustes y botón" }]
+}
+{% endschema %}

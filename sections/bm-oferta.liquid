@@ -1,0 +1,165 @@
+{%- comment -%}
+  Bloque de oferta de la landing «imágenes + HTML» (el fold bajo la portada): antetítulo, título,
+  subtítulo, características en carrusel, señales de confianza, calificación (solo si es real),
+  precio REAL de la variante con tachado y ahorro calculados, y botón que abre Releasit.
+  Todo es un bloque: se reordena, se quita o se duplica desde el editor. Los bloques seguidos del
+  mismo tipo (características, confianza) se agrupan solos en su fila.
+  Fuente canónica: claude-skills/core/tema_landing.
+{%- endcomment -%}
+{{ 'bm-landing.css' | asset_url | stylesheet_tag }}
+{%- assign s = section.settings -%}
+{%- assign variante = product.selected_or_first_available_variant -%}
+<div class="bm-sec bm-oferta" data-bm-landing="oferta" data-bm-sec="{{ section.id }}" style="{% if s.fondo != blank %}--bm-sec-bg:{{ s.fondo }};{% endif %}{% if s.texto != blank %}--bm-sec-fg:{{ s.texto }};{% endif %}{% if s.tarjeta_fondo != blank %}--bm-tarjeta-bg:{{ s.tarjeta_fondo }};{% endif %}{% if s.tarjeta_texto != blank %}--bm-tarjeta-fg:{{ s.tarjeta_texto }};{% endif %}{% if s.precio_color != blank %}--bm-precio-color:{{ s.precio_color }};{% endif %}{% if s.pildora_fondo != blank %}--bm-pildora-bg:{{ s.pildora_fondo }};{% endif %}{% if s.pildora_texto != blank %}--bm-pildora-fg:{{ s.pildora_texto }};{% endif %}{% if s.estrellas != blank %}--bm-estrellas:{{ s.estrellas }};{% endif %}--bm-pad-top:{{ s.padding_top }}px;--bm-pad-bottom:{{ s.padding_bottom }}px;--bm-pad-x:{{ s.padding_lateral }}px;--bm-align:{{ s.alineacion }};--bm-oferta-gap:{{ s.separacion }}px;">
+  <div class="bm-sec__in bm-oferta__pila">
+    {%- assign grupo_caract = '' -%}
+    {%- assign grupo_confianza = '' -%}
+    {%- for block in section.blocks -%}
+      {%- assign b = block.settings -%}
+      {%- assign siguiente = section.blocks[forloop.index] -%}
+      {%- case block.type -%}
+        {%- when 'encabezado' -%}
+          <div class="bm-oferta__encabezado" data-bm-bloque="encabezado" {{ block.shopify_attributes }}>
+            {%- if b.antetitulo != blank -%}<p class="bm-oferta__ante">{{ b.antetitulo | escape }}</p>{%- endif -%}
+            {%- if b.nivel == 'h1' -%}
+              <h1 class="bm-oferta__titulo" style="--bm-titulo-tam:{{ b.tamano }}px">{{ b.titulo | default: product.title | escape }}</h1>
+            {%- else -%}
+              <h2 class="bm-oferta__titulo" style="--bm-titulo-tam:{{ b.tamano }}px">{{ b.titulo | default: product.title | escape }}</h2>
+            {%- endif -%}
+            {%- if b.subtitulo != blank -%}<p class="bm-oferta__sub">{{ b.subtitulo | escape }}</p>{%- endif -%}
+          </div>
+        {%- when 'caracteristica' -%}
+          {%- capture item -%}
+            <div class="bm-oferta__caract" {{ block.shopify_attributes }}>
+              {%- if b.icono != blank -%}
+                <span class="bm-oferta__icono">{{ b.icono | image_url: width: 120 | image_tag: loading: 'lazy', widths: '60, 120', alt: '' }}</span>
+              {%- elsif b.simbolo != blank -%}
+                <span class="bm-oferta__simbolo" aria-hidden="true">{{ b.simbolo | escape }}</span>
+              {%- endif -%}
+              {%- if b.titulo != blank -%}<p class="bm-oferta__caract-t">{{ b.titulo | escape }}</p>{%- endif -%}
+              {%- if b.texto != blank -%}<p class="bm-oferta__caract-x">{{ b.texto | escape }}</p>{%- endif -%}
+            </div>
+          {%- endcapture -%}
+          {%- assign grupo_caract = grupo_caract | append: item -%}
+          {%- if siguiente.type != 'caracteristica' -%}
+            <div class="bm-oferta__caracts" data-bm-bloque="caracteristicas">{{ grupo_caract }}</div>
+            {%- assign grupo_caract = '' -%}
+          {%- endif -%}
+        {%- when 'confianza' -%}
+          {%- capture item -%}
+            <li {{ block.shopify_attributes }}>
+              {%- if b.simbolo != blank -%}<span aria-hidden="true">{{ b.simbolo | escape }}</span>{%- endif -%}
+              <span>{{ b.texto | escape }}</span>
+            </li>
+          {%- endcapture -%}
+          {%- assign grupo_confianza = grupo_confianza | append: item -%}
+          {%- if siguiente.type != 'confianza' -%}
+            <ul class="bm-oferta__confianza" data-bm-bloque="confianza">{{ grupo_confianza }}</ul>
+            {%- assign grupo_confianza = '' -%}
+          {%- endif -%}
+        {%- when 'calificacion' -%}
+          {%- comment -%} Solo con reseñas reales: si el valor está vacío no se muestra nada. {%- endcomment -%}
+          {%- if b.valor != blank -%}
+            <p class="bm-oferta__calif" data-bm-bloque="calificacion" {{ block.shopify_attributes }}>
+              <span class="bm-oferta__estrellas" aria-hidden="true">★★★★★</span>
+              <strong>{{ b.valor | escape }}</strong>
+              {%- if b.texto != blank -%}<span>{{ b.texto | escape }}</span>{%- endif -%}
+            </p>
+          {%- endif -%}
+        {%- when 'precio' -%}
+          {%- if product != blank -%}
+            <div class="bm-oferta__precio" data-bm-bloque="precio" {{ block.shopify_attributes }}>
+              <p class="bm-oferta__precio-fila">
+                <span class="bm-oferta__precio-actual">{{ variante.price | money }}</span>
+                {%- if variante.compare_at_price > variante.price -%}
+                  <s class="bm-oferta__precio-antes">{{ variante.compare_at_price | money }}</s>
+                {%- endif -%}
+              </p>
+              {%- if b.mostrar_ahorro and variante.compare_at_price > variante.price -%}
+                {%- assign ahorro = variante.compare_at_price | minus: variante.price -%}
+                {%- assign porcentaje = ahorro | times: 100 | divided_by: variante.compare_at_price -%}
+                <p class="bm-oferta__pildora">{{ b.ahorro_texto | default: 'Ahorras' | escape }} {{ ahorro | money }} · {{ porcentaje }}% {{ b.descuento_texto | default: 'OFF' | escape }}</p>
+              {%- endif -%}
+              {%- if b.nota != blank -%}<p class="bm-oferta__nota">{{ b.nota | escape }}</p>{%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- when 'boton' -%}
+          <div data-bm-bloque="cta" {{ block.shopify_attributes }}>
+            {%- render 'bm-cta', texto: b.texto, subtexto: b.subtexto, fondo: b.fondo, color: b.color, franja: blank, ancho: 'completo', alineacion: 'center', pad_y: b.pad_y, pulso: b.pulso -%}
+          </div>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Landing · Oferta",
+  "tag": "section",
+  "enabled_on": { "templates": ["product"] },
+  "max_blocks": 24,
+  "settings": [
+    { "type": "paragraph", "content": "Precio y tachado salen de la variante del producto: se cambian en el producto, no aquí." },
+    { "type": "select", "id": "alineacion", "label": "Alineación", "options": [
+      { "value": "center", "label": "Centro" }, { "value": "left", "label": "Izquierda" }
+    ], "default": "center" },
+    { "type": "header", "content": "Colores" },
+    { "type": "color", "id": "fondo", "label": "Fondo", "info": "Vacío: el de la página." },
+    { "type": "color", "id": "texto", "label": "Texto" },
+    { "type": "color", "id": "tarjeta_fondo", "label": "Fondo de las tarjetas" },
+    { "type": "color", "id": "tarjeta_texto", "label": "Texto de las tarjetas" },
+    { "type": "color", "id": "precio_color", "label": "Color del precio" },
+    { "type": "color", "id": "pildora_fondo", "label": "Fondo de la píldora de ahorro" },
+    { "type": "color", "id": "pildora_texto", "label": "Texto de la píldora de ahorro" },
+    { "type": "color", "id": "estrellas", "label": "Estrellas" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "separacion", "label": "Separación entre elementos", "min": 4, "max": 32, "step": 2, "unit": "px", "default": 14 },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 16 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 20 },
+    { "type": "range", "id": "padding_lateral", "label": "Margen lateral", "min": 0, "max": 32, "step": 2, "unit": "px", "default": 16 }
+  ],
+  "blocks": [
+    { "type": "encabezado", "name": "Encabezado", "limit": 1, "settings": [
+      { "type": "text", "id": "antetitulo", "label": "Antetítulo" },
+      { "type": "text", "id": "titulo", "label": "Título", "info": "Vacío: el nombre del producto." },
+      { "type": "select", "id": "nivel", "label": "Nivel", "options": [
+        { "value": "h1", "label": "H1" }, { "value": "h2", "label": "H2" }
+      ], "default": "h1" },
+      { "type": "range", "id": "tamano", "label": "Tamaño del título", "min": 18, "max": 40, "step": 2, "unit": "px", "default": 26 },
+      { "type": "textarea", "id": "subtitulo", "label": "Subtítulo" }
+    ] },
+    { "type": "caracteristica", "name": "Característica", "settings": [
+      { "type": "image_picker", "id": "icono", "label": "Icono" },
+      { "type": "text", "id": "simbolo", "label": "Símbolo (si no hay icono)" },
+      { "type": "text", "id": "titulo", "label": "Título", "default": "Característica" },
+      { "type": "text", "id": "texto", "label": "Texto" }
+    ] },
+    { "type": "confianza", "name": "Señal de confianza", "settings": [
+      { "type": "text", "id": "simbolo", "label": "Símbolo", "default": "✓" },
+      { "type": "text", "id": "texto", "label": "Texto", "default": "Pago contra entrega" }
+    ] },
+    { "type": "calificacion", "name": "Calificación (solo real)", "limit": 1, "settings": [
+      { "type": "paragraph", "content": "Solo con reseñas reales del producto. Vacío: no se muestra." },
+      { "type": "text", "id": "valor", "label": "Calificación", "info": "Ejemplo: 4,8" },
+      { "type": "text", "id": "texto", "label": "Texto", "info": "Ejemplo: 37 reseñas de compradores" }
+    ] },
+    { "type": "precio", "name": "Precio", "limit": 1, "settings": [
+      { "type": "checkbox", "id": "mostrar_ahorro", "label": "Mostrar píldora de ahorro", "default": true },
+      { "type": "text", "id": "ahorro_texto", "label": "Texto antes del ahorro", "default": "Ahorras" },
+      { "type": "text", "id": "descuento_texto", "label": "Texto después del porcentaje", "default": "OFF" },
+      { "type": "text", "id": "nota", "label": "Nota bajo el precio" }
+    ] },
+    { "type": "boton", "name": "Botón de compra", "settings": [
+      { "type": "text", "id": "texto", "label": "Texto", "default": "Comprar ahora — Pago contra entrega" },
+      { "type": "text", "id": "subtexto", "label": "Línea bajo el botón" },
+      { "type": "color", "id": "fondo", "label": "Fondo", "info": "Vacío: el de «Landing · Ajustes y botón»." },
+      { "type": "color", "id": "color", "label": "Texto", "info": "Vacío: el de «Landing · Ajustes y botón»." },
+      { "type": "range", "id": "pad_y", "label": "Espacio vertical alrededor", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 4 },
+      { "type": "checkbox", "id": "pulso", "label": "Animación suave de pulso", "default": false }
+    ] }
+  ],
+  "presets": [{ "name": "Landing · Oferta", "blocks": [
+    { "type": "encabezado" }, { "type": "caracteristica" }, { "type": "caracteristica" },
+    { "type": "precio" }, { "type": "boton" }, { "type": "confianza" }, { "type": "confianza" }
+  ] }]
+}
+{% endschema %}

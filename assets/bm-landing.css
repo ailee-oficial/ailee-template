@@ -1,0 +1,172 @@
+/* BreitMarket · landing por secciones («solo imágenes» e «imágenes + HTML»).
+   Fuente canónica: claude-skills/core/tema_landing. Se instala con core/landing_tema.py.
+   Los valores por producto (colores, espacios, ancho) llegan como variables CSS desde los
+   ajustes de cada sección; este archivo solo fija la estructura. */
+.bm-sec{--bm-sec-bg:transparent;--bm-sec-fg:inherit;--bm-pad-top:0px;--bm-pad-bottom:0px;--bm-pad-x:0px;--bm-gap:0px;--bm-ancho:var(--bm-ancho-pagina,780px);display:block;width:100%;margin:0;padding:var(--bm-pad-top) 0 var(--bm-pad-bottom);background:var(--bm-sec-bg);color:var(--bm-sec-fg);box-sizing:border-box;overflow:hidden}
+.bm-sec *,.bm-sec *::before,.bm-sec *::after{box-sizing:border-box}
+.bm-sec__in{max-width:var(--bm-ancho);margin:0 auto;padding:0 var(--bm-pad-x)}
+.bm-sec--completo .bm-sec__in{max-width:none}
+.bm-pila{display:flex;flex-direction:column;gap:var(--bm-gap)}
+.bm-sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.bm-cabecera{padding:0 0 var(--bm-cabecera-gap,12px);text-align:var(--bm-align,left)}
+.bm-cabecera h2{margin:0;font-size:var(--bm-titulo-tam,26px);line-height:1.15;color:inherit}
+.bm-cabecera p{margin:6px 0 0;line-height:1.4;opacity:.9}
+
+/* Láminas: imagen a ancho completo, sin marco ni hueco. */
+.bm-lamina{display:block;margin:0;padding:0;line-height:0;position:relative}
+.bm-lamina picture{display:block}
+.bm-lamina img{display:block;width:100%;height:auto;margin:0;border:0;border-radius:var(--bm-radio-img,0)}
+.bm-lamina__boton{display:block;width:100%;margin:0;padding:0;border:0;background:none;cursor:pointer;line-height:0}
+.bm-placeholder{display:block;width:100%;height:auto;aspect-ratio:4/5;background:rgba(127,127,127,.15)}
+
+/* CTA de compra: abre Releasit; no navega. */
+.bm-cta{display:flex;flex-direction:column;align-items:var(--bm-cta-align,center);margin:0;padding:var(--bm-cta-pad-y,14px) var(--bm-cta-pad-x,16px);background:var(--bm-cta-franja,transparent);line-height:1.2}
+.bm-cta__boton{-webkit-appearance:none;appearance:none;display:flex;align-items:center;justify-content:center;width:var(--bm-cta-ancho,100%);max-width:var(--bm-ancho,780px);min-height:var(--bm-cta-alto,54px);margin:0;padding:12px 20px;border:0;border-radius:var(--bm-cta-radio,12px);background:var(--bm-cta-bg,#111827);color:var(--bm-cta-fg,#ffffff);font:inherit;font-size:var(--bm-cta-letra,17px);font-weight:800;line-height:1.2;letter-spacing:.01em;text-align:center;text-decoration:none;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.14)}
+.bm-cta__sub{margin:7px 0 0;font-size:14px;line-height:1.3;text-align:center;color:var(--bm-cta-sub,inherit);opacity:.92}
+@keyframes bm-pulso{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+.bm-cta--pulso .bm-cta__boton{animation:bm-pulso 1.9s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.bm-cta--pulso .bm-cta__boton{animation:none}}
+
+/* Notas HTML (confianza, envío, avisos) dentro de una pila de láminas. */
+.bm-nota{margin:0;padding:var(--bm-nota-pad,12px) 16px;background:var(--bm-nota-bg,transparent);color:var(--bm-nota-fg,inherit);text-align:var(--bm-nota-align,center);font-size:var(--bm-nota-tam,15px);line-height:1.4}
+.bm-nota p{margin:0}
+.bm-nota p+p{margin-top:6px}
+.bm-nota--ia{font-size:13px;opacity:.9}
+
+/* Escena: imagen + panel HTML editable. */
+.bm-escena{display:flex;flex-direction:column}
+.bm-escena--texto_arriba .bm-escena__panel{order:-1}
+.bm-escena--texto_sobre{display:grid}
+.bm-escena--texto_sobre>*{grid-area:1/1}
+.bm-escena--texto_sobre .bm-escena__panel{position:relative;align-self:var(--bm-panel-v,end);background:var(--bm-panel-sobre,linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.6)))}
+.bm-escena__media{line-height:0}
+.bm-escena__media img{display:block;width:100%;height:auto;margin:0;border:0}
+.bm-escena__panel{padding:var(--bm-panel-pad,20px);background:var(--bm-panel-bg,transparent);color:var(--bm-panel-fg,inherit);text-align:var(--bm-align,left)}
+.bm-escena__panel>*{margin-top:0;margin-bottom:0}
+.bm-escena__panel>*+*{margin-top:var(--bm-panel-gap,10px)}
+.bm-escena__panel .bm-cta{padding-left:0;padding-right:0}
+.bm-titulo{margin:0;font-size:var(--bm-titulo-tam,26px);line-height:1.15;color:inherit}
+.bm-texto{line-height:1.45}
+.bm-texto p{margin:0}
+.bm-texto p+p{margin-top:.5em}
+.bm-lista{margin:0;padding:0;list-style:none;display:grid;gap:8px;text-align:left}
+.bm-lista li{display:flex;gap:9px;align-items:flex-start;line-height:1.35}
+.bm-lista__icono{flex:0 0 auto;color:var(--bm-acento,currentColor);font-weight:800}
+.bm-insignia{display:inline-block;padding:5px 11px;border-radius:999px;background:var(--bm-acento,#111827);color:var(--bm-acento-fg,#ffffff);font-size:13px;font-weight:800;letter-spacing:.02em}
+.bm-precio{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 10px;justify-content:var(--bm-precio-align,flex-start)}
+.bm-precio__prefijo{font-weight:700}
+.bm-precio__actual{font-size:30px;font-weight:900;line-height:1}
+.bm-precio__antes{text-decoration:line-through;opacity:.7}
+.bm-precio__ahorro{padding:3px 9px;border-radius:999px;background:var(--bm-acento,#111827);color:var(--bm-acento-fg,#ffffff);font-size:13px;font-weight:800}
+.bm-precio__nota{flex-basis:100%;font-size:14px;opacity:.9}
+@media screen and (min-width:750px){.bm-escena--lado{flex-direction:row;align-items:center}.bm-escena--lado>*{flex:1 1 50%}}
+
+/* Beneficios, pasos y confianza. */
+.bm-items__grid{display:grid;grid-template-columns:repeat(var(--bm-cols-movil,1),minmax(0,1fr));gap:var(--bm-items-gap,10px)}
+@media screen and (min-width:750px){.bm-items__grid{grid-template-columns:repeat(var(--bm-cols-escritorio,3),minmax(0,1fr))}}
+.bm-item{display:flex;gap:12px;align-items:flex-start;padding:var(--bm-item-pad,14px);border-radius:var(--bm-item-radio,12px);background:var(--bm-item-bg,transparent);color:var(--bm-item-fg,inherit)}
+.bm-items--tarjeta .bm-item{flex-direction:column;align-items:center;text-align:center}
+.bm-item__icono{flex:0 0 auto;width:var(--bm-icono,44px);line-height:0}
+.bm-item__icono img{display:block;width:100%;height:auto}
+.bm-item__simbolo{display:flex;align-items:center;justify-content:center;flex:0 0 auto;width:var(--bm-icono,44px);height:var(--bm-icono,44px);border-radius:50%;background:var(--bm-acento,#111827);color:var(--bm-acento-fg,#ffffff);font-weight:900;font-size:calc(var(--bm-icono,44px) * .45);line-height:1}
+.bm-item__titulo{margin:0;font-size:17px;font-weight:800;line-height:1.25}
+.bm-item__texto{margin:4px 0 0;font-size:15px;line-height:1.4}
+
+/* Reseñas: una recreación IA siempre muestra su aviso y nunca un nombre ni estrellas. */
+.bm-resenas__lista{display:grid;gap:12px}
+.bm-resenas--carrusel .bm-resenas__lista{grid-auto-flow:column;grid-auto-columns:84%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+.bm-resena{display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:14px;background:var(--bm-tarjeta-bg,#ffffff);color:var(--bm-tarjeta-fg,#111827);scroll-snap-align:start}
+.bm-resena__foto{line-height:0}
+.bm-resena__foto img{display:block;width:100%;height:auto;border-radius:10px}
+.bm-resena__estrellas{color:var(--bm-estrellas,#f5a623);letter-spacing:2px;font-size:16px;line-height:1}
+.bm-resena__texto{margin:0;line-height:1.45;font-size:15px}
+.bm-resena__autor{margin:0;font-weight:800;font-size:14px}
+.bm-resena__etiqueta{margin:0;padding-top:7px;border-top:1px dashed currentColor;font-size:13px;line-height:1.3;opacity:.88}
+.bm-resenas__aviso{margin:10px 0 0;font-size:13px;line-height:1.35;opacity:.88;text-align:center}
+
+/* Preguntas frecuentes. */
+.bm-faq__item{border-bottom:1px solid var(--bm-linea,rgba(0,0,0,.14))}
+.bm-faq__item summary{display:flex;justify-content:space-between;gap:12px;padding:14px 0;font-weight:800;line-height:1.3;cursor:pointer;list-style:none}
+.bm-faq__item summary::-webkit-details-marker{display:none}
+.bm-faq__item summary::after{content:"+";font-weight:900}
+.bm-faq__item[open] summary::after{content:"\2013"}
+.bm-faq__resp{padding:0 0 14px;line-height:1.45}
+.bm-faq__resp p{margin:0}
+.bm-faq__resp p+p{margin-top:.5em}
+
+/* Oferta (fold de la híbrida): encabezado, características, confianza, precio real y botón. */
+.bm-oferta__pila{display:flex;flex-direction:column;gap:var(--bm-oferta-gap,14px);text-align:var(--bm-align,center)}
+.bm-oferta__ante{margin:0 0 4px;font-size:13px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;opacity:.75}
+.bm-oferta__titulo{margin:0;font-size:var(--bm-titulo-tam,26px);font-weight:900;line-height:1.1;letter-spacing:.02em;text-transform:uppercase;color:inherit}
+.bm-oferta__sub{margin:8px 0 0;font-size:16px;line-height:1.4;opacity:.8}
+.bm-oferta__caracts{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(128px,38%);gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 6px;text-align:center}
+.bm-oferta__caract{scroll-snap-align:start;padding:14px 10px;border-radius:14px;background:var(--bm-tarjeta-bg,#ffffff);color:var(--bm-tarjeta-fg,#111827);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.bm-oferta__icono{display:block;width:34px;margin:0 auto 6px;line-height:0}
+.bm-oferta__icono img{width:100%;height:auto}
+.bm-oferta__simbolo{display:block;font-size:24px;line-height:1.2;margin-bottom:4px}
+.bm-oferta__caract-t{margin:0;font-size:15px;font-weight:800;line-height:1.25}
+.bm-oferta__caract-x{margin:4px 0 0;font-size:13px;line-height:1.35;opacity:.75}
+.bm-oferta__confianza{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px;margin:0;padding:0;list-style:none;font-size:13px;line-height:1.3}
+.bm-oferta__confianza li{display:flex;flex-direction:column;align-items:center;gap:3px;opacity:.85}
+.bm-oferta__calif{display:inline-flex;align-self:center;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center;margin:0;padding:6px 14px;border-radius:999px;background:var(--bm-tarjeta-bg,#ffffff);color:var(--bm-tarjeta-fg,#111827);font-size:14px}
+.bm-oferta__estrellas{color:var(--bm-estrellas,#f5a623);letter-spacing:1px}
+.bm-oferta__precio{padding:14px 16px;border-radius:16px;border:1px solid var(--bm-linea,rgba(0,0,0,.14));background:var(--bm-tarjeta-bg,transparent);color:var(--bm-tarjeta-fg,inherit);text-align:left}
+.bm-oferta__precio-fila{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;margin:0}
+.bm-oferta__precio-actual{font-size:30px;font-weight:900;line-height:1.05;color:var(--bm-precio-color,inherit)}
+.bm-oferta__precio-antes{font-size:17px;opacity:.6}
+.bm-oferta__pildora{display:inline-block;margin:8px 0 0;padding:4px 12px;border-radius:999px;background:var(--bm-pildora-bg,#111827);color:var(--bm-pildora-fg,#ffffff);font-size:13px;font-weight:800}
+.bm-oferta__nota{margin:6px 0 0;font-size:14px;opacity:.85}
+.bm-oferta .bm-cta{padding-left:0;padding-right:0}
+
+/* Variantes visuales: la elección se completa en el formulario. */
+.bm-variantes__lista{display:grid;grid-template-columns:repeat(var(--bm-cols-movil,2),minmax(0,1fr));gap:10px}
+@media screen and (min-width:750px){.bm-variantes__lista{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.bm-variantes--carrusel .bm-variantes__lista{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:42%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+.bm-variante{margin:0;padding:8px;border-radius:14px;background:var(--bm-tarjeta-bg,#ffffff);color:var(--bm-tarjeta-fg,#111827);text-align:center;scroll-snap-align:start}
+.bm-variante__foto{line-height:0;margin-bottom:8px}
+.bm-variante__foto img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:10px}
+.bm-variante figcaption{font-size:15px;font-weight:800;line-height:1.25}
+.bm-variante figcaption small{display:block;font-weight:400;font-size:13px;opacity:.8}
+.bm-variante--agotada{opacity:.55}
+.bm-variantes__nota{margin:12px 0 0;font-size:14px;line-height:1.35;text-align:center;opacity:.85}
+
+/* Tablas: especificaciones, guía de tallas y comparativa. */
+.bm-tabla__t{width:100%;border-collapse:collapse;font-size:15px;line-height:1.35}
+.bm-tabla__t th,.bm-tabla__t td{padding:12px 8px;border-bottom:1px solid var(--bm-linea,rgba(127,127,127,.3));text-align:left;font-weight:400}
+.bm-tabla__t tbody th{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.bm-tabla--lista td{text-align:right;font-weight:700}
+.bm-tabla__t thead th{font-size:13px;font-weight:800;text-align:center}
+.bm-tabla--tabla td,.bm-tabla--comparativa td{text-align:center}
+.bm-tabla--comparativa .bm-tabla__nos{background:var(--bm-destacado-bg,transparent);color:var(--bm-destacado-fg,inherit);font-weight:800}
+.bm-tabla--tabla .bm-tabla__nos{font-weight:800}
+.bm-tabla--tabla tbody th{font-size:15px;letter-spacing:0;text-transform:none;opacity:1;text-align:center;font-weight:800}
+.bm-tabla__si,.bm-tabla__no{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;font-weight:900;line-height:1}
+.bm-tabla__si{color:inherit;background:none;border:2px solid currentColor}
+.bm-tabla__no{color:#dc2626;border:2px solid #dc2626}
+.bm-tabla__nota{margin:10px 0 0;font-size:13px;opacity:.8}
+
+/* Cinta de frases. */
+.bm-cinta{padding:var(--bm-cinta-pad,9px) 0;font-size:var(--bm-cinta-tam,14px);font-weight:700;line-height:1.2;white-space:nowrap}
+.bm-cinta__pista{display:flex;width:max-content;margin:0 auto}
+.bm-cinta__fila{display:flex;align-items:center;flex:0 0 auto}
+.bm-cinta__frase{padding:0 10px}
+.bm-cinta__sep{opacity:.7}
+.bm-cinta--animada .bm-cinta__pista{margin:0;animation:bm-cinta var(--bm-cinta-dur,24s) linear infinite}
+@keyframes bm-cinta{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.bm-cinta--animada .bm-cinta__pista{animation:none}}
+
+/* Reseñas: foto de perfil (solo reales) y disposición de chat. */
+.bm-resena__avatar{display:block;width:32px;height:32px;border-radius:50%;overflow:hidden;line-height:0}
+.bm-resena__avatar img{width:100%;height:100%;object-fit:cover}
+.bm-resenas--chat .bm-resenas__lista{gap:10px;padding:14px;border-radius:16px;background:var(--bm-chat-bg,#e5ddd5)}
+.bm-resenas--chat .bm-resena{max-width:86%;padding:10px 12px;border-radius:4px 14px 14px 14px;background:var(--bm-tarjeta-bg,#ffffff);box-shadow:0 1px 1px rgba(0,0,0,.12)}
+.bm-resenas--chat .bm-resena:nth-child(even){align-self:end;justify-self:end;border-radius:14px 4px 14px 14px;background:var(--bm-burbuja-propia,#dcf8c6)}
+
+/* Galería de escenas y videos en carrusel. */
+.bm-galeria__lista,.bm-videos__lista{display:grid;grid-auto-flow:column;grid-auto-columns:var(--bm-galeria-ancho,75%);gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+.bm-galeria--cuadricula .bm-galeria__lista{grid-auto-flow:row;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-columns:auto;overflow:visible}
+.bm-galeria__item,.bm-videos__item{margin:0;scroll-snap-align:start}
+.bm-galeria__item img{display:block;width:100%;height:auto;border-radius:var(--bm-radio-img,12px)}
+.bm-galeria__item figcaption,.bm-videos__item figcaption{margin-top:6px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+.bm-videos__lista{grid-auto-columns:var(--bm-video-ancho,60%)}
+.bm-videos__v{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:14px;background:#000}

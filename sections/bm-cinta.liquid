@@ -1,0 +1,39 @@
+{%- comment -%}
+  Cinta de frases (arriba o entre bloques): promesas operativas que la tienda sí cumple — pago contra
+  entrega, envío, cambios, garantía. Animada o fija; se detiene con «reducir movimiento».
+  Fuente canónica: claude-skills/core/tema_landing.
+{%- endcomment -%}
+{{ 'bm-landing.css' | asset_url | stylesheet_tag }}
+{%- assign s = section.settings -%}
+{%- assign frases = s.frases | newline_to_br | split: '<br />' -%}
+{%- capture fila -%}
+  {%- for frase in frases -%}
+    {%- assign f = frase | strip -%}
+    {%- if f != blank -%}<span class="bm-cinta__frase">{{ f | escape }}</span><span class="bm-cinta__sep" aria-hidden="true">{{ s.separador | escape }}</span>{%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+<div class="bm-sec bm-cinta{% if s.animada %} bm-cinta--animada{% endif %}" data-bm-landing="cinta" data-bm-sec="{{ section.id }}" style="{% if s.fondo != blank %}--bm-sec-bg:{{ s.fondo }};{% endif %}{% if s.texto != blank %}--bm-sec-fg:{{ s.texto }};{% endif %}--bm-cinta-pad:{{ s.padding }}px;--bm-cinta-tam:{{ s.tamano }}px;--bm-cinta-dur:{{ s.duracion }}s;">
+  <div class="bm-cinta__pista">
+    <div class="bm-cinta__fila">{{ fila }}</div>
+    {%- if s.animada -%}<div class="bm-cinta__fila" aria-hidden="true">{{ fila }}</div>{%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Landing · Cinta de frases",
+  "tag": "section",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "textarea", "id": "frases", "label": "Frases (una por línea)", "default": "Pago contra entrega\nEnvío a toda Colombia\nCambios sin costo" },
+    { "type": "text", "id": "separador", "label": "Separador", "default": "·" },
+    { "type": "checkbox", "id": "animada", "label": "Desplazamiento continuo", "default": true },
+    { "type": "range", "id": "duracion", "label": "Duración de una vuelta", "min": 8, "max": 60, "step": 2, "unit": "s", "default": 24 },
+    { "type": "range", "id": "tamano", "label": "Tamaño del texto", "min": 12, "max": 18, "step": 1, "unit": "px", "default": 14 },
+    { "type": "range", "id": "padding", "label": "Alto de la cinta", "min": 4, "max": 20, "step": 1, "unit": "px", "default": 9 },
+    { "type": "color", "id": "fondo", "label": "Fondo", "default": "#111827" },
+    { "type": "color", "id": "texto", "label": "Texto", "default": "#FFFFFF" }
+  ],
+  "presets": [{ "name": "Landing · Cinta de frases" }]
+}
+{% endschema %}
