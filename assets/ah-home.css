@@ -270,3 +270,8 @@
   .ah-news__form input[type="email"] { padding: 0 14px; font-size: 14px; }
   .ah-news__form .ah-boton { padding: 0 18px; }
 }
+
+/* ailee-design.css obliga a DM Sans en todo p/span/a/button con !important (regla global del tema).
+   Aquí solo se le devuelve su letra a las piezas del home y de la PDP boutique que llevan otra. */
+.ah .ah-script { font-family: var(--ah-script) !important; }
+.ah .ah-marca__wordmark, .ah .ah-marca__sub, .ah .ah-marca__frase { font-family: var(--ah-serif) !important; }
