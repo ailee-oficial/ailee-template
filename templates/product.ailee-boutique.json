@@ -1,176 +1,79 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
+    "ajustes": {
+      "type": "bm-ajustes",
+      "settings": {
+        "ocultar_encabezado": true,
+        "aplicar_fondo": true,
+        "fondo_pagina": "#faf7f4",
+        "texto_pagina": "#1c1c1c",
+        "ancho_max": 1200,
+        "ficha_modo": "completa",
+        "ficha_margen_lateral": 16,
+        "ocultar_galeria": true,
+        "ocultar_descripcion": true,
+        "ficha_padding": 12,
+        "pie_fondo": "#1c1c1c",
+        "pie_texto": "#faf7f4",
+        "pie_acento": "#c4a882",
+        "cta_fondo": "#1c1c1c",
+        "cta_texto": "#ffffff",
+        "cta_radio": 30,
+        "cta_alto": 58,
+        "cta_letra": 17,
+        "rsi_aplicar": true
+      }
+    },
+    "cinta": {
+      "type": "bm-cinta",
+      "settings": {
+        "frases": "camion|Envío GRATIS a toda Colombia\npago|Pagas al recibir\nreloj|Llega en 3 a 5 días hábiles\ncheck|Beneficio principal del producto",
+        "separador": "·",
+        "animada": true,
+        "duracion": 26,
+        "tamano": 13,
+        "padding": 9,
+        "fondo": "#1c1c1c",
+        "texto": "#faf7f4"
+      }
+    },
     "portada": {
-      "type": "ah-portada",
+      "type": "bm-escena",
       "settings": {
-        "respaldo": "ah-hero-1.webp",
-        "titulo_1": "Estilo",
-        "titulo_2": "que te acompaña",
-        "titulo_script": "siempre",
-        "texto": "Descripción corta del producto: qué cambia en tu día cuando lo usas.",
-        "boton": "Lo quiero ahora",
-        "firma": "Un básico que\ncombina contigo"
+        "texto_alt": "Foto de impacto del producto puesto",
+        "prioridad": true,
+        "disposicion": "texto_sobre",
+        "posicion_texto": "start",
+        "sobre_degradado": false,
+        "alineacion": "left",
+        "ancho": "completo",
+        "texto": "#1c1c1c",
+        "acento": "#1c1c1c",
+        "acento_texto": "#ffffff",
+        "panel_padding": 22,
+        "separacion": 10,
+        "padding_top": 0,
+        "padding_bottom": 0
       },
       "blocks": {
-        "icono_1": {
-          "type": "icono",
+        "insignia_1": {
+          "type": "insignia",
           "settings": {
-            "icono": "zapato",
-            "texto": "Primer\nbeneficio"
+            "texto": "NUEVO · Pagas al recibir"
           }
         },
-        "icono_2": {
-          "type": "icono",
+        "titulo_2": {
+          "type": "titulo",
           "settings": {
-            "icono": "rayo",
-            "texto": "Segundo\nbeneficio"
-          }
-        },
-        "icono_3": {
-          "type": "icono",
-          "settings": {
-            "icono": "calidad",
-            "texto": "Estilo\nversátil"
+            "texto": "Titular de impacto del ángulo",
+            "nivel": "h1",
+            "tamano": 44
           }
         }
       },
       "block_order": [
-        "icono_1",
-        "icono_2",
-        "icono_3"
-      ]
-    },
-    "beneficios": {
-      "type": "ah-beneficios",
-      "settings": {
-        "pt": 20,
-        "pb": 20
-      },
-      "blocks": {
-        "beneficio_1": {
-          "type": "beneficio",
-          "settings": {
-            "icono": "envio",
-            "titulo": "Envío gratis",
-            "texto": "a toda Colombia"
-          }
-        },
-        "beneficio_2": {
-          "type": "beneficio",
-          "settings": {
-            "icono": "contraentrega",
-            "titulo": "Paga al recibir",
-            "texto": "pago contraentrega"
-          }
-        },
-        "beneficio_3": {
-          "type": "beneficio",
-          "settings": {
-            "icono": "segura",
-            "titulo": "Compra segura",
-            "texto": "tus datos protegidos"
-          }
-        },
-        "beneficio_4": {
-          "type": "beneficio",
-          "settings": {
-            "icono": "whatsapp",
-            "titulo": "Te asesoramos",
-            "texto": "por WhatsApp",
-            "enlace": "https://wa.me/573128860515"
-          }
-        }
-      },
-      "block_order": [
-        "beneficio_1",
-        "beneficio_2",
-        "beneficio_3",
-        "beneficio_4"
-      ]
-    },
-    "detalles": {
-      "type": "ah-circulos",
-      "settings": {
-        "respaldo": "ah-calzado-2.webp",
-        "firma": "Detalles que\nenamoran",
-        "titulo": "Un diseño pensado\nen cada detalle"
-      },
-      "blocks": {
-        "detalle_1": {
-          "type": "detalle",
-          "settings": {
-            "respaldo": "ah-calzado-1.webp",
-            "texto": "Primer detalle\nreal"
-          }
-        },
-        "detalle_2": {
-          "type": "detalle",
-          "settings": {
-            "respaldo": "ah-calzado-3.webp",
-            "texto": "Segundo detalle\nreal"
-          }
-        },
-        "detalle_3": {
-          "type": "detalle",
-          "settings": {
-            "respaldo": "ah-calzado-4.webp",
-            "texto": "Tercer detalle\nreal"
-          }
-        }
-      },
-      "block_order": [
-        "detalle_1",
-        "detalle_2",
-        "detalle_3"
-      ]
-    },
-    "momentos": {
-      "type": "ah-momentos",
-      "settings": {
-        "eyebrow": "",
-        "titulo": "Un estilo para",
-        "titulo_script": "cada momento",
-        "disposicion": "lado",
-        "proporcion": "4 / 5",
-        "pt": 32,
-        "pb": 32
-      },
-      "blocks": {
-        "momento_1": {
-          "type": "momento",
-          "settings": {
-            "respaldo": "ah-momento-diario.webp",
-            "nombre": "Día a día"
-          }
-        },
-        "momento_2": {
-          "type": "momento",
-          "settings": {
-            "respaldo": "ah-momento-oficina.webp",
-            "nombre": "Oficina"
-          }
-        },
-        "momento_3": {
-          "type": "momento",
-          "settings": {
-            "respaldo": "ah-momento-finde.webp",
-            "nombre": "Planes casuales"
-          }
-        }
-      },
-      "block_order": [
-        "momento_1",
-        "momento_2",
-        "momento_3"
+        "insignia_1",
+        "titulo_2"
       ]
     },
     "main": {
@@ -197,6 +100,12 @@
           "type": "price",
           "settings": {}
         },
+        "ah_ahorro": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'ah-ahorro' %}"
+          }
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -210,11 +119,23 @@
             "custom_liquid": "{%- liquid\n  assign guia_url = ''\n  for im in product.images\n    assign meta = im.src | append: ' ' | append: im.alt | downcase\n    if meta contains 'talla' or meta contains 'guia' or meta contains 'medida' or meta contains 'size'\n      assign guia_url = im | image_url: width: 800\n    endif\n  endfor\n  if guia_url == ''\n    assign ult = product.images.last\n    assign alt_ult = ult.alt | default: '' | downcase\n    assign es_foto_color = false\n    if alt_ult contains '_'\n      assign partes = alt_ult | split: '_'\n      assign sufijo = partes | last | plus: 0\n      if sufijo > 0\n        assign es_foto_color = true\n      endif\n    endif\n    if ult != blank and es_foto_color == false\n      assign guia_url = ult | image_url: width: 800\n    endif\n  endif\n  if guia_url == ''\n    assign guia_url = ''\n  endif\n-%}\n<div class=\"guia-talla-link\"><span class=\"guia-talla-icon\">📏</span><a href=\"#\" id=\"btnAbrirGuia\" class=\"guia-talla-a\">Encuentra tu talla aquí</a></div>\n\n<div id=\"guiaModal\" style=\"display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;align-items:center;justify-content:center;padding:16px;\">\n  <div style=\"background:var(--cm-cream, #FAF7F4);border-radius:14px;width:100%;max-width:440px;max-height:90vh;max-height:90dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;\">\n    <div style=\"display:flex;align-items:center;justify-content:space-between;padding:12px 16px 8px;border-bottom:1px solid #eee;\">\n      <h3 style=\"font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:#111;margin:0;flex:1;text-align:center;\">Guía de tallas</h3>\n      <button id=\"btnCerrarGuia\" style=\"background:none;border:none;font-size:2.2rem;color:#6B6B6B;cursor:pointer;line-height:1;\">×</button>\n    </div>\n    <div style=\"padding:14px 16px 18px;text-align:center;\">\n      <img src=\"{{ guia_url }}\" alt=\"Guía de tallas\" loading=\"lazy\" decoding=\"async\" style=\"width:100%;border-radius:8px;margin-bottom:14px;\">\n      <p style=\"font-size:1.2rem;color:#000;margin:8px 0 12px;\">Si estás entre dos tallas, <strong>elige la más grande.</strong></p>\n      <button class=\"gtx-close-btn\" id=\"btnCerrarGuia2\">Entendido, cerrar</button>\n    </div>\n  </div>\n</div>\n\n<style>\n.guia-talla-link{display:flex;align-items:center;gap:6px;margin:10px 0;padding:0}\n.guia-talla-icon{font-size:13px;opacity:.7}\n.guia-talla-a{color:#111!important;font-size:12px!important;text-decoration:underline!important;text-underline-offset:2px;cursor:pointer;font-weight:500!important;text-transform:none!important;background:none;border:none}\n.guia-talla-a:hover{color:#111}\n.gtx-close-btn{display:block;width:100%;background:#000;color:var(--cm-cream, #FAF7F4);border:none;padding:10px 0;font-size:1.05rem;font-weight:700;border-radius:6px;cursor:pointer}\n</style>\n<script>(function(){var m=document.getElementById('guiaModal');function a(){m.style.display='flex';document.body.style.overflow='hidden';}function c(){m.style.display='none';document.body.style.overflow='';}document.getElementById('btnAbrirGuia').addEventListener('click',function(e){e.preventDefault();a();});document.getElementById('btnCerrarGuia').addEventListener('click',c);document.getElementById('btnCerrarGuia2').addEventListener('click',c);m.addEventListener('click',function(e){if(e.target===m)c();});})();</script>"
           }
         },
+        "stock_real": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{%- comment -%}\n  Escasez CONCRETA con el inventario real de la variante elegida.\n  Sustituye al \"🔥 Últimos días de oferta\" de la v1, que era escasez genérica y\n  violaba nuestra propia regla (\"escasez concreta o nada\").\n\n  Solo se pinta si Shopify trackea inventario y quedan pocas unidades de ESA\n  talla y color. El JSON de abajo lo lee el script para actualizar el número al\n  cambiar de variante, sin recargar la página.\n{%- endcomment -%}\n{%- liquid\n  assign umbral = product.metafields.custom.stock_umbral | default: 25 | plus: 0\n  comment\n    OJO: `product.tracks_inventory` NO existe en Liquid — es un campo de la Admin\n    API y evaluarlo devuelve nil, así que el bloque entero desaparecía en silencio.\n    En Liquid el inventario se pregunta POR VARIANTE con inventory_management.\n  endcomment\n  assign trackea = false\n  for var in product.variants\n    if var.inventory_management != blank\n      assign trackea = true\n      break\n    endif\n  endfor\n-%}\n{%- if trackea -%}\n  {%- capture inv_json -%}\n    {\n    {%- for var in product.variants -%}\n      \"{{ var.id }}\": {{ var.inventory_quantity | default: 0 }}{%- unless forloop.last -%},{%- endunless -%}\n    {%- endfor -%}\n    }\n  {%- endcapture -%}\n  <script type=\"application/json\" id=\"v2-inv\">{{ inv_json }}</script>\n  <div class=\"v2-stock\" id=\"v2-stock\" data-umbral=\"{{ umbral }}\" hidden>\n    <span class=\"v2-stock-dot\"></span>\n    <span class=\"v2-stock-tx\"></span>\n  </div>\n  <style>\n    .v2-stock{display:flex;align-items:center;gap:8px;margin:10px 0 4px;\n              font-size:1.05rem;font-weight:600;color:#B3261E}\n    .v2-stock-dot{width:9px;height:9px;border-radius:50%;background:#B3261E;\n                  animation:v2pulse 1.6s ease-in-out infinite;flex:0 0 auto}\n    @keyframes v2pulse{0%,100%{opacity:1}50%{opacity:.35}}\n    @media (prefers-reduced-motion: reduce){.v2-stock-dot{animation:none}}\n  </style>\n  <script>\n  (function(){\n    var caja = document.getElementById('v2-stock');\n    var datos = document.getElementById('v2-inv');\n    if (!caja || !datos) return;\n    var inv;\n    try { inv = JSON.parse(datos.textContent); } catch (e) { return; }\n    var umbral = parseInt(caja.dataset.umbral, 10) || 25;\n    var tx = caja.querySelector('.v2-stock-tx');\n\n    function idVariante() {\n      var u = new URL(window.location.href);\n      var v = u.searchParams.get('variant');\n      if (v) return v;\n      var campo = document.querySelector('form[action*=\"/cart/add\"] [name=\"id\"]');\n      return campo ? campo.value : null;\n    }\n    function pintar() {\n      var id = idVariante();\n      var n = id ? inv[id] : undefined;\n      if (typeof n !== 'number' || n <= 0 || n > umbral) { caja.hidden = true; return; }\n      tx.textContent = n === 1 ? 'Queda 1 unidad en esta talla' : 'Quedan ' + n + ' unidades en esta talla';\n      caja.hidden = false;\n    }\n    // Este bloque se renderiza ANTES que buy_buttons, así que al ejecutarse el\n    // formulario todavía no existe. Observar el form directamente registraba el\n    // observer sobre null y el número no se pintaba nunca; observar el body con\n    // {subtree, attributes} dispara miles de veces y cuelga la página. La vía\n    // sana: esperar al form con reintentos acotados y observar SOLO ese form.\n    var intentos = 0;\n    function engancharse() {\n      var form = document.querySelector('form[action*=\"/cart/add\"]');\n      if (!form) {\n        if (++intentos > 20) return;          // ~6 s y se rinde, sin bucles vivos\n        return setTimeout(engancharse, 300);\n      }\n      pintar();\n      new MutationObserver(pintar).observe(form, {\n        subtree: true, attributes: true, attributeFilter: ['value']\n      });\n      form.addEventListener('change', pintar);\n    }\n    engancharse();\n    window.addEventListener('popstate', pintar);\n  })();\n  </script>\n{%- endif -%}\n"
+          }
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": false
+          }
+        },
+        "ah_confianza": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'ah-confianza', items: 'envio|Envío gratis|a toda Colombia;contraentrega|Pagas al recibir|contraentrega;segura|Compra segura|datos protegidos' %}"
           }
         },
         "ah_talla_ayuda": {
@@ -260,9 +181,12 @@
         "ah_estilos",
         "title",
         "price",
+        "ah_ahorro",
         "variant_picker",
         "custom_size_guide_visual",
+        "stock_real",
         "buy_buttons",
+        "ah_confianza",
         "ah_talla_ayuda",
         "collapsible_tab_AUafHX",
         "c11bfb2f-901d-4b03-90cf-b6b766353d13",
@@ -295,7 +219,7 @@
         "constrain_to_viewport": true,
         "media_fit": "contain",
         "gallery_layout": "thumbnail",
-        "media_position": "right",
+        "media_position": "left",
         "image_zoom": "lightbox",
         "mobile_thumbnails": "show",
         "hide_variants": false,
@@ -303,46 +227,6 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
-    },
-    "mosaico": {
-      "type": "ah-mosaico",
-      "settings": {},
-      "blocks": {
-        "pieza_1": {
-          "type": "pieza",
-          "settings": {
-            "respaldo": "ah-calzado-1.webp",
-            "texto": "Primer\nbeneficio"
-          }
-        },
-        "pieza_2": {
-          "type": "pieza",
-          "settings": {
-            "respaldo": "ah-calzado-2.webp",
-            "texto": "Segundo\nbeneficio"
-          }
-        },
-        "pieza_3": {
-          "type": "pieza",
-          "settings": {
-            "respaldo": "ah-calzado-3.webp",
-            "texto": "Combina\ncon todo"
-          }
-        },
-        "pieza_4": {
-          "type": "pieza",
-          "settings": {
-            "respaldo": "ah-calzado-4.webp",
-            "texto": "Un básico\nen tu clóset"
-          }
-        }
-      },
-      "block_order": [
-        "pieza_1",
-        "pieza_2",
-        "pieza_3",
-        "pieza_4"
-      ]
     },
     "resenas": {
       "type": "bm-resenas",
@@ -354,8 +238,8 @@
         "texto": "#1c1c1c",
         "tarjeta_fondo": "#f3ede7",
         "tarjeta_texto": "#1c1c1c",
-        "padding_top": 40,
-        "padding_bottom": 40,
+        "padding_top": 32,
+        "padding_bottom": 32,
         "padding_lateral": 16
       },
       "blocks": {
@@ -423,24 +307,209 @@
         "resena_5"
       ]
     },
-    "relacionados": {
-      "type": "ah-productos",
+    "antes_despues": {
+      "type": "ah-mosaico",
       "settings": {
-        "eyebrow": "",
-        "titulo": "También te puede encantar",
-        "cantidad": 4,
-        "columnas": 4,
-        "segunda_foto": true,
-        "ver_todos": "Ver más productos",
-        "pt": 40,
-        "pb": 56
-      }
+        "eyebrow": "Mira la diferencia",
+        "titulo": "El cambio que hace el producto"
+      },
+      "blocks": {
+        "pieza_1": {
+          "type": "pieza",
+          "settings": {
+            "respaldo": "ah-momento-diario.webp",
+            "texto": "Antes"
+          }
+        },
+        "pieza_2": {
+          "type": "pieza",
+          "settings": {
+            "respaldo": "ah-momento-finde.webp",
+            "texto": "Después"
+          }
+        }
+      },
+      "block_order": [
+        "pieza_1",
+        "pieza_2"
+      ]
     },
-    "suscripcion": {
-      "type": "ah-newsletter",
+    "colores": {
+      "type": "ah-mosaico",
       "settings": {
-        "pt": 48,
-        "pb": 48
+        "eyebrow": "Colores",
+        "titulo": "Elige tu favorito"
+      },
+      "blocks": {
+        "pieza_1": {
+          "type": "pieza",
+          "settings": {
+            "respaldo": "ah-calzado-1.webp",
+            "texto": "Color 1",
+            "enlace": "#comprar"
+          }
+        },
+        "pieza_2": {
+          "type": "pieza",
+          "settings": {
+            "respaldo": "ah-calzado-2.webp",
+            "texto": "Color 2",
+            "enlace": "#comprar"
+          }
+        },
+        "pieza_3": {
+          "type": "pieza",
+          "settings": {
+            "respaldo": "ah-calzado-3.webp",
+            "texto": "Color 3",
+            "enlace": "#comprar"
+          }
+        },
+        "pieza_4": {
+          "type": "pieza",
+          "settings": {
+            "respaldo": "ah-calzado-4.webp",
+            "texto": "Color 4",
+            "enlace": "#comprar"
+          }
+        }
+      },
+      "block_order": [
+        "pieza_1",
+        "pieza_2",
+        "pieza_3",
+        "pieza_4"
+      ]
+    },
+    "detalles": {
+      "type": "ah-circulos",
+      "settings": {
+        "respaldo": "ah-calzado-2.webp",
+        "firma": "Detalles que\nenamoran",
+        "titulo": "Un diseño pensado\nen cada detalle"
+      },
+      "blocks": {
+        "detalle_1": {
+          "type": "detalle",
+          "settings": {
+            "respaldo": "ah-calzado-1.webp",
+            "texto": "Detalle real\ndel producto"
+          }
+        },
+        "detalle_2": {
+          "type": "detalle",
+          "settings": {
+            "respaldo": "ah-calzado-3.webp",
+            "texto": "Detalle real\ndel producto"
+          }
+        },
+        "detalle_3": {
+          "type": "detalle",
+          "settings": {
+            "respaldo": "ah-calzado-4.webp",
+            "texto": "Detalle real\ndel producto"
+          }
+        }
+      },
+      "block_order": [
+        "detalle_1",
+        "detalle_2",
+        "detalle_3"
+      ]
+    },
+    "planes": {
+      "type": "ah-mosaico",
+      "settings": {
+        "eyebrow": "Un par",
+        "titulo": "Muchos planes"
+      },
+      "blocks": {
+        "pieza_1": {
+          "type": "pieza",
+          "settings": {
+            "respaldo": "ah-momento-diario.webp",
+            "texto": "Día a día"
+          }
+        },
+        "pieza_2": {
+          "type": "pieza",
+          "settings": {
+            "respaldo": "ah-momento-oficina.webp",
+            "texto": "Oficina"
+          }
+        },
+        "pieza_3": {
+          "type": "pieza",
+          "settings": {
+            "respaldo": "ah-momento-noche.webp",
+            "texto": "Una salida"
+          }
+        },
+        "pieza_4": {
+          "type": "pieza",
+          "settings": {
+            "respaldo": "ah-momento-finde.webp",
+            "texto": "Fin de semana"
+          }
+        }
+      },
+      "block_order": [
+        "pieza_1",
+        "pieza_2",
+        "pieza_3",
+        "pieza_4"
+      ]
+    },
+    "faq": {
+      "type": "bm-faq",
+      "settings": {
+        "titulo": "Preguntas frecuentes",
+        "alineacion": "left",
+        "abrir_primera": true,
+        "fondo": "#faf7f4",
+        "texto": "#1c1c1c",
+        "linea": "#e2d8cc",
+        "padding_top": 32,
+        "padding_bottom": 32,
+        "padding_lateral": 16
+      },
+      "blocks": {
+        "pregunta_1": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Cómo sé cuál es mi talla?",
+            "respuesta": "<p>Usa la guía de tallas de esta página o escríbenos por WhatsApp.</p>"
+          }
+        },
+        "pregunta_2": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Cuándo me llega?",
+            "respuesta": "<p>Entre 3 y 5 días hábiles (lunes a sábado, sin festivos) a cualquier ciudad de Colombia, con envío gratis.</p>"
+          }
+        },
+        "pregunta_3": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Cómo pago?",
+            "respuesta": "<p>Pagas en efectivo cuando recibes el pedido en la puerta de tu casa. No pagas nada por adelantado.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "pregunta_1",
+        "pregunta_2",
+        "pregunta_3"
+      ]
+    },
+    "cierre": {
+      "type": "ah-cierre",
+      "settings": {
+        "respaldo": "ah-calzado-2.webp",
+        "firma": "Tu nuevo favorito",
+        "titulo": "Llévalo hoy y paga\ncuando lo recibas",
+        "nota": "Envío gratis a toda Colombia · llega en 3 a 5 días hábiles",
+        "boton": "Elegir mi color y talla"
       }
     },
     "apps": {
@@ -451,15 +520,17 @@
     }
   },
   "order": [
+    "ajustes",
+    "cinta",
     "portada",
-    "beneficios",
-    "detalles",
-    "momentos",
     "main",
-    "mosaico",
     "resenas",
-    "relacionados",
-    "suscripcion",
+    "antes_despues",
+    "colores",
+    "detalles",
+    "planes",
+    "faq",
+    "cierre",
     "apps"
   ]
 }

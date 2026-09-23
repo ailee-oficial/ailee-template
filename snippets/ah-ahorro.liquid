@@ -1,0 +1,14 @@
+{%- comment -%}
+  ah-ahorro — «Ahorras $X · Y% OFF» bajo el precio de la ficha boutique. Sale del precio y el precio de
+  comparación REALES de la variante (se edita en el producto, no aquí); sin precio tachado no se muestra.
+{%- endcomment -%}
+{%- assign aha_v = product.selected_or_first_available_variant -%}
+{%- if aha_v.compare_at_price > aha_v.price -%}
+  {%- assign aha_dif = aha_v.compare_at_price | minus: aha_v.price -%}
+  {%- assign aha_pct = aha_dif | times: 100 | divided_by: aha_v.compare_at_price -%}
+  <p class="ah-ahorro"><span class="ah-ahorro__pildora">{{ aha_pct }}% OFF</span> Ahorras {{ aha_dif | money_without_trailing_zeros }}</p>
+  <style>
+    .ah-ahorro { display: flex; align-items: center; gap: 10px; margin: 6px 0 14px !important; font-family: 'DM Sans', sans-serif; font-size: 15px !important; font-weight: 600; color: #8a6d47; }
+    .ah-ahorro__pildora { background: #1c1c1c; color: #fff; border-radius: 99px; padding: 4px 12px; font-size: 13px !important; letter-spacing: .06em; }
+  </style>
+{%- endif -%}

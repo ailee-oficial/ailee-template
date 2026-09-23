@@ -1,0 +1,62 @@
+{{ 'ah-home.css' | asset_url | stylesheet_tag }}
+{%- comment -%}
+  Cierre de la PDP boutique: foto, titular, precio REAL de la variante (con tachado y ahorro) y botón que
+  sube a la ficha (#comprar) para elegir color y talla. No abre Releasit directo: su formulario no tiene
+  selector de variante y la clienta pediría sin haber elegido talla (landing-formatos.md · Variantes).
+{%- endcomment -%}
+{%- assign ahz_v = product.selected_or_first_available_variant -%}
+<section class="ah ah-fondo-suave">
+  <div class="ah-cierre">
+    <div class="ah-cierre__foto">
+      {%- render 'ah-img', imagen: section.settings.imagen, respaldo: section.settings.respaldo, alt: section.settings.titulo, sizes: '(min-width: 750px) 50vw, 100vw', ancho: 1400, alto: 1022 -%}
+    </div>
+    <div class="ah-cierre__panel">
+      {%- if section.settings.firma != blank -%}<p class="ah-cierre__firma ah-script">{{ section.settings.firma | escape }}</p>{%- endif -%}
+      <h2 class="ah-titulo ah-titulo--recto">{{ section.settings.titulo | escape | newline_to_br }}</h2>
+      {%- if ahz_v -%}
+        <p class="ah-cierre__precio">
+          {%- if ahz_v.compare_at_price > ahz_v.price -%}<s>{{ ahz_v.compare_at_price | money_without_trailing_zeros }}</s> {% endif -%}
+          <strong>{{ ahz_v.price | money_without_trailing_zeros }}</strong>
+        </p>
+      {%- endif -%}
+      {%- if section.settings.nota != blank -%}<p class="ah-cierre__nota">{{ section.settings.nota | escape }}</p>{%- endif -%}
+      <a class="ah-boton ah-cierre__boton" href="#comprar">{{ section.settings.boton | escape }} {%- render 'ah-icono', icono: 'flecha' -%}</a>
+    </div>
+  </div>
+</section>
+<style>
+  .ah-cierre { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; }
+  .ah-cierre__foto { position: relative; min-height: 380px; overflow: hidden; }
+  .ah-cierre__foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .ah-cierre__panel { padding: clamp(28px, 4vw, 64px); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 10px; }
+  .ah-cierre__firma { margin: 0; font-size: 34px; color: var(--ah-camel); transform: rotate(-4deg); }
+  .ah-cierre__precio { margin: 6px 0 0; font-size: 28px; }
+  .ah-cierre__precio s { font-size: 17px; color: #9a918a; margin-right: 8px; }
+  .ah-cierre__precio strong { font-weight: 600; }
+  .ah-cierre__nota { font-size: 14px; color: var(--ah-muted); }
+  .ah-cierre__boton { margin-top: 12px; text-transform: uppercase; letter-spacing: .1em; min-height: 54px; padding: 0 32px; }
+  @media (max-width: 749px) {
+    .ah-cierre { grid-template-columns: 1fr; }
+    .ah-cierre__foto { min-height: 0; aspect-ratio: 4 / 3; }
+    .ah-cierre__panel { padding: 26px 20px 36px; align-items: stretch; text-align: center; }
+    .ah-cierre__firma { align-self: center; }
+    .ah-cierre__boton { justify-content: center; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Ailee · Cierre",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "image_picker", "id": "imagen", "label": "Imagen", "info": "Horizontal 4:3." },
+    { "type": "text", "id": "respaldo", "label": "Imagen provisional del tema" },
+    { "type": "text", "id": "firma", "label": "Frase manuscrita (opcional)", "default": "Tu nuevo favorito" },
+    { "type": "textarea", "id": "titulo", "label": "Título", "default": "Llévalo hoy y paga\ncuando lo recibas" },
+    { "type": "text", "id": "nota", "label": "Nota bajo el precio", "default": "Envío gratis a toda Colombia · pagas al recibir" },
+    { "type": "text", "id": "boton", "label": "Texto del botón", "default": "Elegir mi color y talla" }
+  ],
+  "presets": [{ "name": "Ailee · Cierre" }]
+}
+{% endschema %}
