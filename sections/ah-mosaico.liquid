@@ -1,0 +1,49 @@
+{{ 'ah-home.css' | asset_url | stylesheet_tag }}
+{%- comment -%} Mosaico de fotos a todo el ancho con una frase encima de cada una (texto HTML, no horneado). {%- endcomment -%}
+{%- style -%}
+  #shopify-section-{{ section.id }} .ah-mosaico { --ah-cols: {{ section.blocks.size }}; }
+{%- endstyle -%}
+<section class="ah">
+  <div class="ah-mosaico">
+    {%- for block in section.blocks -%}
+      <div class="ah-mosaico__pieza" {{ block.shopify_attributes }}>
+        {%- render 'ah-img', imagen: block.settings.imagen, respaldo: block.settings.respaldo, alt: block.settings.texto, sizes: '(min-width: 750px) 25vw, 50vw', ancho: 1080, alto: 1440 -%}
+        <p class="ah-mosaico__texto">{{ block.settings.texto | escape | newline_to_br }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+<style>
+  .ah-mosaico { display: grid; grid-template-columns: repeat(var(--ah-cols, 4), minmax(0, 1fr)); gap: 4px; }
+  .ah-mosaico__pieza { position: relative; aspect-ratio: 3 / 4; overflow: hidden; background: var(--ah-sand); }
+  .ah-mosaico__pieza img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .ah-mosaico__texto { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 40px 12px 16px; text-align: center;
+    font-family: var(--ah-serif) !important; font-size: clamp(18px, 1.7vw, 24px); line-height: 1.15; color: var(--ah-ink);
+    background: linear-gradient(0deg, rgba(250,247,244,.92) 0%, rgba(250,247,244,.75) 55%, rgba(250,247,244,0) 100%); }
+  @media (max-width: 749px) {
+    .ah-mosaico { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ah-mosaico__texto { font-size: 17px; padding: 30px 8px 12px; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Ailee · Mosaico",
+  "tag": "div",
+  "class": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "pieza",
+      "name": "Foto",
+      "settings": [
+        { "type": "image_picker", "id": "imagen", "label": "Imagen", "info": "Vertical 3:4." },
+        { "type": "text", "id": "respaldo", "label": "Imagen provisional del tema" },
+        { "type": "textarea", "id": "texto", "label": "Frase", "default": "Combina\ncon todo" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [{ "name": "Ailee · Mosaico", "blocks": [{ "type": "pieza" }, { "type": "pieza" }, { "type": "pieza" }, { "type": "pieza" }] }]
+}
+{% endschema %}

@@ -9,6 +9,170 @@
  */
 {
   "sections": {
+    "portada": {
+      "type": "ah-portada",
+      "settings": {
+        "imagen": "shopify://shop_images/ailee-sueco-045-v2-portada.webp",
+        "titulo_1": "Estilo",
+        "titulo_2": "que te acompaña",
+        "titulo_script": "siempre",
+        "texto": "Mismo jean, otro look: te lo pones en un segundo y sales, sin tacón.",
+        "boton": "Lo quiero ahora",
+        "firma": "Un básico que\ncombina contigo"
+      },
+      "blocks": {
+        "icono_1": {
+          "type": "icono",
+          "settings": {
+            "icono": "zapato",
+            "texto": "Sin\ntacón"
+          }
+        },
+        "icono_2": {
+          "type": "icono",
+          "settings": {
+            "icono": "rayo",
+            "texto": "Se calza en\nun segundo"
+          }
+        },
+        "icono_3": {
+          "type": "icono",
+          "settings": {
+            "icono": "calidad",
+            "texto": "Estilo\nversátil"
+          }
+        }
+      },
+      "block_order": [
+        "icono_1",
+        "icono_2",
+        "icono_3"
+      ]
+    },
+    "beneficios": {
+      "type": "ah-beneficios",
+      "settings": {
+        "pt": 20,
+        "pb": 20
+      },
+      "blocks": {
+        "beneficio_1": {
+          "type": "beneficio",
+          "settings": {
+            "icono": "envio",
+            "titulo": "Envío gratis",
+            "texto": "a toda Colombia"
+          }
+        },
+        "beneficio_2": {
+          "type": "beneficio",
+          "settings": {
+            "icono": "contraentrega",
+            "titulo": "Paga al recibir",
+            "texto": "pago contraentrega"
+          }
+        },
+        "beneficio_3": {
+          "type": "beneficio",
+          "settings": {
+            "icono": "segura",
+            "titulo": "Compra segura",
+            "texto": "tus datos protegidos"
+          }
+        },
+        "beneficio_4": {
+          "type": "beneficio",
+          "settings": {
+            "icono": "whatsapp",
+            "titulo": "Te asesoramos",
+            "texto": "por WhatsApp",
+            "enlace": "https://wa.me/573128860515"
+          }
+        }
+      },
+      "block_order": [
+        "beneficio_1",
+        "beneficio_2",
+        "beneficio_3",
+        "beneficio_4"
+      ]
+    },
+    "detalles": {
+      "type": "ah-circulos",
+      "settings": {
+        "imagen": "shopify://shop_images/ailee-sueco-045-v2-detalle-grande.webp",
+        "firma": "Detalles que\nenamoran",
+        "titulo": "Un diseño pensado\nen cada detalle"
+      },
+      "blocks": {
+        "detalle_1": {
+          "type": "detalle",
+          "settings": {
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-circulo-lazo.webp",
+            "texto": "Moño con\ncuentas doradas"
+          }
+        },
+        "detalle_2": {
+          "type": "detalle",
+          "settings": {
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-circulo-plataforma.webp",
+            "texto": "Plataforma de\nuna sola pieza"
+          }
+        },
+        "detalle_3": {
+          "type": "detalle",
+          "settings": {
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-circulo-costura.webp",
+            "texto": "Costura tipo\nmocasín"
+          }
+        }
+      },
+      "block_order": [
+        "detalle_1",
+        "detalle_2",
+        "detalle_3"
+      ]
+    },
+    "momentos": {
+      "type": "ah-momentos",
+      "settings": {
+        "eyebrow": "",
+        "titulo": "Un estilo para",
+        "titulo_script": "cada momento",
+        "disposicion": "lado",
+        "proporcion": "4 / 5",
+        "pt": 32,
+        "pb": 32
+      },
+      "blocks": {
+        "momento_1": {
+          "type": "momento",
+          "settings": {
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-momento-diario.webp",
+            "nombre": "Día a día"
+          }
+        },
+        "momento_2": {
+          "type": "momento",
+          "settings": {
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-momento-oficina.webp",
+            "nombre": "Oficina"
+          }
+        },
+        "momento_3": {
+          "type": "momento",
+          "settings": {
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-momento-planes.webp",
+            "nombre": "Planes casuales"
+          }
+        }
+      },
+      "block_order": [
+        "momento_1",
+        "momento_2",
+        "momento_3"
+      ]
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -22,30 +186,16 @@
         "ah_estilos": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "{% render 'ah-pdp-estilos', descripcion: 'oculta' %}"
+            "custom_liquid": "<span id=\"comprar\"></span>{% render 'ah-pdp-estilos', descripcion: 'oculta' %}"
           }
         },
         "title": {
           "type": "title",
           "settings": {}
         },
-        "subtitulo": {
-          "type": "text",
-          "settings": {
-            "text": "Mismo jean, otro look",
-            "text_style": "subtitle"
-          }
-        },
         "price": {
           "type": "price",
           "settings": {}
-        },
-        "resumen": {
-          "type": "text",
-          "settings": {
-            "text": "Plataforma plana de una sola pieza y cuerpo de mula que se calza deslizando el pie: te lo pones en un segundo y cambias el look de tu jean de siempre, sin tacón.",
-            "text_style": "body"
-          }
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -65,12 +215,6 @@
           "settings": {
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": false
-          }
-        },
-        "ah_confianza": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "{% render 'ah-confianza', items: 'envio|Envío gratis|a toda Colombia;contraentrega|Pagas cuando lo recibes|pago contraentrega;segura|Compra segura|tus datos protegidos' %}"
           }
         },
         "ah_talla_ayuda": {
@@ -115,13 +259,10 @@
         "on6_estilos_mejoras",
         "ah_estilos",
         "title",
-        "subtitulo",
         "price",
-        "resumen",
         "variant_picker",
         "custom_size_guide_visual",
         "buy_buttons",
-        "ah_confianza",
         "ah_talla_ayuda",
         "collapsible_tab_AUafHX",
         "c11bfb2f-901d-4b03-90cf-b6b766353d13",
@@ -154,7 +295,7 @@
         "constrain_to_viewport": true,
         "media_fit": "contain",
         "gallery_layout": "thumbnail",
-        "media_position": "left",
+        "media_position": "right",
         "image_zoom": "lightbox",
         "mobile_thumbnails": "show",
         "hide_variants": false,
@@ -163,142 +304,44 @@
         "padding_bottom": 0
       }
     },
-    "beneficios": {
-      "type": "ah-beneficios",
-      "settings": {
-        "pt": 24,
-        "pb": 24
-      },
+    "mosaico": {
+      "type": "ah-mosaico",
+      "settings": {},
       "blocks": {
-        "beneficio_1": {
-          "type": "beneficio",
+        "pieza_1": {
+          "type": "pieza",
           "settings": {
-            "icono": "zapato",
-            "titulo": "Sin tacón",
-            "texto": "plataforma plana de una sola pieza"
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-mosaico-1.webp",
+            "texto": "Sin tacón,\ncon estilo"
           }
         },
-        "beneficio_2": {
-          "type": "beneficio",
+        "pieza_2": {
+          "type": "pieza",
           "settings": {
-            "icono": "rayo",
-            "titulo": "Se calza en un segundo",
-            "texto": "deslizas el pie y sales"
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-mosaico-2.webp",
+            "texto": "Mula abierta:\ndeslizas el pie"
           }
         },
-        "beneficio_3": {
-          "type": "beneficio",
+        "pieza_3": {
+          "type": "pieza",
           "settings": {
-            "icono": "paleta",
-            "titulo": "4 colores",
-            "texto": "talco, animal print, miel y negro"
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-mosaico-3.webp",
+            "texto": "Combina\ncon todo"
           }
         },
-        "beneficio_4": {
-          "type": "beneficio",
+        "pieza_4": {
+          "type": "pieza",
           "settings": {
-            "icono": "contraentrega",
-            "titulo": "Paga al recibir",
-            "texto": "envío gratis a toda Colombia"
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-mosaico-4.webp",
+            "texto": "Un básico\nen tu clóset"
           }
         }
       },
       "block_order": [
-        "beneficio_1",
-        "beneficio_2",
-        "beneficio_3",
-        "beneficio_4"
-      ]
-    },
-    "momentos": {
-      "type": "ah-momentos",
-      "settings": {
-        "eyebrow": "Mismo jean, otro look",
-        "titulo": "Un par, muchos looks",
-        "proporcion": "4 / 5",
-        "pt": 56,
-        "pb": 32
-      },
-      "blocks": {
-        "momento_1": {
-          "type": "momento",
-          "settings": {
-            "imagen": "shopify://shop_images/ailee-sueco-045-look-jean.webp",
-            "nombre": "Con tu jean de siempre"
-          }
-        },
-        "momento_2": {
-          "type": "momento",
-          "settings": {
-            "imagen": "shopify://shop_images/ailee-sueco-045-look-oficina.webp",
-            "nombre": "Oficina / Universidad"
-          }
-        },
-        "momento_3": {
-          "type": "momento",
-          "settings": {
-            "imagen": "shopify://shop_images/ailee-sueco-045-look-finde.webp",
-            "nombre": "Plan de fin de semana"
-          }
-        },
-        "momento_4": {
-          "type": "momento",
-          "settings": {
-            "imagen": "shopify://shop_images/ailee-sueco-045-look-salida.webp",
-            "nombre": "Salida casual"
-          }
-        }
-      },
-      "block_order": [
-        "momento_1",
-        "momento_2",
-        "momento_3",
-        "momento_4"
-      ]
-    },
-    "detalles": {
-      "type": "ah-detalles",
-      "settings": {
-        "titulo": "Detalles que enamoran",
-        "imagen": "shopify://shop_images/ailee-sueco-045-detalle-principal.webp",
-        "pt": 40,
-        "pb": 40
-      },
-      "blocks": {
-        "detalle_1": {
-          "type": "detalle",
-          "settings": {
-            "imagen": "shopify://shop_images/ailee-sueco-045-detalle-lazo.webp",
-            "texto": "Lazo decorativo con\ncuentas doradas"
-          }
-        },
-        "detalle_2": {
-          "type": "detalle",
-          "settings": {
-            "imagen": "shopify://shop_images/ailee-sueco-045-detalle-costura.webp",
-            "texto": "Costura tipo mocasín\nsobre el empeine"
-          }
-        },
-        "detalle_3": {
-          "type": "detalle",
-          "settings": {
-            "imagen": "shopify://shop_images/ailee-sueco-045-detalle-plataforma.webp",
-            "texto": "Plataforma plana de una\nsola pieza, sin tacón"
-          }
-        },
-        "detalle_4": {
-          "type": "detalle",
-          "settings": {
-            "imagen": "shopify://shop_images/ailee-sueco-045-detalle-sin-talon.webp",
-            "texto": "Sin talón cerrado:\nse calza deslizando el pie"
-          }
-        }
-      },
-      "block_order": [
-        "detalle_1",
-        "detalle_2",
-        "detalle_3",
-        "detalle_4"
+        "pieza_1",
+        "pieza_2",
+        "pieza_3",
+        "pieza_4"
       ]
     },
     "resenas": {
@@ -415,12 +458,6 @@
         "pb": 56
       }
     },
-    "marca": {
-      "type": "ah-marca",
-      "settings": {
-        "respaldo": "ah-hero-1.webp"
-      }
-    },
     "suscripcion": {
       "type": "ah-newsletter",
       "settings": {
@@ -436,13 +473,14 @@
     }
   },
   "order": [
-    "main",
+    "portada",
     "beneficios",
-    "momentos",
     "detalles",
+    "momentos",
+    "main",
+    "mosaico",
     "resenas",
     "relacionados",
-    "marca",
     "suscripcion",
     "apps"
   ]

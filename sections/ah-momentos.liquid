@@ -7,11 +7,11 @@
 
 {%- if section.settings.proporcion == '4 / 5' -%}{%- assign ah_ancho = 1080 -%}{%- assign ah_alto = 1350 -%}{%- else -%}{%- assign ah_ancho = 1024 -%}{%- assign ah_alto = 768 -%}{%- endif -%}
 <section class="ah">
-  <div class="ah-contenedor ah-espacio">
+  <div class="ah-contenedor ah-espacio ah-momentos--{{ section.settings.disposicion }}">
     <div class="ah-cabecera">
       <div>
         {%- if section.settings.eyebrow != blank -%}<p class="ah-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
-        <h2 class="ah-titulo">{{ section.settings.titulo | escape }}</h2>
+        <h2 class="ah-titulo">{{ section.settings.titulo | escape }}{%- if section.settings.titulo_script != blank -%}<span class="ah-momentos__script ah-script">{{ section.settings.titulo_script | escape }}</span>{%- endif -%}</h2>
       </div>
     </div>
     <div class="ah-momentos__fila ah-scroll">
@@ -27,6 +27,19 @@
   </div>
 </section>
 
+<style>
+  .ah-momentos__script { display: block; font-size: 1.35em; line-height: 1; margin-top: 2px; }
+  .ah-momentos--lado { display: grid; grid-template-columns: minmax(220px, 1fr) 2.8fr; gap: clamp(20px, 3vw, 44px); align-items: center; }
+  .ah-momentos--lado .ah-cabecera { margin: 0; }
+  .ah-momentos--lado .ah-momento { position: relative; background: none; }
+  .ah-momentos--lado .ah-momento__nombre { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 26px 8px 12px;
+    background: linear-gradient(0deg, rgba(250,247,244,.92), rgba(250,247,244,0)); }
+  @media (max-width: 749px) {
+    .ah-momentos--lado { display: block; }
+    .ah-momentos--lado .ah-cabecera { margin-bottom: 18px; }
+  }
+</style>
+
 {% schema %}
 {
   "name": "Ailee · Momentos",
@@ -35,6 +48,9 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Inspírate" },
     { "type": "text", "id": "titulo", "label": "Título", "default": "Un estilo, mil momentos" },
+    { "type": "text", "id": "titulo_script", "label": "Segunda línea manuscrita (opcional)" },
+    { "type": "select", "id": "disposicion", "label": "Disposición", "default": "abajo",
+      "options": [{ "value": "abajo", "label": "Título arriba, nombre bajo cada foto" }, { "value": "lado", "label": "Título al lado, nombre sobre la foto" }] },
     { "type": "select", "id": "proporcion", "label": "Forma de las fotos", "default": "4 / 3",
       "options": [{ "value": "4 / 3", "label": "Horizontal" }, { "value": "4 / 5", "label": "Vertical" }] },
     { "type": "range", "id": "pt", "label": "Espacio arriba", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 72 },

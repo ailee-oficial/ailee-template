@@ -9,6 +9,170 @@
  */
 {
   "sections": {
+    "portada": {
+      "type": "ah-portada",
+      "settings": {
+        "respaldo": "ah-hero-1.webp",
+        "titulo_1": "Estilo",
+        "titulo_2": "que te acompaña",
+        "titulo_script": "siempre",
+        "texto": "Descripción corta del producto: qué cambia en tu día cuando lo usas.",
+        "boton": "Lo quiero ahora",
+        "firma": "Un básico que\ncombina contigo"
+      },
+      "blocks": {
+        "icono_1": {
+          "type": "icono",
+          "settings": {
+            "icono": "zapato",
+            "texto": "Primer\nbeneficio"
+          }
+        },
+        "icono_2": {
+          "type": "icono",
+          "settings": {
+            "icono": "rayo",
+            "texto": "Segundo\nbeneficio"
+          }
+        },
+        "icono_3": {
+          "type": "icono",
+          "settings": {
+            "icono": "calidad",
+            "texto": "Estilo\nversátil"
+          }
+        }
+      },
+      "block_order": [
+        "icono_1",
+        "icono_2",
+        "icono_3"
+      ]
+    },
+    "beneficios": {
+      "type": "ah-beneficios",
+      "settings": {
+        "pt": 20,
+        "pb": 20
+      },
+      "blocks": {
+        "beneficio_1": {
+          "type": "beneficio",
+          "settings": {
+            "icono": "envio",
+            "titulo": "Envío gratis",
+            "texto": "a toda Colombia"
+          }
+        },
+        "beneficio_2": {
+          "type": "beneficio",
+          "settings": {
+            "icono": "contraentrega",
+            "titulo": "Paga al recibir",
+            "texto": "pago contraentrega"
+          }
+        },
+        "beneficio_3": {
+          "type": "beneficio",
+          "settings": {
+            "icono": "segura",
+            "titulo": "Compra segura",
+            "texto": "tus datos protegidos"
+          }
+        },
+        "beneficio_4": {
+          "type": "beneficio",
+          "settings": {
+            "icono": "whatsapp",
+            "titulo": "Te asesoramos",
+            "texto": "por WhatsApp",
+            "enlace": "https://wa.me/573128860515"
+          }
+        }
+      },
+      "block_order": [
+        "beneficio_1",
+        "beneficio_2",
+        "beneficio_3",
+        "beneficio_4"
+      ]
+    },
+    "detalles": {
+      "type": "ah-circulos",
+      "settings": {
+        "respaldo": "ah-calzado-2.webp",
+        "firma": "Detalles que\nenamoran",
+        "titulo": "Un diseño pensado\nen cada detalle"
+      },
+      "blocks": {
+        "detalle_1": {
+          "type": "detalle",
+          "settings": {
+            "respaldo": "ah-calzado-1.webp",
+            "texto": "Primer detalle\nreal"
+          }
+        },
+        "detalle_2": {
+          "type": "detalle",
+          "settings": {
+            "respaldo": "ah-calzado-3.webp",
+            "texto": "Segundo detalle\nreal"
+          }
+        },
+        "detalle_3": {
+          "type": "detalle",
+          "settings": {
+            "respaldo": "ah-calzado-4.webp",
+            "texto": "Tercer detalle\nreal"
+          }
+        }
+      },
+      "block_order": [
+        "detalle_1",
+        "detalle_2",
+        "detalle_3"
+      ]
+    },
+    "momentos": {
+      "type": "ah-momentos",
+      "settings": {
+        "eyebrow": "",
+        "titulo": "Un estilo para",
+        "titulo_script": "cada momento",
+        "disposicion": "lado",
+        "proporcion": "4 / 5",
+        "pt": 32,
+        "pb": 32
+      },
+      "blocks": {
+        "momento_1": {
+          "type": "momento",
+          "settings": {
+            "respaldo": "ah-momento-diario.webp",
+            "nombre": "Día a día"
+          }
+        },
+        "momento_2": {
+          "type": "momento",
+          "settings": {
+            "respaldo": "ah-momento-oficina.webp",
+            "nombre": "Oficina"
+          }
+        },
+        "momento_3": {
+          "type": "momento",
+          "settings": {
+            "respaldo": "ah-momento-finde.webp",
+            "nombre": "Planes casuales"
+          }
+        }
+      },
+      "block_order": [
+        "momento_1",
+        "momento_2",
+        "momento_3"
+      ]
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -22,7 +186,7 @@
         "ah_estilos": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "{% render 'ah-pdp-estilos' %}"
+            "custom_liquid": "<span id=\"comprar\"></span>{% render 'ah-pdp-estilos' %}"
           }
         },
         "title": {
@@ -51,12 +215,6 @@
           "settings": {
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": false
-          }
-        },
-        "ah_confianza": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "{% render 'ah-confianza', items: 'envio|Envío gratis|a toda Colombia;contraentrega|Pagas cuando lo recibes|pago contraentrega;segura|Compra segura|tus datos protegidos' %}"
           }
         },
         "ah_talla_ayuda": {
@@ -105,7 +263,6 @@
         "variant_picker",
         "custom_size_guide_visual",
         "buy_buttons",
-        "ah_confianza",
         "ah_talla_ayuda",
         "collapsible_tab_AUafHX",
         "c11bfb2f-901d-4b03-90cf-b6b766353d13",
@@ -138,7 +295,7 @@
         "constrain_to_viewport": true,
         "media_fit": "contain",
         "gallery_layout": "thumbnail",
-        "media_position": "left",
+        "media_position": "right",
         "image_zoom": "lightbox",
         "mobile_thumbnails": "show",
         "hide_variants": false,
@@ -147,142 +304,44 @@
         "padding_bottom": 0
       }
     },
-    "beneficios": {
-      "type": "ah-beneficios",
-      "settings": {
-        "pt": 24,
-        "pb": 24
-      },
+    "mosaico": {
+      "type": "ah-mosaico",
+      "settings": {},
       "blocks": {
-        "beneficio_1": {
-          "type": "beneficio",
-          "settings": {
-            "icono": "envio",
-            "titulo": "Envío gratis",
-            "texto": "a toda Colombia"
-          }
-        },
-        "beneficio_2": {
-          "type": "beneficio",
-          "settings": {
-            "icono": "contraentrega",
-            "titulo": "Paga al recibir",
-            "texto": "pago contraentrega"
-          }
-        },
-        "beneficio_3": {
-          "type": "beneficio",
-          "settings": {
-            "icono": "segura",
-            "titulo": "Compra segura",
-            "texto": "tus datos protegidos"
-          }
-        },
-        "beneficio_4": {
-          "type": "beneficio",
-          "settings": {
-            "icono": "whatsapp",
-            "titulo": "Te asesoramos",
-            "texto": "por WhatsApp"
-          }
-        }
-      },
-      "block_order": [
-        "beneficio_1",
-        "beneficio_2",
-        "beneficio_3",
-        "beneficio_4"
-      ]
-    },
-    "momentos": {
-      "type": "ah-momentos",
-      "settings": {
-        "eyebrow": "Inspírate",
-        "titulo": "Un estilo, muchos momentos",
-        "proporcion": "4 / 5",
-        "pt": 56,
-        "pb": 32
-      },
-      "blocks": {
-        "momento_1": {
-          "type": "momento",
-          "settings": {
-            "respaldo": "ah-momento-diario.webp",
-            "nombre": "Día a día"
-          }
-        },
-        "momento_2": {
-          "type": "momento",
-          "settings": {
-            "respaldo": "ah-momento-oficina.webp",
-            "nombre": "Oficina / Universidad"
-          }
-        },
-        "momento_3": {
-          "type": "momento",
-          "settings": {
-            "respaldo": "ah-momento-noche.webp",
-            "nombre": "Una salida especial"
-          }
-        },
-        "momento_4": {
-          "type": "momento",
-          "settings": {
-            "respaldo": "ah-momento-finde.webp",
-            "nombre": "Fin de semana"
-          }
-        }
-      },
-      "block_order": [
-        "momento_1",
-        "momento_2",
-        "momento_3",
-        "momento_4"
-      ]
-    },
-    "detalles": {
-      "type": "ah-detalles",
-      "settings": {
-        "titulo": "Detalles que enamoran",
-        "respaldo": "ah-calzado-2.webp",
-        "pt": 40,
-        "pb": 40
-      },
-      "blocks": {
-        "detalle_1": {
-          "type": "detalle",
+        "pieza_1": {
+          "type": "pieza",
           "settings": {
             "respaldo": "ah-calzado-1.webp",
-            "texto": "Primer detalle real del producto"
+            "texto": "Primer\nbeneficio"
           }
         },
-        "detalle_2": {
-          "type": "detalle",
+        "pieza_2": {
+          "type": "pieza",
           "settings": {
             "respaldo": "ah-calzado-2.webp",
-            "texto": "Segundo detalle real"
+            "texto": "Segundo\nbeneficio"
           }
         },
-        "detalle_3": {
-          "type": "detalle",
+        "pieza_3": {
+          "type": "pieza",
           "settings": {
             "respaldo": "ah-calzado-3.webp",
-            "texto": "Tercer detalle real"
+            "texto": "Combina\ncon todo"
           }
         },
-        "detalle_4": {
-          "type": "detalle",
+        "pieza_4": {
+          "type": "pieza",
           "settings": {
             "respaldo": "ah-calzado-4.webp",
-            "texto": "Cuarto detalle real"
+            "texto": "Un básico\nen tu clóset"
           }
         }
       },
       "block_order": [
-        "detalle_1",
-        "detalle_2",
-        "detalle_3",
-        "detalle_4"
+        "pieza_1",
+        "pieza_2",
+        "pieza_3",
+        "pieza_4"
       ]
     },
     "resenas": {
@@ -377,12 +436,6 @@
         "pb": 56
       }
     },
-    "marca": {
-      "type": "ah-marca",
-      "settings": {
-        "respaldo": "ah-hero-1.webp"
-      }
-    },
     "suscripcion": {
       "type": "ah-newsletter",
       "settings": {
@@ -398,13 +451,14 @@
     }
   },
   "order": [
-    "main",
+    "portada",
     "beneficios",
-    "momentos",
     "detalles",
+    "momentos",
+    "main",
+    "mosaico",
     "resenas",
     "relacionados",
-    "marca",
     "suscripcion",
     "apps"
   ]

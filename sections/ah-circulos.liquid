@@ -1,0 +1,65 @@
+{{ 'ah-home.css' | asset_url | stylesheet_tag }}
+{%- comment -%} Foto grande con frase manuscrita + título y primeros planos en círculo (detalles del producto). {%- endcomment -%}
+<section class="ah ah-circulos">
+  <div class="ah-circulos__foto">
+    {%- render 'ah-img', imagen: section.settings.imagen, respaldo: section.settings.respaldo, alt: section.settings.titulo, sizes: '(min-width: 750px) 50vw, 100vw', ancho: 1400, alto: 1022 -%}
+    {%- if section.settings.firma != blank -%}<p class="ah-circulos__firma ah-script">{{ section.settings.firma | escape | newline_to_br }}</p>{%- endif -%}
+  </div>
+  <div class="ah-circulos__panel">
+    <h2 class="ah-titulo ah-titulo--recto">{{ section.settings.titulo | escape | newline_to_br }}</h2>
+    <ul class="ah-circulos__lista">
+      {%- for block in section.blocks -%}
+        <li {{ block.shopify_attributes }}>
+          <span class="ah-circulos__circulo">{%- render 'ah-img', imagen: block.settings.imagen, respaldo: block.settings.respaldo, alt: block.settings.texto, sizes: '200px', ancho: 900, alto: 900 -%}</span>
+          <span class="ah-circulos__texto">{{ block.settings.texto | escape | newline_to_br }}</span>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+<style>
+  .ah-circulos { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; background: var(--ah-soft); }
+  .ah-circulos__foto { position: relative; min-height: 420px; overflow: hidden; }
+  .ah-circulos__foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .ah-circulos__firma { position: absolute; top: 22px; left: 24px; margin: 0; font-size: clamp(28px, 2.6vw, 38px); color: var(--ah-ink); transform: rotate(-8deg); text-shadow: 0 1px 10px rgba(255,255,255,.6); }
+  .ah-circulos__panel { padding: clamp(28px, 4vw, 56px); display: flex; flex-direction: column; justify-content: center; }
+  .ah-circulos__lista { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .ah-circulos__lista li { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; }
+  .ah-circulos__circulo { width: 100%; max-width: 150px; aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: var(--ah-sand); box-shadow: 0 4px 18px rgba(0,0,0,.08); }
+  .ah-circulos__circulo img { width: 100%; height: 100%; object-fit: cover; }
+  .ah-circulos__texto { font-size: 14px; line-height: 1.35; }
+  @media (max-width: 749px) {
+    .ah-circulos { grid-template-columns: 1fr; }
+    .ah-circulos__foto { min-height: 0; aspect-ratio: 4 / 3; }
+    .ah-circulos__panel { padding: 26px 16px 34px; }
+    .ah-circulos__lista { gap: 10px; margin-top: 20px; }
+    .ah-circulos__texto { font-size: 12.5px; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Ailee · Detalles en círculo",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "image_picker", "id": "imagen", "label": "Imagen grande", "info": "Horizontal 4:3." },
+    { "type": "text", "id": "respaldo", "label": "Imagen provisional del tema" },
+    { "type": "textarea", "id": "firma", "label": "Frase manuscrita sobre la foto (opcional)", "default": "Detalles que\nenamoran" },
+    { "type": "textarea", "id": "titulo", "label": "Título", "default": "Un diseño pensado\nen cada detalle" }
+  ],
+  "blocks": [
+    {
+      "type": "detalle",
+      "name": "Detalle",
+      "settings": [
+        { "type": "image_picker", "id": "imagen", "label": "Imagen", "info": "Primer plano cuadrado." },
+        { "type": "text", "id": "respaldo", "label": "Imagen provisional del tema" },
+        { "type": "textarea", "id": "texto", "label": "Texto", "default": "Un detalle real del producto" }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [{ "name": "Ailee · Detalles en círculo", "blocks": [{ "type": "detalle" }, { "type": "detalle" }, { "type": "detalle" }] }]
+}
+{% endschema %}

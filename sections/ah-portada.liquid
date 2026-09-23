@@ -1,0 +1,106 @@
+{{ 'ah-home.css' | asset_url | stylesheet_tag }}
+{%- comment -%}
+  Portada de la PDP boutique basada en imágenes: foto a todo el ancho con el texto encima (HTML, no
+  horneado en la foto), íconos en círculo, botón que baja a la ficha de compra (#comprar) y frase
+  manuscrita. En móvil la foto va arriba y el texto debajo, sobre fondo liso.
+{%- endcomment -%}
+{%- style -%}
+  #shopify-section-{{ section.id }} .ah-portada { --ah-alto: {{ section.settings.alto }}px; --ah-foco: {{ section.settings.foco }}% center; --ah-foco-movil: {{ section.settings.foco_movil }}% center; }
+{%- endstyle -%}
+<section class="ah ah-portada">
+  <div class="ah-portada__media">
+    {%- render 'ah-img', imagen: section.settings.imagen, respaldo: section.settings.respaldo, alt: section.settings.titulo_1, carga: 'eager', sizes: '100vw', ancho: 2000, alto: 1116 -%}
+    {%- if section.settings.firma != blank -%}<p class="ah-portada__firma ah-script">{{ section.settings.firma | escape | newline_to_br }}</p>{%- endif -%}
+  </div>
+  <div class="ah-portada__velo"></div>
+  <div class="ah-portada__contenido">
+    <h2 class="ah-portada__titulo">
+      <span class="ah-portada__t1">{{ section.settings.titulo_1 | escape }}</span>
+      {%- if section.settings.titulo_2 != blank -%}<span class="ah-portada__t2">{{ section.settings.titulo_2 | escape }}</span>{%- endif -%}
+      {%- if section.settings.titulo_script != blank -%}<span class="ah-portada__t3 ah-script">{{ section.settings.titulo_script | escape }}</span>{%- endif -%}
+    </h2>
+    {%- if section.settings.texto != blank -%}<p class="ah-portada__texto">{{ section.settings.texto | escape }}</p>{%- endif -%}
+    {%- if section.blocks.size > 0 -%}
+      <ul class="ah-portada__iconos">
+        {%- for block in section.blocks -%}
+          <li {{ block.shopify_attributes }}><span class="ah-portada__circulo">{%- render 'ah-icono', icono: block.settings.icono -%}</span><span class="ah-portada__etiqueta">{{ block.settings.texto | escape | newline_to_br }}</span></li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+    {%- if section.settings.boton != blank -%}
+      <a class="ah-boton ah-portada__boton" href="{{ section.settings.enlace | default: '#comprar' }}">{{ section.settings.boton | escape }} {%- render 'ah-icono', icono: 'flecha' -%}</a>
+    {%- endif -%}
+  </div>
+</section>
+<style>
+  .ah-portada { position: relative; overflow: hidden; min-height: var(--ah-alto, 600px); display: flex; align-items: center; background: var(--ah-sand); }
+  .ah-portada__media, .ah-portada__media img { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .ah-portada__media img { object-fit: cover; object-position: var(--ah-foco, 65% center); }
+  .ah-portada__velo { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(250,247,244,.88) 0%, rgba(250,247,244,.6) 32%, rgba(250,247,244,0) 55%); }
+  .ah-portada__contenido { position: relative; z-index: 2; width: min(46%, 560px); padding: 48px 0 48px clamp(24px, 5vw, 72px); color: var(--ah-ink); }
+  .ah-portada__titulo { margin: 0 0 18px; font-family: var(--ah-serif); font-weight: 400; line-height: 1; }
+  .ah .ah-portada__t1, .ah .ah-portada__t2 { font-family: var(--ah-serif) !important; }
+  .ah-portada__t1 { display: block; font-style: italic; font-size: clamp(46px, 5.6vw, 80px); }
+  .ah-portada__t2 { display: block; font-size: clamp(30px, 3.4vw, 46px); margin-top: 4px; }
+  .ah-portada__t3 { display: block; font-size: clamp(52px, 6vw, 86px); margin-top: -2px; line-height: .95; }
+  .ah-portada__texto { font-size: 16px; line-height: 1.6; max-width: 34ch; margin-bottom: 26px !important; }
+  .ah-portada__iconos { list-style: none; display: flex; gap: 22px; margin: 0 0 30px; padding: 0; }
+  .ah-portada__iconos li { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 84px; text-align: center; }
+  .ah-portada__circulo { width: 72px; height: 72px; border-radius: 50%; background: rgba(255,255,255,.72); display: grid; place-items: center; box-shadow: 0 2px 14px rgba(0,0,0,.05); }
+  .ah-portada__circulo svg { width: 32px; height: 32px; }
+  .ah-portada__etiqueta { font-size: 13px; line-height: 1.3; }
+  .ah-portada__boton { text-transform: uppercase; letter-spacing: .12em; min-height: 52px; padding: 0 34px; }
+  .ah-portada__firma { position: absolute; z-index: 3; right: clamp(20px, 4vw, 60px); bottom: 36px; margin: 0; color: var(--ah-ink); font-size: clamp(26px, 2.4vw, 36px); transform: rotate(-10deg); text-align: center; }
+  @media (max-width: 749px) {
+    .ah-portada { display: block; min-height: 0; background: var(--ah-bg); }
+    .ah-portada__media { position: relative; height: 56svh; min-height: 320px; }
+    .ah-portada__media img { object-position: var(--ah-foco-movil, 72% center); }
+    .ah-portada__velo { display: none; }
+    .ah-portada__contenido { width: 100%; padding: 26px 20px 36px; }
+    .ah-portada__t1 { font-size: 48px; } .ah-portada__t2 { font-size: 32px; } .ah-portada__t3 { font-size: 56px; }
+    .ah-portada__iconos { gap: 12px; justify-content: space-between; }
+    .ah-portada__boton { width: 100%; justify-content: center; }
+    .ah-portada__firma { bottom: 16px; right: 16px; font-size: 26px; color: #fff; text-shadow: 0 1px 10px rgba(0,0,0,.3); }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Ailee · Portada",
+  "tag": "div",
+  "class": "section",
+  "settings": [
+    { "type": "image_picker", "id": "imagen", "label": "Imagen", "info": "Horizontal. Deja la mitad izquierda despejada para el texto." },
+    { "type": "text", "id": "respaldo", "label": "Imagen provisional del tema" },
+    { "type": "range", "id": "alto", "label": "Alto en escritorio", "min": 440, "max": 800, "step": 20, "unit": "px", "default": 600 },
+    { "type": "range", "id": "foco", "label": "Encuadre horizontal (escritorio)", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 65 },
+    { "type": "range", "id": "foco_movil", "label": "Encuadre horizontal (móvil)", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 70 },
+    { "type": "text", "id": "titulo_1", "label": "Título · línea grande", "default": "Estilo" },
+    { "type": "text", "id": "titulo_2", "label": "Título · segunda línea", "default": "que te acompaña" },
+    { "type": "text", "id": "titulo_script", "label": "Título · palabra manuscrita", "default": "siempre" },
+    { "type": "textarea", "id": "texto", "label": "Texto" },
+    { "type": "text", "id": "boton", "label": "Texto del botón", "default": "Lo quiero ahora" },
+    { "type": "url", "id": "enlace", "label": "Enlace del botón", "info": "Vacío = baja a la ficha de compra de la página." },
+    { "type": "textarea", "id": "firma", "label": "Frase manuscrita sobre la foto (opcional)" }
+  ],
+  "blocks": [
+    {
+      "type": "icono",
+      "name": "Ícono",
+      "settings": [
+        {
+          "type": "select", "id": "icono", "label": "Ícono", "default": "zapato",
+          "options": [
+            { "value": "zapato", "label": "Zapato" }, { "value": "rayo", "label": "Rayo" }, { "value": "calidad", "label": "Diamante" },
+            { "value": "corazon", "label": "Corazón" }, { "value": "paleta", "label": "Paleta" }, { "value": "envio", "label": "Camión" },
+            { "value": "contraentrega", "label": "Billete" }, { "value": "segura", "label": "Candado" }
+          ]
+        },
+        { "type": "textarea", "id": "texto", "label": "Texto", "default": "Sin tacón" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [{ "name": "Ailee · Portada", "blocks": [{ "type": "icono" }, { "type": "icono" }, { "type": "icono" }] }]
+}
+{% endschema %}
