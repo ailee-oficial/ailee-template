@@ -23,7 +23,9 @@
   }
   .product__info-container .product__text { margin: 0 0 10px; }
   .product__info-container .product__text.subtitle,
-  .product__info-container .product__text p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 20px; color: #6b6560; letter-spacing: 0; text-transform: none; }
+  .product__info-container .product__text p { font-family: 'Cormorant Garamond', serif !important; font-style: italic !important; font-size: 22px !important; color: #6b6560 !important; letter-spacing: 0 !important; text-transform: none !important; }
+  /* El texto corto bajo el precio va en la letra del cuerpo, sin cursiva */
+  .product__info-container .product__text:not(.subtitle) p, .product__info-container p.product__text:not(.subtitle) { font-family: 'DM Sans', sans-serif !important; font-style: normal !important; font-size: 15px !important; line-height: 1.65 !important; color: #4d4843 !important; }
   .product__info-container .price { font-family: 'DM Sans', sans-serif; }
   .product__info-container .price-item--regular, .product__info-container .price-item--sale { font-size: 26px !important; font-weight: 500 !important; color: #1c1c1c !important; }
   .product__info-container .price__compare .price-item, .product__info-container s.price-item { font-size: 16px !important; color: #9a918a !important; }
