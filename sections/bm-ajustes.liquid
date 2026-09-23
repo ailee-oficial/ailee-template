@@ -69,7 +69,13 @@
   html body ._rsi-buy-now-button > span, html body ._rsi-buy-now-button > span * { color: var(--bm-rsi-fg) !important; }
   html body ._rsi-buy-now-button svg, html body ._rsi-buy-now-button svg * { fill: var(--bm-rsi-fg) !important; }
   {%- endif %}
+  .bm-aviso-base { position: sticky; top: 0; z-index: 50; padding: 12px 16px; background: #b91c1c; color: #ffffff; font: 700 14px/1.35 system-ui, sans-serif; text-align: center; }
 {%- endstyle -%}
+{%- if request.design_mode and template.suffix contains 'bm-' -%}
+  {%- if template.suffix == 'bm-solo-imagenes' or template.suffix == 'bm-hibrida' -%}
+    <div class="bm-aviso-base" role="note">PLANTILLA BASE — no la edites ni la asignes a un producto. Cada producto usa su propia copia (product.&lt;slug&gt;): ajusta esa.</div>
+  {%- endif -%}
+{%- endif -%}
 <div hidden data-bm-ajustes data-ficha-modo="{{ s.ficha_modo }}" data-rsi-aplicar="{{ s.rsi_aplicar }}" data-rsi-fondo="{{ s.cta_fondo }}" data-rsi-texto="{{ s.cta_texto }}" data-cta-fondo="{{ s.cta_fondo }}" data-cta-texto="{{ s.cta_texto }}"></div>
 
 {% schema %}
