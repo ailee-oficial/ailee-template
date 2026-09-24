@@ -6,6 +6,8 @@
   Todo es un bloque: se reordena, se quita o se duplica desde el editor. Los bloques seguidos del
   mismo tipo (colores, características, confianza) se agrupan solos en su fila. Los colores
   muestran, no seleccionan: color y talla se eligen en el formulario de Releasit.
+  El bloque «Código de la tienda» renderiza piezas propias del tema (p. ej. la franja de confianza o
+  la ayuda de tallas de una tienda) sin volverlas parte del kit.
   Fuente canónica: claude-skills/core/tema_landing.
 {%- endcomment -%}
 {{ 'bm-landing.css' | asset_url | stylesheet_tag }}
@@ -102,6 +104,8 @@
               {%- if b.nota != blank -%}<p class="bm-oferta__nota">{{ b.nota | escape }}</p>{%- endif -%}
             </div>
           {%- endif -%}
+        {%- when 'liquid' -%}
+          <div class="bm-oferta__liquid" data-bm-bloque="liquid" {{ block.shopify_attributes }}>{{ b.codigo }}</div>
         {%- when 'boton' -%}
           <div data-bm-bloque="cta" {{ block.shopify_attributes }}>
             {%- render 'bm-cta', texto: b.texto, subtexto: b.subtexto, fondo: b.fondo, color: b.color, franja: blank, ancho: 'completo', alineacion: 'center', pad_y: b.pad_y, pulso: b.pulso -%}
@@ -174,6 +178,10 @@
       { "type": "text", "id": "ahorro_texto", "label": "Texto antes del ahorro", "default": "Ahorras" },
       { "type": "text", "id": "descuento_texto", "label": "Texto después del porcentaje", "default": "OFF" },
       { "type": "text", "id": "nota", "label": "Nota bajo el precio" }
+    ] },
+    { "type": "liquid", "name": "Código de la tienda", "settings": [
+      { "type": "paragraph", "content": "Piezas propias del tema de la tienda (snippets). No escribir precios ni promesas aquí: van en sus bloques." },
+      { "type": "liquid", "id": "codigo", "label": "Liquid" }
     ] },
     { "type": "boton", "name": "Botón de compra", "settings": [
       { "type": "text", "id": "texto", "label": "Texto", "default": "Comprar ahora — Pago contra entrega" },

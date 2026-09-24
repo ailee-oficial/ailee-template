@@ -101,6 +101,7 @@
 .bm-oferta__sub{margin:8px 0 0;font-size:16px;line-height:1.4;opacity:.8}
 .bm-oferta__colores{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(120px,42%);gap:4px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(var(--bm-pad-x,16px) * -1);padding:0 var(--bm-pad-x,16px);scrollbar-width:none}
 .bm-oferta__colores::-webkit-scrollbar{display:none}
+.bm-oferta__liquid{text-align:initial}
 .bm-oferta__color{position:relative;margin:0;aspect-ratio:3/4;overflow:hidden;scroll-snap-align:start;background:var(--bm-tarjeta-bg,#ffffff)}
 .bm-oferta__color img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .bm-oferta__color figcaption{position:absolute;left:0;right:0;top:0;padding:10px 8px 30px;text-align:center;font-family:var(--font-heading-family,inherit);font-size:18px;line-height:1.15;color:var(--bm-sec-fg,#111827);background:linear-gradient(180deg,rgba(255,255,255,.92) 0%,rgba(255,255,255,.7) 55%,rgba(255,255,255,0) 100%);background:linear-gradient(180deg,color-mix(in srgb,var(--bm-sec-bg,#ffffff) 92%,transparent) 0%,color-mix(in srgb,var(--bm-sec-bg,#ffffff) 70%,transparent) 55%,transparent 100%)}
