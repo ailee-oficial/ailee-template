@@ -53,7 +53,7 @@
         "b01_portada": {
           "type": "lamina",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_1.webp",
+            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_1_v2.webp",
             "texto_alt": "EL SAMBA,\nAHORA SIN TALÓN",
             "titulo_oculto": "El Samba, ahora sin talón",
             "nivel": "h2",
@@ -458,7 +458,7 @@
         "b03_resena"
       ],
       "settings": {
-        "titulo": "Lo que nos escriben nuestras clientas",
+        "titulo": "Lo que dicen nuestras clientas",
         "disposicion": "carrusel",
         "alineacion": "center",
         "aviso_ia": "Las tarjetas marcadas son recreaciones generadas con IA a partir de opiniones frecuentes; no son reseñas de compradores.",
