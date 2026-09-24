@@ -27,7 +27,7 @@
     "cinta": {
       "type": "bm-cinta",
       "settings": {
-        "frases": "camion|Envío GRATIS a toda Colombia\npago|Pagas al recibir\nreloj|Llega en 3 a 5 días hábiles\ncheck|Beneficio principal del producto",
+        "frases": "camion|Envío GRATIS a toda Colombia\npago|Pagas al recibir\nreloj|Llega en 3 a 5 días hábiles\ncheck|Sin tacón · se calza en un segundo",
         "separador": "·",
         "animada": true,
         "duracion": 26,
@@ -40,7 +40,9 @@
     "portada": {
       "type": "bm-escena",
       "settings": {
-        "texto_alt": "Foto de impacto del producto puesto",
+        "imagen": "shopify://shop_images/ailee-sueco-045-v2-hero-movil.webp",
+        "imagen_escritorio": "shopify://shop_images/ailee-sueco-045-v2-hero-escritorio.webp",
+        "texto_alt": "Suecos mocasín negros con cuentas doradas, puestos con jean",
         "prioridad": true,
         "disposicion": "texto_sobre",
         "posicion_texto": "start",
@@ -65,7 +67,7 @@
         "titulo_2": {
           "type": "titulo",
           "settings": {
-            "texto": "Titular de impacto",
+            "texto": "Mismo jean.",
             "nivel": "h1",
             "tamano": 44
           }
@@ -73,7 +75,7 @@
         "titulo_3": {
           "type": "titulo",
           "settings": {
-            "texto": "del ángulo",
+            "texto": "Otro look.",
             "nivel": "h2",
             "tamano": 44
           }
@@ -306,6 +308,26 @@
             "detalle": "Mensaje de WhatsApp de una clienta",
             "estrellas": 0
           }
+        },
+        "resena_6": {
+          "type": "resena",
+          "settings": {
+            "origen": "ia_recreada",
+            "texto": "Con el mismo jean de siempre el look cambia por completo, me encantan.",
+            "foto": "shopify://shop_images/ailee-sueco-045-resena-ia-1.webp",
+            "foto_alt": "Foto del producto (no es de una clienta)",
+            "estrellas": 0
+          }
+        },
+        "resena_7": {
+          "type": "resena",
+          "settings": {
+            "origen": "ia_recreada",
+            "texto": "Son muy fáciles de poner: meto el pie y salgo.",
+            "foto": "shopify://shop_images/ailee-sueco-045-resena-ia-2.webp",
+            "foto_alt": "Foto del producto (no es de una clienta)",
+            "estrellas": 0
+          }
         }
       },
       "block_order": [
@@ -313,28 +335,30 @@
         "resena_2",
         "resena_3",
         "resena_4",
-        "resena_5"
+        "resena_5",
+        "resena_6",
+        "resena_7"
       ]
     },
     "antes_despues": {
       "type": "ah-mosaico",
       "settings": {
         "eyebrow": "Mira la diferencia",
-        "titulo": "El cambio que hace el producto"
+        "titulo": "El cambio está en tus pies"
       },
       "blocks": {
         "pieza_1": {
           "type": "pieza",
           "settings": {
-            "respaldo": "ah-momento-diario.webp",
-            "texto": "Antes"
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-antes-recorte.webp",
+            "texto": "Antes:\ntu look de siempre"
           }
         },
         "pieza_2": {
           "type": "pieza",
           "settings": {
-            "respaldo": "ah-momento-finde.webp",
-            "texto": "Después"
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-despues-recorte.webp",
+            "texto": "Después:\nmismo jean, otro look"
           }
         }
       },
@@ -346,39 +370,39 @@
     "colores": {
       "type": "ah-mosaico",
       "settings": {
-        "eyebrow": "Colores",
+        "eyebrow": "4 colores",
         "titulo": "Elige tu favorito"
       },
       "blocks": {
         "pieza_1": {
           "type": "pieza",
           "settings": {
-            "respaldo": "ah-calzado-1.webp",
-            "texto": "Color 1",
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-color-talco.webp",
+            "texto": "Talco",
             "enlace": "#comprar"
           }
         },
         "pieza_2": {
           "type": "pieza",
           "settings": {
-            "respaldo": "ah-calzado-2.webp",
-            "texto": "Color 2",
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-color-miel.webp",
+            "texto": "Miel",
             "enlace": "#comprar"
           }
         },
         "pieza_3": {
           "type": "pieza",
           "settings": {
-            "respaldo": "ah-calzado-3.webp",
-            "texto": "Color 3",
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-color-animal-print.webp",
+            "texto": "Animal print",
             "enlace": "#comprar"
           }
         },
         "pieza_4": {
           "type": "pieza",
           "settings": {
-            "respaldo": "ah-calzado-4.webp",
-            "texto": "Color 4",
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-color-negro.webp",
+            "texto": "Negro",
             "enlace": "#comprar"
           }
         }
@@ -393,7 +417,7 @@
     "detalles": {
       "type": "ah-circulos",
       "settings": {
-        "respaldo": "ah-calzado-2.webp",
+        "imagen": "shopify://shop_images/ailee-sueco-045-v2-detalle-grande.webp",
         "firma": "Detalles que\nenamoran",
         "titulo": "Un diseño pensado\nen cada detalle"
       },
@@ -401,22 +425,22 @@
         "detalle_1": {
           "type": "detalle",
           "settings": {
-            "respaldo": "ah-calzado-1.webp",
-            "texto": "Detalle real\ndel producto"
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-circulo-lazo.webp",
+            "texto": "Moño con\ncuentas doradas"
           }
         },
         "detalle_2": {
           "type": "detalle",
           "settings": {
-            "respaldo": "ah-calzado-3.webp",
-            "texto": "Detalle real\ndel producto"
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-circulo-plataforma.webp",
+            "texto": "Plataforma de\nuna sola pieza"
           }
         },
         "detalle_3": {
           "type": "detalle",
           "settings": {
-            "respaldo": "ah-calzado-4.webp",
-            "texto": "Detalle real\ndel producto"
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-circulo-costura.webp",
+            "texto": "Costura tipo\nmocasín"
           }
         }
       },
@@ -436,29 +460,29 @@
         "pieza_1": {
           "type": "pieza",
           "settings": {
-            "respaldo": "ah-momento-diario.webp",
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-momento-diario.webp",
             "texto": "Día a día"
           }
         },
         "pieza_2": {
           "type": "pieza",
           "settings": {
-            "respaldo": "ah-momento-oficina.webp",
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-momento-oficina.webp",
             "texto": "Oficina"
           }
         },
         "pieza_3": {
           "type": "pieza",
           "settings": {
-            "respaldo": "ah-momento-noche.webp",
-            "texto": "Una salida"
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-momento-planes.webp",
+            "texto": "Planes casuales"
           }
         },
         "pieza_4": {
           "type": "pieza",
           "settings": {
-            "respaldo": "ah-momento-finde.webp",
-            "texto": "Fin de semana"
+            "imagen": "shopify://shop_images/ailee-sueco-045-v2-mosaico-4.webp",
+            "texto": "Un básico\nen tu clóset"
           }
         }
       },
@@ -487,7 +511,7 @@
           "type": "pregunta",
           "settings": {
             "pregunta": "¿Cómo sé cuál es mi talla?",
-            "respuesta": "<p>Usa la guía de tallas de esta página o escríbenos por WhatsApp.</p>"
+            "respuesta": "<p>Hay tallas de la 35 a la 40. Usa la guía de tallas de esta página o escríbenos por WhatsApp y te ayudamos a elegir.</p>"
           }
         },
         "pregunta_2": {
@@ -503,18 +527,34 @@
             "pregunta": "¿Cómo pago?",
             "respuesta": "<p>Pagas en efectivo cuando recibes el pedido en la puerta de tu casa. No pagas nada por adelantado.</p>"
           }
+        },
+        "pregunta_4": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Tienen tacón?",
+            "respuesta": "<p>No. Tienen una plataforma plana de una sola pieza: suma altura sin inclinar el pie como un tacón.</p>"
+          }
+        },
+        "pregunta_5": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Hay que amarrarlos?",
+            "respuesta": "<p>No. Son tipo mula: deslizas el pie y sales. El moño con cuentas doradas es decorativo.</p>"
+          }
         }
       },
       "block_order": [
         "pregunta_1",
         "pregunta_2",
-        "pregunta_3"
+        "pregunta_3",
+        "pregunta_4",
+        "pregunta_5"
       ]
     },
     "cierre": {
       "type": "ah-cierre",
       "settings": {
-        "respaldo": "ah-calzado-2.webp",
+        "imagen": "shopify://shop_images/ailee-sueco-045-v2-compra.webp",
         "firma": "Tu nuevo favorito",
         "titulo": "Llévalo hoy y paga\ncuando lo recibas",
         "nota": "Envío gratis a toda Colombia · llega en 3 a 5 días hábiles",
