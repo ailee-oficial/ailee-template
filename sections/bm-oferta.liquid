@@ -1,9 +1,11 @@
 {%- comment -%}
   Bloque de oferta de la landing «imágenes + HTML» (el fold bajo la portada): antetítulo, título,
-  subtítulo, características en carrusel, señales de confianza, calificación (solo si es real),
+  subtítulo, colores con foto (el producto puesto, nombre arriba), características en carrusel,
+  señales de confianza, calificación (solo si es real),
   precio REAL de la variante con tachado y ahorro calculados, y botón que abre Releasit.
   Todo es un bloque: se reordena, se quita o se duplica desde el editor. Los bloques seguidos del
-  mismo tipo (características, confianza) se agrupan solos en su fila.
+  mismo tipo (colores, características, confianza) se agrupan solos en su fila. Los colores
+  muestran, no seleccionan: color y talla se eligen en el formulario de Releasit.
   Fuente canónica: claude-skills/core/tema_landing.
 {%- endcomment -%}
 {{ 'bm-landing.css' | asset_url | stylesheet_tag }}
@@ -13,6 +15,9 @@
   <div class="bm-sec__in bm-oferta__pila">
     {%- assign grupo_caract = '' -%}
     {%- assign grupo_confianza = '' -%}
+    {%- assign grupo_colores = '' -%}
+    {%- assign n_colores = 0 -%}
+    {%- for bl in section.blocks -%}{%- if bl.type == 'color' -%}{%- assign n_colores = n_colores | plus: 1 -%}{%- endif -%}{%- endfor -%}
     {%- for block in section.blocks -%}
       {%- assign b = block.settings -%}
       {%- assign siguiente = section.blocks[forloop.index] -%}
@@ -27,6 +32,21 @@
             {%- endif -%}
             {%- if b.subtitulo != blank -%}<p class="bm-oferta__sub">{{ b.subtitulo | escape }}</p>{%- endif -%}
           </div>
+        {%- when 'color' -%}
+          {%- capture item -%}
+            <figure class="bm-oferta__color" {{ block.shopify_attributes }}>
+              {%- if b.imagen != blank -%}
+                {{ b.imagen | image_url: width: 720 | image_tag: loading: 'lazy', widths: '240, 360, 540, 720', sizes: '(min-width: 750px) 20vw, 42vw', alt: b.nombre }}
+              {%- endif -%}
+              {%- if b.nombre != blank -%}<figcaption>{{ b.nombre | escape }}</figcaption>{%- endif -%}
+            </figure>
+          {%- endcapture -%}
+          {%- assign grupo_colores = grupo_colores | append: item -%}
+          {%- if siguiente.type != 'color' -%}
+            <div class="bm-oferta__colores" data-bm-bloque="colores" style="--bm-colores-n:{{ n_colores }}">{{ grupo_colores }}</div>
+            {%- if s.colores_nota != blank -%}<p class="bm-oferta__colores-nota">{{ s.colores_nota | escape }}</p>{%- endif -%}
+            {%- assign grupo_colores = '' -%}
+          {%- endif -%}
         {%- when 'caracteristica' -%}
           {%- capture item -%}
             <div class="bm-oferta__caract" {{ block.shopify_attributes }}>
@@ -115,7 +135,9 @@
     { "type": "range", "id": "separacion", "label": "Separación entre elementos", "min": 4, "max": 32, "step": 2, "unit": "px", "default": 14 },
     { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 16 },
     { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 20 },
-    { "type": "range", "id": "padding_lateral", "label": "Margen lateral", "min": 0, "max": 32, "step": 2, "unit": "px", "default": 16 }
+    { "type": "range", "id": "padding_lateral", "label": "Margen lateral", "min": 0, "max": 32, "step": 2, "unit": "px", "default": 16 },
+    { "type": "header", "content": "Colores con foto" },
+    { "type": "text", "id": "colores_nota", "label": "Nota bajo los colores", "info": "Ejemplo: Eliges color y talla de cada par en el formulario." }
   ],
   "blocks": [
     { "type": "encabezado", "name": "Encabezado", "limit": 1, "settings": [
@@ -126,6 +148,11 @@
       ], "default": "h1" },
       { "type": "range", "id": "tamano", "label": "Tamaño del título", "min": 18, "max": 40, "step": 2, "unit": "px", "default": 26 },
       { "type": "textarea", "id": "subtitulo", "label": "Subtítulo" }
+    ] },
+    { "type": "color", "name": "Color con foto", "settings": [
+      { "type": "paragraph", "content": "Foto vertical 3:4 del producto puesto en ese color; el nombre va arriba para no tapar el producto. Solo muestra: se elige en el formulario." },
+      { "type": "image_picker", "id": "imagen", "label": "Foto" },
+      { "type": "text", "id": "nombre", "label": "Nombre del color", "default": "Color" }
     ] },
     { "type": "caracteristica", "name": "Característica", "settings": [
       { "type": "image_picker", "id": "icono", "label": "Icono" },
