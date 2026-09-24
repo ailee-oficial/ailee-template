@@ -1,0 +1,774 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ajustes": {
+      "type": "bm-ajustes",
+      "settings": {
+        "aplicar_fondo": true,
+        "fondo_pagina": "#F7F3EE",
+        "texto_pagina": "#1C1C1C",
+        "ancho_max": 780,
+        "ficha_modo": "oculta",
+        "ficha_margen_lateral": 16,
+        "ocultar_galeria": true,
+        "ocultar_descripcion": true,
+        "ficha_padding": 12,
+        "cta_fondo": "#1C1C1C",
+        "cta_texto": "#FFFFFF",
+        "cta_radio": 12,
+        "cta_alto": 54,
+        "cta_letra": 17,
+        "rsi_aplicar": true,
+        "ficha_fondo": "#F7F3EE",
+        "ficha_texto": "#1C1C1C",
+        "pie_fondo": "#1C1C1C",
+        "pie_texto": "#F7F3EE",
+        "pie_acento": "#A07040"
+      }
+    },
+    "p01_cinta": {
+      "type": "bm-cinta",
+      "settings": {
+        "frases": "pago|Pago contra entrega\ncamion|Envío gratis a toda Colombia\ncheck|Lleva 2 pares, paga 1\nreloj|Llega en 3 a 5 días hábiles",
+        "separador": "·",
+        "animada": true,
+        "duracion": 22,
+        "tamano": 14,
+        "padding": 10,
+        "fondo": "#1C1C1C",
+        "texto": "#FFFFFF"
+      }
+    },
+    "p02_hero": {
+      "type": "bm-laminas",
+      "blocks": {
+        "b01_portada": {
+          "type": "lamina",
+          "settings": {
+            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_1.webp",
+            "texto_alt": "EL SAMBA,\nAHORA SIN TALÓN",
+            "titulo_oculto": "El Samba, ahora sin talón",
+            "nivel": "h2",
+            "prioridad": true,
+            "abre_formulario": false
+          }
+        }
+      },
+      "block_order": [
+        "b01_portada"
+      ],
+      "settings": {
+        "fondo": "#F7F3EE",
+        "texto": "#1C1C1C",
+        "ancho": "contenido",
+        "espacio": 0,
+        "radio_imagen": 0,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "p03_oferta": {
+      "type": "bm-oferta",
+      "blocks": {
+        "b01_encabezado": {
+          "type": "encabezado",
+          "settings": {
+            "antetitulo": "Nuevos Suecos Samba",
+            "titulo": "Te lo pones en un segundo. Y te llevas dos.",
+            "nivel": "h1",
+            "tamano": 26,
+            "subtitulo": "Lleva 2 pares, paga 1 · eliges los colores"
+          }
+        },
+        "b02_caracteristica": {
+          "type": "caracteristica",
+          "settings": {
+            "simbolo": "👟",
+            "titulo": "Sin talón",
+            "texto": "El pie entra sin manos"
+          }
+        },
+        "b03_caracteristica": {
+          "type": "caracteristica",
+          "settings": {
+            "simbolo": "2",
+            "titulo": "Lleva 2, paga 1",
+            "texto": "Un par claro y uno oscuro"
+          }
+        },
+        "b04_caracteristica": {
+          "type": "caracteristica",
+          "settings": {
+            "simbolo": "5",
+            "titulo": "5 colores",
+            "texto": "Eliges color y talla de cada par"
+          }
+        },
+        "b05_precio": {
+          "type": "precio",
+          "settings": {
+            "mostrar_ahorro": true,
+            "ahorro_texto": "Ahorras",
+            "descuento_texto": "OFF",
+            "nota": ""
+          }
+        },
+        "b06_boton": {
+          "type": "boton",
+          "settings": {
+            "texto": "Pedir mis 2 pares",
+            "subtexto": "Pagas al recibir · envío gratis",
+            "pad_y": 4,
+            "pulso": false
+          }
+        },
+        "b07_confianza": {
+          "type": "confianza",
+          "settings": {
+            "simbolo": "✓",
+            "texto": "Pagas al recibir"
+          }
+        },
+        "b08_confianza": {
+          "type": "confianza",
+          "settings": {
+            "simbolo": "✓",
+            "texto": "Envío gratis"
+          }
+        },
+        "b09_confianza": {
+          "type": "confianza",
+          "settings": {
+            "simbolo": "✓",
+            "texto": "3 a 5 días hábiles"
+          }
+        },
+        "b10_confianza": {
+          "type": "confianza",
+          "settings": {
+            "simbolo": "✓",
+            "texto": "Tú eliges"
+          }
+        }
+      },
+      "block_order": [
+        "b01_encabezado",
+        "b02_caracteristica",
+        "b03_caracteristica",
+        "b04_caracteristica",
+        "b05_precio",
+        "b06_boton",
+        "b07_confianza",
+        "b08_confianza",
+        "b09_confianza",
+        "b10_confianza"
+      ],
+      "settings": {
+        "alineacion": "center",
+        "fondo": "#F7F3EE",
+        "texto": "#1C1C1C",
+        "tarjeta_fondo": "#FFFFFF",
+        "tarjeta_texto": "#1C1C1C",
+        "pildora_fondo": "#A07040",
+        "pildora_texto": "#FFFFFF",
+        "separacion": 14,
+        "padding_top": 16,
+        "padding_bottom": 20,
+        "padding_lateral": 16
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "comprar": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "descripcion": {
+          "type": "description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "comprar",
+        "descripcion"
+      ],
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "p04_variantes": {
+      "type": "bm-variantes",
+      "settings": {
+        "modo": "automatico",
+        "opcion": "COLOR",
+        "mostrar_agotados": false,
+        "agotado_texto": "Agotado",
+        "titulo": "Elige tus dos colores",
+        "subtitulo": "Uno claro y uno oscuro, o los que quieras",
+        "nota": "Eliges color y talla de cada par en el formulario al hacer tu pedido.",
+        "disposicion": "cuadricula",
+        "cols_movil": "2",
+        "alineacion": "center",
+        "fondo": "#F7F3EE",
+        "texto": "#1C1C1C",
+        "tarjeta_fondo": "#FFFFFF",
+        "tarjeta_texto": "#1C1C1C",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "padding_lateral": 16,
+        "cta_mostrar": false,
+        "cta_texto": "Pedir mis 2 pares",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p05_ocasiones": {
+      "type": "bm-galeria",
+      "blocks": {
+        "b01_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_2.webp",
+            "etiqueta": "Para la u"
+          }
+        },
+        "b02_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_3.webp",
+            "etiqueta": "Café con amigas"
+          }
+        },
+        "b03_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_4_v2.webp",
+            "etiqueta": "Vueltas de afán"
+          }
+        },
+        "b04_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_5.webp",
+            "etiqueta": "Fin de semana"
+          }
+        }
+      },
+      "block_order": [
+        "b01_escena",
+        "b02_escena",
+        "b03_escena",
+        "b04_escena"
+      ],
+      "settings": {
+        "antetitulo": "",
+        "titulo": "Para todo lo que haces en el día",
+        "subtitulo": "",
+        "disposicion": "carrusel",
+        "ancho_tarjeta": 75,
+        "radio": 12,
+        "alineacion": "left",
+        "fondo": "#F7F3EE",
+        "texto": "#1C1C1C",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_lateral": 16,
+        "cta_mostrar": true,
+        "cta_texto": "Pedir mis 2 pares",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p06_mecanismo": {
+      "type": "bm-escena",
+      "blocks": {
+        "b01_titulo": {
+          "type": "titulo",
+          "settings": {
+            "texto": "Pisa y sal",
+            "nivel": "h2",
+            "tamano": 26
+          }
+        },
+        "b02_texto": {
+          "type": "texto",
+          "settings": {
+            "texto": "<p>Así sujeta sin talón</p><p>1. Deslizas el pie, sin manos.</p><p>2. El frente sujeta: cordón ya amarrado y franjas ceñidas al empeine.</p><p>3. Sales.</p><p>Sin talón, el pie se levanta un poco al caminar: es para salir y planes cortos, no para caminar todo el día.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "b01_titulo",
+        "b02_texto"
+      ],
+      "settings": {
+        "imagen": "shopify://shop_images/samba-sueco-y58_pdp_6_v2.webp",
+        "texto_alt": "(sin texto integrado: titular y pasos en HTML)",
+        "titulo_oculto": "",
+        "nivel_oculto": "h2",
+        "prioridad": false,
+        "disposicion": "imagen_arriba",
+        "posicion_texto": "end",
+        "sobre_degradado": true,
+        "alineacion": "left",
+        "ancho": "contenido",
+        "fondo": "#F7F3EE",
+        "texto": "#1C1C1C",
+        "panel_fondo": "#FFFFFF",
+        "acento": "#A07040",
+        "acento_texto": "#FFFFFF",
+        "panel_padding": 20,
+        "separacion": 10,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "p07_especificaciones": {
+      "type": "bm-tabla",
+      "blocks": {
+        "b01_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Talón",
+            "c2": "Abierto, sin contrafuerte",
+            "c3": ""
+          }
+        },
+        "b02_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Cordones",
+            "c2": "Planos, ya vienen amarrados",
+            "c3": ""
+          }
+        },
+        "b03_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Suela",
+            "c2": "Caucho color gum, igual en los 5 colores",
+            "c3": ""
+          }
+        },
+        "b04_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Acabado",
+            "c2": "Liso en Blanco y Negro · malla perforada en Negro Malla, Talco y Talco Vino",
+            "c3": ""
+          }
+        },
+        "b05_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Tallas",
+            "c2": "35 a 40",
+            "c3": ""
+          }
+        }
+      },
+      "block_order": [
+        "b01_fila",
+        "b02_fila",
+        "b03_fila",
+        "b04_fila",
+        "b05_fila"
+      ],
+      "settings": {
+        "modo": "lista",
+        "antetitulo": "",
+        "titulo": "Detalles",
+        "encabezado_1": "",
+        "encabezado_2": "",
+        "encabezado_3": "",
+        "nota": "",
+        "alineacion": "left",
+        "fondo": "#F7F3EE",
+        "texto": "#1C1C1C",
+        "destacado_fondo": "#A07040",
+        "destacado_texto": "#FFFFFF",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_lateral": 16,
+        "cta_mostrar": true,
+        "cta_texto": "Pedir mis 2 pares",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p08_prueba_social": {
+      "type": "bm-resenas",
+      "blocks": {
+        "b01_resena": {
+          "type": "resena",
+          "settings": {
+            "origen": "real_propia",
+            "foto": "shopify://shop_images/ailee-resena-whatsapp-01.webp",
+            "foto_alt": "Foto que envió la clienta por WhatsApp",
+            "texto": "Ay Dios mio quedaron divinos!! ya los estrené hoy y toda la gente preguntando donde los compré jsjs",
+            "nombre": "",
+            "detalle": "Compró: mocasín de la tienda",
+            "estrellas": 0,
+            "fuente": "https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-01.webp",
+            "etiqueta": "Recreación con IA · no es la reseña de un comprador"
+          }
+        },
+        "b02_resena": {
+          "type": "resena",
+          "settings": {
+            "origen": "real_propia",
+            "foto": "shopify://shop_images/ailee-resena-whatsapp-03.webp",
+            "foto_alt": "Foto que envió la clienta por WhatsApp",
+            "texto": "Buenas tardes, ya recibí mi sandalia sueca, la calidad me sorprendió, mil gracias",
+            "nombre": "",
+            "detalle": "Compró: sandalia sueca",
+            "estrellas": 0,
+            "fuente": "https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-03.webp",
+            "etiqueta": "Recreación con IA · no es la reseña de un comprador"
+          }
+        },
+        "b03_resena": {
+          "type": "resena",
+          "settings": {
+            "origen": "real_propia",
+            "foto": "shopify://shop_images/ailee-resena-whatsapp-04.webp",
+            "foto_alt": "Foto que envió la clienta por WhatsApp",
+            "texto": "Buenas noches, ya tengo puesta la sandalia sueca, quedó perfecta de talla y súper fresquita para el pie",
+            "nombre": "",
+            "detalle": "Compró: sandalia sueca",
+            "estrellas": 0,
+            "fuente": "https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-04.webp",
+            "etiqueta": "Recreación con IA · no es la reseña de un comprador"
+          }
+        }
+      },
+      "block_order": [
+        "b01_resena",
+        "b02_resena",
+        "b03_resena"
+      ],
+      "settings": {
+        "titulo": "Lo que nos escriben nuestras clientas",
+        "disposicion": "carrusel",
+        "alineacion": "center",
+        "aviso_ia": "Las tarjetas marcadas son recreaciones generadas con IA a partir de opiniones frecuentes; no son reseñas de compradores.",
+        "fondo": "#F7F3EE",
+        "texto": "#1C1C1C",
+        "tarjeta_fondo": "#FFFFFF",
+        "tarjeta_texto": "#1C1C1C",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_lateral": 16,
+        "cta_mostrar": true,
+        "cta_texto": "Pedir mis 2 pares",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p09_guia_tallas": {
+      "type": "bm-tabla",
+      "blocks": {
+        "b01_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Talla (EUR)",
+            "c2": "Medida del pie (cm)",
+            "c3": ""
+          }
+        },
+        "b02_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "35",
+            "c2": "23,5",
+            "c3": ""
+          }
+        },
+        "b03_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "36",
+            "c2": "24",
+            "c3": ""
+          }
+        },
+        "b04_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "37",
+            "c2": "25",
+            "c3": ""
+          }
+        },
+        "b05_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "38",
+            "c2": "25,5",
+            "c3": ""
+          }
+        },
+        "b06_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "39",
+            "c2": "26",
+            "c3": ""
+          }
+        },
+        "b07_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "40",
+            "c2": "27",
+            "c3": ""
+          }
+        }
+      },
+      "block_order": [
+        "b01_fila",
+        "b02_fila",
+        "b03_fila",
+        "b04_fila",
+        "b05_fila",
+        "b06_fila",
+        "b07_fila"
+      ],
+      "settings": {
+        "modo": "tabla",
+        "antetitulo": "",
+        "titulo": "¿Qué talla pido?",
+        "encabezado_1": "",
+        "encabezado_2": "",
+        "encabezado_3": "",
+        "nota": "Mide ambos pies y usa la medida del más largo. Horma angosta: si estás entre dos tallas, elige la más grande.",
+        "alineacion": "left",
+        "fondo": "#F7F3EE",
+        "texto": "#1C1C1C",
+        "destacado_fondo": "#A07040",
+        "destacado_texto": "#FFFFFF",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_lateral": 16,
+        "cta_mostrar": false,
+        "cta_texto": "Pedir mis 2 pares",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p10_faq": {
+      "type": "bm-faq",
+      "blocks": {
+        "b01_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Cómo funciona el 2x1?",
+            "respuesta": "<p>Pagas $199.700 y recibes dos pares. En el formulario eliges el color y la talla de cada par.</p>"
+          }
+        },
+        "b02_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Qué talla pido?",
+            "respuesta": "<p>La horma es angosta: si estás entre dos tallas, pide la mayor. Revisa la tabla de tallas en centímetros.</p>"
+          }
+        },
+        "b03_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Se me sale del pie?",
+            "respuesta": "<p>El frente sujeta con el cordón y las franjas. Como no tiene talón, el pie se levanta un poco al caminar: es para salir y planes cortos, no para caminar todo el día.</p>"
+          }
+        },
+        "b04_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Cómo pago?",
+            "respuesta": "<p>Pagas al recibir, en la puerta de tu casa. El envío es gratis.</p>"
+          }
+        },
+        "b05_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Cuánto tarda?",
+            "respuesta": "<p>De 3 a 5 días hábiles.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "b01_pregunta",
+        "b02_pregunta",
+        "b03_pregunta",
+        "b04_pregunta",
+        "b05_pregunta"
+      ],
+      "settings": {
+        "titulo": "Preguntas frecuentes",
+        "alineacion": "left",
+        "abrir_primera": false,
+        "fondo": "#F7F3EE",
+        "texto": "#1C1C1C",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_lateral": 16,
+        "cta_mostrar": true,
+        "cta_texto": "Pedir mis 2 pares",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p11_confianza_envio": {
+      "type": "bm-items",
+      "blocks": {
+        "b01_item": {
+          "type": "item",
+          "settings": {
+            "simbolo": "",
+            "titulo": "Pagas al recibir",
+            "texto": "En la puerta de tu casa"
+          }
+        },
+        "b02_item": {
+          "type": "item",
+          "settings": {
+            "simbolo": "",
+            "titulo": "Envío gratis",
+            "texto": "A toda Colombia"
+          }
+        },
+        "b03_item": {
+          "type": "item",
+          "settings": {
+            "simbolo": "",
+            "titulo": "3 a 5 días hábiles",
+            "texto": "Te llega a la casa"
+          }
+        },
+        "b04_item": {
+          "type": "item",
+          "settings": {
+            "simbolo": "",
+            "titulo": "Tú eliges",
+            "texto": "Color y talla de cada par"
+          }
+        }
+      },
+      "block_order": [
+        "b01_item",
+        "b02_item",
+        "b03_item",
+        "b04_item"
+      ],
+      "settings": {
+        "titulo": "Pides tranquila",
+        "subtitulo": "",
+        "estilo": "fila",
+        "cols_movil": "1",
+        "cols_escritorio": "3",
+        "numerar": false,
+        "alineacion": "left",
+        "fondo": "#F7F3EE",
+        "texto": "#1C1C1C",
+        "tarjeta_fondo": "#FFFFFF",
+        "acento": "#A07040",
+        "acento_texto": "#FFFFFF",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_lateral": 16,
+        "item_padding": 20,
+        "radio": 12,
+        "icono_tam": 44,
+        "cta_mostrar": false,
+        "cta_texto": "Pedir mis 2 pares",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p12_oferta_cta": {
+      "type": "bm-escena",
+      "blocks": {
+        "b01_titulo": {
+          "type": "titulo",
+          "settings": {
+            "texto": "Lleva 2 pares, paga 1",
+            "nivel": "h2",
+            "tamano": 26
+          }
+        },
+        "b02_texto": {
+          "type": "texto",
+          "settings": {
+            "texto": "<p>Elige tus dos colores y pide ahora.</p>"
+          }
+        },
+        "b03_precio": {
+          "type": "precio",
+          "settings": {
+            "prefijo": "Hoy",
+            "mostrar_ahorro": true,
+            "nota": ""
+          }
+        },
+        "b04_cta": {
+          "type": "cta",
+          "settings": {
+            "texto": "Pedir mis 2 pares",
+            "subtexto": "Pagas al recibir · envío gratis",
+            "ancho": "completo",
+            "alineacion": "center",
+            "pad_y": 8,
+            "pulso": false
+          }
+        }
+      },
+      "block_order": [
+        "b01_titulo",
+        "b02_texto",
+        "b03_precio",
+        "b04_cta"
+      ],
+      "settings": {
+        "imagen": "shopify://shop_images/samba-sueco-y58_pdp_7.webp",
+        "texto_alt": "(sin texto integrado: titular y precio en HTML)",
+        "titulo_oculto": "",
+        "nivel_oculto": "h2",
+        "prioridad": false,
+        "disposicion": "imagen_arriba",
+        "posicion_texto": "end",
+        "sobre_degradado": true,
+        "alineacion": "left",
+        "ancho": "contenido",
+        "fondo": "#F7F3EE",
+        "texto": "#1C1C1C",
+        "acento": "#A07040",
+        "acento_texto": "#FFFFFF",
+        "panel_padding": 20,
+        "separacion": 10,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "ajustes",
+    "p01_cinta",
+    "p02_hero",
+    "p03_oferta",
+    "main",
+    "p04_variantes",
+    "p05_ocasiones",
+    "p06_mecanismo",
+    "p07_especificaciones",
+    "p08_prueba_social",
+    "p09_guia_tallas",
+    "p10_faq",
+    "p11_confianza_envio",
+    "p12_oferta_cta"
+  ]
+}
