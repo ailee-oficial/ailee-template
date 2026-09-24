@@ -7,7 +7,13 @@
   de hoja de estilo no puede cambiar su `background`. Por eso el color se pinta en una capa
   `::before` por encima de su fondo y por debajo del texto, `clip-path` fija las esquinas y el texto
   se colorea en los `span` hijos. `core/landing_qa.mjs` mide el color efectivo por píxel.
+
+  Releasit reutiliza la clase `_rsi-buy-now-button` DENTRO de su modal: «Confirmar pedido» y los dos
+  botones del downsell al cerrar el formulario (medido en vivo 2026-09-24 en Sanavitt y Ailee). Con la
+  regla sin acotar, el downsell tomaba el color del producto y «No gracias» —texto sin `span`— quedaba
+  negro sobre negro. Por eso el selector excluye todo lo que vive en `#_rsi-cod-form-modal`.
 {%- endcomment -%}
+{%- assign rsi = 'html body ._rsi-buy-now-button:not(._rsi-modal-submit-button, #_rsi-cod-form-modal *)' -%}
 {%- assign s = section.settings -%}
 {%- style -%}
   :root {
@@ -103,12 +109,13 @@
   section[id^="MainProduct-"] .product__description { margin: 0 !important; padding: 0 !important; }
   {%- endif %}
   {%- if s.rsi_aplicar %}
-  html body ._rsi-buy-now-button { position: relative !important; isolation: isolate !important; clip-path: inset(0 round var(--bm-rsi-radio)) !important; }
-  html body ._rsi-buy-now-button::before { content: "" !important; position: absolute !important; inset: 0 !important; z-index: -1 !important; background: var(--bm-rsi-bg) !important; border-radius: var(--bm-rsi-radio) !important; pointer-events: none !important; }
-  html body ._rsi-buy-now-button > span, html body ._rsi-buy-now-button > span * { color: var(--bm-rsi-fg) !important; }
+  /* Solo los botones de la PÁGINA; el formulario y su downsell conservan los colores de Releasit. */
+  {{ rsi }} { position: relative !important; isolation: isolate !important; clip-path: inset(0 round var(--bm-rsi-radio)) !important; }
+  {{ rsi }}::before { content: "" !important; position: absolute !important; inset: 0 !important; z-index: -1 !important; background: var(--bm-rsi-bg) !important; border-radius: var(--bm-rsi-radio) !important; pointer-events: none !important; }
+  {{ rsi }} > span, {{ rsi }} > span * { color: var(--bm-rsi-fg) !important; }
   /* :not([fill="none"]): el ícono de Releasit trae un trazado de fondo transparente; rellenarlo pintaba un
      cuadrado blanco en lugar del camión (medido en vivo, Sanavitt 2026-09-23). */
-  html body ._rsi-buy-now-button svg, html body ._rsi-buy-now-button svg *:not([fill="none"]) { fill: var(--bm-rsi-fg) !important; }
+  {{ rsi }} svg, {{ rsi }} svg *:not([fill="none"]) { fill: var(--bm-rsi-fg) !important; }
   {%- endif %}
   .bm-aviso-base { position: sticky; top: 0; z-index: 50; padding: 12px 16px; background: #b91c1c; color: #ffffff; font: 700 14px/1.35 system-ui, sans-serif; text-align: center; }
 {%- endstyle -%}
@@ -152,7 +159,7 @@
     { "type": "color", "id": "pie_texto", "label": "Texto del pie" },
     { "type": "color", "id": "pie_acento", "label": "Líneas e íconos del pie" },
     { "type": "header", "content": "Botón de compra" },
-    { "type": "paragraph", "content": "Se aplica a los botones de la landing y, si está activado, al botón de Releasit de esta página." },
+    { "type": "paragraph", "content": "Se aplica a los botones de la landing y, si está activado, al botón de Releasit de esta página. El formulario de Releasit y su downsell conservan los colores de la app." },
     { "type": "color", "id": "cta_fondo", "label": "Fondo del botón", "default": "#111827" },
     { "type": "color", "id": "cta_texto", "label": "Texto del botón", "default": "#FFFFFF" },
     { "type": "range", "id": "cta_radio", "label": "Redondeo del botón", "min": 0, "max": 30, "step": 1, "unit": "px", "default": 12 },
