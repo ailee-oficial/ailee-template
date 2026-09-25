@@ -515,73 +515,7 @@
         "cta_subtexto": "Pagas al recibir · envío gratis"
       }
     },
-    "p09_confianza_envio": {
-      "type": "bm-items",
-      "blocks": {
-        "b01_item": {
-          "type": "item",
-          "settings": {
-            "simbolo": "",
-            "titulo": "Pagas al recibir",
-            "texto": "En la puerta de tu casa"
-          }
-        },
-        "b02_item": {
-          "type": "item",
-          "settings": {
-            "simbolo": "",
-            "titulo": "Envío gratis",
-            "texto": "A toda Colombia"
-          }
-        },
-        "b03_item": {
-          "type": "item",
-          "settings": {
-            "simbolo": "",
-            "titulo": "3 a 5 días hábiles",
-            "texto": "Te llega a la casa"
-          }
-        },
-        "b04_item": {
-          "type": "item",
-          "settings": {
-            "simbolo": "",
-            "titulo": "Tú eliges",
-            "texto": "Color y talla de cada par"
-          }
-        }
-      },
-      "block_order": [
-        "b01_item",
-        "b02_item",
-        "b03_item",
-        "b04_item"
-      ],
-      "settings": {
-        "titulo": "Pides tranquila",
-        "subtitulo": "",
-        "estilo": "fila",
-        "cols_movil": "1",
-        "cols_escritorio": "3",
-        "numerar": false,
-        "alineacion": "left",
-        "fondo": "#F7F3EE",
-        "texto": "#1C1C1C",
-        "tarjeta_fondo": "#FFFFFF",
-        "acento": "#A07040",
-        "acento_texto": "#FFFFFF",
-        "padding_top": 16,
-        "padding_bottom": 16,
-        "padding_lateral": 16,
-        "item_padding": 20,
-        "radio": 12,
-        "icono_tam": 44,
-        "cta_mostrar": true,
-        "cta_texto": "Pedir mis 2 pares",
-        "cta_subtexto": "Pagas al recibir · envío gratis"
-      }
-    },
-    "p10_oferta_cta": {
+    "p09_oferta_cta": {
       "type": "bm-escena",
       "blocks": {
         "b01_titulo": {
@@ -657,7 +591,6 @@
     "p06_especificaciones",
     "p07_prueba_social",
     "p08_faq",
-    "p09_confianza_envio",
-    "p10_oferta_cta"
+    "p09_oferta_cta"
   ]
 }
