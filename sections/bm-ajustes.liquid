@@ -125,6 +125,16 @@
   .bm-cta__boton { animation: bm-pulso 1.9s ease-in-out infinite; }
   {%- endif %}
   @media (prefers-reduced-motion: reduce) { .bm-cta__boton { animation: none !important; } }
+  {%- if s.cta_sombra %}
+  html body .bm-cta__boton { box-shadow: 0 8px 20px rgba(0, 0, 0, .22), 0 2px 6px rgba(0, 0, 0, .12); }
+  {%- endif %}
+  {%- if s.cta_fuente == 'titulos' %}
+  /* Con especificidad y !important: algunos temas fuerzan su letra en todo `button` y `span`. */
+  html body .bm-cta__boton, html body .bm-cta__boton * { font-family: var(--font-heading-family, inherit) !important; font-weight: 600 !important; }
+  {%- endif %}
+  {%- if s.cta_mayusculas %}
+  html body .bm-cta__boton { text-transform: uppercase; letter-spacing: .12em; }
+  {%- endif %}
   .bm-aviso-base { position: sticky; top: 0; z-index: 50; padding: 12px 16px; background: #b91c1c; color: #ffffff; font: 700 14px/1.35 system-ui, sans-serif; text-align: center; }
 {%- endstyle -%}
 {%- if request.design_mode and template.suffix contains 'bm-' -%}
@@ -174,6 +184,11 @@
     { "type": "range", "id": "cta_alto", "label": "Alto mínimo del botón", "min": 44, "max": 72, "step": 2, "unit": "px", "default": 54 },
     { "type": "range", "id": "cta_letra", "label": "Tamaño del texto del botón", "min": 14, "max": 22, "step": 1, "unit": "px", "default": 17 },
     { "type": "checkbox", "id": "rsi_aplicar", "label": "Aplicar estos colores al botón de Releasit", "default": true },
+    { "type": "checkbox", "id": "cta_sombra", "label": "Sombra en los botones de compra", "default": false },
+    { "type": "select", "id": "cta_fuente", "label": "Letra de los botones de compra", "options": [
+      { "value": "tema", "label": "La del texto" }, { "value": "titulos", "label": "La de los títulos" }
+    ], "default": "tema" },
+    { "type": "checkbox", "id": "cta_mayusculas", "label": "Texto de los botones en mayúsculas", "default": false },
     { "type": "select", "id": "cta_animacion", "label": "Animación de los botones de compra", "info": "Se apaga sola si el celular pide reducir movimiento.", "options": [
       { "value": "ninguna", "label": "Ninguna" }, { "value": "salto", "label": "Salto suave" }, { "value": "pulso", "label": "Pulso" }
     ], "default": "ninguna" }

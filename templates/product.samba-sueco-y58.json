@@ -23,13 +23,16 @@
         "ficha_padding": 12,
         "cta_fondo": "#1C1C1C",
         "cta_texto": "#FFFFFF",
-        "cta_radio": 12,
+        "cta_radio": 30,
         "cta_alto": 54,
         "cta_letra": 17,
         "rsi_aplicar": true,
         "ficha_fondo": "#F7F3EE",
         "ficha_texto": "#1C1C1C",
         "cta_animacion": "salto",
+        "cta_sombra": true,
+        "cta_fuente": "titulos",
+        "cta_mayusculas": true,
         "pie_fondo": "#1C1C1C",
         "pie_texto": "#F7F3EE",
         "pie_acento": "#A07040"
@@ -93,7 +96,7 @@
           "type": "color",
           "settings": {
             "imagen": "shopify://shop_images/samba-sueco-y58_color_negro_v2.webp",
-            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_negro_grande_e1c8b647-3053-4795-bc38-5134a9c8d759.webp",
+            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_negro_grande_3841871c-e8ce-4979-8428-d5cf7323b422.webp",
             "nombre": "Negro"
           }
         },
@@ -101,7 +104,7 @@
           "type": "color",
           "settings": {
             "imagen": "shopify://shop_images/samba-sueco-y58_color_blanco_v2.webp",
-            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_blanco_grande_fd9c3f97-ee1f-4af1-9a1a-9bdd47700478.webp",
+            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_blanco_grande_ebd7054d-b66d-4253-bf2a-033981b7aae7.webp",
             "nombre": "Blanco"
           }
         },
@@ -109,7 +112,7 @@
           "type": "color",
           "settings": {
             "imagen": "shopify://shop_images/samba-sueco-y58_color_negro-malla_v2.webp",
-            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_negro-malla_grande_5852ae07-b71f-4d24-ba86-e007c6bc8335.webp",
+            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_negro-malla_grande_32497b27-7f51-408f-a25f-6e2e433e2f39.webp",
             "nombre": "Negro malla"
           }
         },
@@ -117,7 +120,7 @@
           "type": "color",
           "settings": {
             "imagen": "shopify://shop_images/samba-sueco-y58_color_talco_v2.webp",
-            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_talco_grande_22dfd89c-4e1b-43cf-83c8-7f096f79831d.webp",
+            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_talco_grande_4b44d2cf-be9e-4e08-a2ef-0f84f65d444f.webp",
             "nombre": "Talco"
           }
         },
@@ -125,7 +128,7 @@
           "type": "color",
           "settings": {
             "imagen": "shopify://shop_images/samba-sueco-y58_color_talco-vino_v2.webp",
-            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_talco-vino_grande_188345eb-87c0-4e67-a75e-bfc0fa95b67a.webp",
+            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_talco-vino_grande_f71b7508-81be-445f-b900-ed472f488aa6.webp",
             "nombre": "Talco vino"
           }
         },
