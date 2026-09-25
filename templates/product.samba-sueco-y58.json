@@ -29,6 +29,7 @@
         "rsi_aplicar": true,
         "ficha_fondo": "#F7F3EE",
         "ficha_texto": "#1C1C1C",
+        "cta_animacion": "salto",
         "pie_fondo": "#1C1C1C",
         "pie_texto": "#F7F3EE",
         "pie_acento": "#A07040"
@@ -92,7 +93,7 @@
           "type": "color",
           "settings": {
             "imagen": "shopify://shop_images/samba-sueco-y58_color_negro_v2.webp",
-            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_negro_grande_3841871c-e8ce-4979-8428-d5cf7323b422.webp",
+            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_negro_grande_e1c8b647-3053-4795-bc38-5134a9c8d759.webp",
             "nombre": "Negro"
           }
         },
@@ -100,7 +101,7 @@
           "type": "color",
           "settings": {
             "imagen": "shopify://shop_images/samba-sueco-y58_color_blanco_v2.webp",
-            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_blanco_grande_ebd7054d-b66d-4253-bf2a-033981b7aae7.webp",
+            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_blanco_grande_fd9c3f97-ee1f-4af1-9a1a-9bdd47700478.webp",
             "nombre": "Blanco"
           }
         },
@@ -108,7 +109,7 @@
           "type": "color",
           "settings": {
             "imagen": "shopify://shop_images/samba-sueco-y58_color_negro-malla_v2.webp",
-            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_negro-malla_grande_32497b27-7f51-408f-a25f-6e2e433e2f39.webp",
+            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_negro-malla_grande_5852ae07-b71f-4d24-ba86-e007c6bc8335.webp",
             "nombre": "Negro malla"
           }
         },
@@ -116,7 +117,7 @@
           "type": "color",
           "settings": {
             "imagen": "shopify://shop_images/samba-sueco-y58_color_talco_v2.webp",
-            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_talco_grande_4b44d2cf-be9e-4e08-a2ef-0f84f65d444f.webp",
+            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_talco_grande_22dfd89c-4e1b-43cf-83c8-7f096f79831d.webp",
             "nombre": "Talco"
           }
         },
@@ -124,7 +125,7 @@
           "type": "color",
           "settings": {
             "imagen": "shopify://shop_images/samba-sueco-y58_color_talco-vino_v2.webp",
-            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_talco-vino_grande_f71b7508-81be-445f-b900-ed472f488aa6.webp",
+            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_talco-vino_grande_188345eb-87c0-4e67-a75e-bfc0fa95b67a.webp",
             "nombre": "Talco vino"
           }
         },
@@ -451,35 +452,7 @@
         "cta_subtexto": "Pagas al recibir · envío gratis"
       }
     },
-    "p08_guia_tallas": {
-      "type": "bm-laminas",
-      "blocks": {
-        "b01_guia_tallas": {
-          "type": "lamina",
-          "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_guia_tallas.webp",
-            "texto_alt": "AILEE\nGUÍA DE TALLAS\nTALLA (EUR) · MEDIDA (cm)\n35 · 23,5\n36 · 24\n37 · 25\n38 · 25,5\n39 · 26\n40 · 27\n1. Mide desde el talón hasta la punta del dedo mas largo.\n2. Compara la medida en centímetros con nuestras tabla para\nTips importantes\n- Mide ambos pies y usa la medida del más largo.\n- Si estás entre dos tallas, elige la más grande.",
-            "titulo_oculto": "Guía de tallas",
-            "nivel": "h2",
-            "prioridad": false,
-            "abre_formulario": false
-          }
-        }
-      },
-      "block_order": [
-        "b01_guia_tallas"
-      ],
-      "settings": {
-        "fondo": "#F7F3EE",
-        "texto": "#1C1C1C",
-        "ancho": "contenido",
-        "espacio": 0,
-        "radio_imagen": 0,
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "p09_faq": {
+    "p08_faq": {
       "type": "bm-faq",
       "blocks": {
         "b01_pregunta": {
@@ -534,12 +507,12 @@
         "padding_top": 16,
         "padding_bottom": 16,
         "padding_lateral": 16,
-        "cta_mostrar": true,
+        "cta_mostrar": false,
         "cta_texto": "Pedir mis 2 pares",
         "cta_subtexto": "Pagas al recibir · envío gratis"
       }
     },
-    "p10_confianza_envio": {
+    "p09_confianza_envio": {
       "type": "bm-items",
       "blocks": {
         "b01_item": {
@@ -600,12 +573,12 @@
         "item_padding": 20,
         "radio": 12,
         "icono_tam": 44,
-        "cta_mostrar": false,
+        "cta_mostrar": true,
         "cta_texto": "Pedir mis 2 pares",
         "cta_subtexto": "Pagas al recibir · envío gratis"
       }
     },
-    "p11_oferta_cta": {
+    "p10_oferta_cta": {
       "type": "bm-escena",
       "blocks": {
         "b01_titulo": {
@@ -680,9 +653,8 @@
     "p05_mecanismo",
     "p06_especificaciones",
     "p07_prueba_social",
-    "p08_guia_tallas",
-    "p09_faq",
-    "p10_confianza_envio",
-    "p11_oferta_cta"
+    "p08_faq",
+    "p09_confianza_envio",
+    "p10_oferta_cta"
   ]
 }
