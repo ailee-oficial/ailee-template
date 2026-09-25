@@ -5,7 +5,9 @@
   precio REAL de la variante con tachado y ahorro calculados, y botón que abre Releasit.
   Todo es un bloque: se reordena, se quita o se duplica desde el editor. Los bloques seguidos del
   mismo tipo (colores, características, confianza) se agrupan solos en su fila. Los colores
-  muestran, no seleccionan: color y talla se eligen en el formulario de Releasit.
+  muestran, no seleccionan el pedido: color y talla se eligen en el formulario de Releasit. Con
+  «Tocar un color cambia la imagen principal» activo, tocar una foto la marca y pone su versión
+  grande en la portada (la primera lámina de la página antes de este bloque).
   El bloque «Código de la tienda» renderiza piezas propias del tema (p. ej. la franja de confianza o
   la ayuda de tallas de una tienda) sin volverlas parte del kit.
   Fuente canónica: claude-skills/core/tema_landing.
@@ -36,7 +38,8 @@
           </div>
         {%- when 'color' -%}
           {%- capture item -%}
-            <figure class="bm-oferta__color" {{ block.shopify_attributes }}>
+            {%- assign grande = b.imagen_grande | default: b.imagen -%}
+            <figure class="bm-oferta__color"{% if s.colores_portada and grande != blank %} data-bm-color role="button" tabindex="0" aria-pressed="false" aria-label="Ver el color {{ b.nombre | escape }}" data-bm-grande="{{ grande | image_url: width: 1080 }}" data-bm-grande-srcset="{{ grande | image_url: width: 540 }} 540w, {{ grande | image_url: width: 720 }} 720w, {{ grande | image_url: width: 900 }} 900w, {{ grande | image_url: width: 1080 }} 1080w"{% endif %} {{ block.shopify_attributes }}>
               {%- if b.imagen != blank -%}
                 {{ b.imagen | image_url: width: 720 | image_tag: loading: 'lazy', widths: '240, 360, 540, 720', sizes: '(min-width: 750px) 20vw, 42vw', alt: b.nombre }}
               {%- endif -%}
@@ -114,6 +117,37 @@
     {%- endfor -%}
   </div>
 </div>
+{%- if s.colores_portada and n_colores > 0 -%}
+<script>
+  (function () {
+    var sec = document.querySelector('[data-bm-sec="{{ section.id }}"]');
+    if (!sec) return;
+    var tarjetas = sec.querySelectorAll('[data-bm-color]');
+    var portada = null;
+    document.querySelectorAll('[data-bm-landing="laminas"]').forEach(function (el) {
+      if (el.compareDocumentPosition(sec) & Node.DOCUMENT_POSITION_FOLLOWING) portada = el;
+    });
+    var img = portada && portada.querySelector('img');
+    if (!tarjetas.length || !img) return;
+    var fuentes = portada.querySelectorAll('picture source');
+    function elegir(t) {
+      var src = t.getAttribute('data-bm-grande'), set = t.getAttribute('data-bm-grande-srcset');
+      if (!src) return;
+      fuentes.forEach(function (f) { f.setAttribute('srcset', src); });
+      img.setAttribute('srcset', set);
+      img.setAttribute('src', src);
+      img.setAttribute('alt', t.getAttribute('aria-label') || '');
+      tarjetas.forEach(function (x) { x.setAttribute('aria-pressed', x === t ? 'true' : 'false'); });
+      var r = img.getBoundingClientRect();
+      if (r.bottom < 80) portada.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    tarjetas.forEach(function (t) {
+      t.addEventListener('click', function () { elegir(t); });
+      t.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); elegir(t); } });
+    });
+  })();
+</script>
+{%- endif -%}
 
 {% schema %}
 {
@@ -141,7 +175,8 @@
     { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 20 },
     { "type": "range", "id": "padding_lateral", "label": "Margen lateral", "min": 0, "max": 32, "step": 2, "unit": "px", "default": 16 },
     { "type": "header", "content": "Colores con foto" },
-    { "type": "text", "id": "colores_nota", "label": "Nota bajo los colores", "info": "Ejemplo: Eliges color y talla de cada par en el formulario." }
+    { "type": "text", "id": "colores_nota", "label": "Nota bajo los colores", "info": "Ejemplo: Eliges color y talla de cada par en el formulario." },
+    { "type": "checkbox", "id": "colores_portada", "label": "Tocar un color cambia la imagen principal", "default": true }
   ],
   "blocks": [
     { "type": "encabezado", "name": "Encabezado", "limit": 1, "settings": [
@@ -156,6 +191,7 @@
     { "type": "color", "name": "Color con foto", "settings": [
       { "type": "paragraph", "content": "Foto vertical 3:4 del producto puesto en ese color; el nombre va arriba para no tapar el producto. Solo muestra: se elige en el formulario." },
       { "type": "image_picker", "id": "imagen", "label": "Foto" },
+      { "type": "image_picker", "id": "imagen_grande", "label": "Foto para la imagen principal", "info": "Misma proporción que la portada. Vacío: se usa la foto de la tarjeta." },
       { "type": "text", "id": "nombre", "label": "Nombre del color", "default": "Color" }
     ] },
     { "type": "caracteristica", "name": "Característica", "settings": [
