@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "ajustes": {
@@ -82,35 +91,40 @@
         "b02_color": {
           "type": "color",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_color_negro.webp",
+            "imagen": "shopify://shop_images/samba-sueco-y58_color_negro_v2.webp",
+            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_negro_grande_3841871c-e8ce-4979-8428-d5cf7323b422.webp",
             "nombre": "Negro"
           }
         },
         "b03_color": {
           "type": "color",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_color_blanco.webp",
+            "imagen": "shopify://shop_images/samba-sueco-y58_color_blanco_v2.webp",
+            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_blanco_grande_ebd7054d-b66d-4253-bf2a-033981b7aae7.webp",
             "nombre": "Blanco"
           }
         },
         "b04_color": {
           "type": "color",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_color_negro-malla.webp",
+            "imagen": "shopify://shop_images/samba-sueco-y58_color_negro-malla_v2.webp",
+            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_negro-malla_grande_32497b27-7f51-408f-a25f-6e2e433e2f39.webp",
             "nombre": "Negro malla"
           }
         },
         "b05_color": {
           "type": "color",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_color_talco.webp",
+            "imagen": "shopify://shop_images/samba-sueco-y58_color_talco_v2.webp",
+            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_talco_grande_4b44d2cf-be9e-4e08-a2ef-0f84f65d444f.webp",
             "nombre": "Talco"
           }
         },
         "b06_color": {
           "type": "color",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_color_talco-vino.webp",
+            "imagen": "shopify://shop_images/samba-sueco-y58_color_talco-vino_v2.webp",
+            "imagen_grande": "shopify://shop_images/samba-sueco-y58_color_talco-vino_grande_f71b7508-81be-445f-b900-ed472f488aa6.webp",
             "nombre": "Talco vino"
           }
         },
@@ -123,7 +137,13 @@
             "nota": ""
           }
         },
-        "b08_boton": {
+        "b08_liquid": {
+          "type": "liquid",
+          "settings": {
+            "codigo": "{{ 'ah-home.css' | asset_url | stylesheet_tag }}{% render 'ah-talla-ayuda', id: section.id, numero: '573128860515', compacto: true %}"
+          }
+        },
+        "b09_boton": {
           "type": "boton",
           "settings": {
             "texto": "Pedir mis 2 pares",
@@ -132,16 +152,10 @@
             "pulso": false
           }
         },
-        "b09_liquid": {
-          "type": "liquid",
-          "settings": {
-            "codigo": "{{ 'ah-home.css' | asset_url | stylesheet_tag }}{% render 'ah-confianza', items: 'envio|Envío gratis|a toda Colombia;contraentrega|Pagas al recibir|contraentrega;segura|Compra segura|datos protegidos' %}"
-          }
-        },
         "b10_liquid": {
           "type": "liquid",
           "settings": {
-            "codigo": "{% render 'ah-talla-ayuda', id: section.id, numero: '573128860515', compacto: true %}"
+            "codigo": "{{ 'ah-home.css' | asset_url | stylesheet_tag }}{% render 'ah-confianza', items: 'envio|Envío gratis|a toda Colombia;contraentrega|Pagas al recibir|contraentrega;segura|Compra segura|datos protegidos' %}"
           }
         }
       },
@@ -153,8 +167,8 @@
         "b05_color",
         "b06_color",
         "b07_precio",
-        "b08_boton",
-        "b09_liquid",
+        "b08_liquid",
+        "b09_boton",
         "b10_liquid"
       ],
       "settings": {
@@ -169,7 +183,8 @@
         "padding_top": 16,
         "padding_bottom": 20,
         "padding_lateral": 16,
-        "colores_nota": "Eliges color y talla de cada par en el formulario."
+        "colores_nota": "Toca un color para verlo arriba. Eliges color y talla de cada par en el formulario.",
+        "colores_portada": true
       }
     },
     "main": {
