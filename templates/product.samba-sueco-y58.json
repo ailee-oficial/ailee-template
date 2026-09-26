@@ -138,7 +138,8 @@
             "mostrar_ahorro": true,
             "ahorro_texto": "Ahorras",
             "descuento_texto": "OFF",
-            "nota": ""
+            "nota": "",
+            "promo_texto": "Promo 2x1 · Pagas 1, te llevas 2"
           }
         },
         "b08_liquid": {
@@ -537,7 +538,8 @@
           "settings": {
             "prefijo": "Hoy",
             "mostrar_ahorro": true,
-            "nota": ""
+            "nota": "",
+            "promo_texto": "Promo 2x1 · Pagas 1, te llevas 2"
           }
         },
         "b04_cta": {

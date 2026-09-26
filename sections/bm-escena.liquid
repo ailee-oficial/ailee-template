@@ -70,6 +70,10 @@
                     <span class="bm-precio__actual">{{ variante.price | money }}</span>
                     {%- if variante.compare_at_price > variante.price -%}
                       <s class="bm-precio__antes">{{ variante.compare_at_price | money }}</s>
+                    {%- endif -%}
+                    {%- if b.promo_texto != blank -%}
+                      <span class="bm-precio__ahorro">{{ b.promo_texto | escape }}</span>
+                    {%- elsif variante.compare_at_price > variante.price -%}
                       {%- if b.mostrar_ahorro -%}
                         {%- assign ahorro = variante.compare_at_price | minus: variante.price | times: 100 | divided_by: variante.compare_at_price -%}
                         <span class="bm-precio__ahorro">-{{ ahorro }}%</span>
@@ -166,6 +170,7 @@
       { "type": "paragraph", "content": "Muestra el precio real de la variante: se cambia en el producto, no aquí." },
       { "type": "text", "id": "prefijo", "label": "Texto antes del precio", "default": "Hoy" },
       { "type": "checkbox", "id": "mostrar_ahorro", "label": "Mostrar % de ahorro si hay precio de comparación", "default": true },
+      { "type": "text", "id": "promo_texto", "label": "Texto de promoción (reemplaza el % de ahorro)", "info": "Para ofertas que no son descuento, p. ej. 2x1: «2x1 · Pagas 1, te llevas 2». Vacío: se muestra el %." },
       { "type": "text", "id": "nota", "label": "Nota bajo el precio", "default": "Pagas al recibir" }
     ] },
     { "type": "cta", "name": "Botón de compra", "settings": [
