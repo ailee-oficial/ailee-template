@@ -41,7 +41,7 @@
     "p01_cinta": {
       "type": "bm-cinta",
       "settings": {
-        "frases": "pago|Pago contra entrega\ncamion|Envío gratis a toda Colombia\ncheck|Lleva 3 por $159.700\nreloj|Llega en 3 a 5 días hábiles",
+        "frases": "pago|Pago contra entrega\ncamion|Envío gratis a toda Colombia\ncheck|Paga 2 y lleva 3\nreloj|Llega en 3 a 5 días hábiles",
         "separador": "·",
         "animada": true,
         "duracion": 22,
@@ -89,13 +89,14 @@
             "titulo": "Una prenda y sales arreglada",
             "nivel": "h1",
             "tamano": 26,
-            "subtitulo": "Talla única S-L · tela Suplex · 21 colores"
+            "subtitulo": "Paga 2 y lleva 3 · talla única S-L · 21 colores"
           }
         },
         "b02_color": {
           "type": "color",
           "settings": {
             "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_negro.webp",
+            "imagen_grande": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_negro_grande_6e777aef-9c61-43b2-bc9c-fb70a16aecbe.webp",
             "nombre": "Negro"
           }
         },
@@ -103,6 +104,7 @@
           "type": "color",
           "settings": {
             "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_gris.webp",
+            "imagen_grande": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_gris_grande_6aeffbd0-589d-4cac-86d3-3aefc9397bc3.webp",
             "nombre": "Gris"
           }
         },
@@ -110,6 +112,7 @@
           "type": "color",
           "settings": {
             "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_rojo.webp",
+            "imagen_grande": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_rojo_grande_cbce984e-0b05-4c56-805d-683ae4224467.webp",
             "nombre": "Rojo"
           }
         },
@@ -117,6 +120,7 @@
           "type": "color",
           "settings": {
             "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_verde-militar.webp",
+            "imagen_grande": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_verde-militar_grande_5b83c970-c9b8-4477-862f-d90ef2e3cbd5.webp",
             "nombre": "Verde militar"
           }
         },
@@ -124,6 +128,7 @@
           "type": "color",
           "settings": {
             "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_palo-de-rosa.webp",
+            "imagen_grande": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_palo-de-rosa_grande_fcda91af-562b-4d37-9b7e-3dc678bcf30f.webp",
             "nombre": "Palo de rosa"
           }
         },
@@ -131,6 +136,7 @@
           "type": "color",
           "settings": {
             "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_azul-rey.webp",
+            "imagen_grande": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_azul-rey_grande_e1b6222e-f22c-4a49-a49b-2bf38eb3d4dd.webp",
             "nombre": "Azul rey"
           }
         },
@@ -138,6 +144,7 @@
           "type": "color",
           "settings": {
             "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_uva.webp",
+            "imagen_grande": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_uva_grande_32ab67cc-3b4c-436f-aae5-4db8d528a300.webp",
             "nombre": "Uva"
           }
         },
@@ -147,14 +154,15 @@
             "mostrar_ahorro": true,
             "ahorro_texto": "Ahorras",
             "descuento_texto": "OFF",
-            "promo_texto": "Lleva 3 por $159.700 · sale a $53.233 cada uno",
+            "promo_texto": "Paga 2 y lleva 3 · sale a $53.233 cada uno",
+            "precio_texto": "$159.700",
             "nota": ""
           }
         },
         "b10_boton": {
           "type": "boton",
           "settings": {
-            "texto": "Quiero mi enterizo",
+            "texto": "Quiero mis 3 enterizos",
             "subtexto": "Pagas al recibir · envío gratis",
             "pad_y": 4,
             "pulso": false
@@ -192,8 +200,8 @@
         "padding_top": 16,
         "padding_bottom": 20,
         "padding_lateral": 16,
-        "colores_nota": "También en Azul oscuro, Rosado, Azul claro, Café, Beige, Verde menta, Lila, Vinotinto, Fucsia, Verde pistacho y Azul petróleo. Eliges el color de cada enterizo en el formulario.",
-        "colores_portada": false
+        "colores_nota": "Toca un color para verlo arriba. También en Azul oscuro, Rosado, Azul claro, Café, Beige, Verde menta, Lila, Vinotinto, Fucsia, Verde pistacho, Azul petróleo, Morado obispo, Salmón y Terracota. Eliges el color de cada enterizo en el formulario.",
+        "colores_portada": true
       }
     },
     "main": {
@@ -319,7 +327,7 @@
         "padding_bottom": 24,
         "padding_lateral": 16,
         "cta_mostrar": true,
-        "cta_texto": "Quiero mi enterizo",
+        "cta_texto": "Quiero mis 3 enterizos",
         "cta_subtexto": "Pagas al recibir · envío gratis"
       }
     },
@@ -344,7 +352,7 @@
         "padding_bottom": 20,
         "padding_lateral": 16,
         "cta_mostrar": false,
-        "cta_texto": "Quiero mi enterizo",
+        "cta_texto": "Quiero mis 3 enterizos",
         "cta_subtexto": "Pagas al recibir · envío gratis"
       }
     },
@@ -425,7 +433,7 @@
         "padding_bottom": 24,
         "padding_lateral": 16,
         "cta_mostrar": true,
-        "cta_texto": "Quiero mi enterizo",
+        "cta_texto": "Quiero mis 3 enterizos",
         "cta_subtexto": "Pagas al recibir · envío gratis"
       }
     },
@@ -487,7 +495,7 @@
         "padding_bottom": 16,
         "padding_lateral": 16,
         "cta_mostrar": true,
-        "cta_texto": "Quiero mi enterizo",
+        "cta_texto": "Quiero mis 3 enterizos",
         "cta_subtexto": "Pagas al recibir · envío gratis"
       }
     },
@@ -526,7 +534,7 @@
           "type": "pregunta",
           "settings": {
             "pregunta": "¿Cómo funciona la oferta?",
-            "respuesta": "<p>1 enterizo $89.700, 2 por $129.700 o 3 por $159.700. En el formulario eliges el color de cada uno.</p>"
+            "respuesta": "<p>Paga 2 y lleva 3: tres enterizos por $159.700. En el formulario también puedes elegir 1 por $89.700 o 2 por $129.700 (la segunda con descuento). Eliges el color de cada uno.</p>"
           }
         },
         "b06_pregunta": {
@@ -555,7 +563,7 @@
         "padding_bottom": 16,
         "padding_lateral": 16,
         "cta_mostrar": false,
-        "cta_texto": "Quiero mi enterizo",
+        "cta_texto": "Quiero mis 3 enterizos",
         "cta_subtexto": "Pagas al recibir · envío gratis"
       }
     },
@@ -565,7 +573,7 @@
         "b01_titulo": {
           "type": "titulo",
           "settings": {
-            "texto": "Uno para cada plan",
+            "texto": "Paga 2 y lleva 3",
             "nivel": "h2",
             "tamano": 26
           }
@@ -573,22 +581,23 @@
         "b02_texto": {
           "type": "texto",
           "settings": {
-            "texto": "<p>Elige tus tres colores y pide ahora. Pagas al recibir.</p>"
+            "texto": "<p>Uno para cada plan: elige tus tres colores y pide ahora. Pagas al recibir.</p>"
           }
         },
         "b03_precio": {
           "type": "precio",
           "settings": {
-            "prefijo": "Hoy",
+            "prefijo": "3 por",
             "mostrar_ahorro": true,
-            "promo_texto": "Lleva 3 por $159.700 · sale a $53.233 cada uno",
+            "promo_texto": "Paga 2 y lleva 3 · sale a $53.233 cada uno",
+            "precio_texto": "$159.700",
             "nota": ""
           }
         },
         "b04_cta": {
           "type": "cta",
           "settings": {
-            "texto": "Quiero mi enterizo",
+            "texto": "Quiero mis 3 enterizos",
             "subtexto": "Pagas al recibir · envío gratis",
             "ancho": "completo",
             "alineacion": "center",

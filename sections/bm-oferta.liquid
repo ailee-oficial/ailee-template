@@ -94,9 +94,14 @@
           {%- if product != blank -%}
             <div class="bm-oferta__precio" data-bm-bloque="precio" {{ block.shopify_attributes }}>
               <p class="bm-oferta__precio-fila">
-                <span class="bm-oferta__precio-actual">{{ variante.price | money }}</span>
-                {%- if variante.compare_at_price > variante.price -%}
-                  <s class="bm-oferta__precio-antes">{{ variante.compare_at_price | money }}</s>
+                {%- comment -%} precio_texto: solo cuando la oferta principal es un paquete (p. ej. «3 por $159.700»); vacío = precio real de la variante. {%- endcomment -%}
+                {%- if b.precio_texto != blank -%}
+                  <span class="bm-oferta__precio-actual">{{ b.precio_texto | escape }}</span>
+                {%- else -%}
+                  <span class="bm-oferta__precio-actual">{{ variante.price | money }}</span>
+                  {%- if variante.compare_at_price > variante.price -%}
+                    <s class="bm-oferta__precio-antes">{{ variante.compare_at_price | money }}</s>
+                  {%- endif -%}
                 {%- endif -%}
               </p>
               {%- if b.promo_texto != blank -%}
@@ -212,6 +217,7 @@
       { "type": "text", "id": "texto", "label": "Texto", "info": "Ejemplo: 37 reseñas de compradores" }
     ] },
     { "type": "precio", "name": "Precio", "limit": 1, "settings": [
+      { "type": "text", "id": "precio_texto", "label": "Precio del paquete (reemplaza el de la variante)", "info": "Solo si la oferta principal es un paquete, p. ej. «$159.700». Debe coincidir con la oferta de Releasit. Vacío: precio real de la variante." },
       { "type": "checkbox", "id": "mostrar_ahorro", "label": "Mostrar píldora de ahorro", "default": true },
       { "type": "text", "id": "ahorro_texto", "label": "Texto antes del ahorro", "default": "Ahorras" },
       { "type": "text", "id": "descuento_texto", "label": "Texto después del porcentaje", "default": "OFF" },
