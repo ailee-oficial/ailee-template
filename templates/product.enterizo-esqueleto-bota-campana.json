@@ -1,0 +1,643 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ajustes": {
+      "type": "bm-ajustes",
+      "settings": {
+        "aplicar_fondo": true,
+        "fondo_pagina": "#FAF7F4",
+        "texto_pagina": "#1C1C1C",
+        "ancho_max": 780,
+        "ficha_modo": "oculta",
+        "ficha_margen_lateral": 16,
+        "ocultar_galeria": true,
+        "ocultar_descripcion": true,
+        "ficha_padding": 12,
+        "cta_fondo": "#1C1C1C",
+        "cta_texto": "#FFFFFF",
+        "cta_radio": 30,
+        "cta_alto": 54,
+        "cta_letra": 17,
+        "rsi_aplicar": true,
+        "ficha_fondo": "#FAF7F4",
+        "ficha_texto": "#1C1C1C",
+        "cta_animacion": "salto",
+        "cta_sombra": true,
+        "cta_fuente": "titulos",
+        "cta_mayusculas": true,
+        "pie_fondo": "#1C1C1C",
+        "pie_texto": "#FAF7F4",
+        "pie_acento": "#C4A882"
+      }
+    },
+    "p01_cinta": {
+      "type": "bm-cinta",
+      "settings": {
+        "frases": "pago|Pago contra entrega\ncamion|Envío gratis a toda Colombia\ncheck|Lleva 3 por $159.700\nreloj|Llega en 3 a 5 días hábiles",
+        "separador": "·",
+        "animada": true,
+        "duracion": 22,
+        "tamano": 14,
+        "padding": 10,
+        "fondo": "#1C1C1C",
+        "texto": "#FFFFFF"
+      }
+    },
+    "p02_hero": {
+      "type": "bm-laminas",
+      "blocks": {
+        "b01_portada": {
+          "type": "lamina",
+          "settings": {
+            "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_pdp_1.webp",
+            "texto_alt": "UNA PRENDA\nY LISTA",
+            "titulo_oculto": "Una prenda y lista",
+            "nivel": "h2",
+            "prioridad": true,
+            "abre_formulario": false
+          }
+        }
+      },
+      "block_order": [
+        "b01_portada"
+      ],
+      "settings": {
+        "fondo": "#FAF7F4",
+        "texto": "#1C1C1C",
+        "ancho": "contenido",
+        "espacio": 0,
+        "radio_imagen": 0,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "p03_oferta": {
+      "type": "bm-oferta",
+      "blocks": {
+        "b01_encabezado": {
+          "type": "encabezado",
+          "settings": {
+            "antetitulo": "Enterizo esqueleto bota campana",
+            "titulo": "Una prenda y sales arreglada",
+            "nivel": "h1",
+            "tamano": 26,
+            "subtitulo": "Talla única S-L · tela Suplex · 21 colores"
+          }
+        },
+        "b02_color": {
+          "type": "color",
+          "settings": {
+            "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_negro.webp",
+            "nombre": "Negro"
+          }
+        },
+        "b03_color": {
+          "type": "color",
+          "settings": {
+            "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_gris.webp",
+            "nombre": "Gris"
+          }
+        },
+        "b04_color": {
+          "type": "color",
+          "settings": {
+            "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_rojo.webp",
+            "nombre": "Rojo"
+          }
+        },
+        "b05_color": {
+          "type": "color",
+          "settings": {
+            "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_verde-militar.webp",
+            "nombre": "Verde militar"
+          }
+        },
+        "b06_color": {
+          "type": "color",
+          "settings": {
+            "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_palo-de-rosa.webp",
+            "nombre": "Palo de rosa"
+          }
+        },
+        "b07_color": {
+          "type": "color",
+          "settings": {
+            "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_azul-rey.webp",
+            "nombre": "Azul rey"
+          }
+        },
+        "b08_color": {
+          "type": "color",
+          "settings": {
+            "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_uva.webp",
+            "nombre": "Uva"
+          }
+        },
+        "b09_precio": {
+          "type": "precio",
+          "settings": {
+            "mostrar_ahorro": true,
+            "ahorro_texto": "Ahorras",
+            "descuento_texto": "OFF",
+            "promo_texto": "Lleva 3 por $159.700 · sale a $53.233 cada uno",
+            "nota": ""
+          }
+        },
+        "b10_boton": {
+          "type": "boton",
+          "settings": {
+            "texto": "Quiero mi enterizo",
+            "subtexto": "Pagas al recibir · envío gratis",
+            "pad_y": 4,
+            "pulso": false
+          }
+        },
+        "b11_liquid": {
+          "type": "liquid",
+          "settings": {
+            "codigo": "{{ 'ah-home.css' | asset_url | stylesheet_tag }}{% render 'ah-confianza', items: 'envio|Envío gratis|a toda Colombia;contraentrega|Pagas al recibir|contraentrega;segura|Compra segura|datos protegidos' %}"
+          }
+        }
+      },
+      "block_order": [
+        "b01_encabezado",
+        "b02_color",
+        "b03_color",
+        "b04_color",
+        "b05_color",
+        "b06_color",
+        "b07_color",
+        "b08_color",
+        "b09_precio",
+        "b10_boton",
+        "b11_liquid"
+      ],
+      "settings": {
+        "alineacion": "center",
+        "fondo": "#FAF7F4",
+        "texto": "#1C1C1C",
+        "tarjeta_fondo": "#FFFFFF",
+        "tarjeta_texto": "#1C1C1C",
+        "pildora_fondo": "#C4A882",
+        "pildora_texto": "#111827",
+        "separacion": 14,
+        "padding_top": 16,
+        "padding_bottom": 20,
+        "padding_lateral": 16,
+        "colores_nota": "También en Azul oscuro, Rosado, Azul claro, Café, Beige, Verde menta, Lila, Vinotinto, Fucsia, Verde pistacho y Azul petróleo. Eliges el color de cada enterizo en el formulario.",
+        "colores_portada": false
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "comprar": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "descripcion": {
+          "type": "description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "comprar",
+        "descripcion"
+      ],
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "bm_omitir_galeria": true
+      }
+    },
+    "p04_mecanismo": {
+      "type": "bm-escena",
+      "blocks": {
+        "b01_titulo": {
+          "type": "titulo",
+          "settings": {
+            "texto": "Look de Una Pieza",
+            "nivel": "h2",
+            "tamano": 26
+          }
+        },
+        "b02_texto": {
+          "type": "texto",
+          "settings": {
+            "texto": "<p>El look ya viene hecho, también de espalda</p><p>1. Te lo pones: es una sola pieza, no combinas nada.</p><p>2. Eliges tenis o plataforma.</p><p>3. Sales. La bota campana alarga la pierna, el frunce define y la espalda en tiras anchas da el detalle.</p><p>Estiliza por el corte de la prenda. No es una faja.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "b01_titulo",
+        "b02_texto"
+      ],
+      "settings": {
+        "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_pdp_2.webp",
+        "texto_alt": "(sin texto integrado: titular y pasos en HTML)",
+        "titulo_oculto": "",
+        "nivel_oculto": "h2",
+        "prioridad": false,
+        "diferir": true,
+        "disposicion": "imagen_arriba",
+        "posicion_texto": "end",
+        "sobre_degradado": true,
+        "alineacion": "left",
+        "ancho": "contenido",
+        "fondo": "#FAF7F4",
+        "texto": "#1C1C1C",
+        "panel_fondo": "#FFFFFF",
+        "acento": "#C4A882",
+        "acento_texto": "#111827",
+        "panel_padding": 20,
+        "separacion": 10,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "p05_ocasiones": {
+      "type": "bm-galeria",
+      "blocks": {
+        "b01_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_pdp_3.webp",
+            "etiqueta": "Almuerzo del domingo"
+          }
+        },
+        "b02_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_pdp_4.webp",
+            "etiqueta": "De viaje"
+          }
+        },
+        "b03_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_pdp_5.webp",
+            "etiqueta": "Con los niños"
+          }
+        },
+        "b04_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_pdp_6.webp",
+            "etiqueta": "Salida de noche"
+          }
+        }
+      },
+      "block_order": [
+        "b01_escena",
+        "b02_escena",
+        "b03_escena",
+        "b04_escena"
+      ],
+      "settings": {
+        "antetitulo": "",
+        "titulo": "Un plan, un color",
+        "subtitulo": "",
+        "disposicion": "carrusel",
+        "ancho_tarjeta": 75,
+        "radio": 12,
+        "alineacion": "left",
+        "diferir": true,
+        "fondo": "#FAF7F4",
+        "texto": "#1C1C1C",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_lateral": 16,
+        "cta_mostrar": true,
+        "cta_texto": "Quiero mi enterizo",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p06_variantes": {
+      "type": "bm-variantes",
+      "settings": {
+        "modo": "automatico",
+        "opcion": "COLOR",
+        "mostrar_agotados": false,
+        "agotado_texto": "Agotado",
+        "titulo": "21 colores",
+        "subtitulo": "Eliges el color de cada enterizo en el formulario",
+        "nota": "Eliges el color de cada enterizo en el formulario al hacer tu pedido.",
+        "disposicion": "cuadricula",
+        "cols_movil": "2",
+        "alineacion": "center",
+        "fondo": "#FAF7F4",
+        "texto": "#1C1C1C",
+        "tarjeta_fondo": "#FFFFFF",
+        "tarjeta_texto": "#1C1C1C",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "padding_lateral": 16,
+        "cta_mostrar": false,
+        "cta_texto": "Quiero mi enterizo",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p07_especificaciones": {
+      "type": "bm-tabla",
+      "blocks": {
+        "b01_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Talla",
+            "c2": "Única, se adapta de S a L",
+            "c3": ""
+          }
+        },
+        "b02_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Tela",
+            "c2": "Suplex de 420 g, elasticidad alta",
+            "c3": ""
+          }
+        },
+        "b03_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Transparencia",
+            "c2": "Baja, según la ficha del proveedor",
+            "c3": ""
+          }
+        },
+        "b04_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Compresión",
+            "c2": "Media (no es faja)",
+            "c3": ""
+          }
+        },
+        "b05_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Espalda",
+            "c2": "Abierta, con tiras anchas",
+            "c3": ""
+          }
+        },
+        "b06_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Pierna",
+            "c2": "Bota campana, larga",
+            "c3": ""
+          }
+        }
+      },
+      "block_order": [
+        "b01_fila",
+        "b02_fila",
+        "b03_fila",
+        "b04_fila",
+        "b05_fila",
+        "b06_fila"
+      ],
+      "settings": {
+        "modo": "lista",
+        "antetitulo": "",
+        "titulo": "Detalles",
+        "encabezado_1": "",
+        "encabezado_2": "",
+        "encabezado_3": "",
+        "nota": "",
+        "alineacion": "left",
+        "fondo": "#FAF7F4",
+        "texto": "#1C1C1C",
+        "destacado_fondo": "#C4A882",
+        "destacado_texto": "#111827",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_lateral": 16,
+        "cta_mostrar": true,
+        "cta_texto": "Quiero mi enterizo",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p08_prueba_social": {
+      "type": "bm-resenas",
+      "blocks": {
+        "b01_resena": {
+          "type": "resena",
+          "settings": {
+            "origen": "ia_recreada",
+            "foto_alt": "",
+            "texto": "Tenía miedo por ser talla única, pero me quedó bien y la tela no se ve delgada.",
+            "nombre": "",
+            "detalle": "",
+            "estrellas": 5,
+            "etiqueta": "Recreación con IA · estrellas ilustrativas · no es la reseña de un comprador"
+          }
+        },
+        "b02_resena": {
+          "type": "resena",
+          "settings": {
+            "origen": "ia_recreada",
+            "foto_alt": "",
+            "texto": "Me lo puse para un almuerzo con tenis blancos y no tuve que pensar nada más.",
+            "nombre": "",
+            "detalle": "",
+            "estrellas": 5,
+            "etiqueta": "Recreación con IA · estrellas ilustrativas · no es la reseña de un comprador"
+          }
+        },
+        "b03_resena": {
+          "type": "resena",
+          "settings": {
+            "origen": "ia_recreada",
+            "foto_alt": "",
+            "texto": "La bota campana es larga: con tenis de plataforma me queda perfecto.",
+            "nombre": "",
+            "detalle": "",
+            "estrellas": 4,
+            "etiqueta": "Recreación con IA · estrellas ilustrativas · no es la reseña de un comprador"
+          }
+        }
+      },
+      "block_order": [
+        "b01_resena",
+        "b02_resena",
+        "b03_resena"
+      ],
+      "settings": {
+        "titulo": "Ejemplos ilustrativos de uso",
+        "disposicion": "carrusel",
+        "alineacion": "center",
+        "aviso_ia": "Las tarjetas marcadas son recreaciones generadas con IA a partir de opiniones frecuentes; no son reseñas de compradores.",
+        "fondo": "#FAF7F4",
+        "texto": "#1C1C1C",
+        "tarjeta_fondo": "#FFFFFF",
+        "tarjeta_texto": "#1C1C1C",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_lateral": 16,
+        "cta_mostrar": true,
+        "cta_texto": "Quiero mi enterizo",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p09_faq": {
+      "type": "bm-faq",
+      "blocks": {
+        "b01_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Qué talla es?",
+            "respuesta": "<p>Es talla única y se adapta de S a L. La tela Suplex es muy elástica.</p>"
+          }
+        },
+        "b02_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Es muy largo?",
+            "respuesta": "<p>La bota campana es larga y cae sobre el tenis. Si eres de baja estatura, te queda mejor con tenis de plataforma.</p>"
+          }
+        },
+        "b03_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Transparenta?",
+            "respuesta": "<p>Según la ficha del proveedor, la tela Suplex de 420 g tiene transparencia baja. Te recomendamos ropa interior del tono de tu piel o sin costuras.</p>"
+          }
+        },
+        "b04_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Moldea como una faja?",
+            "respuesta": "<p>No. Estiliza por el corte: la bota campana, el frunce trasero y la espalda en tiras. Su compresión es media.</p>"
+          }
+        },
+        "b05_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Cómo funciona la oferta?",
+            "respuesta": "<p>1 enterizo $89.700, 2 por $129.700 o 3 por $159.700. En el formulario eliges el color de cada uno.</p>"
+          }
+        },
+        "b06_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Cuándo llega y cómo pago?",
+            "respuesta": "<p>Llega en 3 a 5 días hábiles y pagas cuando lo recibes en la puerta de tu casa.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "b01_pregunta",
+        "b02_pregunta",
+        "b03_pregunta",
+        "b04_pregunta",
+        "b05_pregunta",
+        "b06_pregunta"
+      ],
+      "settings": {
+        "titulo": "Preguntas frecuentes",
+        "alineacion": "left",
+        "abrir_primera": false,
+        "fondo": "#FAF7F4",
+        "texto": "#1C1C1C",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_lateral": 16,
+        "cta_mostrar": false,
+        "cta_texto": "Quiero mi enterizo",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p10_oferta_cta": {
+      "type": "bm-escena",
+      "blocks": {
+        "b01_titulo": {
+          "type": "titulo",
+          "settings": {
+            "texto": "Uno para cada plan",
+            "nivel": "h2",
+            "tamano": 26
+          }
+        },
+        "b02_texto": {
+          "type": "texto",
+          "settings": {
+            "texto": "<p>Elige tus tres colores y pide ahora. Pagas al recibir.</p>"
+          }
+        },
+        "b03_precio": {
+          "type": "precio",
+          "settings": {
+            "prefijo": "Hoy",
+            "mostrar_ahorro": true,
+            "promo_texto": "Lleva 3 por $159.700 · sale a $53.233 cada uno",
+            "nota": ""
+          }
+        },
+        "b04_cta": {
+          "type": "cta",
+          "settings": {
+            "texto": "Quiero mi enterizo",
+            "subtexto": "Pagas al recibir · envío gratis",
+            "ancho": "completo",
+            "alineacion": "center",
+            "pad_y": 8,
+            "pulso": false
+          }
+        }
+      },
+      "block_order": [
+        "b01_titulo",
+        "b02_texto",
+        "b03_precio",
+        "b04_cta"
+      ],
+      "settings": {
+        "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_pdp_7.webp",
+        "texto_alt": "(sin texto integrado: titular y precio en HTML)",
+        "titulo_oculto": "",
+        "nivel_oculto": "h2",
+        "prioridad": false,
+        "diferir": true,
+        "disposicion": "imagen_arriba",
+        "posicion_texto": "end",
+        "sobre_degradado": true,
+        "alineacion": "left",
+        "ancho": "contenido",
+        "fondo": "#FAF7F4",
+        "texto": "#1C1C1C",
+        "acento": "#C4A882",
+        "acento_texto": "#111827",
+        "panel_padding": 20,
+        "separacion": 10,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "ajustes",
+    "p01_cinta",
+    "p02_hero",
+    "p03_oferta",
+    "main",
+    "p04_mecanismo",
+    "p05_ocasiones",
+    "p06_variantes",
+    "p07_especificaciones",
+    "p08_prueba_social",
+    "p09_faq",
+    "p10_oferta_cta"
+  ]
+}
