@@ -62,9 +62,12 @@
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
 
   <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
-    <div class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
-      {% render 'product-media-gallery', variant_images: variant_images %}
-    </div>
+    {%- comment -%} Landing BM: la galería oculta por CSS se descargaba igual (foto 1 eager y prioridad alta). {%- endcomment -%}
+    {%- unless section.settings.bm_omitir_galeria -%}
+      <div class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
+        {% render 'product-media-gallery', variant_images: variant_images %}
+      </div>
+    {%- endunless -%}
     <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}">
       <product-info
         id="ProductInfo-{{ section.id }}"
@@ -491,7 +494,7 @@
         </a>
       </product-info>
     </div>
-    {%- if section.settings.media_position == 'right' -%}
+    {%- if section.settings.media_position == 'right' and section.settings.bm_omitir_galeria != true -%}
       {% comment %} Duplicate gallery to display after product content on tablet/desktop breakpoint {% endcomment %}
       <div class="grid__item product__media-wrapper small-hide">
         {% render 'product-media-gallery', variant_images: variant_images, is_duplicate: true %}
@@ -499,7 +502,9 @@
     {%- endif -%}
   </div>
 
-  {% render 'product-media-modal' variant_images: variant_images %}
+  {%- unless section.settings.bm_omitir_galeria -%}
+    {% render 'product-media-modal' variant_images: variant_images %}
+  {%- endunless -%}
 
   {% assign popups = section.blocks | where: 'type', 'popup' %}
   {%- for block in popups -%}
@@ -2436,6 +2441,12 @@
   ],
   "settings": [
 
+    {
+      "type": "checkbox",
+      "id": "bm_omitir_galeria",
+      "default": false,
+      "label": "Landing BM: omitir galería y modal del producto"
+    },
 
  {
         "type": "checkbox",

@@ -212,6 +212,7 @@
         "descripcion"
       ],
       "settings": {
+        "bm_omitir_galeria": true,
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -255,6 +256,7 @@
         "b04_escena"
       ],
       "settings": {
+        "diferir": true,
         "antetitulo": "",
         "titulo": "Para todo lo que haces en el día",
         "subtitulo": "",
@@ -295,6 +297,7 @@
         "b02_texto"
       ],
       "settings": {
+        "diferir": true,
         "imagen": "shopify://shop_images/samba-sueco-y58_pdp_6_v2.webp",
         "texto_alt": "(sin texto integrado: titular y pasos en HTML)",
         "titulo_oculto": "",
@@ -561,6 +564,7 @@
         "b04_cta"
       ],
       "settings": {
+        "diferir": true,
         "imagen": "shopify://shop_images/samba-sueco-y58_pdp_7.webp",
         "texto_alt": "(sin texto integrado: titular y precio en HTML)",
         "titulo_oculto": "",

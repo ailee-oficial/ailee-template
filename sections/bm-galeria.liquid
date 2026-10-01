@@ -16,9 +16,14 @@
     {%- endif -%}
     <div class="bm-galeria__lista">
       {%- for block in section.blocks -%}
-        <figure class="bm-galeria__item" data-bm-bloque="escena" {{ block.shopify_attributes }}>
+        <figure class="bm-galeria__item" data-bm-bloque="escena"{% if s.diferir %} data-bm-diferido{% endif %} {{ block.shopify_attributes }}>
           {%- if block.settings.imagen != blank -%}
-            {{ block.settings.imagen | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 360px, 75vw', widths: '360, 540, 720, 900', alt: block.settings.etiqueta }}
+            {%- capture foto -%}{{ block.settings.imagen | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 360px, 75vw', widths: '360, 540, 720, 900', alt: block.settings.etiqueta }}{%- endcapture -%}
+            {%- if s.diferir -%}
+              {{ foto | replace: ' srcset="', ' data-bm-srcset="' | replace: ' src="', ' data-bm-src="' }}
+            {%- else -%}
+              {{ foto }}
+            {%- endif -%}
           {%- elsif request.design_mode -%}
             {{ 'image' | placeholder_svg_tag: 'bm-placeholder' }}
           {%- endif -%}
@@ -30,6 +35,7 @@
   {%- if s.cta_mostrar -%}
     {%- render 'bm-cta', texto: s.cta_texto, subtexto: s.cta_subtexto, fondo: blank, color: blank, franja: blank, ancho: 'completo', alineacion: 'center', pad_y: 14, pulso: false -%}
   {%- endif -%}
+  {%- if s.diferir -%}{%- render 'bm-diferir' -%}{%- endif -%}
 </div>
 
 {% schema %}
@@ -48,6 +54,7 @@
     ], "default": "carrusel" },
     { "type": "range", "id": "ancho_tarjeta", "label": "Ancho de cada foto en el carrusel", "min": 50, "max": 90, "step": 5, "unit": "%", "default": 75 },
     { "type": "range", "id": "radio", "label": "Redondeo de las fotos", "min": 0, "max": 24, "step": 2, "unit": "px", "default": 12 },
+    { "type": "checkbox", "id": "diferir", "label": "Cargar las fotos después del botón de compra", "info": "Las fotos bajan cuando la página terminó de cargar o cuando la clienta se acerca. Así no compiten con el botón ni con el pixel en redes lentas.", "default": false },
     { "type": "select", "id": "alineacion", "label": "Alineación del título", "options": [
       { "value": "left", "label": "Izquierda" }, { "value": "center", "label": "Centro" }
     ], "default": "left" },
