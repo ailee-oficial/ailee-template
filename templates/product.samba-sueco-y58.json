@@ -57,9 +57,9 @@
         "b01_portada": {
           "type": "lamina",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_1_v2.webp",
-            "texto_alt": "EL SAMBA,\nAHORA SIN TALÓN",
-            "titulo_oculto": "El Samba, ahora sin talón",
+            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_1_v3.webp",
+            "texto_alt": "NUEVOS\nSUECOS SAMBA\nPISA Y SAL, SIN USAR LAS MANOS",
+            "titulo_oculto": "Nuevos Suecos Samba: pisa y sal, sin usar las manos",
             "nivel": "h2",
             "prioridad": true,
             "abre_formulario": false
