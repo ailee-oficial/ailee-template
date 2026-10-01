@@ -3,7 +3,7 @@
    Estética: marfil cálido, serif en cursiva para títulos, sans ligera para texto.
    Todo vive bajo .ah para no tocar el resto del tema.
    ───────────────────────────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Allura&display=swap');
+/* Las fuentes (Cormorant, DM Sans, Allura) se piden una sola vez en layout/theme.liquid. */
 
 .ah {
   --ah-bg: #faf7f4;       /* blanco cálido Ailée */

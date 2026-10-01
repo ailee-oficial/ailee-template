@@ -11,7 +11,8 @@
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Josefin+Sans:wght@300;400;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    {%- comment -%} Un solo pedido de fuentes. assets/ah-home.css las pedía otra vez por @import, con otra DM Sans (eje óptico, 62 KB) además de esta (37 KB). {%- endcomment -%}
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Josefin+Sans:wght@300;400;600&family=DM+Sans:wght@300;400;500;600&family=Allura&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://loox.io" crossorigin>
     <link rel="dns-prefetch" href="https://loox.io">
     <link rel="preconnect" href="https://static.loox.io" crossorigin>
@@ -50,14 +51,15 @@
           s.defer = true;
           document.head.appendChild(s);
         };
-        if (window.requestIdleCallback) {
-          requestIdleCallback(loadFA, {timeout: 3000});
-        } else {
-          window.addEventListener('load', loadFA);
-        }
+        // Después del evento load: antes su fuente (147 KB) bajaba junto al botón de Releasit y el pixel.
+        var trasCarga = function(){
+          if (window.requestIdleCallback) { requestIdleCallback(loadFA, {timeout: 3000}); } else { setTimeout(loadFA, 1); }
+        };
+        if (document.readyState === 'complete') { trasCarga(); } else { window.addEventListener('load', trasCarga); }
       })();
      </script>
-    {% if template.name == 'product' and product and product.selected_or_first_available_variant and product.selected_or_first_available_variant.featured_media %}
+    {%- comment -%} Las plantillas exclusivas de landing (product.<handle>.json) abren con su propio hero y ocultan la galería: precargar su foto 1 era descargar algo que nadie ve. {%- endcomment -%}
+    {% if template.name == 'product' and product and template.suffix != product.handle and product.selected_or_first_available_variant and product.selected_or_first_available_variant.featured_media %}
       <link rel="preload" as="image" imagesrcset="{{ product.selected_or_first_available_variant.featured_media.preview_image | image_url: width: 1100 }} 1100w, {{ product.selected_or_first_available_variant.featured_media.preview_image | image_url: width: 1500 }} 1500w" imagesizes="(min-width: 750px) 50vw, 100vw" href="{{ product.selected_or_first_available_variant.featured_media.preview_image | image_url: width: 1100 }}" fetchpriority="high">
     {% endif %}
     {{ content_for_header }}

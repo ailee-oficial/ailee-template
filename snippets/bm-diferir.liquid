@@ -1,0 +1,44 @@
+{%- comment -%}
+  Carga diferida de las fotos de una sección de la landing. La sección pinta sus <img>/<source> con
+  `data-bm-src`/`data-bm-srcset` en vez de `src`/`srcset`, así el navegador no las pide mientras
+  baja lo que decide la venta: el script de Releasit (el botón) y el pixel de Meta (la visita).
+
+  Por qué existe (2026-09-30, Samba de Ailee): en 4G débil las fotos «lazy» de más abajo empezaban
+  a bajar igual —Chrome adelanta las que están a menos de ~2.500 px— y competían con el botón y el
+  pixel: 773 KB del carrusel de ocasiones antes del botón, que aparecía a los 7,9 s. Simulado sin
+  ellas: 5,9 s. Quien se va antes de que cargue el pixel no cuenta como visita en Meta.
+
+  Las fotos se cargan con el evento `load` de la página o antes, si la clienta se acerca a ellas
+  (IntersectionObserver con 600 px de margen). Se llama al final de la sección:
+    {% render 'bm-diferir' %}
+  Fuente canónica: claude-skills/core/tema_landing.
+{%- endcomment -%}
+<script>
+  (function () {
+    var cargar = window.__bmDiferir;
+    if (!cargar) {
+      var poner = function (el) {
+        var ss = el.getAttribute('data-bm-srcset'), src = el.getAttribute('data-bm-src');
+        if (ss) { el.setAttribute('srcset', ss); el.removeAttribute('data-bm-srcset'); }
+        if (src) { el.setAttribute('src', src); el.removeAttribute('data-bm-src'); }
+      };
+      var todo = function (raiz) {
+        (raiz || document).querySelectorAll('[data-bm-src], [data-bm-srcset]').forEach(poner);
+      };
+      var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { io.unobserve(e.target); todo(e.target); } });
+      }, { rootMargin: '600px 0px' }) : null;
+      var trasCarga = function () {
+        var ir = function () { todo(); };
+        window.requestIdleCallback ? requestIdleCallback(ir, { timeout: 1500 }) : setTimeout(ir, 200);
+      };
+      if (document.readyState === 'complete') trasCarga(); else window.addEventListener('load', trasCarga);
+      cargar = window.__bmDiferir = function (sec) {
+        if (!sec) return;
+        if (io) { sec.querySelectorAll('[data-bm-diferido]').forEach(function (f) { io.observe(f); }); } else { todo(sec); }
+      };
+    }
+    var s = document.currentScript;
+    cargar(s && s.closest('[data-bm-landing]'));
+  })();
+</script>

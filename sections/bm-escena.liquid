@@ -6,12 +6,14 @@
 {%- endcomment -%}
 {{ 'bm-landing.css' | asset_url | stylesheet_tag }}
 {%- assign s = section.settings -%}
+{%- assign diferir = false -%}
 {%- if s.prioridad -%}
   {%- assign carga = 'eager' -%}
   {%- assign prioridad = 'high' -%}
 {%- else -%}
   {%- assign carga = 'lazy' -%}
   {%- assign prioridad = 'auto' -%}
+  {%- if s.diferir -%}{%- assign diferir = true -%}{%- endif -%}
 {%- endif -%}
 <div class="bm-sec bm-escena-sec{% if s.ancho == 'completo' %} bm-sec--completo{% endif %}" data-bm-landing="escena" data-bm-sec="{{ section.id }}" style="{% if s.fondo != blank %}--bm-sec-bg:{{ s.fondo }};{% endif %}{% if s.texto != blank %}--bm-sec-fg:{{ s.texto }};{% endif %}{% if s.panel_fondo != blank %}--bm-panel-bg:{{ s.panel_fondo }};{% endif %}{% if s.acento != blank %}--bm-acento:{{ s.acento }};{% endif %}{% if s.acento_texto != blank %}--bm-acento-fg:{{ s.acento_texto }};{% endif %}--bm-pad-top:{{ s.padding_top }}px;--bm-pad-bottom:{{ s.padding_bottom }}px;--bm-panel-pad:{{ s.panel_padding }}px;--bm-panel-gap:{{ s.separacion }}px;--bm-align:{{ s.alineacion }};--bm-precio-align:{% if s.alineacion == 'center' %}center{% elsif s.alineacion == 'right' %}flex-end{% else %}flex-start{% endif %};--bm-panel-v:{{ s.posicion_texto }};{% unless s.sobre_degradado %}--bm-panel-sobre:transparent;{% endunless %}">
   <div class="bm-sec__in">
@@ -24,13 +26,20 @@
         {%- endif -%}
       {%- endif -%}
       {%- if s.imagen != blank -%}
-        <div class="bm-escena__media">
+        <div class="bm-escena__media"{% if diferir %} data-bm-diferido{% endif %}>
+          {%- capture foto -%}
           <picture>
             {%- if s.imagen_escritorio != blank -%}
               <source media="(min-width: 750px)" srcset="{{ s.imagen_escritorio | image_url: width: 1600 }}">
             {%- endif -%}
             {{ s.imagen | image_url: width: 1600 | image_tag: loading: carga, fetchpriority: prioridad, sizes: '(min-width: 750px) 780px, 100vw', widths: '360, 540, 720, 900, 1080, 1280, 1600', alt: s.texto_alt }}
           </picture>
+          {%- endcapture -%}
+          {%- if diferir -%}
+            {{ foto | replace: ' srcset="', ' data-bm-srcset="' | replace: ' src="', ' data-bm-src="' }}
+          {%- else -%}
+            {{ foto }}
+          {%- endif -%}
         </div>
       {%- elsif request.design_mode and s.disposicion != 'solo_texto' -%}
         <div class="bm-escena__media">{{ 'image' | placeholder_svg_tag: 'bm-placeholder' }}</div>
@@ -94,6 +103,7 @@
       {%- endif -%}
     </div>
   </div>
+  {%- if diferir -%}{%- render 'bm-diferir' -%}{%- endif -%}
 </div>
 
 {% schema %}
@@ -113,6 +123,7 @@
       { "value": "h2", "label": "H2" }
     ], "default": "h2" },
     { "type": "checkbox", "id": "prioridad", "label": "Es la primera pantalla (carga prioritaria)", "default": false },
+    { "type": "checkbox", "id": "diferir", "label": "Cargar la foto después del botón de compra", "info": "Solo si no es la primera pantalla. La foto baja cuando la página terminó de cargar o cuando la clienta se acerca.", "default": false },
     { "type": "header", "content": "Disposición" },
     { "type": "select", "id": "disposicion", "label": "Disposición", "options": [
       { "value": "imagen_arriba", "label": "Imagen arriba, texto debajo" },
