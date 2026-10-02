@@ -11,9 +11,10 @@
   El bloque «Código de la tienda» renderiza piezas propias del tema (p. ej. la franja de confianza o
   la ayuda de tallas de una tienda) sin volverlas parte del kit.
   Galería del producto (producto de deseo, 2026-10-02): los bloques «Foto de la galería» seguidos
-  forman un carrusel que se desliza, con puntos y contador. Cada foto declara su color; los colores
-  pasan a ser muestras que eligen: tocar uno deja en la galería solo sus fotos y pone esa variante en
-  el formulario del producto, que Releasit lee al abrir (lo confirma o cambia por par en su oferta).
+  forman un carrusel que se desliza con TODAS las fotos, de todos los colores (la clienta puede seguir
+  viendo más). Cada foto declara su color y los colores pasan a ser muestras: tocar una lleva la
+  galería a sus fotos; deslizar hasta otro color cambia la muestra marcada. El color marcado se escribe
+  en el formulario del producto, que Releasit lee al abrir (lo confirma o cambia por par en su oferta).
   La página abre en el color de la variante del enlace (?variant=), si no en «Color que abre la
   galería» y si no en el de la primera variante disponible.
   Fuente canónica: claude-skills/core/tema_landing.
@@ -92,18 +93,16 @@
         {%- when 'foto' -%}
           {%- if b.imagen != blank -%}
             {%- assign clave = b.color | handleize -%}
-            {%- assign oculta = false -%}
-            {%- if clave != blank and clave != color_activo -%}{%- assign oculta = true -%}{%- endif -%}
-            {%- comment -%} La primera foto visible es la primera pantalla: carga prioritaria; el resto, diferida. {%- endcomment -%}
+            {%- comment -%} La primera foto del color que abre es la primera pantalla: carga prioritaria; el resto, diferida. {%- endcomment -%}
             {%- assign carga = 'lazy' -%}
             {%- assign prioridad = 'auto' -%}
-            {%- if oculta == false and primera_visible -%}
+            {%- if primera_visible and clave == color_activo or primera_visible and color_activo == blank -%}
               {%- assign carga = 'eager' -%}
               {%- assign prioridad = 'high' -%}
               {%- assign primera_visible = false -%}
             {%- endif -%}
             {%- capture item -%}
-              <figure class="bm-oferta__foto" data-bm-foto data-color="{{ clave }}"{% if oculta %} hidden{% endif %} {{ block.shopify_attributes }}>
+              <figure class="bm-oferta__foto" data-bm-foto data-color="{{ clave }}" {{ block.shopify_attributes }}>
                 {{ b.imagen | image_url: width: 1440 | image_tag: loading: carga, fetchpriority: prioridad, sizes: '(min-width: 750px) 560px, 100vw', widths: '360, 540, 720, 900, 1080, 1440', alt: b.alt }}
               </figure>
             {%- endcapture -%}
@@ -240,7 +239,6 @@
   .bm-oferta__pista{display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;outline:none}
   .bm-oferta__pista::-webkit-scrollbar{display:none}
   .bm-oferta__foto{flex:0 0 100%;margin:0;scroll-snap-align:start;scroll-snap-stop:always;aspect-ratio:var(--bm-galeria-ratio,3 / 4);background:#ffffff;overflow:hidden}
-  .bm-oferta__foto[hidden]{display:none}
   .bm-oferta__foto img{display:block;width:100%;height:100%;object-fit:cover}
   .bm-oferta__contador{position:absolute;top:12px;right:12px;margin:0;padding:3px 10px;border-radius:999px;background:rgba(28,28,28,.6);color:#ffffff;font-size:13px;font-weight:600;line-height:1.45;letter-spacing:.04em;pointer-events:none}
   .bm-oferta__contador:empty{display:none}
@@ -275,42 +273,32 @@
     var nombre = sec.querySelector('[data-bm-color-nombre]');
     var variantes = {{ variantes_json | default: '[]' }};
     var pos = {{ pos_color }};
-    var actual = 0;
-    function visibles() { return fotos.filter(function (f) { return !f.hidden; }); }
-    function marcar(i) {
-      var v = visibles();
-      actual = Math.max(0, Math.min(v.length - 1, i));
-      if (contador) contador.textContent = v.length > 1 ? (actual + 1) + ' / ' + v.length : '';
-      if (puntos) [].forEach.call(puntos.children, function (p, j) { p.setAttribute('aria-current', j === actual ? 'true' : 'false'); });
+    var actual = 0, marcado = '', bloqueo = false, espera;
+    function deColor(clave) { return fotos.filter(function (f) { return f.getAttribute('data-color') === clave; }); }
+    function indice() { return Math.round(pista.scrollLeft / (pista.clientWidth || 1)); }
+    function ir(i, suave) {
+      if (!fotos[i]) return;
+      pista.scrollTo({ left: fotos[i].offsetLeft - fotos[0].offsetLeft, behavior: suave === false ? 'auto' : 'smooth' });
     }
-    function ir(i) {
-      var v = visibles();
-      if (!v.length) return;
-      i = Math.max(0, Math.min(v.length - 1, i));
-      pista.scrollTo({ left: v[i].offsetLeft - v[0].offsetLeft, behavior: 'smooth' });
-    }
-    function pintarPuntos() {
+    // Puntos del color que se está viendo (hasta 6), no de las 24 fotos; el contador cuenta todas.
+    function pintarPuntos(clave) {
       if (!puntos) return;
-      var v = visibles();
-      puntos.innerHTML = '';
-      if (v.length < 2) return;
-      v.forEach(function (_, j) {
-        var b = document.createElement('button');
-        b.type = 'button';
-        b.tabIndex = -1;
-        b.addEventListener('click', function () { ir(j); });
-        puntos.appendChild(b);
-      });
+      var grupo = clave ? deColor(clave) : fotos;
+      if (puntos.getAttribute('data-de') !== clave) {
+        puntos.setAttribute('data-de', clave);
+        puntos.innerHTML = '';
+        if (grupo.length > 1) grupo.forEach(function (f) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.tabIndex = -1;
+          b.addEventListener('click', function () { ir(fotos.indexOf(f)); });
+          puntos.appendChild(b);
+        });
+      }
+      var j = grupo.indexOf(fotos[actual]);
+      [].forEach.call(puntos.children, function (p, k) { p.setAttribute('aria-current', k === j ? 'true' : 'false'); });
     }
-    var espera;
-    pista.addEventListener('scroll', function () {
-      clearTimeout(espera);
-      espera = setTimeout(function () { marcar(Math.round(pista.scrollLeft / (pista.clientWidth || 1))); }, 60);
-    }, { passive: true });
-    [].forEach.call(gal.querySelectorAll('[data-bm-paso]'), function (b) {
-      b.addEventListener('click', function () { ir(actual + parseInt(b.getAttribute('data-bm-paso'), 10)); });
-    });
-    // Releasit toma la variante del formulario del producto (`[name=id]`) al abrir: el color elegido
+    // Releasit toma la variante del formulario del producto (`[name=id]`) al abrir: el color marcado
     // aquí viaja al pedido y la clienta lo confirma o lo cambia por par en su oferta.
     function sincronizar(clave) {
       if (!pos || !variantes.length) return;
@@ -329,24 +317,39 @@
         c.dispatchEvent(new Event('change', { bubbles: true }));
       });
     }
-    function elegir(clave) {
-      var hay = fotos.some(function (f) { return f.getAttribute('data-color') === clave; });
-      fotos.forEach(function (f) {
-        var k = f.getAttribute('data-color');
-        f.hidden = hay && k !== '' && k !== clave;
-      });
-      var v = visibles();
-      var img = v[0] && v[0].querySelector('img');
-      if (img) img.loading = 'eager';
-      pista.scrollLeft = 0;
-      pintarPuntos();
-      marcar(0);
+    function marcar(clave) {
+      if (!clave || clave === marcado) return;
+      marcado = clave;
       muestras.forEach(function (m) {
         var si = m.getAttribute('data-color') === clave;
         m.setAttribute('aria-checked', si ? 'true' : 'false');
         if (si && nombre) nombre.textContent = m.getAttribute('aria-label');
       });
       sincronizar(clave);
+    }
+    function mirar() {
+      actual = Math.max(0, Math.min(fotos.length - 1, indice()));
+      var clave = fotos[actual] ? fotos[actual].getAttribute('data-color') : '';
+      if (contador) contador.textContent = fotos.length > 1 ? (actual + 1) + ' / ' + fotos.length : '';
+      pintarPuntos(clave || marcado);
+      // Al deslizar hasta otro color, la muestra marcada y la variante lo siguen (lo que se ve es lo que se pide).
+      if (!bloqueo) marcar(clave);
+    }
+    pista.addEventListener('scroll', function () {
+      clearTimeout(espera);
+      espera = setTimeout(function () { bloqueo = false; mirar(); }, 90);
+    }, { passive: true });
+    [].forEach.call(gal.querySelectorAll('[data-bm-paso]'), function (b) {
+      b.addEventListener('click', function () { ir(actual + parseInt(b.getAttribute('data-bm-paso'), 10)); });
+    });
+    function elegir(clave) {
+      var grupo = deColor(clave);
+      marcar(clave);
+      if (!grupo.length) return;
+      var img = grupo[0].querySelector('img');
+      if (img) img.loading = 'eager';
+      bloqueo = true;
+      ir(fotos.indexOf(grupo[0]));
     }
     muestras.forEach(function (m, i) {
       m.addEventListener('click', function () { elegir(m.getAttribute('data-color')); });
@@ -359,9 +362,11 @@
         elegir(otra.getAttribute('data-color'));
       });
     });
-    pintarPuntos();
-    marcar(0);
-    if ('{{ color_activo }}') sincronizar('{{ color_activo }}');
+    var inicial = '{{ color_activo }}';
+    var primera = inicial ? deColor(inicial)[0] : null;
+    if (primera && fotos.indexOf(primera) > 0) ir(fotos.indexOf(primera), false);
+    if (inicial) marcar(inicial);
+    mirar();
   })();
 </script>
 {%- endif -%}
