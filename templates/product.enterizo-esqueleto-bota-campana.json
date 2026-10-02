@@ -89,7 +89,7 @@
             "titulo": "Una prenda y sales arreglada",
             "nivel": "h1",
             "tamano": 26,
-            "subtitulo": "Paga 2 y lleva 3 · talla única S-L · 21 colores"
+            "subtitulo": "Paga 2 y lleva 3 · talla única S-L · 12 colores"
           }
         },
         "b02_color": {
@@ -143,12 +143,52 @@
         "b08_color": {
           "type": "color",
           "settings": {
+            "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_verde-menta.webp",
+            "imagen_grande": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_verde-menta_grande_d647af0c-c394-4b84-9358-4d2e04f373f7.webp",
+            "nombre": "Verde menta"
+          }
+        },
+        "b09_color": {
+          "type": "color",
+          "settings": {
+            "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_lila.webp",
+            "imagen_grande": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_lila_grande_5663cfaa-5119-498d-b592-d3bd4ba84b1c.webp",
+            "nombre": "Lila"
+          }
+        },
+        "b10_color": {
+          "type": "color",
+          "settings": {
             "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_uva.webp",
             "imagen_grande": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_uva_grande_32ab67cc-3b4c-436f-aae5-4db8d528a300.webp",
             "nombre": "Uva"
           }
         },
-        "b09_precio": {
+        "b11_color": {
+          "type": "color",
+          "settings": {
+            "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_fucsia.webp",
+            "imagen_grande": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_fucsia_grande_89c7a8c1-f244-406a-8d7a-ddfc0d92d7eb.webp",
+            "nombre": "Fucsia"
+          }
+        },
+        "b12_color": {
+          "type": "color",
+          "settings": {
+            "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_terracota.webp",
+            "imagen_grande": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_terracota_grande_7e0b72a3-ad2a-4a95-9a73-c8412a167e88.webp",
+            "nombre": "Terracota"
+          }
+        },
+        "b13_color": {
+          "type": "color",
+          "settings": {
+            "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_azul-petroleo.webp",
+            "imagen_grande": "shopify://shop_images/enterizo-esqueleto-bota-campana_color_azul-petroleo_grande_6ab5cd6e-18a2-4e60-955c-4ec9cee88db9.webp",
+            "nombre": "Azul petróleo"
+          }
+        },
+        "b14_precio": {
           "type": "precio",
           "settings": {
             "mostrar_ahorro": true,
@@ -159,7 +199,7 @@
             "nota": ""
           }
         },
-        "b10_boton": {
+        "b15_boton": {
           "type": "boton",
           "settings": {
             "texto": "Quiero mis 3 enterizos",
@@ -168,7 +208,7 @@
             "pulso": false
           }
         },
-        "b11_liquid": {
+        "b16_liquid": {
           "type": "liquid",
           "settings": {
             "codigo": "{{ 'ah-home.css' | asset_url | stylesheet_tag }}{% render 'ah-confianza', items: 'envio|Envío gratis|a toda Colombia;contraentrega|Pagas al recibir|contraentrega;segura|Compra segura|datos protegidos' %}"
@@ -184,9 +224,14 @@
         "b06_color",
         "b07_color",
         "b08_color",
-        "b09_precio",
-        "b10_boton",
-        "b11_liquid"
+        "b09_color",
+        "b10_color",
+        "b11_color",
+        "b12_color",
+        "b13_color",
+        "b14_precio",
+        "b15_boton",
+        "b16_liquid"
       ],
       "settings": {
         "alineacion": "center",
@@ -200,7 +245,7 @@
         "padding_top": 16,
         "padding_bottom": 20,
         "padding_lateral": 16,
-        "colores_nota": "Toca un color para verlo arriba. También en Azul oscuro, Rosado, Azul claro, Café, Beige, Verde menta, Lila, Vinotinto, Fucsia, Verde pistacho, Azul petróleo, Morado obispo, Salmón y Terracota. Eliges el color de cada enterizo en el formulario.",
+        "colores_nota": "Toca un color para verlo arriba. Eliges el color de cada enterizo en el formulario.",
         "colores_portada": true
       }
     },
@@ -331,32 +376,7 @@
         "cta_subtexto": "Pagas al recibir · envío gratis"
       }
     },
-    "p06_variantes": {
-      "type": "bm-variantes",
-      "settings": {
-        "modo": "automatico",
-        "opcion": "COLOR",
-        "mostrar_agotados": false,
-        "agotado_texto": "Agotado",
-        "titulo": "21 colores",
-        "subtitulo": "Eliges el color de cada enterizo en el formulario",
-        "nota": "Eliges el color de cada enterizo en el formulario al hacer tu pedido.",
-        "disposicion": "cuadricula",
-        "cols_movil": "2",
-        "alineacion": "center",
-        "fondo": "#FAF7F4",
-        "texto": "#1C1C1C",
-        "tarjeta_fondo": "#FFFFFF",
-        "tarjeta_texto": "#1C1C1C",
-        "padding_top": 20,
-        "padding_bottom": 20,
-        "padding_lateral": 16,
-        "cta_mostrar": false,
-        "cta_texto": "Quiero mis 3 enterizos",
-        "cta_subtexto": "Pagas al recibir · envío gratis"
-      }
-    },
-    "p07_especificaciones": {
+    "p06_especificaciones": {
       "type": "bm-tabla",
       "blocks": {
         "b01_fila": {
@@ -432,12 +452,12 @@
         "padding_top": 24,
         "padding_bottom": 24,
         "padding_lateral": 16,
-        "cta_mostrar": true,
+        "cta_mostrar": false,
         "cta_texto": "Quiero mis 3 enterizos",
         "cta_subtexto": "Pagas al recibir · envío gratis"
       }
     },
-    "p08_prueba_social": {
+    "p07_prueba_social": {
       "type": "bm-resenas",
       "blocks": {
         "b01_resena": {
@@ -499,7 +519,7 @@
         "cta_subtexto": "Pagas al recibir · envío gratis"
       }
     },
-    "p09_faq": {
+    "p08_faq": {
       "type": "bm-faq",
       "blocks": {
         "b01_pregunta": {
@@ -567,7 +587,7 @@
         "cta_subtexto": "Pagas al recibir · envío gratis"
       }
     },
-    "p10_oferta_cta": {
+    "p09_oferta_cta": {
       "type": "bm-escena",
       "blocks": {
         "b01_titulo": {
@@ -643,10 +663,9 @@
     "main",
     "p04_mecanismo",
     "p05_ocasiones",
-    "p06_variantes",
-    "p07_especificaciones",
-    "p08_prueba_social",
-    "p09_faq",
-    "p10_oferta_cta"
+    "p06_especificaciones",
+    "p07_prueba_social",
+    "p08_faq",
+    "p09_oferta_cta"
   ]
 }
