@@ -20,22 +20,22 @@
         "ficha_margen_lateral": 16,
         "ocultar_galeria": true,
         "ocultar_descripcion": true,
+        "ficha_fondo": "#FAF7F4",
+        "ficha_texto": "#1C1C1C",
         "ficha_padding": 12,
+        "pie_fondo": "#1C1C1C",
+        "pie_texto": "#FAF7F4",
+        "pie_acento": "#C4A882",
         "cta_fondo": "#1C1C1C",
         "cta_texto": "#FFFFFF",
         "cta_radio": 30,
         "cta_alto": 54,
         "cta_letra": 17,
         "rsi_aplicar": true,
-        "ficha_fondo": "#FAF7F4",
-        "ficha_texto": "#1C1C1C",
-        "cta_animacion": "salto",
         "cta_sombra": true,
         "cta_fuente": "titulos",
         "cta_mayusculas": true,
-        "pie_fondo": "#1C1C1C",
-        "pie_texto": "#FAF7F4",
-        "pie_acento": "#C4A882"
+        "cta_animacion": "salto"
       }
     },
     "p01_cinta": {
@@ -57,7 +57,7 @@
         "b01_portada": {
           "type": "lamina",
           "settings": {
-            "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_pdp_1.webp",
+            "imagen": "shopify://shop_images/enterizo-esqueleto-bota-campana_pdp_1_v2.webp",
             "texto_alt": "UNA PRENDA\nY LISTA",
             "titulo_oculto": "Una prenda y lista",
             "nivel": "h2",
@@ -191,11 +191,11 @@
         "b14_precio": {
           "type": "precio",
           "settings": {
+            "precio_texto": "$159.700",
             "mostrar_ahorro": true,
             "ahorro_texto": "Ahorras",
             "descuento_texto": "OFF",
             "promo_texto": "Paga 2 y lleva 3 · sale a $53.233 cada uno",
-            "precio_texto": "$159.700",
             "nota": ""
           }
         },
@@ -246,7 +246,9 @@
         "padding_bottom": 20,
         "padding_lateral": 16,
         "colores_nota": "Toca un color para verlo arriba. Eliges el color de cada enterizo en el formulario.",
-        "colores_portada": true
+        "colores_portada": true,
+        "galeria_proporcion": "3 / 4",
+        "color_inicial": ""
       }
     },
     "main": {
@@ -269,9 +271,9 @@
         "descripcion"
       ],
       "settings": {
+        "bm_omitir_galeria": true,
         "padding_top": 0,
-        "padding_bottom": 0,
-        "bm_omitir_galeria": true
+        "padding_bottom": 0
       }
     },
     "p04_mecanismo": {
@@ -309,8 +311,8 @@
         "alineacion": "left",
         "ancho": "contenido",
         "fondo": "#FAF7F4",
-        "texto": "#1C1C1C",
         "panel_fondo": "#FFFFFF",
+        "texto": "#1C1C1C",
         "acento": "#C4A882",
         "acento_texto": "#111827",
         "panel_padding": 20,
@@ -364,8 +366,8 @@
         "disposicion": "carrusel",
         "ancho_tarjeta": 75,
         "radio": 12,
-        "alineacion": "left",
         "diferir": true,
+        "alineacion": "left",
         "fondo": "#FAF7F4",
         "texto": "#1C1C1C",
         "padding_top": 24,
@@ -506,7 +508,7 @@
         "titulo": "Ejemplos ilustrativos de uso",
         "disposicion": "carrusel",
         "alineacion": "center",
-        "aviso_ia": "Las tarjetas marcadas son recreaciones generadas con IA a partir de opiniones frecuentes; no son reseñas de compradores.",
+        "aviso_ia": "Las tarjetas marcadas son recreaciones generadas con IA basadas en objeciones y usos documentados; no son reseñas de compradores.",
         "fondo": "#FAF7F4",
         "texto": "#1C1C1C",
         "tarjeta_fondo": "#FFFFFF",
@@ -608,9 +610,9 @@
           "type": "precio",
           "settings": {
             "prefijo": "3 por",
+            "precio_texto": "$159.700",
             "mostrar_ahorro": true,
             "promo_texto": "Paga 2 y lleva 3 · sale a $53.233 cada uno",
-            "precio_texto": "$159.700",
             "nota": ""
           }
         },
