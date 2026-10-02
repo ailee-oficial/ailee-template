@@ -57,7 +57,7 @@
         "b01_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_negro_calle.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_negro_calle.webp",
             "color": "NEGRO",
             "alt": "Suecos Samba negros puestos, caminando por una calle de Cartagena"
           }
@@ -65,7 +65,7 @@
         "b02_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_color_negro.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-sueco-y58_color_negro.webp",
             "color": "NEGRO",
             "alt": "Suecos Samba negros puestos con jean, sentada en un butaco"
           }
@@ -73,7 +73,7 @@
         "b03_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_negro_pack1.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_negro_pack1.webp",
             "color": "NEGRO",
             "alt": "Par de suecos Samba negros con franjas blancas y suela de caucho miel"
           }
@@ -81,7 +81,7 @@
         "b04_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_negro_pack2.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_negro_pack2.webp",
             "color": "NEGRO",
             "alt": "Sueco Samba negro de lado: puntera tipo gamuza y letras SAMBA doradas"
           }
@@ -89,7 +89,7 @@
         "b05_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_negro_pack3.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_negro_pack3.webp",
             "color": "NEGRO",
             "alt": "Par de suecos Samba negros vistos desde arriba"
           }
@@ -97,7 +97,7 @@
         "b06_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_6_v2.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-sueco-y58_pdp_6_v2.webp",
             "color": "NEGRO",
             "alt": "Suecos Samba negros puestos, vistos por detrás: talón abierto"
           }
@@ -105,7 +105,7 @@
         "b07_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_5.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-sueco-y58_pdp_5.webp",
             "color": "BLANCO",
             "alt": "Suecos Samba blancos puestos con falda, en un mercado"
           }
@@ -113,7 +113,7 @@
         "b08_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_color_blanco.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-sueco-y58_color_blanco.webp",
             "color": "BLANCO",
             "alt": "Suecos Samba blancos puestos con jean, sentada en un butaco"
           }
@@ -121,7 +121,7 @@
         "b09_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_blanco_pack1.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_blanco_pack1.webp",
             "color": "BLANCO",
             "alt": "Par de suecos Samba blancos con franjas negras y suela café oscuro"
           }
@@ -129,7 +129,7 @@
         "b10_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_blanco_pack2.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_blanco_pack2.webp",
             "color": "BLANCO",
             "alt": "Par de suecos Samba blancos vistos desde arriba"
           }
@@ -137,7 +137,7 @@
         "b11_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_4_v2.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-sueco-y58_pdp_4_v2.webp",
             "color": "NEGRO MALLA",
             "alt": "Suecos Samba negro malla puestos, saliendo de casa"
           }
@@ -145,7 +145,7 @@
         "b12_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_color_negro-malla.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-sueco-y58_color_negro-malla.webp",
             "color": "NEGRO MALLA",
             "alt": "Suecos Samba negro malla puestos con jean, sentada en un butaco"
           }
@@ -153,7 +153,7 @@
         "b13_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_negro-malla_pack1.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_negro-malla_pack1.webp",
             "color": "NEGRO MALLA",
             "alt": "Par de suecos Samba negro malla con suela de caucho miel"
           }
@@ -161,7 +161,7 @@
         "b14_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_negro-malla_pack2.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_negro-malla_pack2.webp",
             "color": "NEGRO MALLA",
             "alt": "Sueco Samba negro malla de lado: malla perforada y letras doradas"
           }
@@ -169,7 +169,7 @@
         "b15_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_negro-malla_pack3.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_negro-malla_pack3.webp",
             "color": "NEGRO MALLA",
             "alt": "Par de suecos Samba negro malla de frente"
           }
@@ -177,7 +177,7 @@
         "b16_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_2.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-sueco-y58_pdp_2.webp",
             "color": "TALCO",
             "alt": "Suecos Samba talco puestos, caminando por una calle colonial"
           }
@@ -185,7 +185,7 @@
         "b17_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_color_talco.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-sueco-y58_color_talco.webp",
             "color": "TALCO",
             "alt": "Suecos Samba talco puestos con jean, sentada en un butaco"
           }
@@ -193,7 +193,7 @@
         "b18_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_talco_pack1.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_talco_pack1.webp",
             "color": "TALCO",
             "alt": "Par de suecos Samba talco con suela de caucho miel"
           }
@@ -201,7 +201,7 @@
         "b19_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_talco_pack2.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_talco_pack2.webp",
             "color": "TALCO",
             "alt": "Sueco Samba talco de lado: malla perforada tono sobre tono"
           }
@@ -209,7 +209,7 @@
         "b20_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_talco_pack3.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_talco_pack3.webp",
             "color": "TALCO",
             "alt": "Par de suecos Samba talco vistos desde arriba"
           }
@@ -217,7 +217,7 @@
         "b21_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_3.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-sueco-y58_pdp_3.webp",
             "color": "TALCO VINO",
             "alt": "Suecos Samba talco vino puestos en un café"
           }
@@ -225,7 +225,7 @@
         "b22_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_color_talco-vino.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-sueco-y58_color_talco-vino.webp",
             "color": "TALCO VINO",
             "alt": "Suecos Samba talco vino puestos con jean, sentada en un butaco"
           }
@@ -233,7 +233,7 @@
         "b23_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_talco-vino_pack1.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_talco-vino_pack1.webp",
             "color": "TALCO VINO",
             "alt": "Par de suecos Samba talco con franjas vino"
           }
@@ -241,7 +241,7 @@
         "b24_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_talco-vino_pack2.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_talco-vino_pack2.webp",
             "color": "TALCO VINO",
             "alt": "Sueco Samba talco vino de lado: franjas y letras vino"
           }
@@ -270,35 +270,35 @@
         "b27_color": {
           "type": "color",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_muestra_negro.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_muestra_negro.webp",
             "nombre": "Negro"
           }
         },
         "b28_color": {
           "type": "color",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_muestra_blanco.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_muestra_blanco.webp",
             "nombre": "Blanco"
           }
         },
         "b29_color": {
           "type": "color",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_muestra_negro-malla.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_muestra_negro-malla.webp",
             "nombre": "Negro malla"
           }
         },
         "b30_color": {
           "type": "color",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_muestra_talco.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_muestra_talco.webp",
             "nombre": "Talco"
           }
         },
         "b31_color": {
           "type": "color",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_muestra_talco-vino.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_muestra_talco-vino.webp",
             "nombre": "Talco vino"
           }
         },
@@ -374,7 +374,7 @@
         "padding_lateral": 16,
         "colores_nota": "",
         "colores_portada": false,
-        "galeria_proporcion": "3 / 4",
+        "galeria_proporcion": "3 \/ 4",
         "color_inicial": "NEGRO"
       }
     },
@@ -409,28 +409,28 @@
         "b01_escena": {
           "type": "escena",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_2.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-sueco-y58_pdp_2.webp",
             "etiqueta": "Para la u"
           }
         },
         "b02_escena": {
           "type": "escena",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_3.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-sueco-y58_pdp_3.webp",
             "etiqueta": "Café con amigas"
           }
         },
         "b03_escena": {
           "type": "escena",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_4_v2.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-sueco-y58_pdp_4_v2.webp",
             "etiqueta": "Vueltas de afán"
           }
         },
         "b04_escena": {
           "type": "escena",
           "settings": {
-            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_5.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-sueco-y58_pdp_5.webp",
             "etiqueta": "Fin de semana"
           }
         }
@@ -466,28 +466,28 @@
         "b01_escena": {
           "type": "escena",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_detalle_puntera.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_detalle_puntera.webp",
             "etiqueta": "Puntera tipo gamuza"
           }
         },
         "b02_escena": {
           "type": "escena",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_detalle_franjas.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_detalle_franjas.webp",
             "etiqueta": "Tres franjas y SAMBA dorado"
           }
         },
         "b03_escena": {
           "type": "escena",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_detalle_cordones.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_detalle_cordones.webp",
             "etiqueta": "Cordones planos"
           }
         },
         "b04_escena": {
           "type": "escena",
           "settings": {
-            "imagen": "shopify://shop_images/samba-y58_detalle_malla.webp",
+            "imagen": "shopify:\/\/shop_images\/samba-y58_detalle_malla.webp",
             "etiqueta": "Malla perforada"
           }
         }
@@ -548,7 +548,7 @@
           "type": "fila",
           "settings": {
             "c1": "Talón",
-            "c2": "Abierto: se calza sin agacharte",
+            "c2": "Abierto, tipo sueco",
             "c3": ""
           }
         },
@@ -596,13 +596,13 @@
           "type": "resena",
           "settings": {
             "origen": "real_propia",
-            "foto": "shopify://shop_images/ailee-resena-whatsapp-01.webp",
+            "foto": "shopify:\/\/shop_images\/ailee-resena-whatsapp-01.webp",
             "foto_alt": "Foto que envió la clienta por WhatsApp",
             "texto": "Ay Dios mio quedaron divinos!! ya los estrené hoy y toda la gente preguntando donde los compré jsjs",
             "nombre": "",
             "detalle": "Compró: mocasín de la tienda",
             "estrellas": 0,
-            "fuente": "https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-01.webp",
+            "fuente": "https:\/\/cdn.shopify.com\/s\/files\/1\/0659\/7214\/2165\/files\/ailee-resena-whatsapp-01.webp",
             "etiqueta": "Recreación con IA · no es la reseña de un comprador"
           }
         },
@@ -610,13 +610,13 @@
           "type": "resena",
           "settings": {
             "origen": "real_propia",
-            "foto": "shopify://shop_images/ailee-resena-whatsapp-03.webp",
+            "foto": "shopify:\/\/shop_images\/ailee-resena-whatsapp-03.webp",
             "foto_alt": "Foto que envió la clienta por WhatsApp",
             "texto": "Buenas tardes, ya recibí mi sandalia sueca, la calidad me sorprendió, mil gracias",
             "nombre": "",
             "detalle": "Compró: sandalia sueca",
             "estrellas": 0,
-            "fuente": "https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-03.webp",
+            "fuente": "https:\/\/cdn.shopify.com\/s\/files\/1\/0659\/7214\/2165\/files\/ailee-resena-whatsapp-03.webp",
             "etiqueta": "Recreación con IA · no es la reseña de un comprador"
           }
         },
@@ -624,13 +624,13 @@
           "type": "resena",
           "settings": {
             "origen": "real_propia",
-            "foto": "shopify://shop_images/ailee-resena-whatsapp-04.webp",
+            "foto": "shopify:\/\/shop_images\/ailee-resena-whatsapp-04.webp",
             "foto_alt": "Foto que envió la clienta por WhatsApp",
             "texto": "Buenas noches, ya tengo puesta la sandalia sueca, quedó perfecta de talla y súper fresquita para el pie",
             "nombre": "",
             "detalle": "Compró: sandalia sueca",
             "estrellas": 0,
-            "fuente": "https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-04.webp",
+            "fuente": "https:\/\/cdn.shopify.com\/s\/files\/1\/0659\/7214\/2165\/files\/ailee-resena-whatsapp-04.webp",
             "etiqueta": "Recreación con IA · no es la reseña de un comprador"
           }
         }
@@ -664,35 +664,35 @@
           "type": "pregunta",
           "settings": {
             "pregunta": "¿Cuánto cuestan?",
-            "respuesta": "<p>Hoy van en promo 2x1: pagas $199.700 y te llevas 2 pares, con envío gratis. Al pedir, el formulario te muestra también las otras opciones y eliges el color y la talla de cada par.</p>"
+            "respuesta": "<p>Hoy van en promo 2x1: pagas $199.700 y te llevas 2 pares, con envío gratis. Al pedir, el formulario te muestra también las otras opciones y eliges el color y la talla de cada par.<\/p>"
           }
         },
         "b02_pregunta": {
           "type": "pregunta",
           "settings": {
             "pregunta": "¿Qué talla pido?",
-            "respuesta": "<p>La horma es angosta: si estás entre dos tallas, pide la mayor. Revisa la tabla de tallas en centímetros.</p>"
+            "respuesta": "<p>La horma es angosta: si estás entre dos tallas, pide la mayor. Revisa la tabla de tallas en centímetros.<\/p>"
           }
         },
         "b03_pregunta": {
           "type": "pregunta",
           "settings": {
             "pregunta": "¿Se me sale del pie?",
-            "respuesta": "<p>El frente sujeta con el cordón y las franjas. Como no tiene talón, el pie se levanta un poco al caminar: es para salir y planes cortos, no para caminar todo el día.</p>"
+            "respuesta": "<p>El frente sujeta con el cordón y las franjas. Como no tiene talón, el pie se levanta un poco al caminar: es para salir y planes cortos, no para caminar todo el día.<\/p>"
           }
         },
         "b04_pregunta": {
           "type": "pregunta",
           "settings": {
             "pregunta": "¿Cómo pago?",
-            "respuesta": "<p>Pagas al recibir, en la puerta de tu casa. El envío es gratis.</p>"
+            "respuesta": "<p>Pagas al recibir, en la puerta de tu casa. El envío es gratis.<\/p>"
           }
         },
         "b05_pregunta": {
           "type": "pregunta",
           "settings": {
             "pregunta": "¿Cuánto tarda?",
-            "respuesta": "<p>De 3 a 5 días hábiles.</p>"
+            "respuesta": "<p>De 3 a 5 días hábiles.<\/p>"
           }
         }
       },
@@ -731,7 +731,7 @@
         "b02_texto": {
           "type": "texto",
           "settings": {
-            "texto": "<p>Eliges color y talla de cada par al pedir.</p>"
+            "texto": "<p>Eliges color y talla de cada par al pedir.<\/p>"
           }
         },
         "b03_precio": {
@@ -763,7 +763,7 @@
         "b04_cta"
       ],
       "settings": {
-        "imagen": "shopify://shop_images/samba-sueco-y58_pdp_7.webp",
+        "imagen": "shopify:\/\/shop_images\/samba-sueco-y58_pdp_7.webp",
         "texto_alt": "(sin texto integrado: titular y precio en HTML)",
         "titulo_oculto": "",
         "nivel_oculto": "h2",
