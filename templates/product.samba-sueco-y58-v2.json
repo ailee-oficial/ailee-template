@@ -89,7 +89,7 @@
             "titulo": "El Samba sin talón: te lo pones en un segundo.",
             "nivel": "h1",
             "tamano": 26,
-            "subtitulo": "1 par $129.700 · 2 pares $199.700 · 3 pares $269.700"
+            "subtitulo": "5 colores · tallas 35 a 40 · envío gratis"
           }
         },
         "b07_precio": {
@@ -488,7 +488,7 @@
         "b02_texto": {
           "type": "texto",
           "settings": {
-            "texto": "<p>O llévate 1 par por $129.700. Eliges color y talla de cada par al pedir.</p>"
+            "texto": "<p>Eliges color y talla de cada par al pedir.</p>"
           }
         },
         "b03_precio": {
