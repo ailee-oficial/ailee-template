@@ -10,22 +10,115 @@
   grande en la portada (la primera lámina de la página antes de este bloque).
   El bloque «Código de la tienda» renderiza piezas propias del tema (p. ej. la franja de confianza o
   la ayuda de tallas de una tienda) sin volverlas parte del kit.
+  Galería del producto (producto de deseo, 2026-10-02): los bloques «Foto de la galería» seguidos
+  forman un carrusel que se desliza, con puntos y contador. Cada foto declara su color; los colores
+  pasan a ser muestras que eligen: tocar uno deja en la galería solo sus fotos y pone esa variante en
+  el formulario del producto, que Releasit lee al abrir (lo confirma o cambia por par en su oferta).
+  La página abre en el color de la variante del enlace (?variant=), si no en «Color que abre la
+  galería» y si no en el de la primera variante disponible.
   Fuente canónica: claude-skills/core/tema_landing.
 {%- endcomment -%}
 {{ 'bm-landing.css' | asset_url | stylesheet_tag }}
 {%- assign s = section.settings -%}
 {%- assign variante = product.selected_or_first_available_variant -%}
+{%- assign n_fotos = 0 -%}
+{%- assign primera_clave = '' -%}
+{%- for bl in section.blocks -%}
+  {%- if bl.type == 'foto' and bl.settings.imagen != blank -%}
+    {%- assign n_fotos = n_fotos | plus: 1 -%}
+    {%- if primera_clave == '' -%}{%- assign primera_clave = bl.settings.color | handleize -%}{%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign pos_color = 0 -%}
+{%- assign color_activo = '' -%}
+{%- assign nombre_activo = '' -%}
+{%- if n_fotos > 0 -%}
+  {%- assign opcion_buscada = s.opcion_color | default: 'Color' | downcase | strip -%}
+  {%- if product != blank -%}
+    {%- for o in product.options_with_values -%}
+      {%- assign nombre_o = o.name | downcase | strip -%}
+      {%- if nombre_o == opcion_buscada -%}{%- assign pos_color = o.position -%}{%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+  {%- assign fuente = variante -%}
+  {%- if product.selected_variant -%}{%- assign fuente = product.selected_variant -%}{%- endif -%}
+  {%- if s.color_inicial != blank and product.selected_variant == blank -%}
+    {%- assign color_activo = s.color_inicial | handleize -%}
+  {%- else -%}
+    {%- case pos_color -%}
+      {%- when 1 -%}{%- assign color_activo = fuente.option1 | handleize -%}
+      {%- when 2 -%}{%- assign color_activo = fuente.option2 | handleize -%}
+      {%- when 3 -%}{%- assign color_activo = fuente.option3 | handleize -%}
+    {%- endcase -%}
+  {%- endif -%}
+  {%- comment -%} Un color sin fotos no deja la galería vacía: abre el primero que tenga. {%- endcomment -%}
+  {%- assign hay_activo = false -%}
+  {%- for bl in section.blocks -%}
+    {%- if bl.type == 'foto' -%}
+      {%- assign k = bl.settings.color | handleize -%}
+      {%- if k == color_activo -%}{%- assign hay_activo = true -%}{%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- unless hay_activo -%}{%- assign color_activo = primera_clave -%}{%- endunless -%}
+  {%- for bl in section.blocks -%}
+    {%- if bl.type == 'color' -%}
+      {%- assign k = bl.settings.nombre | handleize -%}
+      {%- if k == color_activo -%}{%- assign nombre_activo = bl.settings.nombre -%}{%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- capture variantes_json -%}[{%- for v in product.variants -%}
+    {%- case pos_color -%}
+      {%- when 1 -%}{%- assign vc = v.option1 -%}
+      {%- when 2 -%}{%- assign vc = v.option2 -%}
+      {%- when 3 -%}{%- assign vc = v.option3 -%}
+      {%- else -%}{%- assign vc = '' -%}
+    {%- endcase -%}
+    {"id":{{ v.id | json }},"c":{{ vc | handleize | json }},"o":[{{ v.option1 | json }},{{ v.option2 | json }},{{ v.option3 | json }}],"a":{{ v.available | json }}}{%- unless forloop.last -%},{%- endunless -%}
+  {%- endfor -%}]{%- endcapture -%}
+{%- endif -%}
 <div class="bm-sec bm-oferta" data-bm-landing="oferta" data-bm-sec="{{ section.id }}" style="{% if s.fondo != blank %}--bm-sec-bg:{{ s.fondo }};{% endif %}{% if s.texto != blank %}--bm-sec-fg:{{ s.texto }};{% endif %}{% if s.tarjeta_fondo != blank %}--bm-tarjeta-bg:{{ s.tarjeta_fondo }};{% endif %}{% if s.tarjeta_texto != blank %}--bm-tarjeta-fg:{{ s.tarjeta_texto }};{% endif %}{% if s.precio_color != blank %}--bm-precio-color:{{ s.precio_color }};{% endif %}{% if s.pildora_fondo != blank %}--bm-pildora-bg:{{ s.pildora_fondo }};{% endif %}{% if s.pildora_texto != blank %}--bm-pildora-fg:{{ s.pildora_texto }};{% endif %}{% if s.estrellas != blank %}--bm-estrellas:{{ s.estrellas }};{% endif %}--bm-pad-top:{{ s.padding_top }}px;--bm-pad-bottom:{{ s.padding_bottom }}px;--bm-pad-x:{{ s.padding_lateral }}px;--bm-align:{{ s.alineacion }};--bm-oferta-gap:{{ s.separacion }}px;">
   <div class="bm-sec__in bm-oferta__pila">
     {%- assign grupo_caract = '' -%}
     {%- assign grupo_confianza = '' -%}
     {%- assign grupo_colores = '' -%}
+    {%- assign grupo_fotos = '' -%}
+    {%- assign primera_visible = true -%}
     {%- assign n_colores = 0 -%}
     {%- for bl in section.blocks -%}{%- if bl.type == 'color' -%}{%- assign n_colores = n_colores | plus: 1 -%}{%- endif -%}{%- endfor -%}
     {%- for block in section.blocks -%}
       {%- assign b = block.settings -%}
       {%- assign siguiente = section.blocks[forloop.index] -%}
       {%- case block.type -%}
+        {%- when 'foto' -%}
+          {%- if b.imagen != blank -%}
+            {%- assign clave = b.color | handleize -%}
+            {%- assign oculta = false -%}
+            {%- if clave != blank and clave != color_activo -%}{%- assign oculta = true -%}{%- endif -%}
+            {%- comment -%} La primera foto visible es la primera pantalla: carga prioritaria; el resto, diferida. {%- endcomment -%}
+            {%- assign carga = 'lazy' -%}
+            {%- assign prioridad = 'auto' -%}
+            {%- if oculta == false and primera_visible -%}
+              {%- assign carga = 'eager' -%}
+              {%- assign prioridad = 'high' -%}
+              {%- assign primera_visible = false -%}
+            {%- endif -%}
+            {%- capture item -%}
+              <figure class="bm-oferta__foto" data-bm-foto data-color="{{ clave }}"{% if oculta %} hidden{% endif %} {{ block.shopify_attributes }}>
+                {{ b.imagen | image_url: width: 1440 | image_tag: loading: carga, fetchpriority: prioridad, sizes: '(min-width: 750px) 560px, 100vw', widths: '360, 540, 720, 900, 1080, 1440', alt: b.alt }}
+              </figure>
+            {%- endcapture -%}
+            {%- assign grupo_fotos = grupo_fotos | append: item -%}
+          {%- endif -%}
+          {%- if siguiente.type != 'foto' and grupo_fotos != '' -%}
+            <div class="bm-oferta__galeria" data-bm-bloque="galeria" data-bm-galeria style="--bm-galeria-ratio:{{ s.galeria_proporcion | default: '3 / 4' }}">
+              <div class="bm-oferta__pista" data-bm-pista tabindex="0" role="region" aria-label="Fotos del producto">{{ grupo_fotos }}</div>
+              <button type="button" class="bm-oferta__flecha bm-oferta__flecha--ant" data-bm-paso="-1" aria-label="Foto anterior">&#8249;</button>
+              <button type="button" class="bm-oferta__flecha bm-oferta__flecha--sig" data-bm-paso="1" aria-label="Foto siguiente">&#8250;</button>
+              <p class="bm-oferta__contador" data-bm-contador></p>
+            </div>
+            <div class="bm-oferta__puntos" data-bm-puntos aria-hidden="true"></div>
+            {%- assign grupo_fotos = '' -%}
+          {%- endif -%}
         {%- when 'encabezado' -%}
           <div class="bm-oferta__encabezado" data-bm-bloque="encabezado" {{ block.shopify_attributes }}>
             {%- if b.antetitulo != blank -%}<p class="bm-oferta__ante">{{ b.antetitulo | escape }}</p>{%- endif -%}
@@ -38,17 +131,34 @@
           </div>
         {%- when 'color' -%}
           {%- capture item -%}
-            {%- assign grande = b.imagen_grande | default: b.imagen -%}
-            <figure class="bm-oferta__color"{% if s.colores_portada and grande != blank %} data-bm-color role="button" tabindex="0" aria-pressed="false" aria-label="Ver el color {{ b.nombre | escape }}" data-bm-grande="{{ grande | image_url: width: 1080 }}" data-bm-grande-srcset="{{ grande | image_url: width: 540 }} 540w, {{ grande | image_url: width: 720 }} 720w, {{ grande | image_url: width: 900 }} 900w, {{ grande | image_url: width: 1080 }} 1080w"{% endif %} {{ block.shopify_attributes }}>
-              {%- if b.imagen != blank -%}
-                {{ b.imagen | image_url: width: 720 | image_tag: loading: 'lazy', widths: '240, 360, 540, 720', sizes: '(min-width: 750px) 20vw, 42vw', alt: b.nombre }}
-              {%- endif -%}
-              {%- if b.nombre != blank -%}<figcaption>{{ b.nombre | escape }}</figcaption>{%- endif -%}
-            </figure>
+            {%- if n_fotos > 0 -%}
+              {%- comment -%} Con galería, el color es una muestra que elige (radio), no una tarjeta. {%- endcomment -%}
+              {%- assign clave = b.nombre | handleize -%}
+              <button type="button" class="bm-oferta__muestra" data-bm-muestra data-color="{{ clave }}" role="radio" aria-checked="{% if clave == color_activo %}true{% else %}false{% endif %}" aria-label="{{ b.nombre | escape }}" {{ block.shopify_attributes }}>
+                {%- if b.imagen != blank -%}
+                  {{ b.imagen | image_url: width: 192 | image_tag: loading: 'lazy', widths: '96, 144, 192', sizes: '64px', alt: '' }}
+                {%- endif -%}
+              </button>
+            {%- else -%}
+              {%- assign grande = b.imagen_grande | default: b.imagen -%}
+              <figure class="bm-oferta__color"{% if s.colores_portada and grande != blank %} data-bm-color role="button" tabindex="0" aria-pressed="false" aria-label="Ver el color {{ b.nombre | escape }}" data-bm-grande="{{ grande | image_url: width: 1080 }}" data-bm-grande-srcset="{{ grande | image_url: width: 540 }} 540w, {{ grande | image_url: width: 720 }} 720w, {{ grande | image_url: width: 900 }} 900w, {{ grande | image_url: width: 1080 }} 1080w"{% endif %} {{ block.shopify_attributes }}>
+                {%- if b.imagen != blank -%}
+                  {{ b.imagen | image_url: width: 720 | image_tag: loading: 'lazy', widths: '240, 360, 540, 720', sizes: '(min-width: 750px) 20vw, 42vw', alt: b.nombre }}
+                {%- endif -%}
+                {%- if b.nombre != blank -%}<figcaption>{{ b.nombre | escape }}</figcaption>{%- endif -%}
+              </figure>
+            {%- endif -%}
           {%- endcapture -%}
           {%- assign grupo_colores = grupo_colores | append: item -%}
           {%- if siguiente.type != 'color' -%}
-            <div class="bm-oferta__colores" data-bm-bloque="colores" style="--bm-colores-n:{{ n_colores }}">{{ grupo_colores }}</div>
+            {%- if n_fotos > 0 -%}
+              <div class="bm-oferta__eleccion" data-bm-bloque="colores">
+                <p class="bm-oferta__color-cab">{{ s.colores_etiqueta | default: 'Color' | escape }}: <strong data-bm-color-nombre>{{ nombre_activo | escape }}</strong></p>
+                <div class="bm-oferta__muestras" role="radiogroup" aria-label="{{ s.colores_etiqueta | default: 'Color' | escape }}">{{ grupo_colores }}</div>
+              </div>
+            {%- else -%}
+              <div class="bm-oferta__colores" data-bm-bloque="colores" style="--bm-colores-n:{{ n_colores }}">{{ grupo_colores }}</div>
+            {%- endif -%}
             {%- if s.colores_nota != blank -%}<p class="bm-oferta__colores-nota">{{ s.colores_nota | escape }}</p>{%- endif -%}
             {%- assign grupo_colores = '' -%}
           {%- endif -%}
@@ -98,9 +208,9 @@
                 {%- if b.precio_texto != blank -%}
                   <span class="bm-oferta__precio-actual">{{ b.precio_texto | escape }}</span>
                 {%- else -%}
-                  <span class="bm-oferta__precio-actual">{{ variante.price | money }}</span>
+                  <span class="bm-oferta__precio-actual">{{ variante.price | money_without_trailing_zeros }}</span>
                   {%- if variante.compare_at_price > variante.price -%}
-                    <s class="bm-oferta__precio-antes">{{ variante.compare_at_price | money }}</s>
+                    <s class="bm-oferta__precio-antes">{{ variante.compare_at_price | money_without_trailing_zeros }}</s>
                   {%- endif -%}
                 {%- endif -%}
               </p>
@@ -109,7 +219,7 @@
               {%- elsif b.mostrar_ahorro and variante.compare_at_price > variante.price -%}
                 {%- assign ahorro = variante.compare_at_price | minus: variante.price -%}
                 {%- assign porcentaje = ahorro | times: 100 | divided_by: variante.compare_at_price -%}
-                <p class="bm-oferta__pildora">{{ b.ahorro_texto | default: 'Ahorras' | escape }} {{ ahorro | money }} · {{ porcentaje }}% {{ b.descuento_texto | default: 'OFF' | escape }}</p>
+                <p class="bm-oferta__pildora">{{ b.ahorro_texto | default: 'Ahorras' | escape }} {{ ahorro | money_without_trailing_zeros }} · {{ porcentaje }}% {{ b.descuento_texto | default: 'OFF' | escape }}</p>
               {%- endif -%}
               {%- if b.nota != blank -%}<p class="bm-oferta__nota">{{ b.nota | escape }}</p>{%- endif -%}
             </div>
@@ -124,7 +234,138 @@
     {%- endfor -%}
   </div>
 </div>
-{%- if s.colores_portada and n_colores > 0 -%}
+{%- if n_fotos > 0 -%}
+<style>
+  .bm-oferta__galeria{position:relative;margin:calc(var(--bm-pad-top,0px) * -1) calc(var(--bm-pad-x,16px) * -1) 0}
+  .bm-oferta__pista{display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;outline:none}
+  .bm-oferta__pista::-webkit-scrollbar{display:none}
+  .bm-oferta__foto{flex:0 0 100%;margin:0;scroll-snap-align:start;scroll-snap-stop:always;aspect-ratio:var(--bm-galeria-ratio,3 / 4);background:#ffffff;overflow:hidden}
+  .bm-oferta__foto[hidden]{display:none}
+  .bm-oferta__foto img{display:block;width:100%;height:100%;object-fit:cover}
+  .bm-oferta__contador{position:absolute;top:12px;right:12px;margin:0;padding:3px 10px;border-radius:999px;background:rgba(28,28,28,.6);color:#ffffff;font-size:12px;font-weight:600;line-height:1.5;letter-spacing:.04em;pointer-events:none}
+  .bm-oferta__contador:empty{display:none}
+  .bm-oferta__flecha{display:none;position:absolute;top:50%;width:40px;height:40px;margin-top:-20px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.9);color:#1c1c1c;font-size:26px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.14);align-items:center;justify-content:center}
+  .bm-oferta__flecha--ant{left:10px}
+  .bm-oferta__flecha--sig{right:10px}
+  @media (hover:hover) and (pointer:fine){.bm-oferta__flecha{display:flex}}
+  .bm-oferta__puntos{display:flex;justify-content:center;align-items:center;gap:6px;min-height:8px;margin-top:calc(10px - var(--bm-oferta-gap,14px))}
+  .bm-oferta__puntos button{width:7px;height:7px;padding:0;border:0;border-radius:999px;background:currentColor;opacity:.22;cursor:pointer;transition:width .2s ease,opacity .2s ease}
+  .bm-oferta__puntos button[aria-current="true"]{width:20px;opacity:.8}
+  .bm-oferta__eleccion{display:flex;flex-direction:column;gap:10px}
+  .bm-oferta__color-cab{margin:0;font-size:15px;line-height:1.3}
+  .bm-oferta__color-cab strong{font-weight:700}
+  .bm-oferta__muestras{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .bm-oferta[style*="--bm-align:left"] .bm-oferta__muestras{justify-content:flex-start}
+  .bm-oferta__muestra{width:60px;height:60px;padding:0;border:1px solid rgba(28,28,28,.16);border-radius:12px;background:#ffffff;overflow:hidden;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:box-shadow .15s ease}
+  .bm-oferta__muestra img{display:block;width:100%;height:100%;object-fit:contain}
+  .bm-oferta__muestra[aria-checked="true"]{border-color:var(--bm-sec-fg,#1c1c1c);box-shadow:0 0 0 2px var(--bm-sec-bg,#ffffff),0 0 0 4px var(--bm-sec-fg,#1c1c1c)}
+  .bm-oferta__muestra:focus-visible{outline:2px solid var(--bm-sec-fg,#1c1c1c);outline-offset:3px}
+  @media (min-width:750px){.bm-oferta__galeria{max-width:560px;margin:0 auto}}
+</style>
+<script>
+  (function () {
+    var sec = document.querySelector('[data-bm-sec="{{ section.id }}"]');
+    var gal = sec && sec.querySelector('[data-bm-galeria]');
+    if (!gal) return;
+    var pista = gal.querySelector('[data-bm-pista]');
+    var fotos = [].slice.call(pista.querySelectorAll('[data-bm-foto]'));
+    var puntos = sec.querySelector('[data-bm-puntos]');
+    var contador = gal.querySelector('[data-bm-contador]');
+    var muestras = [].slice.call(sec.querySelectorAll('[data-bm-muestra]'));
+    var nombre = sec.querySelector('[data-bm-color-nombre]');
+    var variantes = {{ variantes_json | default: '[]' }};
+    var pos = {{ pos_color }};
+    var actual = 0;
+    function visibles() { return fotos.filter(function (f) { return !f.hidden; }); }
+    function marcar(i) {
+      var v = visibles();
+      actual = Math.max(0, Math.min(v.length - 1, i));
+      if (contador) contador.textContent = v.length > 1 ? (actual + 1) + ' / ' + v.length : '';
+      if (puntos) [].forEach.call(puntos.children, function (p, j) { p.setAttribute('aria-current', j === actual ? 'true' : 'false'); });
+    }
+    function ir(i) {
+      var v = visibles();
+      if (!v.length) return;
+      i = Math.max(0, Math.min(v.length - 1, i));
+      pista.scrollTo({ left: v[i].offsetLeft - v[0].offsetLeft, behavior: 'smooth' });
+    }
+    function pintarPuntos() {
+      if (!puntos) return;
+      var v = visibles();
+      puntos.innerHTML = '';
+      if (v.length < 2) return;
+      v.forEach(function (_, j) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.tabIndex = -1;
+        b.addEventListener('click', function () { ir(j); });
+        puntos.appendChild(b);
+      });
+    }
+    var espera;
+    pista.addEventListener('scroll', function () {
+      clearTimeout(espera);
+      espera = setTimeout(function () { marcar(Math.round(pista.scrollLeft / (pista.clientWidth || 1))); }, 60);
+    }, { passive: true });
+    [].forEach.call(gal.querySelectorAll('[data-bm-paso]'), function (b) {
+      b.addEventListener('click', function () { ir(actual + parseInt(b.getAttribute('data-bm-paso'), 10)); });
+    });
+    // Releasit toma la variante del formulario del producto (`[name=id]`) al abrir: el color elegido
+    // aquí viaja al pedido y la clienta lo confirma o lo cambia por par en su oferta.
+    function sincronizar(clave) {
+      if (!pos || !variantes.length) return;
+      var campos = document.querySelectorAll('form[action*="/cart/add"] [name="id"]');
+      var idActual = campos.length ? String(campos[0].value) : '';
+      var va = null, elegida = null;
+      variantes.forEach(function (v) { if (String(v.id) === idActual) va = v; });
+      variantes.forEach(function (v) {
+        if (elegida || v.c !== clave || !v.a) return;
+        if (!va || v.o.every(function (x, i) { return i === pos - 1 || x === va.o[i]; })) elegida = v;
+      });
+      if (!elegida) variantes.forEach(function (v) { if (!elegida && v.c === clave && v.a) elegida = v; });
+      if (!elegida || String(elegida.id) === idActual) return;
+      [].forEach.call(campos, function (c) {
+        c.value = elegida.id;
+        c.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+    }
+    function elegir(clave) {
+      var hay = fotos.some(function (f) { return f.getAttribute('data-color') === clave; });
+      fotos.forEach(function (f) {
+        var k = f.getAttribute('data-color');
+        f.hidden = hay && k !== '' && k !== clave;
+      });
+      var v = visibles();
+      var img = v[0] && v[0].querySelector('img');
+      if (img) img.loading = 'eager';
+      pista.scrollLeft = 0;
+      pintarPuntos();
+      marcar(0);
+      muestras.forEach(function (m) {
+        var si = m.getAttribute('data-color') === clave;
+        m.setAttribute('aria-checked', si ? 'true' : 'false');
+        if (si && nombre) nombre.textContent = m.getAttribute('aria-label');
+      });
+      sincronizar(clave);
+    }
+    muestras.forEach(function (m, i) {
+      m.addEventListener('click', function () { elegir(m.getAttribute('data-color')); });
+      m.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+        if (!d) return;
+        e.preventDefault();
+        var otra = muestras[(i + d + muestras.length) % muestras.length];
+        otra.focus();
+        elegir(otra.getAttribute('data-color'));
+      });
+    });
+    pintarPuntos();
+    marcar(0);
+    if ('{{ color_activo }}') sincronizar('{{ color_activo }}');
+  })();
+</script>
+{%- endif -%}
+{%- if s.colores_portada and n_colores > 0 and n_fotos == 0 -%}
 <script>
   (function () {
     var sec = document.querySelector('[data-bm-sec="{{ section.id }}"]');
@@ -161,7 +402,7 @@
   "name": "Landing · Oferta",
   "tag": "section",
   "enabled_on": { "templates": ["product"] },
-  "max_blocks": 24,
+  "max_blocks": 50,
   "settings": [
     { "type": "paragraph", "content": "Precio y tachado salen de la variante del producto: se cambian en el producto, no aquí." },
     { "type": "select", "id": "alineacion", "label": "Alineación", "options": [
@@ -183,9 +424,23 @@
     { "type": "range", "id": "padding_lateral", "label": "Margen lateral", "min": 0, "max": 32, "step": 2, "unit": "px", "default": 16 },
     { "type": "header", "content": "Colores con foto" },
     { "type": "text", "id": "colores_nota", "label": "Nota bajo los colores", "info": "Ejemplo: Eliges color y talla de cada par en el formulario." },
-    { "type": "checkbox", "id": "colores_portada", "label": "Tocar un color cambia la imagen principal", "default": true }
+    { "type": "checkbox", "id": "colores_portada", "label": "Tocar un color cambia la imagen principal", "default": true },
+    { "type": "header", "content": "Galería del producto" },
+    { "type": "paragraph", "content": "Con bloques «Foto de la galería», los colores pasan a ser muestras: tocar uno deja solo sus fotos y elige esa variante para el formulario." },
+    { "type": "select", "id": "galeria_proporcion", "label": "Proporción de las fotos", "options": [
+      { "value": "3 / 4", "label": "3:4 vertical" }, { "value": "4 / 5", "label": "4:5 vertical" }, { "value": "1 / 1", "label": "Cuadrada" }
+    ], "default": "3 / 4" },
+    { "type": "text", "id": "color_inicial", "label": "Color que abre la galería", "info": "Como se llama en el producto, p. ej. NEGRO. Vacío: el de la primera variante disponible. Un enlace con ?variant= manda sobre esto." },
+    { "type": "text", "id": "opcion_color", "label": "Opción de color del producto", "default": "Color" },
+    { "type": "text", "id": "colores_etiqueta", "label": "Texto antes del color elegido", "default": "Color" }
   ],
   "blocks": [
+    { "type": "foto", "name": "Foto de la galería", "settings": [
+      { "type": "paragraph", "content": "Las fotos seguidas forman el carrusel que se desliza. Misma proporción para todas (la de la galería)." },
+      { "type": "image_picker", "id": "imagen", "label": "Foto" },
+      { "type": "text", "id": "color", "label": "Color de la foto", "info": "Como se llama en el producto o en su muestra, p. ej. NEGRO MALLA. Vacío: se ve con todos los colores." },
+      { "type": "text", "id": "alt", "label": "Texto alternativo" }
+    ] },
     { "type": "encabezado", "name": "Encabezado", "limit": 1, "settings": [
       { "type": "text", "id": "antetitulo", "label": "Antetítulo" },
       { "type": "text", "id": "titulo", "label": "Título", "info": "Vacío: el nombre del producto." },

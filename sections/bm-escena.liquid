@@ -79,9 +79,9 @@
                     {%- if b.precio_texto != blank -%}
                       <span class="bm-precio__actual">{{ b.precio_texto | escape }}</span>
                     {%- else -%}
-                      <span class="bm-precio__actual">{{ variante.price | money }}</span>
+                      <span class="bm-precio__actual">{{ variante.price | money_without_trailing_zeros }}</span>
                       {%- if variante.compare_at_price > variante.price -%}
-                        <s class="bm-precio__antes">{{ variante.compare_at_price | money }}</s>
+                        <s class="bm-precio__antes">{{ variante.compare_at_price | money_without_trailing_zeros }}</s>
                       {%- endif -%}
                     {%- endif -%}
                     {%- if b.promo_texto != blank -%}
