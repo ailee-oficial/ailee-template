@@ -1,0 +1,623 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ajustes": {
+      "type": "bm-ajustes",
+      "settings": {
+        "aplicar_fondo": true,
+        "fondo_pagina": "#F7F3EE",
+        "texto_pagina": "#1C1C1C",
+        "ancho_max": 780,
+        "ficha_modo": "oculta",
+        "ficha_margen_lateral": 16,
+        "ocultar_galeria": true,
+        "ocultar_descripcion": true,
+        "ficha_padding": 12,
+        "cta_fondo": "#1C1C1C",
+        "cta_texto": "#FFFFFF",
+        "cta_radio": 30,
+        "cta_alto": 54,
+        "cta_letra": 17,
+        "rsi_aplicar": true,
+        "ficha_fondo": "#F7F3EE",
+        "ficha_texto": "#1C1C1C",
+        "cta_animacion": "salto",
+        "cta_sombra": true,
+        "cta_fuente": "titulos",
+        "cta_mayusculas": true,
+        "pie_fondo": "#1C1C1C",
+        "pie_texto": "#F7F3EE",
+        "pie_acento": "#A07040"
+      }
+    },
+    "p01_cinta": {
+      "type": "bm-cinta",
+      "settings": {
+        "frases": "pago|Pago contra entrega\ncamion|Envío gratis a toda Colombia\ncheck|Desde $129.700 · 2 pares $199.700\nreloj|Llega en 3 a 5 días hábiles",
+        "separador": "·",
+        "animada": true,
+        "duracion": 22,
+        "tamano": 14,
+        "padding": 10,
+        "fondo": "#1C1C1C",
+        "texto": "#FFFFFF"
+      }
+    },
+    "p02_hero": {
+      "type": "bm-laminas",
+      "blocks": {
+        "b01_portada": {
+          "type": "lamina",
+          "settings": {
+            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_1_v3.webp",
+            "texto_alt": "NUEVOS\nSUECOS SAMBA\nPISA Y SAL, SIN USAR LAS MANOS",
+            "titulo_oculto": "Nuevos Suecos Samba: pisa y sal, sin usar las manos",
+            "nivel": "h2",
+            "prioridad": true,
+            "abre_formulario": false
+          }
+        }
+      },
+      "block_order": [
+        "b01_portada"
+      ],
+      "settings": {
+        "fondo": "#F7F3EE",
+        "texto": "#1C1C1C",
+        "ancho": "contenido",
+        "espacio": 0,
+        "radio_imagen": 0,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "p03_oferta": {
+      "type": "bm-oferta",
+      "blocks": {
+        "b01_encabezado": {
+          "type": "encabezado",
+          "settings": {
+            "antetitulo": "Nuevos Suecos Samba",
+            "titulo": "El Samba sin talón: te lo pones en un segundo.",
+            "nivel": "h1",
+            "tamano": 26,
+            "subtitulo": "1 par $129.700 · 2 pares $199.700 · 3 pares $269.700"
+          }
+        },
+        "b07_precio": {
+          "type": "precio",
+          "settings": {
+            "mostrar_ahorro": true,
+            "ahorro_texto": "Ahorras",
+            "descuento_texto": "OFF",
+            "nota": "o 1 par por $129.700 · 3 pares por $269.700",
+            "promo_texto": "Promo 2x1 · Pagas 1, te llevas 2"
+          }
+        },
+        "b08_liquid": {
+          "type": "liquid",
+          "settings": {
+            "codigo": "{{ 'ah-home.css' | asset_url | stylesheet_tag }}{% render 'ah-talla-ayuda', id: section.id, numero: '573128860515', compacto: true %}"
+          }
+        },
+        "b09_boton": {
+          "type": "boton",
+          "settings": {
+            "texto": "Pedir ahora",
+            "subtexto": "Pagas al recibir · envío gratis",
+            "pad_y": 4,
+            "pulso": false
+          }
+        },
+        "b10_liquid": {
+          "type": "liquid",
+          "settings": {
+            "codigo": "{{ 'ah-home.css' | asset_url | stylesheet_tag }}{% render 'ah-confianza', items: 'envio|Envío gratis|a toda Colombia;contraentrega|Pagas al recibir|contraentrega;segura|Compra segura|datos protegidos' %}"
+          }
+        }
+      },
+      "block_order": [
+        "b01_encabezado",
+        "b07_precio",
+        "b09_boton",
+        "b10_liquid",
+        "b08_liquid"
+      ],
+      "settings": {
+        "alineacion": "center",
+        "fondo": "#F7F3EE",
+        "texto": "#1C1C1C",
+        "tarjeta_fondo": "#FFFFFF",
+        "tarjeta_texto": "#1C1C1C",
+        "pildora_fondo": "#A07040",
+        "pildora_texto": "#FFFFFF",
+        "separacion": 14,
+        "padding_top": 16,
+        "padding_bottom": 20,
+        "padding_lateral": 16,
+        "colores_nota": "",
+        "colores_portada": false
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "comprar": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "descripcion": {
+          "type": "description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "comprar",
+        "descripcion"
+      ],
+      "settings": {
+        "bm_omitir_galeria": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "p04_ocasiones": {
+      "type": "bm-galeria",
+      "blocks": {
+        "b01_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_2.webp",
+            "etiqueta": "Para la u"
+          }
+        },
+        "b02_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_3.webp",
+            "etiqueta": "Café con amigas"
+          }
+        },
+        "b03_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_4_v2.webp",
+            "etiqueta": "Vueltas de afán"
+          }
+        },
+        "b04_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/samba-sueco-y58_pdp_5.webp",
+            "etiqueta": "Fin de semana"
+          }
+        }
+      },
+      "block_order": [
+        "b01_escena",
+        "b02_escena",
+        "b03_escena",
+        "b04_escena"
+      ],
+      "settings": {
+        "diferir": true,
+        "antetitulo": "",
+        "titulo": "Para todo lo que haces en el día",
+        "subtitulo": "",
+        "disposicion": "carrusel",
+        "ancho_tarjeta": 75,
+        "radio": 12,
+        "alineacion": "left",
+        "fondo": "#F7F3EE",
+        "texto": "#1C1C1C",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_lateral": 16,
+        "cta_mostrar": true,
+        "cta_texto": "Pedir ahora",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p05_mecanismo": {
+      "type": "bm-escena",
+      "blocks": {
+        "b01_titulo": {
+          "type": "titulo",
+          "settings": {
+            "texto": "Pisa y sal",
+            "nivel": "h2",
+            "tamano": 26
+          }
+        },
+        "b02_texto": {
+          "type": "texto",
+          "settings": {
+            "texto": "<p>Así sujeta sin talón</p><p>1. Deslizas el pie, sin manos.</p><p>2. El frente sujeta: cordón ya amarrado y franjas ceñidas al empeine.</p><p>3. Sales.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "b01_titulo",
+        "b02_texto"
+      ],
+      "settings": {
+        "diferir": true,
+        "imagen": "shopify://shop_images/samba-sueco-y58_pdp_6_v2.webp",
+        "texto_alt": "(sin texto integrado: titular y pasos en HTML)",
+        "titulo_oculto": "",
+        "nivel_oculto": "h2",
+        "prioridad": false,
+        "disposicion": "imagen_arriba",
+        "posicion_texto": "end",
+        "sobre_degradado": true,
+        "alineacion": "left",
+        "ancho": "contenido",
+        "fondo": "#F7F3EE",
+        "texto": "#1C1C1C",
+        "panel_fondo": "#FFFFFF",
+        "acento": "#A07040",
+        "acento_texto": "#FFFFFF",
+        "panel_padding": 20,
+        "separacion": 10,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "p06_especificaciones": {
+      "type": "bm-tabla",
+      "blocks": {
+        "b01_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Talón",
+            "c2": "Abierto, sin contrafuerte",
+            "c3": ""
+          }
+        },
+        "b02_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Cordones",
+            "c2": "Planos, ya vienen amarrados",
+            "c3": ""
+          }
+        },
+        "b03_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Suela",
+            "c2": "Caucho color gum, igual en los 5 colores",
+            "c3": ""
+          }
+        },
+        "b04_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Acabado",
+            "c2": "Liso en Blanco y Negro · malla perforada en Negro Malla, Talco y Talco Vino",
+            "c3": ""
+          }
+        },
+        "b05_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Tallas",
+            "c2": "35 a 40",
+            "c3": ""
+          }
+        }
+      },
+      "block_order": [
+        "b01_fila",
+        "b02_fila",
+        "b03_fila",
+        "b04_fila",
+        "b05_fila"
+      ],
+      "settings": {
+        "modo": "lista",
+        "antetitulo": "",
+        "titulo": "Detalles",
+        "encabezado_1": "",
+        "encabezado_2": "",
+        "encabezado_3": "",
+        "nota": "",
+        "alineacion": "left",
+        "fondo": "#F7F3EE",
+        "texto": "#1C1C1C",
+        "destacado_fondo": "#A07040",
+        "destacado_texto": "#FFFFFF",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_lateral": 16,
+        "cta_mostrar": true,
+        "cta_texto": "Pedir ahora",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p07_prueba_social": {
+      "type": "bm-resenas",
+      "blocks": {
+        "b01_resena": {
+          "type": "resena",
+          "settings": {
+            "origen": "real_propia",
+            "foto": "shopify://shop_images/ailee-resena-whatsapp-01.webp",
+            "foto_alt": "Foto que envió la clienta por WhatsApp",
+            "texto": "Ay Dios mio quedaron divinos!! ya los estrené hoy y toda la gente preguntando donde los compré jsjs",
+            "nombre": "",
+            "detalle": "Compró: mocasín de la tienda",
+            "estrellas": 0,
+            "fuente": "https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-01.webp",
+            "etiqueta": "Recreación con IA · no es la reseña de un comprador"
+          }
+        },
+        "b02_resena": {
+          "type": "resena",
+          "settings": {
+            "origen": "real_propia",
+            "foto": "shopify://shop_images/ailee-resena-whatsapp-03.webp",
+            "foto_alt": "Foto que envió la clienta por WhatsApp",
+            "texto": "Buenas tardes, ya recibí mi sandalia sueca, la calidad me sorprendió, mil gracias",
+            "nombre": "",
+            "detalle": "Compró: sandalia sueca",
+            "estrellas": 0,
+            "fuente": "https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-03.webp",
+            "etiqueta": "Recreación con IA · no es la reseña de un comprador"
+          }
+        },
+        "b03_resena": {
+          "type": "resena",
+          "settings": {
+            "origen": "real_propia",
+            "foto": "shopify://shop_images/ailee-resena-whatsapp-04.webp",
+            "foto_alt": "Foto que envió la clienta por WhatsApp",
+            "texto": "Buenas noches, ya tengo puesta la sandalia sueca, quedó perfecta de talla y súper fresquita para el pie",
+            "nombre": "",
+            "detalle": "Compró: sandalia sueca",
+            "estrellas": 0,
+            "fuente": "https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-04.webp",
+            "etiqueta": "Recreación con IA · no es la reseña de un comprador"
+          }
+        }
+      },
+      "block_order": [
+        "b01_resena",
+        "b02_resena",
+        "b03_resena"
+      ],
+      "settings": {
+        "titulo": "Lo que dicen nuestras clientas",
+        "disposicion": "carrusel",
+        "alineacion": "center",
+        "aviso_ia": "Las tarjetas marcadas son recreaciones generadas con IA a partir de opiniones frecuentes; no son reseñas de compradores.",
+        "fondo": "#F7F3EE",
+        "texto": "#1C1C1C",
+        "tarjeta_fondo": "#FFFFFF",
+        "tarjeta_texto": "#1C1C1C",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_lateral": 16,
+        "cta_mostrar": true,
+        "cta_texto": "Pedir ahora",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p08_faq": {
+      "type": "bm-faq",
+      "blocks": {
+        "b01_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Cuánto cuestan?",
+            "respuesta": "<p>1 par $129.700, 2 pares $199.700 y 3 pares $269.700, con envío gratis. En el formulario eliges el color y la talla de cada par.</p>"
+          }
+        },
+        "b02_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Qué talla pido?",
+            "respuesta": "<p>La horma es angosta: si estás entre dos tallas, pide la mayor. Revisa la tabla de tallas en centímetros.</p>"
+          }
+        },
+        "b03_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Se me sale del pie?",
+            "respuesta": "<p>El frente sujeta con el cordón y las franjas. Como no tiene talón, el pie se levanta un poco al caminar: es para salir y planes cortos, no para caminar todo el día.</p>"
+          }
+        },
+        "b04_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Cómo pago?",
+            "respuesta": "<p>Pagas al recibir, en la puerta de tu casa. El envío es gratis.</p>"
+          }
+        },
+        "b05_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Cuánto tarda?",
+            "respuesta": "<p>De 3 a 5 días hábiles.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "b01_pregunta",
+        "b02_pregunta",
+        "b03_pregunta",
+        "b04_pregunta",
+        "b05_pregunta"
+      ],
+      "settings": {
+        "titulo": "Preguntas frecuentes",
+        "alineacion": "left",
+        "abrir_primera": false,
+        "fondo": "#F7F3EE",
+        "texto": "#1C1C1C",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_lateral": 16,
+        "cta_mostrar": false,
+        "cta_texto": "Pedir ahora",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p09_oferta_cta": {
+      "type": "bm-escena",
+      "blocks": {
+        "b01_titulo": {
+          "type": "titulo",
+          "settings": {
+            "texto": "Lleva 2 pares, paga 1",
+            "nivel": "h2",
+            "tamano": 26
+          }
+        },
+        "b02_texto": {
+          "type": "texto",
+          "settings": {
+            "texto": "<p>O llévate 1 par por $129.700. Eliges color y talla de cada par al pedir.</p>"
+          }
+        },
+        "b03_precio": {
+          "type": "precio",
+          "settings": {
+            "prefijo": "Hoy",
+            "mostrar_ahorro": true,
+            "nota": "o 1 par por $129.700 · 3 pares por $269.700",
+            "promo_texto": "Promo 2x1 · Pagas 1, te llevas 2"
+          }
+        },
+        "b04_cta": {
+          "type": "cta",
+          "settings": {
+            "texto": "Pedir ahora",
+            "subtexto": "Pagas al recibir · envío gratis",
+            "ancho": "completo",
+            "alineacion": "center",
+            "pad_y": 8,
+            "pulso": false
+          }
+        }
+      },
+      "block_order": [
+        "b01_titulo",
+        "b02_texto",
+        "b03_precio",
+        "b04_cta"
+      ],
+      "settings": {
+        "diferir": true,
+        "imagen": "shopify://shop_images/samba-sueco-y58_pdp_7.webp",
+        "texto_alt": "(sin texto integrado: titular y precio en HTML)",
+        "titulo_oculto": "",
+        "nivel_oculto": "h2",
+        "prioridad": false,
+        "disposicion": "imagen_arriba",
+        "posicion_texto": "end",
+        "sobre_degradado": true,
+        "alineacion": "left",
+        "ancho": "contenido",
+        "fondo": "#F7F3EE",
+        "texto": "#1C1C1C",
+        "acento": "#A07040",
+        "acento_texto": "#FFFFFF",
+        "panel_padding": 20,
+        "separacion": 10,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "p10_colores": {
+      "type": "bm-galeria",
+      "blocks": {
+        "b01_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/samba-sueco-y58_color_negro_v2.webp",
+            "etiqueta": "Negro"
+          }
+        },
+        "b02_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/samba-sueco-y58_color_blanco_v2.webp",
+            "etiqueta": "Blanco"
+          }
+        },
+        "b03_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/samba-sueco-y58_color_negro-malla_v2.webp",
+            "etiqueta": "Negro malla"
+          }
+        },
+        "b04_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/samba-sueco-y58_color_talco_v2.webp",
+            "etiqueta": "Talco"
+          }
+        },
+        "b05_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/samba-sueco-y58_color_talco-vino_v2.webp",
+            "etiqueta": "Talco vino"
+          }
+        }
+      },
+      "block_order": [
+        "b01_escena",
+        "b02_escena",
+        "b03_escena",
+        "b04_escena",
+        "b05_escena"
+      ],
+      "settings": {
+        "diferir": true,
+        "antetitulo": "",
+        "titulo": "Elige tus colores",
+        "subtitulo": "5 colores · tallas 35 a 40 · eliges color y talla de cada par al pedir",
+        "disposicion": "cuadricula",
+        "ancho_tarjeta": 75,
+        "radio": 12,
+        "alineacion": "left",
+        "fondo": "#F7F3EE",
+        "texto": "#1C1C1C",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_lateral": 16,
+        "cta_mostrar": true,
+        "cta_texto": "Pedir ahora",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    }
+  },
+  "order": [
+    "ajustes",
+    "p01_cinta",
+    "p02_hero",
+    "p03_oferta",
+    "main",
+    "p05_mecanismo",
+    "p06_especificaciones",
+    "p10_colores",
+    "p04_ocasiones",
+    "p07_prueba_social",
+    "p08_faq",
+    "p09_oferta_cta"
+  ]
+}
