@@ -69,7 +69,7 @@
       }
     },
     "oferta": {
-      "type": "bm-oferta",
+      "type": "bm-oferta-dinamica",
       "blocks": {
         "encabezado": {
           "type": "encabezado",
@@ -242,7 +242,7 @@
       }
     },
     "detalle": {
-      "type": "bm-escena",
+      "type": "bm-escena-dinamica",
       "blocks": {
         "titulo": {
           "type": "titulo",
@@ -524,7 +524,7 @@
       }
     },
     "cierre": {
-      "type": "bm-escena",
+      "type": "bm-escena-dinamica",
       "blocks": {
         "titulo": {
           "type": "titulo",
@@ -610,7 +610,7 @@
       }
     },
     "ocasiones": {
-      "type": "bm-galeria",
+      "type": "bm-galeria-dinamica",
       "blocks": {
         "e1": {
           "type": "escena",
