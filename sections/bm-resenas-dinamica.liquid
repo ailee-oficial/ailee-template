@@ -1,0 +1,121 @@
+{%- comment -%}
+  Prueba social editable. Cada tarjeta declara su origen:
+  - real_importada / real_propia: reseña real; puede mostrar nombre, ciudad y estrellas.
+  - ia_recreada: tarjeta ilustrativa generada con IA. Puede mostrar avatar sintético y estrellas
+    ilustrativas, siempre con aviso visible en la misma tarjeta. Nunca nombre, ciudad ni compra verificada.
+  La disposición «chat» muestra conversaciones como burbujas: para mensajes REALES de clientes (con su
+  permiso y sin número visible) o para recreaciones con su aviso.
+  Fuente canónica: claude-skills/core/tema_landing. Regla: _nucleo/landing-formatos.md.
+{%- endcomment -%}
+{{ 'bm-landing.css' | asset_url | stylesheet_tag }}
+{{ 'bm-dinamica.css' | asset_url | stylesheet_tag }}
+{%- assign s = section.settings -%}
+{%- assign hay_ia = false -%}
+{%- for block in section.blocks -%}
+  {%- if block.settings.origen == 'ia_recreada' -%}{%- assign hay_ia = true -%}{%- endif -%}
+{%- endfor -%}
+<div class="bm-sec bm-resenas bm-resenas--{{ s.disposicion }}" data-bm-landing="resenas" data-bm-sec="{{ section.id }}" style="{% if s.fondo != blank %}--bm-sec-bg:{{ s.fondo }};{% endif %}{% if s.texto != blank %}--bm-sec-fg:{{ s.texto }};{% endif %}{% if s.tarjeta_fondo != blank %}--bm-tarjeta-bg:{{ s.tarjeta_fondo }};{% endif %}{% if s.tarjeta_texto != blank %}--bm-tarjeta-fg:{{ s.tarjeta_texto }};{% endif %}{% if s.estrellas != blank %}--bm-estrellas:{{ s.estrellas }};{% endif %}--bm-pad-top:{{ s.padding_top }}px;--bm-pad-bottom:{{ s.padding_bottom }}px;--bm-pad-x:{{ s.padding_lateral }}px;--bm-align:{{ s.alineacion }};">
+  <div class="bm-sec__in">
+    {%- if s.titulo != blank -%}
+      <div class="bm-cabecera"><h2>{{ s.titulo | escape }}</h2></div>
+    {%- endif -%}
+    <div class="bm-resenas__lista">
+      {%- for block in section.blocks -%}
+        {%- assign b = block.settings -%}
+        {%- assign es_ia = false -%}
+        {%- if b.origen == 'ia_recreada' -%}{%- assign es_ia = true -%}{%- endif -%}
+        <article class="bm-resena" data-bm-bloque="resena" data-origen="{{ b.origen }}" {{ block.shopify_attributes }}>
+          <div class="bm-resena__cabecera">
+          {%- if b.avatar != blank -%}
+            <span class="bm-resena__avatar">{{ b.avatar | image_url: width: 96 | image_tag: loading: 'lazy', widths: '48, 96', alt: '' }}</span>
+          {%- elsif s.disposicion == 'chat' or es_ia -%}
+            <span class="bm-resena__avatar bm-resena__avatar--icon" role="img" aria-label="Icono ilustrativo de persona">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.3-7 8-7s8 2.6 8 7"/></svg>
+            </span>
+          {%- endif -%}
+          {%- if es_ia -%}<span class="bm-resena__autor">Ejemplo ilustrativo</span>
+          {%- elsif b.nombre != blank or b.detalle != blank -%}<span class="bm-resena__autor">{{ b.nombre | escape }}{% if b.nombre != blank and b.detalle != blank %} · {% endif %}{{ b.detalle | escape }}</span>{%- endif -%}
+          </div>
+          {%- if b.estrellas > 0 -%}
+            <div class="bm-resena__estrellas" role="img" aria-label="{% if es_ia %}Calificación ilustrativa generada con IA: {% endif %}{{ b.estrellas }} de 5">{% for i in (1..b.estrellas) %}★{% endfor %}</div>
+          {%- endif -%}
+          {%- if b.texto != blank -%}<p class="bm-resena__texto">{{ b.texto | escape }}</p>{%- endif -%}
+          {%- if b.foto != blank -%}
+            <a class="bm-resena__foto bm-resena__ampliar" href="{{ b.foto | image_url: width: 1600 }}" target="_blank" rel="noopener" aria-label="Ampliar foto de la reseña">{{ b.foto | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 380px, 84vw', widths: '360, 540, 720, 900', alt: b.foto_alt }}</a>
+          {%- endif -%}
+          {%- if s.disposicion == 'chat' and b.respuesta_tienda != blank -%}
+            <p class="bm-resena__respuesta"><span class="bm-resena__respuesta-autor">La tienda</span>{{ b.respuesta_tienda | escape }}</p>
+          {%- endif -%}
+          {%- if es_ia -%}
+            <p class="bm-resena__etiqueta">{{ b.etiqueta | default: 'Recreación con IA · no es la reseña de un comprador' | escape }}</p>
+          {%- endif -%}
+        </article>
+      {%- endfor -%}
+    </div>
+    {%- if hay_ia -%}
+      <p class="bm-resenas__aviso" data-origen="ia_recreada">{{ s.aviso_ia | default: 'Las tarjetas marcadas son recreaciones generadas con IA basadas en objeciones y usos documentados; no son reseñas de compradores.' | escape }}</p>
+    {%- endif -%}
+  </div>
+  {%- if s.cta_mostrar -%}
+    {%- render 'bm-cta', texto: s.cta_texto, subtexto: s.cta_subtexto, fondo: blank, color: blank, franja: blank, ancho: 'completo', alineacion: 'center', pad_y: 14, pulso: false -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Landing · Reseñas dinám.",
+  "tag": "section",
+  "enabled_on": { "templates": ["product"] },
+  "max_blocks": 12,
+  "settings": [
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Ejemplos de uso y opiniones" },
+    { "type": "select", "id": "disposicion", "label": "Disposición", "options": [
+      { "value": "lista", "label": "Lista vertical" },
+      { "value": "carrusel", "label": "Carrusel horizontal" },
+      { "value": "cuadricula", "label": "Cuadrícula de tarjetas" },
+      { "value": "chat", "label": "Conversación (burbujas de chat)" }
+    ], "default": "carrusel" },
+    { "type": "select", "id": "alineacion", "label": "Alineación del título", "options": [
+      { "value": "left", "label": "Izquierda" }, { "value": "center", "label": "Centro" }
+    ], "default": "center" },
+    { "type": "text", "id": "aviso_ia", "label": "Aviso general si hay recreaciones IA", "default": "Las tarjetas marcadas son recreaciones generadas con IA basadas en objeciones y usos documentados; no son reseñas de compradores." },
+    { "type": "header", "content": "Colores" },
+    { "type": "color", "id": "fondo", "label": "Fondo de la sección", "info": "Vacío: el de la página." },
+    { "type": "color", "id": "texto", "label": "Texto de la sección" },
+    { "type": "color", "id": "tarjeta_fondo", "label": "Fondo de las tarjetas" },
+    { "type": "color", "id": "tarjeta_texto", "label": "Texto de las tarjetas" },
+    { "type": "color", "id": "estrellas", "label": "Color de estrellas" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 20 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 20 },
+    { "type": "range", "id": "padding_lateral", "label": "Margen lateral", "min": 0, "max": 32, "step": 2, "unit": "px", "default": 16 },
+    { "type": "header", "content": "Botón de compra" },
+    { "type": "checkbox", "id": "cta_mostrar", "label": "Mostrar botón al final", "default": false },
+    { "type": "text", "id": "cta_texto", "label": "Texto del botón", "default": "Pedir ahora · pago contra entrega" },
+    { "type": "text", "id": "cta_subtexto", "label": "Línea bajo el botón", "default": "Pagas al recibir" }
+  ],
+  "blocks": [
+    { "type": "resena", "name": "Reseña", "settings": [
+      { "type": "select", "id": "origen", "label": "Origen", "options": [
+        { "value": "real_importada", "label": "Real importada (con fuente registrada)" },
+        { "value": "real_propia", "label": "Real de un cliente nuestro" },
+        { "value": "ia_recreada", "label": "Recreación generada con IA" }
+      ], "default": "ia_recreada", "info": "Las fotos y estrellas IA son ilustrativas y muestran aviso visible; sin nombre ni compra verificada." },
+      { "type": "image_picker", "id": "foto", "label": "Foto o captura" },
+      { "type": "image_picker", "id": "avatar", "label": "Foto pequeña de persona (real con permiso o sintética con origen IA)" },
+      { "type": "text", "id": "foto_alt", "label": "Descripción de la foto" },
+      { "type": "textarea", "id": "prompt", "label": "Prompt del texto IA (registro interno)" },
+      { "type": "textarea", "id": "foto_prompt", "label": "Prompt de la foto IA (registro interno)" },
+      { "type": "textarea", "id": "avatar_prompt", "label": "Prompt del avatar IA (registro interno)" },
+      { "type": "textarea", "id": "texto", "label": "Texto" },
+      { "type": "textarea", "id": "respuesta_tienda", "label": "Respuesta de la tienda (solo chat)", "info": "Si la conversación es real, transcribir la respuesta real; si es IA, usar solo datos comprobados de la oferta." },
+      { "type": "text", "id": "nombre", "label": "Nombre (solo reseñas reales)" },
+      { "type": "text", "id": "detalle", "label": "Ciudad o detalle (solo reseñas reales)" },
+      { "type": "range", "id": "estrellas", "label": "Estrellas (ilustrativas si origen IA)", "min": 0, "max": 5, "step": 1, "default": 0 },
+      { "type": "url", "id": "fuente", "label": "Fuente de la reseña real (no se muestra)" },
+      { "type": "text", "id": "etiqueta", "label": "Aviso de la recreación IA", "default": "Recreación con IA · no es la reseña de un comprador" }
+    ] }
+  ],
+  "presets": [{ "name": "Landing · Reseñas dinám.", "blocks": [{ "type": "resena" }, { "type": "resena" }] }]
+}
+{% endschema %}

@@ -1,0 +1,200 @@
+{%- comment -%}
+  Ajustes de la landing de ESTE producto: fondo de página, ficha de compra y color del botón de
+  Releasit. Solo imprime CSS; cada producto tiene su plantilla, así que nada de esto toca otras
+  páginas ni la configuración global de Releasit. Fuente canónica: claude-skills/core/tema_landing.
+
+  Releasit pinta su botón con estilos en línea `!important` (medido 2026-09-22 en Cosmos): una regla
+  de hoja de estilo no puede cambiar su `background`. Por eso el color se pinta en una capa
+  `::before` por encima de su fondo y por debajo del texto, `clip-path` fija las esquinas y el texto
+  se colorea en los `span` hijos. `core/landing_qa.mjs` mide el color efectivo por píxel.
+
+  Releasit reutiliza la clase `_rsi-buy-now-button` DENTRO de su modal: «Confirmar pedido» y los dos
+  botones del downsell al cerrar el formulario (medido en vivo 2026-09-24 en Sanavitt y Ailee). Con la
+  regla sin acotar, el downsell tomaba el color del producto y «No gracias» —texto sin `span`— quedaba
+  negro sobre negro. Por eso el selector excluye todo lo que vive en `#_rsi-cod-form-modal`.
+{%- endcomment -%}
+{%- assign rsi = 'html body ._rsi-buy-now-button:not(._rsi-modal-submit-button, #_rsi-cod-form-modal *)' -%}
+{%- assign s = section.settings -%}
+{%- if s.movimiento_pagina -%}{{ 'bm-dinamica.css' | asset_url | stylesheet_tag }}<script src="{{ 'bm-dinamica.js' | asset_url }}" defer></script>{%- endif -%}
+{%- style -%}
+  :root {
+    --bm-ancho-pagina: {{ s.ancho_max }}px;
+    --bm-page-bg: {{ s.fondo_pagina }};
+    --bm-page-fg: {{ s.texto_pagina }};
+    --bm-cta-bg: {{ s.cta_fondo }};
+    --bm-cta-fg: {{ s.cta_texto }};
+    --bm-cta-radio: {{ s.cta_radio }}px;
+    --bm-cta-alto: {{ s.cta_alto }}px;
+    --bm-cta-letra: {{ s.cta_letra }}px;
+    --bm-rsi-bg: {{ s.cta_fondo }};
+    --bm-rsi-fg: {{ s.cta_texto }};
+    --bm-rsi-radio: {{ s.cta_radio }}px;
+  }
+  {%- if s.aplicar_fondo %}
+  body, #MainContent { background: var(--bm-page-bg) !important; }
+  #MainContent { color: var(--bm-page-fg); }
+  {%- endif %}
+  {%- if s.ocultar_galeria %}
+  section[id^="MainProduct-"] .product__media-wrapper { display: none !important; }
+  section[id^="MainProduct-"] .product__info-wrapper { width: 100% !important; max-width: 100% !important; flex: 0 0 100% !important; padding: 0 !important; }
+  {%- endif %}
+  section[id^="MainProduct-"] {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    {%- if s.ficha_fondo != blank %}
+    background: {{ s.ficha_fondo }};
+    {%- endif %}
+    {%- if s.ficha_texto != blank %}
+    color: {{ s.ficha_texto }};
+    --color-foreground: {{ s.ficha_texto.red }}, {{ s.ficha_texto.green }}, {{ s.ficha_texto.blue }};
+    {%- endif %}
+  }
+  section[id^="MainProduct-"].page-width { padding-left: {{ s.ficha_margen_lateral }}px !important; padding-right: {{ s.ficha_margen_lateral }}px !important; }
+  section[id^="MainProduct-"] .product__info-container {
+    max-width: var(--bm-ancho-pagina);
+    margin: 0 auto !important;
+    padding: {{ s.ficha_padding }}px 0 !important;
+  }
+  section[id^="MainProduct-"] .product__info-container > * { margin-top: 0; }
+  {%- case s.ficha_modo -%}
+    {%- when 'solo_boton' %}
+  /* Solo imágenes: de la ficha solo queda el botón de Releasit; precio y variantes van en las láminas. */
+  section[id^="MainProduct-"] :is([id^="price-"], .price, .product__title, .product__tax, .installment, variant-radios, variant-selects, .product-form__input, .product-form__quantity) { display: none !important; }
+  section[id^="MainProduct-"] ._rsi-buy-now-button { margin-top: 0 !important; margin-bottom: 0 !important; }
+    {%- when 'oculta' %}
+  /* Imágenes + HTML: la ficha no se ve, pero su botón de Releasit sigue en la página con tamaño real
+     para que los botones de la landing lo pulsen (el onclick canónico busca un control con área). */
+  section[id^="MainProduct-"] { position: absolute !important; left: -10000px !important; top: 0 !important; width: 360px !important; visibility: hidden !important; }
+  {%- endcase %}
+  {%- if s.ocultar_encabezado %}
+  /* Landing sin logo de la tienda (landing-formatos.md): fuera las barras de anuncio y el encabezado del
+     tema —abre con «Landing · Cinta de frases»—; del pie se quita solo el logo y quedan las políticas. */
+  #shopify-section-announcement-bar, #shopify-section-new-announcement-bar, #shopify-section-header, .shopify-section-group-header-group { display: none !important; }
+  .shopify-section-group-footer-group :is(.footer-block-image, .footer-block__brand-info .footer-block__image-wrapper) { display: none !important; }
+  {%- endif %}
+  {%- if s.pie_fondo != blank %}
+  /* Pie en la gama del producto. El fondo del documento toma su color: el rebote del scroll al final
+     (iPhone) ya no deja ver una franja clara bajo el pie. */
+  html { background: {{ s.pie_fondo }} !important; }
+  {%- if s.aplicar_fondo %}
+  /* Safari iPhone pinta el rebote con el fondo del BODY cuando el tema fija html{height:100%} y overflow en
+     html y body (Sanavitt, medido 2026-09-23): el body también toma el color del pie y el contenido de la
+     landing (#MainContent) conserva su fondo. */
+  body { background: {{ s.pie_fondo }} !important; }
+  #MainContent { background: var(--bm-page-bg) !important; }
+  {%- endif %}
+  .shopify-section-group-footer-group .footer { background: {{ s.pie_fondo }} !important; --color-background: {{ s.pie_fondo.red }}, {{ s.pie_fondo.green }}, {{ s.pie_fondo.blue }}; }
+  {%- endif %}
+  {%- if s.pie_texto != blank %}
+  .shopify-section-group-footer-group .footer { color: {{ s.pie_texto }} !important; --color-foreground: {{ s.pie_texto.red }}, {{ s.pie_texto.green }}, {{ s.pie_texto.blue }}; }
+  .shopify-section-group-footer-group .footer :is(h2, h3, .footer-block__heading, .list-social__link, [class*="badge"]) { color: {{ s.pie_texto }} !important; }
+  .shopify-section-group-footer-group .footer :is(p, .rte, .link, .list-menu__item, .copyright__content, .copyright__content a, .policies a) { color: rgba({{ s.pie_texto.red }}, {{ s.pie_texto.green }}, {{ s.pie_texto.blue }}, 0.8) !important; }
+  .shopify-section-group-footer-group .footer :is(.footer__content-bottom, [class*="footer-trust"]) { border-color: rgba({{ s.pie_texto.red }}, {{ s.pie_texto.green }}, {{ s.pie_texto.blue }}, 0.14) !important; }
+  {%- endif %}
+  {%- if s.pie_acento != blank %}
+  .shopify-section-group-footer-group .footer .footer-block__heading { border-color: {{ s.pie_acento }} !important; }
+  .shopify-section-group-footer-group .footer [class*="badge"] svg { stroke: {{ s.pie_acento }} !important; }
+  {%- endif %}
+  /* El botón flotante de Releasit (fijo, ~70 px) tapaba la última línea del pie: se le deja espacio. */
+  .shopify-section-group-footer-group .footer::after { content: ""; display: block; height: 80px; }
+  {%- if s.ficha_modo != 'completa' and s.ficha_ocultar != blank %}
+  /* Extras propios del tema de ESTA tienda que la landing no usa (urgencia, sellos, barra fija con
+     precio…): salen de tienda.json → tema.ficha_ocultar. */
+  {%- assign bm_llave_a = '{' -%}{%- assign bm_llave_c = '}' -%}
+  {%- assign bm_ocultar = s.ficha_ocultar | remove: bm_llave_a | remove: bm_llave_c | remove: '<' | strip %}
+  /* html:not(#…) suma especificidad de id: el tema declara sus extras con !important y carga después. */
+  html:not(#bm-ficha-ocultar) :is({{ bm_ocultar }}) { display: none !important; }
+  {%- endif %}
+  {%- if s.ocultar_descripcion %}
+  section[id^="MainProduct-"] .product__description > :not(style) { display: none !important; }
+  section[id^="MainProduct-"] .product__description { margin: 0 !important; padding: 0 !important; }
+  {%- endif %}
+  {%- if s.rsi_aplicar %}
+  /* Solo los botones de la PÁGINA; el formulario y su downsell conservan los colores de Releasit. */
+  {{ rsi }} { position: relative !important; isolation: isolate !important; clip-path: inset(0 round var(--bm-rsi-radio)) !important; }
+  {{ rsi }}::before { content: "" !important; position: absolute !important; inset: 0 !important; z-index: -1 !important; background: var(--bm-rsi-bg) !important; border-radius: var(--bm-rsi-radio) !important; pointer-events: none !important; }
+  {{ rsi }} > span, {{ rsi }} > span * { color: var(--bm-rsi-fg) !important; }
+  /* :not([fill="none"]): el ícono de Releasit trae un trazado de fondo transparente; rellenarlo pintaba un
+     cuadrado blanco en lugar del camión (medido en vivo, Sanavitt 2026-09-23). */
+  {{ rsi }} svg, {{ rsi }} svg *:not([fill="none"]) { fill: var(--bm-rsi-fg) !important; }
+  {%- endif %}
+  {%- if s.cta_animacion == 'salto' %}
+  /* Salto corto cada ~3 s en todos los botones de compra de la landing: llama la atención sin marear. */
+  @keyframes bm-salto { 0%, 70%, 100% { transform: translateY(0); } 76% { transform: translateY(-6px); } 82% { transform: translateY(0); } 88% { transform: translateY(-3px); } 94% { transform: translateY(0); } }
+  .bm-cta__boton { animation: bm-salto 3s ease-in-out infinite; will-change: transform; }
+  {%- elsif s.cta_animacion == 'pulso' %}
+  .bm-cta__boton { animation: bm-pulso 1.9s ease-in-out infinite; }
+  {%- endif %}
+  @media (prefers-reduced-motion: reduce) { .bm-cta__boton { animation: none !important; } }
+  {%- if s.cta_sombra %}
+  html body .bm-cta__boton { box-shadow: 0 8px 20px rgba(0, 0, 0, .22), 0 2px 6px rgba(0, 0, 0, .12); }
+  {%- endif %}
+  {%- if s.cta_fuente == 'titulos' %}
+  /* Con especificidad y !important: algunos temas fuerzan su letra en todo `button` y `span`. */
+  html body .bm-cta__boton, html body .bm-cta__boton * { font-family: var(--font-heading-family, inherit) !important; font-weight: 600 !important; }
+  {%- endif %}
+  {%- if s.cta_mayusculas %}
+  html body .bm-cta__boton, html body .bm-cta__boton * { text-transform: uppercase !important; letter-spacing: .12em !important; }
+  {%- endif %}
+  .bm-aviso-base { position: sticky; top: 0; z-index: 50; padding: 12px 16px; background: #b91c1c; color: #ffffff; font: 700 14px/1.35 system-ui, sans-serif; text-align: center; }
+{%- endstyle -%}
+{%- if request.design_mode and template.suffix contains 'bm-' -%}
+  {%- if template.suffix == 'bm-solo-imagenes' or template.suffix == 'bm-hibrida' or template.suffix == 'bm-dinamica' -%}
+    <div class="bm-aviso-base" role="note">PLANTILLA BASE — no la edites ni la asignes a un producto. Cada producto usa su propia copia (product.&lt;slug&gt;): ajusta esa.</div>
+  {%- endif -%}
+{%- endif -%}
+<div hidden data-bm-ajustes data-movimiento-pagina="{{ s.movimiento_pagina }}" data-ficha-modo="{{ s.ficha_modo }}" data-rsi-aplicar="{{ s.rsi_aplicar }}" data-rsi-fondo="{{ s.cta_fondo }}" data-rsi-texto="{{ s.cta_texto }}" data-cta-fondo="{{ s.cta_fondo }}" data-cta-texto="{{ s.cta_texto }}" data-ocultar-encabezado="{{ s.ocultar_encabezado }}" data-pie-fondo="{{ s.pie_fondo }}"></div>
+
+{% schema %}
+{
+  "name": "Landing · Ajustes dinám.",
+  "tag": "div",
+  "limit": 1,
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "paragraph", "content": "Colores y ancho de la landing de este producto. No cambia otras páginas ni el formulario global de Releasit." },
+    { "type": "header", "content": "Página" },
+    { "type": "checkbox", "id": "ocultar_encabezado", "label": "Ocultar encabezado y logo de la tienda", "info": "Estas landings no llevan logo de la tienda: se ocultan las barras de anuncio y el encabezado del tema (abre con la cinta de frases) y el logo del pie. Las políticas del pie se conservan.", "default": true },
+    { "type": "checkbox", "id": "aplicar_fondo", "label": "Aplicar el fondo a toda la página", "default": true },
+    { "type": "color", "id": "fondo_pagina", "label": "Fondo de la página", "default": "#FFFFFF" },
+    { "type": "color", "id": "texto_pagina", "label": "Texto de la página", "default": "#111827" },
+    { "type": "range", "id": "ancho_max", "label": "Ancho máximo del contenido (escritorio)", "min": 480, "max": 1200, "step": 20, "unit": "px", "default": 780 },
+    { "type": "checkbox", "id": "movimiento_pagina", "label": "Movimiento de secciones y carruseles", "info": "Solo para la plantilla dinámica. Respeta la preferencia de reducir movimiento.", "default": false },
+    { "type": "header", "content": "Ficha de compra (Información del producto)" },
+    { "type": "select", "id": "ficha_modo", "label": "Qué muestra la ficha", "options": [
+      { "value": "completa", "label": "Completa (según sus bloques)" },
+      { "value": "solo_boton", "label": "Solo el botón de Releasit (solo imágenes)" },
+      { "value": "oculta", "label": "Oculta: compra desde los botones de la landing" }
+    ], "default": "completa", "info": "Oculta sigue cargando Releasit; no la uses si la landing no tiene botones de compra." },
+    { "type": "range", "id": "ficha_margen_lateral", "label": "Margen lateral de la ficha", "min": 0, "max": 24, "step": 2, "unit": "px", "default": 16 },
+    { "type": "checkbox", "id": "ocultar_galeria", "label": "Ocultar la galería del producto", "info": "Las láminas y escenas reemplazan la galería. Las fotos siguen en el producto para catálogos.", "default": true },
+    { "type": "checkbox", "id": "ocultar_descripcion", "label": "Ocultar la descripción visible", "info": "Conserva el esqueleto del formulario COD que vive en la descripción.", "default": true },
+    { "type": "color", "id": "ficha_fondo", "label": "Fondo de la ficha", "info": "Vacío: usa el fondo de la página." },
+    { "type": "color", "id": "ficha_texto", "label": "Texto de la ficha", "info": "Vacío: usa el del tema." },
+    { "type": "range", "id": "ficha_padding", "label": "Espacio interno vertical de la ficha", "min": 0, "max": 48, "step": 2, "unit": "px", "default": 12 },
+    { "type": "text", "id": "ficha_ocultar", "label": "Extras del tema que se ocultan", "info": "Selectores CSS separados por coma (urgencia, sellos, barra fija con precio del tema). Sale de tienda.json → tema.ficha_ocultar; no aplica con la ficha completa." },
+    { "type": "header", "content": "Pie de página" },
+    { "type": "paragraph", "content": "Colores del pie solo en esta plantilla (vacío: los del tema). El botón de WhatsApp conserva su verde." },
+    { "type": "color", "id": "pie_fondo", "label": "Fondo del pie" },
+    { "type": "color", "id": "pie_texto", "label": "Texto del pie" },
+    { "type": "color", "id": "pie_acento", "label": "Líneas e íconos del pie" },
+    { "type": "header", "content": "Botón de compra" },
+    { "type": "paragraph", "content": "Se aplica a los botones de la landing y, si está activado, al botón de Releasit de esta página. El formulario de Releasit y su downsell conservan los colores de la app." },
+    { "type": "color", "id": "cta_fondo", "label": "Fondo del botón", "default": "#111827" },
+    { "type": "color", "id": "cta_texto", "label": "Texto del botón", "default": "#FFFFFF" },
+    { "type": "range", "id": "cta_radio", "label": "Redondeo del botón", "min": 0, "max": 30, "step": 1, "unit": "px", "default": 12 },
+    { "type": "range", "id": "cta_alto", "label": "Alto mínimo del botón", "min": 44, "max": 72, "step": 2, "unit": "px", "default": 54 },
+    { "type": "range", "id": "cta_letra", "label": "Tamaño del texto del botón", "min": 14, "max": 22, "step": 1, "unit": "px", "default": 17 },
+    { "type": "checkbox", "id": "rsi_aplicar", "label": "Aplicar estos colores al botón de Releasit", "default": true },
+    { "type": "checkbox", "id": "cta_sombra", "label": "Sombra en los botones de compra", "default": false },
+    { "type": "select", "id": "cta_fuente", "label": "Letra de los botones de compra", "options": [
+      { "value": "tema", "label": "La del texto" }, { "value": "titulos", "label": "La de los títulos" }
+    ], "default": "tema" },
+    { "type": "checkbox", "id": "cta_mayusculas", "label": "Texto de los botones en mayúsculas", "default": false },
+    { "type": "select", "id": "cta_animacion", "label": "Animación de los botones de compra", "info": "Se apaga sola si el celular pide reducir movimiento.", "options": [
+      { "value": "ninguna", "label": "Ninguna" }, { "value": "salto", "label": "Salto suave" }, { "value": "pulso", "label": "Pulso" }
+    ], "default": "ninguna" }
+  ],
+  "presets": [{ "name": "Landing · Ajustes dinám." }]
+}
+{% endschema %}
