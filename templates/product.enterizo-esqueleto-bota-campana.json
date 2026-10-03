@@ -195,7 +195,7 @@
             "mostrar_ahorro": true,
             "ahorro_texto": "Ahorras",
             "descuento_texto": "OFF",
-            "promo_texto": "Paga 2 y lleva 3 · sale a $53.233 cada uno",
+            "promo_texto": "Paga 2 y lleva 3 · tú eliges los colores",
             "nota": ""
           }
         },
@@ -290,7 +290,7 @@
         "b02_texto": {
           "type": "texto",
           "settings": {
-            "texto": "<p>El look ya viene hecho, también de espalda</p><p>1. Te lo pones: es una sola pieza, no combinas nada.</p><p>2. Eliges tenis o plataforma.</p><p>3. Sales. La bota campana alarga la pierna, el frunce define y la espalda en tiras anchas da el detalle.</p><p>Estiliza por el corte de la prenda. No es una faja.</p>"
+            "texto": "<p>Sin pensar qué combinar: el look ya viene armado</p><p>1. Te lo pones: es una sola pieza.</p><p>2. Eliges tenis o plataforma.</p><p>3. Sales. La bota campana alarga la pierna, el frunce define y la espalda en tiras anchas da el detalle.</p><p>Estiliza por el corte de la prenda. No es una faja.</p>"
           }
         }
       },
@@ -603,7 +603,7 @@
         "b02_texto": {
           "type": "texto",
           "settings": {
-            "texto": "<p>Uno para cada plan: elige tus tres colores y pide ahora. Pagas al recibir.</p>"
+            "texto": "<p>Uno para cada plan, y pagas cuando te llegue.</p>"
           }
         },
         "b03_precio": {
@@ -612,7 +612,7 @@
             "prefijo": "3 por",
             "precio_texto": "$159.700",
             "mostrar_ahorro": true,
-            "promo_texto": "Paga 2 y lleva 3 · sale a $53.233 cada uno",
+            "promo_texto": "Paga 2 y lleva 3 · tú eliges los colores",
             "nota": ""
           }
         },
