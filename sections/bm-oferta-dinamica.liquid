@@ -366,6 +366,12 @@
     var primera = inicial ? deColor(inicial)[0] : null;
     if (primera && fotos.indexOf(primera) > 0) ir(fotos.indexOf(primera), false);
     if (inicial) marcar(inicial);
+    // El formulario del producto (`main`) va después de esta sección: cuando corre este script todavía
+    // no existe y la variante quedaba en la primera del producto (enterizo, 2026-10-03: la galería abría en
+    // NEGRO y el formulario en AZUL PETROLEO). El color con que abre se escribe al terminar de cargar.
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () { if (marcado) sincronizar(marcado); });
+    }
     mirar();
   })();
 </script>
