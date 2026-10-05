@@ -57,7 +57,7 @@
         "b01_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/sueco-045_talco_oficina.webp",
+            "imagen": "shopify://shop_images/sueco-045_talco_oficina_v2.webp",
             "color": "TALCO",
             "alt": "Suecos mocasín talco puestos con pantalón blanco, en la oficina"
           }
@@ -65,7 +65,7 @@
         "b02_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/sueco-045_talco_butaco.webp",
+            "imagen": "shopify://shop_images/sueco-045_talco_butaco_v2.webp",
             "color": "TALCO",
             "alt": "Suecos mocasín talco puestos con jean, sentada en un butaco"
           }
@@ -73,7 +73,7 @@
         "b03_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/sueco-045_talco_pie.webp",
+            "imagen": "shopify://shop_images/sueco-045_talco_pie_v2.webp",
             "color": "TALCO",
             "alt": "Suecos mocasín talco puestos, de pie sobre baldosa"
           }
@@ -81,7 +81,7 @@
         "b04_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/sueco-045_talco_manos.webp",
+            "imagen": "shopify://shop_images/sueco-045_talco_manos_v2.webp",
             "color": "TALCO",
             "alt": "Suecos mocasín talco de frente: lazo con cuentas doradas"
           }
@@ -89,7 +89,7 @@
         "b05_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/sueco-045_miel_jean.webp",
+            "imagen": "shopify://shop_images/sueco-045_miel_jean_v2.webp",
             "color": "MIEL",
             "alt": "Suecos mocasín miel puestos con jean, sentada en un butaco"
           }
@@ -97,7 +97,7 @@
         "b06_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/sueco-045_miel_butaco.webp",
+            "imagen": "shopify://shop_images/sueco-045_miel_butaco_v2.webp",
             "color": "MIEL",
             "alt": "Suecos mocasín miel puestos con jean, de frente"
           }
@@ -105,7 +105,7 @@
         "b07_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/sueco-045_miel_perfil.webp",
+            "imagen": "shopify://shop_images/sueco-045_miel_perfil_v2.webp",
             "color": "MIEL",
             "alt": "Sueco mocasín miel de perfil: se ve la plataforma tostada"
           }
@@ -113,7 +113,7 @@
         "b08_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/sueco-045_miel_mimbre.webp",
+            "imagen": "shopify://shop_images/sueco-045_miel_mimbre_v2.webp",
             "color": "MIEL",
             "alt": "Suecos mocasín miel puestos, pies sobre un banco de mimbre"
           }
@@ -121,7 +121,7 @@
         "b09_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/sueco-045_animal-print_finde.webp",
+            "imagen": "shopify://shop_images/sueco-045_animal-print_finde_v2.webp",
             "color": "ANIMAL PRINT",
             "alt": "Suecos mocasín animal print puestos con pantalón café, sentada en el piso"
           }
@@ -129,7 +129,7 @@
         "b10_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/sueco-045_animal-print_butaco.webp",
+            "imagen": "shopify://shop_images/sueco-045_animal-print_butaco_v2.webp",
             "color": "ANIMAL PRINT",
             "alt": "Suecos mocasín animal print puestos con jean, sentada en un butaco"
           }
@@ -137,7 +137,7 @@
         "b11_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/sueco-045_animal-print_outfit.webp",
+            "imagen": "shopify://shop_images/sueco-045_animal-print_outfit_v2.webp",
             "color": "ANIMAL PRINT",
             "alt": "Outfit completo con suecos mocasín animal print"
           }
@@ -145,7 +145,7 @@
         "b12_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/sueco-045_animal-print_cruzado.webp",
+            "imagen": "shopify://shop_images/sueco-045_animal-print_cruzado_v2.webp",
             "color": "ANIMAL PRINT",
             "alt": "Suecos mocasín animal print puestos, pies cruzados"
           }
@@ -153,7 +153,7 @@
         "b13_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/sueco-045_negro_salida.webp",
+            "imagen": "shopify://shop_images/sueco-045_negro_salida_v2.webp",
             "color": "NEGRO",
             "alt": "Suecos mocasín negros puestos con falda blanca, en una escalera"
           }
@@ -161,7 +161,7 @@
         "b14_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/sueco-045_negro_butaco.webp",
+            "imagen": "shopify://shop_images/sueco-045_negro_butaco_v2.webp",
             "color": "NEGRO",
             "alt": "Suecos mocasín negros puestos con jean, sentada en un butaco"
           }
@@ -169,7 +169,7 @@
         "b15_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/sueco-045_negro_escalera.webp",
+            "imagen": "shopify://shop_images/sueco-045_negro_escalera_v2.webp",
             "color": "NEGRO",
             "alt": "Suecos mocasín negros puestos, sentada en una escalera"
           }
@@ -177,7 +177,7 @@
         "b16_foto": {
           "type": "foto",
           "settings": {
-            "imagen": "shopify://shop_images/sueco-045_negro_calle.webp",
+            "imagen": "shopify://shop_images/sueco-045_negro_calle_v2.webp",
             "color": "NEGRO",
             "alt": "Suecos mocasín negros puestos con jean, caminando por la calle"
           }
@@ -329,28 +329,28 @@
         "b01_escena": {
           "type": "escena",
           "settings": {
-            "imagen": "shopify://shop_images/sueco-045_miel_jean.webp",
+            "imagen": "shopify://shop_images/sueco-045_miel_jean_v2.webp",
             "etiqueta": "Día a día"
           }
         },
         "b02_escena": {
           "type": "escena",
           "settings": {
-            "imagen": "shopify://shop_images/sueco-045_talco_oficina.webp",
+            "imagen": "shopify://shop_images/sueco-045_talco_oficina_v2.webp",
             "etiqueta": "Para la oficina"
           }
         },
         "b03_escena": {
           "type": "escena",
           "settings": {
-            "imagen": "shopify://shop_images/sueco-045_negro_salida.webp",
+            "imagen": "shopify://shop_images/sueco-045_negro_salida_v2.webp",
             "etiqueta": "Salida de tarde"
           }
         },
         "b04_escena": {
           "type": "escena",
           "settings": {
-            "imagen": "shopify://shop_images/sueco-045_animal-print_finde.webp",
+            "imagen": "shopify://shop_images/sueco-045_animal-print_finde_v2.webp",
             "etiqueta": "Fin de semana"
           }
         }
