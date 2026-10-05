@@ -1,0 +1,728 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ajustes": {
+      "type": "bm-ajustes",
+      "settings": {
+        "aplicar_fondo": true,
+        "fondo_pagina": "#FAF7F4",
+        "texto_pagina": "#1C1C1C",
+        "ancho_max": 780,
+        "ficha_modo": "oculta",
+        "ficha_margen_lateral": 16,
+        "ocultar_galeria": true,
+        "ocultar_descripcion": true,
+        "ficha_fondo": "#FAF7F4",
+        "ficha_texto": "#1C1C1C",
+        "ficha_padding": 12,
+        "pie_fondo": "#1C1C1C",
+        "pie_texto": "#FAF7F4",
+        "pie_acento": "#A07040",
+        "cta_fondo": "#1C1C1C",
+        "cta_texto": "#FFFFFF",
+        "cta_radio": 30,
+        "cta_alto": 54,
+        "cta_letra": 17,
+        "rsi_aplicar": true,
+        "cta_sombra": true,
+        "cta_fuente": "titulos",
+        "cta_mayusculas": true,
+        "cta_animacion": "salto"
+      }
+    },
+    "p01_cinta": {
+      "type": "bm-cinta",
+      "settings": {
+        "frases": "pago|Pago contra entrega\ncamion|Envío gratis a toda Colombia\ncheck|Hoy ahorras $50.000\nreloj|Llega en 3 a 5 días hábiles",
+        "separador": "·",
+        "animada": true,
+        "duracion": 22,
+        "tamano": 14,
+        "padding": 10,
+        "fondo": "#1C1C1C",
+        "texto": "#FFFFFF"
+      }
+    },
+    "p02_oferta": {
+      "type": "bm-oferta",
+      "blocks": {
+        "b01_foto": {
+          "type": "foto",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_talco_oficina.webp",
+            "color": "TALCO",
+            "alt": "Suecos mocasín talco puestos con pantalón blanco, en la oficina"
+          }
+        },
+        "b02_foto": {
+          "type": "foto",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_talco_butaco.webp",
+            "color": "TALCO",
+            "alt": "Suecos mocasín talco puestos con jean, sentada en un butaco"
+          }
+        },
+        "b03_foto": {
+          "type": "foto",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_talco_pie.webp",
+            "color": "TALCO",
+            "alt": "Suecos mocasín talco puestos, de pie sobre baldosa"
+          }
+        },
+        "b04_foto": {
+          "type": "foto",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_talco_manos.webp",
+            "color": "TALCO",
+            "alt": "Suecos mocasín talco de frente: lazo con cuentas doradas"
+          }
+        },
+        "b05_foto": {
+          "type": "foto",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_miel_jean.webp",
+            "color": "MIEL",
+            "alt": "Suecos mocasín miel puestos con jean, sentada en un butaco"
+          }
+        },
+        "b06_foto": {
+          "type": "foto",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_miel_butaco.webp",
+            "color": "MIEL",
+            "alt": "Suecos mocasín miel puestos con jean, de frente"
+          }
+        },
+        "b07_foto": {
+          "type": "foto",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_miel_perfil.webp",
+            "color": "MIEL",
+            "alt": "Sueco mocasín miel de perfil: se ve la plataforma tostada"
+          }
+        },
+        "b08_foto": {
+          "type": "foto",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_miel_mimbre.webp",
+            "color": "MIEL",
+            "alt": "Suecos mocasín miel puestos, pies sobre un banco de mimbre"
+          }
+        },
+        "b09_foto": {
+          "type": "foto",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_animal-print_finde.webp",
+            "color": "ANIMAL PRINT",
+            "alt": "Suecos mocasín animal print puestos con pantalón café, sentada en el piso"
+          }
+        },
+        "b10_foto": {
+          "type": "foto",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_animal-print_butaco.webp",
+            "color": "ANIMAL PRINT",
+            "alt": "Suecos mocasín animal print puestos con jean, sentada en un butaco"
+          }
+        },
+        "b11_foto": {
+          "type": "foto",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_animal-print_outfit.webp",
+            "color": "ANIMAL PRINT",
+            "alt": "Outfit completo con suecos mocasín animal print"
+          }
+        },
+        "b12_foto": {
+          "type": "foto",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_animal-print_cruzado.webp",
+            "color": "ANIMAL PRINT",
+            "alt": "Suecos mocasín animal print puestos, pies cruzados"
+          }
+        },
+        "b13_foto": {
+          "type": "foto",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_negro_salida.webp",
+            "color": "NEGRO",
+            "alt": "Suecos mocasín negros puestos con falda blanca, en una escalera"
+          }
+        },
+        "b14_foto": {
+          "type": "foto",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_negro_butaco.webp",
+            "color": "NEGRO",
+            "alt": "Suecos mocasín negros puestos con jean, sentada en un butaco"
+          }
+        },
+        "b15_foto": {
+          "type": "foto",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_negro_escalera.webp",
+            "color": "NEGRO",
+            "alt": "Suecos mocasín negros puestos, sentada en una escalera"
+          }
+        },
+        "b16_foto": {
+          "type": "foto",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_negro_calle.webp",
+            "color": "NEGRO",
+            "alt": "Suecos mocasín negros puestos con jean, caminando por la calle"
+          }
+        },
+        "b17_encabezado": {
+          "type": "encabezado",
+          "settings": {
+            "antetitulo": "",
+            "titulo": "Nuevos Suecos Mocasín",
+            "nivel": "h1",
+            "tamano": 26,
+            "subtitulo": "Plataforma tostada, lazo con cuentas doradas y talón abierto"
+          }
+        },
+        "b18_precio": {
+          "type": "precio",
+          "settings": {
+            "precio_texto": "",
+            "mostrar_ahorro": true,
+            "ahorro_texto": "Ahorras",
+            "descuento_texto": "OFF",
+            "promo_texto": "",
+            "nota": ""
+          }
+        },
+        "b19_color": {
+          "type": "color",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_muestra_talco.webp",
+            "nombre": "Talco"
+          }
+        },
+        "b20_color": {
+          "type": "color",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_muestra_miel.webp",
+            "nombre": "Miel"
+          }
+        },
+        "b21_color": {
+          "type": "color",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_muestra_animal-print.webp",
+            "nombre": "Animal print"
+          }
+        },
+        "b22_color": {
+          "type": "color",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_muestra_negro.webp",
+            "nombre": "Negro"
+          }
+        },
+        "b23_liquid": {
+          "type": "liquid",
+          "settings": {
+            "codigo": "{{ 'ah-home.css' | asset_url | stylesheet_tag }}{% render 'ah-talla-ayuda', id: section.id, numero: '573128860515', compacto: true %}"
+          }
+        },
+        "b24_boton": {
+          "type": "boton",
+          "settings": {
+            "texto": "Pedir ahora",
+            "subtexto": "Pagas al recibir · envío gratis",
+            "pad_y": 4,
+            "pulso": false
+          }
+        },
+        "b25_liquid": {
+          "type": "liquid",
+          "settings": {
+            "codigo": "{{ 'ah-home.css' | asset_url | stylesheet_tag }}{% render 'ah-confianza', items: 'envio|Envío gratis|a toda Colombia;contraentrega|Pagas al recibir|contraentrega;segura|Compra segura|datos protegidos' %}"
+          }
+        }
+      },
+      "block_order": [
+        "b01_foto",
+        "b02_foto",
+        "b03_foto",
+        "b04_foto",
+        "b05_foto",
+        "b06_foto",
+        "b07_foto",
+        "b08_foto",
+        "b09_foto",
+        "b10_foto",
+        "b11_foto",
+        "b12_foto",
+        "b13_foto",
+        "b14_foto",
+        "b15_foto",
+        "b16_foto",
+        "b17_encabezado",
+        "b18_precio",
+        "b19_color",
+        "b20_color",
+        "b21_color",
+        "b22_color",
+        "b23_liquid",
+        "b24_boton",
+        "b25_liquid"
+      ],
+      "settings": {
+        "alineacion": "center",
+        "fondo": "#FAF7F4",
+        "texto": "#1C1C1C",
+        "tarjeta_fondo": "#FFFFFF",
+        "tarjeta_texto": "#1C1C1C",
+        "pildora_fondo": "#A07040",
+        "pildora_texto": "#FFFFFF",
+        "separacion": 14,
+        "padding_top": 0,
+        "padding_bottom": 20,
+        "padding_lateral": 16,
+        "colores_nota": "",
+        "colores_portada": false,
+        "galeria_proporcion": "4 / 5",
+        "color_inicial": "TALCO"
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "comprar": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "descripcion": {
+          "type": "description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "comprar",
+        "descripcion"
+      ],
+      "settings": {
+        "bm_omitir_galeria": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "p03_ocasiones": {
+      "type": "bm-galeria",
+      "blocks": {
+        "b01_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_miel_jean.webp",
+            "etiqueta": "Día a día"
+          }
+        },
+        "b02_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_talco_oficina.webp",
+            "etiqueta": "Para la oficina"
+          }
+        },
+        "b03_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_negro_salida.webp",
+            "etiqueta": "Salida de tarde"
+          }
+        },
+        "b04_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_animal-print_finde.webp",
+            "etiqueta": "Fin de semana"
+          }
+        }
+      },
+      "block_order": [
+        "b01_escena",
+        "b02_escena",
+        "b03_escena",
+        "b04_escena"
+      ],
+      "settings": {
+        "antetitulo": "",
+        "titulo": "Para todo lo que haces en el día",
+        "subtitulo": "",
+        "disposicion": "carrusel",
+        "ancho_tarjeta": 75,
+        "radio": 12,
+        "diferir": true,
+        "alineacion": "left",
+        "fondo": "#FAF7F4",
+        "texto": "#1C1C1C",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_lateral": 16,
+        "cta_mostrar": true,
+        "cta_texto": "Pedir ahora",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p04_beneficios": {
+      "type": "bm-galeria",
+      "blocks": {
+        "b01_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_detalle_costura.webp",
+            "etiqueta": "Costura en U, tipo mocasín"
+          }
+        },
+        "b02_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_detalle_lazo.webp",
+            "etiqueta": "Lazo con cuentas doradas"
+          }
+        },
+        "b03_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_detalle_plataforma.webp",
+            "etiqueta": "Plataforma tostada en una pieza"
+          }
+        },
+        "b04_escena": {
+          "type": "escena",
+          "settings": {
+            "imagen": "shopify://shop_images/sueco-045_detalle_talon.webp",
+            "etiqueta": "Talón abierto: se calza en un segundo"
+          }
+        }
+      },
+      "block_order": [
+        "b01_escena",
+        "b02_escena",
+        "b03_escena",
+        "b04_escena"
+      ],
+      "settings": {
+        "antetitulo": "",
+        "titulo": "Detalles que se notan",
+        "subtitulo": "",
+        "disposicion": "cuadricula",
+        "ancho_tarjeta": 75,
+        "radio": 12,
+        "diferir": true,
+        "alineacion": "left",
+        "fondo": "#FAF7F4",
+        "texto": "#1C1C1C",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_lateral": 16,
+        "cta_mostrar": false,
+        "cta_texto": "Pedir ahora",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p05_especificaciones": {
+      "type": "bm-tabla",
+      "blocks": {
+        "b01_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Acabado",
+            "c2": "Liso en Talco · pelo corto con estampado leopardo en Animal print · tipo gamuza en Miel y Negro",
+            "c3": ""
+          }
+        },
+        "b02_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Plataforma",
+            "c2": "Caucho tostado en una sola pieza, igual en los 4 colores",
+            "c3": ""
+          }
+        },
+        "b03_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Cordón",
+            "c2": "Plano trenzado con dos cuentas doradas por lado; va fijo, es decorativo",
+            "c3": ""
+          }
+        },
+        "b04_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Talón",
+            "c2": "Abierto, tipo mula: se desliza el pie",
+            "c3": ""
+          }
+        },
+        "b05_fila": {
+          "type": "fila",
+          "settings": {
+            "c1": "Tallas",
+            "c2": "35 a 40",
+            "c3": ""
+          }
+        }
+      },
+      "block_order": [
+        "b01_fila",
+        "b02_fila",
+        "b03_fila",
+        "b04_fila",
+        "b05_fila"
+      ],
+      "settings": {
+        "modo": "lista",
+        "antetitulo": "",
+        "titulo": "Ficha",
+        "encabezado_1": "",
+        "encabezado_2": "",
+        "encabezado_3": "",
+        "nota": "",
+        "alineacion": "left",
+        "fondo": "#FAF7F4",
+        "texto": "#1C1C1C",
+        "destacado_fondo": "#A07040",
+        "destacado_texto": "#FFFFFF",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_lateral": 16,
+        "cta_mostrar": true,
+        "cta_texto": "Pedir ahora",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p06_prueba_social": {
+      "type": "bm-resenas",
+      "blocks": {
+        "b01_resena": {
+          "type": "resena",
+          "settings": {
+            "origen": "real_propia",
+            "foto": "shopify://shop_images/ailee-resena-whatsapp-01.webp",
+            "foto_alt": "Foto que envió la clienta por WhatsApp",
+            "texto": "Ay Dios mio quedaron divinos!! ya los estrené hoy y toda la gente preguntando donde los compré jsjs",
+            "nombre": "",
+            "detalle": "Compró: mocasín de la tienda",
+            "estrellas": 0,
+            "fuente": "https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-01.webp",
+            "etiqueta": "Recreación con IA · no es la reseña de un comprador"
+          }
+        },
+        "b02_resena": {
+          "type": "resena",
+          "settings": {
+            "origen": "real_propia",
+            "foto": "shopify://shop_images/ailee-resena-whatsapp-02.webp",
+            "foto_alt": "Foto que envió la clienta por WhatsApp",
+            "texto": "Hola buenas! ya me llegaron las sandalias, quedaron divinas, super comodas desde que me las puse",
+            "nombre": "",
+            "detalle": "Compró: mocasín de la tienda",
+            "estrellas": 0,
+            "fuente": "https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-02.webp",
+            "etiqueta": "Recreación con IA · no es la reseña de un comprador"
+          }
+        },
+        "b03_resena": {
+          "type": "resena",
+          "settings": {
+            "origen": "real_propia",
+            "foto": "shopify://shop_images/ailee-resena-whatsapp-03.webp",
+            "foto_alt": "Foto que envió la clienta por WhatsApp",
+            "texto": "Buenas tardes, ya recibí mi sandalia sueca, la calidad me sorprendió, mil gracias",
+            "nombre": "",
+            "detalle": "Compró: sandalia sueca",
+            "estrellas": 0,
+            "fuente": "https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-03.webp",
+            "etiqueta": "Recreación con IA · no es la reseña de un comprador"
+          }
+        }
+      },
+      "block_order": [
+        "b01_resena",
+        "b02_resena",
+        "b03_resena"
+      ],
+      "settings": {
+        "titulo": "Lo que dicen nuestras clientas",
+        "disposicion": "carrusel",
+        "alineacion": "center",
+        "aviso_ia": "Las tarjetas marcadas son recreaciones generadas con IA basadas en objeciones y usos documentados; no son reseñas de compradores.",
+        "fondo": "#FAF7F4",
+        "texto": "#1C1C1C",
+        "tarjeta_fondo": "#FFFFFF",
+        "tarjeta_texto": "#1C1C1C",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_lateral": 16,
+        "cta_mostrar": true,
+        "cta_texto": "Pedir ahora",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p07_faq": {
+      "type": "bm-faq",
+      "blocks": {
+        "b01_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Cuánto cuestan?",
+            "respuesta": "<p>Hoy $129.900 con envío gratis (antes $179.900: ahorras $50.000). Pagas al recibir.</p>"
+          }
+        },
+        "b02_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Qué talla pido?",
+            "respuesta": "<p>Pide tu talla habitual, de la 35 a la 40. Si estás entre dos, pide la mayor. Arriba, en «Ver guía de tallas», está la tabla en centímetros.</p>"
+          }
+        },
+        "b03_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Se me sale del pie?",
+            "respuesta": "<p>El frente cerrado sujeta el pie como un mocasín y el talón va abierto, como una mula. Es para salir, la u, la oficina y planes cortos; si vas a estar muchas horas de pie, mejor un tenis.</p>"
+          }
+        },
+        "b04_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿El cordón se desamarra?",
+            "respuesta": "<p>No. El lazo va fijo y es decorativo: no lo tienes que amarrar ni ajustar.</p>"
+          }
+        },
+        "b05_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Cómo pago?",
+            "respuesta": "<p>Pagas al recibir, en la puerta de tu casa. El envío es gratis.</p>"
+          }
+        },
+        "b06_pregunta": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Cuánto tarda?",
+            "respuesta": "<p>De 3 a 5 días hábiles.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "b01_pregunta",
+        "b02_pregunta",
+        "b03_pregunta",
+        "b04_pregunta",
+        "b05_pregunta",
+        "b06_pregunta"
+      ],
+      "settings": {
+        "titulo": "Preguntas frecuentes",
+        "alineacion": "left",
+        "abrir_primera": false,
+        "fondo": "#FAF7F4",
+        "texto": "#1C1C1C",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_lateral": 16,
+        "cta_mostrar": false,
+        "cta_texto": "Pedir ahora",
+        "cta_subtexto": "Pagas al recibir · envío gratis"
+      }
+    },
+    "p08_oferta_cta": {
+      "type": "bm-escena",
+      "blocks": {
+        "b01_titulo": {
+          "type": "titulo",
+          "settings": {
+            "texto": "Llévalos hoy, pagas al recibir",
+            "nivel": "h2",
+            "tamano": 26
+          }
+        },
+        "b02_texto": {
+          "type": "texto",
+          "settings": {
+            "texto": "<p>Eliges color y talla al pedir. Envío gratis a toda Colombia.</p>"
+          }
+        },
+        "b03_precio": {
+          "type": "precio",
+          "settings": {
+            "prefijo": "Hoy",
+            "precio_texto": "",
+            "mostrar_ahorro": true,
+            "promo_texto": "",
+            "nota": ""
+          }
+        },
+        "b04_cta": {
+          "type": "cta",
+          "settings": {
+            "texto": "Pedir ahora",
+            "subtexto": "Pagas al recibir · envío gratis",
+            "ancho": "completo",
+            "alineacion": "center",
+            "pad_y": 8,
+            "pulso": false
+          }
+        }
+      },
+      "block_order": [
+        "b01_titulo",
+        "b02_texto",
+        "b03_precio",
+        "b04_cta"
+      ],
+      "settings": {
+        "imagen": "shopify://shop_images/sueco-045_cierre.webp",
+        "texto_alt": "(sin texto integrado: titular y precio en HTML)",
+        "titulo_oculto": "",
+        "nivel_oculto": "h2",
+        "prioridad": false,
+        "diferir": true,
+        "disposicion": "imagen_arriba",
+        "posicion_texto": "end",
+        "sobre_degradado": true,
+        "alineacion": "left",
+        "ancho": "contenido",
+        "fondo": "#FAF7F4",
+        "texto": "#1C1C1C",
+        "acento": "#A07040",
+        "acento_texto": "#FFFFFF",
+        "panel_padding": 20,
+        "separacion": 10,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "ajustes",
+    "p01_cinta",
+    "p02_oferta",
+    "main",
+    "p03_ocasiones",
+    "p04_beneficios",
+    "p05_especificaciones",
+    "p06_prueba_social",
+    "p07_faq",
+    "p08_oferta_cta"
+  ]
+}
