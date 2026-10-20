@@ -15,8 +15,12 @@
 {%- endfor -%}
 <div class="bm-sec bm-resenas bm-resenas--{{ s.disposicion }}" data-bm-landing="resenas" data-bm-sec="{{ section.id }}" style="{% if s.fondo != blank %}--bm-sec-bg:{{ s.fondo }};{% endif %}{% if s.texto != blank %}--bm-sec-fg:{{ s.texto }};{% endif %}{% if s.tarjeta_fondo != blank %}--bm-tarjeta-bg:{{ s.tarjeta_fondo }};{% endif %}{% if s.tarjeta_texto != blank %}--bm-tarjeta-fg:{{ s.tarjeta_texto }};{% endif %}{% if s.estrellas != blank %}--bm-estrellas:{{ s.estrellas }};{% endif %}--bm-pad-top:{{ s.padding_top }}px;--bm-pad-bottom:{{ s.padding_bottom }}px;--bm-pad-x:{{ s.padding_lateral }}px;--bm-align:{{ s.alineacion }};">
   <div class="bm-sec__in">
-    {%- if s.titulo != blank -%}
-      <div class="bm-cabecera"><h2>{{ s.titulo | escape }}</h2></div>
+    {%- if s.titulo != blank or s.subtitulo != blank -%}
+      <div class="bm-cabecera">
+        {%- if s.titulo != blank -%}<h2>{{ s.titulo | escape }}</h2>{%- endif -%}
+        {%- comment -%} De dónde salen las reseñas (p. ej. «de otros productos de la tienda»): nunca se omite si el plan lo trae. {%- endcomment -%}
+        {%- if s.subtitulo != blank -%}<p>{{ s.subtitulo | escape }}</p>{%- endif -%}
+      </div>
     {%- endif -%}
     <div class="bm-resenas__lista">
       {%- for block in section.blocks -%}
@@ -59,6 +63,7 @@
   "max_blocks": 12,
   "settings": [
     { "type": "text", "id": "titulo", "label": "Título", "default": "Lo que dicen quienes ya lo usan" },
+    { "type": "text", "id": "subtitulo", "label": "Subtítulo", "info": "De dónde salen las reseñas cuando no son de este producto, p. ej. «Mensajes reales de clientas (de otros productos de la tienda)»." },
     { "type": "select", "id": "disposicion", "label": "Disposición", "options": [
       { "value": "lista", "label": "Lista vertical" },
       { "value": "carrusel", "label": "Carrusel horizontal" },
