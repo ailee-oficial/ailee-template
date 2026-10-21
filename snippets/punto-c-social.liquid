@@ -52,7 +52,7 @@
 {%- if pc_clientes and pc_clientes.size > 0 -%}
   <div class="pc-clientes-grid">
     {%- for url in pc_clientes -%}
-      <img src="{{ url }}" loading="lazy" alt="Clienta con el producto">
+      {%- if url contains '?' -%}{%- assign pc_s = '&' -%}{%- else -%}{%- assign pc_s = '?' -%}{%- endif -%}<img src="{{ url }}{{ pc_s }}width=540" srcset="{{ url }}{{ pc_s }}width=270 270w, {{ url }}{{ pc_s }}width=540 540w" sizes="(min-width: 768px) 200px, 45vw" loading="lazy" alt="Clienta con el producto">
     {%- endfor -%}
   </div>
 {%- endif -%}
@@ -91,7 +91,7 @@
         {%- assign i = forloop.index0 -%}
         {%- assign n = pc_c_est[i] | plus: 0 -%}
         <div class="testimonial-card">
-          {%- if pc_c_img[i] != blank -%}<img src="{{ pc_c_img[i] }}" loading="lazy" alt="Mensaje de una clienta de Ailee al recibir su pedido">{%- endif -%}
+          {%- if pc_c_img[i] != blank -%}{%- assign pc_u = pc_c_img[i] -%}{%- if pc_u contains '?' -%}{%- assign pc_s = '&' -%}{%- else -%}{%- assign pc_s = '?' -%}{%- endif -%}<img src="{{ pc_u }}{{ pc_s }}width=720" srcset="{{ pc_u }}{{ pc_s }}width=360 360w, {{ pc_u }}{{ pc_s }}width=540 540w, {{ pc_u }}{{ pc_s }}width=720 720w" sizes="(min-width: 768px) 300px, 82vw" loading="lazy" alt="Mensaje de una clienta de Ailee al recibir su pedido">{%- endif -%}
           <div class="testimonial-body-content">
             <div class="testimonial-stars">{% for s in (1..n) %}&#9733;{% endfor %}</div>
             <p class="testimonial-text">&ldquo;{{ txt }}&rdquo;</p>
