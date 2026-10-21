@@ -16,7 +16,7 @@
     {%- assign aht_meta = im.src | append: ' ' | append: im.alt | downcase -%}
     {%- if aht_guia == blank -%}
       {%- if aht_meta contains 'talla' or aht_meta contains 'guia' or aht_meta contains 'medida' or aht_meta contains 'size' -%}
-        {%- assign aht_guia = im | image_url: width: 1400 -%}
+        {%- assign aht_guia = im | image_url: width: 1400 -%}{%- assign aht_guia_img = im -%}
       {%- endif -%}
     {%- endif -%}
   {%- endfor -%}
@@ -47,7 +47,9 @@
   {%- if aht_guia != blank -%}
     <dialog class="ah-guia" data-ah-guia>
       <button type="button" class="ah-guia__cerrar" data-ah-guia-cerrar aria-label="Cerrar">×</button>
-      <img src="{{ aht_guia }}" alt="Guía de tallas de {{ product.title | escape }}" loading="lazy" width="1400" height="1400">
+      {%- comment -%} Con srcset (2026-10-20): sin él Shopify sirve el original de 1400 px también al celular. {%- endcomment -%}
+      {%- capture aht_alt_guia -%}Guía de tallas de {{ product.title }}{%- endcapture -%}
+      {{ aht_guia_img | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '480, 720, 1080, 1400', sizes: 'min(92vw, 720px)', alt: aht_alt_guia }}
     </dialog>
   {%- endif -%}
 </div>
