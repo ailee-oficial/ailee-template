@@ -16,8 +16,12 @@
 {%- endfor -%}
 <div class="bm-sec bm-resenas bm-resenas--{{ s.disposicion }}" data-bm-landing="resenas" data-bm-sec="{{ section.id }}" style="{% if s.fondo != blank %}--bm-sec-bg:{{ s.fondo }};{% endif %}{% if s.texto != blank %}--bm-sec-fg:{{ s.texto }};{% endif %}{% if s.tarjeta_fondo != blank %}--bm-tarjeta-bg:{{ s.tarjeta_fondo }};{% endif %}{% if s.tarjeta_texto != blank %}--bm-tarjeta-fg:{{ s.tarjeta_texto }};{% endif %}{% if s.estrellas != blank %}--bm-estrellas:{{ s.estrellas }};{% endif %}--bm-pad-top:{{ s.padding_top }}px;--bm-pad-bottom:{{ s.padding_bottom }}px;--bm-pad-x:{{ s.padding_lateral }}px;--bm-align:{{ s.alineacion }};">
   <div class="bm-sec__in">
-    {%- if s.titulo != blank -%}
-      <div class="bm-cabecera"><h2>{{ s.titulo | escape }}</h2></div>
+    {%- if s.titulo != blank or s.subtitulo != blank -%}
+      <div class="bm-cabecera">
+        {%- if s.titulo != blank -%}<h2>{{ s.titulo | escape }}</h2>{%- endif -%}
+        {%- comment -%} De dónde salen las reseñas (p. ej. «de otros productos de la tienda»): nunca se omite si el plan lo trae. {%- endcomment -%}
+        {%- if s.subtitulo != blank -%}<p>{{ s.subtitulo | escape }}</p>{%- endif -%}
+      </div>
     {%- endif -%}
     <div class="bm-resenas__lista">
       {%- for block in section.blocks -%}
@@ -39,9 +43,16 @@
           {%- if b.estrellas > 0 -%}
             <div class="bm-resena__estrellas" role="img" aria-label="{% if es_ia %}Calificación ilustrativa generada con IA: {% endif %}{{ b.estrellas }} de 5">{% for i in (1..b.estrellas) %}★{% endfor %}</div>
           {%- endif -%}
+          {%- if b.titulo != blank -%}<h3 class="bm-resena__titulo">{{ b.titulo | escape }}</h3>{%- endif -%}
+          {%- if s.disposicion == 'chat' and b.apertura_tienda != blank -%}
+            <p class="bm-resena__respuesta"><span class="bm-resena__respuesta-autor">La tienda</span>{{ b.apertura_tienda | escape }}</p>
+          {%- endif -%}
           {%- if b.texto != blank -%}<p class="bm-resena__texto">{{ b.texto | escape }}</p>{%- endif -%}
           {%- if b.foto != blank -%}
             <a class="bm-resena__foto bm-resena__ampliar" href="{{ b.foto | image_url: width: 1600 }}" target="_blank" rel="noopener" aria-label="Ampliar foto de la reseña">{{ b.foto | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 380px, 84vw', widths: '360, 540, 720, 900', alt: b.foto_alt }}</a>
+          {%- endif -%}
+          {%- if s.disposicion == 'chat' and b.segundo_mensaje != blank -%}
+            <p class="bm-resena__texto">{{ b.segundo_mensaje | escape }}</p>
           {%- endif -%}
           {%- if s.disposicion == 'chat' and b.respuesta_tienda != blank -%}
             <p class="bm-resena__respuesta"><span class="bm-resena__respuesta-autor">La tienda</span>{{ b.respuesta_tienda | escape }}</p>
@@ -69,6 +80,7 @@
   "max_blocks": 12,
   "settings": [
     { "type": "text", "id": "titulo", "label": "Título", "default": "Ejemplos de uso y opiniones" },
+    { "type": "text", "id": "subtitulo", "label": "Subtítulo", "info": "De dónde salen las reseñas cuando no son de este producto, p. ej. «Mensajes reales de clientas (de otros productos de la tienda)»." },
     { "type": "select", "id": "disposicion", "label": "Disposición", "options": [
       { "value": "lista", "label": "Lista vertical" },
       { "value": "carrusel", "label": "Carrusel horizontal" },
@@ -107,7 +119,10 @@
       { "type": "textarea", "id": "prompt", "label": "Prompt del texto IA (registro interno)" },
       { "type": "textarea", "id": "foto_prompt", "label": "Prompt de la foto IA (registro interno)" },
       { "type": "textarea", "id": "avatar_prompt", "label": "Prompt del avatar IA (registro interno)" },
+      { "type": "text", "id": "titulo", "label": "Título de la reseña" },
+      { "type": "textarea", "id": "apertura_tienda", "label": "Primer mensaje de la tienda (solo chat)" },
       { "type": "textarea", "id": "texto", "label": "Texto" },
+      { "type": "textarea", "id": "segundo_mensaje", "label": "Segundo mensaje de la persona (solo chat)" },
       { "type": "textarea", "id": "respuesta_tienda", "label": "Respuesta de la tienda (solo chat)", "info": "Si la conversación es real, transcribir la respuesta real; si es IA, usar solo datos comprobados de la oferta." },
       { "type": "text", "id": "nombre", "label": "Nombre (solo reseñas reales)" },
       { "type": "text", "id": "detalle", "label": "Ciudad o detalle (solo reseñas reales)" },

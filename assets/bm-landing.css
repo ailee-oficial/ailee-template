@@ -186,3 +186,51 @@
 .bm-galeria__item figcaption,.bm-videos__item figcaption{margin-top:6px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
 .bm-videos__lista{grid-auto-columns:var(--bm-video-ancho,60%)}
 .bm-videos__v{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:14px;background:#000}
+
+/* BM-RESENAS-V2 · Conversaciones independientes · 2026-10-24 */
+.bm-resenas__lista{display:grid;gap:12px}
+.bm-resenas--carrusel .bm-resenas__lista{grid-auto-flow:column;grid-auto-columns:84%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+.bm-resenas--cuadricula .bm-resenas__lista{grid-template-columns:repeat(2,minmax(0,1fr))}
+.bm-resena{display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:14px;background:var(--bm-tarjeta-bg,#ffffff);color:var(--bm-tarjeta-fg,#111827);scroll-snap-align:start}
+.bm-resena__cabecera{display:flex;align-items:center;gap:8px;min-height:32px}
+.bm-resena__foto{line-height:0}
+.bm-resena__ampliar{display:block;position:relative;border-radius:10px;overflow:hidden}
+.bm-resena__ampliar::after{content:'+';position:absolute;right:8px;bottom:8px;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#ffffffed;color:#111827;font:700 22px/1 system-ui,sans-serif;box-shadow:0 2px 6px #0003}
+.bm-resena__ampliar:focus-visible{outline:3px solid currentColor;outline-offset:2px}
+.bm-resena__foto img{display:block;width:100%;height:auto;border-radius:10px}
+.bm-resena__estrellas{color:var(--bm-estrellas,#f5a623);letter-spacing:2px;font-size:16px;line-height:1}
+.bm-resena__texto{margin:0;line-height:1.45;font-size:15px}
+.bm-resena__autor{margin:0;font-weight:800;font-size:14px}
+.bm-resenas--cuadricula .bm-resena{min-width:0;box-shadow:0 3px 12px #00000014}
+.bm-resenas--cuadricula .bm-resena__texto{font-size:14px}
+.bm-resenas--cuadricula .bm-resena__foto{margin-top:auto}
+@media (max-width:340px){.bm-resenas--cuadricula .bm-resenas__lista{grid-template-columns:1fr}}
+.bm-resena__etiqueta{margin:0;padding-top:7px;border-top:1px dashed currentColor;font-size:13px;line-height:1.3;opacity:.88}
+.bm-resenas__aviso{margin:10px 0 0;font-size:13px;line-height:1.35;opacity:.88;text-align:center}
+.bm-resena__avatar{display:block;width:32px;height:32px;border-radius:50%;overflow:hidden;line-height:0}
+.bm-resena__avatar img{width:100%;height:100%;object-fit:cover}
+.bm-resena__avatar--icon{display:grid;place-items:center;background:#d7dee3;color:#52616b}
+.bm-resena__avatar--icon svg{width:22px;height:22px;fill:currentColor}
+.bm-resenas--chat .bm-resenas__lista{gap:10px;padding:14px;border-radius:16px;background:var(--bm-chat-bg,#e5ddd5)}
+.bm-resenas--chat .bm-resena{padding:0;background:transparent;gap:7px}
+.bm-resenas--chat .bm-resena__texto{max-width:86%;padding:10px 12px;border-radius:4px 14px 14px 14px;background:var(--bm-tarjeta-bg,#ffffff);box-shadow:0 1px 1px rgba(0,0,0,.12)}
+.bm-resena__respuesta{margin:0;max-width:86%;align-self:flex-end;padding:10px 12px;border-radius:14px 4px 14px 14px;background:var(--bm-burbuja-propia,#dcf8c6);box-shadow:0 1px 1px rgba(0,0,0,.12);font-size:15px;line-height:1.45}
+.bm-resena__respuesta-autor{display:block;font-size:13px;font-weight:800;margin-bottom:2px}
+.bm-resenas--chat .bm-resena__etiqueta{max-width:100%;background:#fff;padding:7px 9px;border:0;border-radius:8px}
+html.bm-dinamica-activa .bm-resenas--cuadricula .bm-resena{transition:transform .25s ease,box-shadow .25s ease}
+html.bm-dinamica-activa .bm-resenas--cuadricula .bm-resena:hover{transform:translateY(-4px);box-shadow:0 10px 24px #0000001c}
+html:has([data-bm-ajustes][data-movimiento-pagina="true"]) .bm-resenas--chat .bm-resenas__lista{grid-auto-flow:column;grid-auto-columns:minmax(250px,82%);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+html:has([data-bm-ajustes][data-movimiento-pagina="true"]) .bm-resenas--chat .bm-resenas__lista::-webkit-scrollbar{display:none}
+.bm-resena-modal{max-width:min(94vw,780px);max-height:92vh;padding:12px;border:0;border-radius:14px;background:#fff;box-shadow:0 20px 70px #0006}
+.bm-resena-modal::backdrop{background:#000b}
+.bm-resena-modal img{display:block;max-width:100%;max-height:calc(92vh - 24px);object-fit:contain}
+.bm-resena-modal__cerrar{position:absolute;right:18px;top:18px;width:38px;height:38px;border:0;border-radius:50%;background:#fff;color:#111827;font:700 28px/1 system-ui;cursor:pointer}
+@media (prefers-reduced-motion:reduce){html.bm-dinamica-activa .bm-sec.bm-entrada,html.bm-dinamica-activa .bm-sec.bm-entrada.bm-en-vista{opacity:1;transform:none;transition:none}html.bm-dinamica-activa .bm-resena{transition:none!important}}
+.bm-resena__titulo{margin:0;font-size:16px;line-height:1.35;font-weight:800;color:inherit}
+.bm-resena{min-width:0;overflow-wrap:anywhere}
+.bm-resenas--chat .bm-resenas__lista{grid-auto-flow:column;grid-auto-columns:minmax(250px,86%);overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 4px 12px;background:transparent;border-radius:0;align-items:start}
+.bm-resenas--chat .bm-resena{padding:14px;background:var(--bm-chat-bg,#e5ddd5);border-radius:18px;box-shadow:0 3px 12px #00000014;min-width:0}
+.bm-resenas--chat .bm-resena__cabecera{padding-bottom:10px;border-bottom:1px solid #0002}
+.bm-resenas--chat .bm-resena__foto{width:86%;align-self:flex-start}
+.bm-resenas--chat .bm-resena__respuesta{color:#153c25}
+@media(min-width:750px){.bm-resenas--chat .bm-resenas__lista,html:has([data-bm-ajustes][data-movimiento-pagina="true"]) .bm-resenas--chat .bm-resenas__lista{grid-auto-columns:minmax(280px,32%)}}
