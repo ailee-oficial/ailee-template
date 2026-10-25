@@ -29,7 +29,11 @@
         {%- assign es_ia = false -%}
         {%- if b.origen == 'ia_recreada' -%}{%- assign es_ia = true -%}{%- endif -%}
         <article class="bm-resena" data-bm-bloque="resena" data-origen="{{ b.origen }}" {{ block.shopify_attributes }}>
+          {%- if s.disposicion == 'chat' -%}
+            <div class="bm-chat__estado" aria-hidden="true"><span>9:41</span><span>▮▮▮ ◉ ▰</span></div>
+          {%- endif -%}
           <div class="bm-resena__cabecera">
+          {%- if s.disposicion == 'chat' -%}<span class="bm-chat__volver" aria-hidden="true">‹</span>{%- endif -%}
           {%- if b.avatar != blank -%}
             <span class="bm-resena__avatar">{{ b.avatar | image_url: width: 96 | image_tag: loading: 'lazy', widths: '48, 96', alt: '' }}</span>
           {%- elsif s.disposicion == 'chat' or es_ia -%}
@@ -37,9 +41,11 @@
               <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.3-7 8-7s8 2.6 8 7"/></svg>
             </span>
           {%- endif -%}
-          {%- if es_ia -%}<span class="bm-resena__autor">Ejemplo ilustrativo</span>
+          {%- if es_ia -%}{% if s.disposicion == "chat" %}<span class="bm-resena__autor">Conversación</span>{% endif %}
           {%- elsif b.nombre != blank or b.detalle != blank -%}<span class="bm-resena__autor">{{ b.nombre | escape }}{% if b.nombre != blank and b.detalle != blank %} · {% endif %}{{ b.detalle | escape }}</span>{%- endif -%}
+          {%- if s.disposicion == 'chat' -%}<span class="bm-chat__llamada" aria-hidden="true">♧ ☎</span>{%- endif -%}
           </div>
+          {%- if s.disposicion == 'chat' -%}<div class="bm-chat__mensajes"><span class="bm-chat__dia">HOY</span>{%- endif -%}
           {%- if b.estrellas > 0 -%}
             <div class="bm-resena__estrellas" role="img" aria-label="{% if es_ia %}Calificación ilustrativa generada con IA: {% endif %}{{ b.estrellas }} de 5">{% for i in (1..b.estrellas) %}★{% endfor %}</div>
           {%- endif -%}
@@ -56,6 +62,9 @@
           {%- endif -%}
           {%- if s.disposicion == 'chat' and b.respuesta_tienda != blank -%}
             <p class="bm-resena__respuesta"><span class="bm-resena__respuesta-autor">La tienda</span>{{ b.respuesta_tienda | escape }}</p>
+          {%- endif -%}
+          {%- if s.disposicion == 'chat' -%}
+            </div><div class="bm-chat__entrada" aria-hidden="true"><span>＋</span><span class="bm-chat__campo"></span><span>◎</span><span class="bm-chat__micro">●</span></div>
           {%- endif -%}
           {%- if es_ia -%}
             <p class="bm-resena__etiqueta">{{ b.etiqueta | default: 'Recreación con IA · no es la reseña de un comprador' | escape }}</p>
@@ -117,6 +126,7 @@
       { "type": "image_picker", "id": "avatar", "label": "Foto pequeña de persona (real con permiso o sintética con origen IA)" },
       { "type": "text", "id": "foto_alt", "label": "Descripción de la foto" },
       { "type": "textarea", "id": "prompt", "label": "Prompt del texto IA (registro interno)" },
+      { "type": "select", "id": "foto_origen", "label": "Procedencia de la foto", "options": [{ "value": "ia_generada", "label": "Generada con IA" }, { "value": "reutilizada", "label": "Material existente del producto" }], "default": "ia_generada" },
       { "type": "textarea", "id": "foto_prompt", "label": "Prompt de la foto IA (registro interno)" },
       { "type": "textarea", "id": "avatar_prompt", "label": "Prompt del avatar IA (registro interno)" },
       { "type": "text", "id": "titulo", "label": "Título de la reseña" },

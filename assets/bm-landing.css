@@ -234,3 +234,27 @@ html:has([data-bm-ajustes][data-movimiento-pagina="true"]) .bm-resenas--chat .bm
 .bm-resenas--chat .bm-resena__foto{width:86%;align-self:flex-start}
 .bm-resenas--chat .bm-resena__respuesta{color:#153c25}
 @media(min-width:750px){.bm-resenas--chat .bm-resenas__lista,html:has([data-bm-ajustes][data-movimiento-pagina="true"]) .bm-resenas--chat .bm-resenas__lista{grid-auto-columns:minmax(280px,32%)}}
+
+/* BM-RESENAS-V3 · tarjeta con foto compacta y conversación en teléfono. */
+.bm-resenas:not(.bm-resenas--chat) .bm-resena{padding:22px;border:1px solid #edd8d5;border-radius:20px;gap:14px}
+.bm-resenas:not(.bm-resenas--chat) .bm-resena__foto{width:min(42%,180px);margin-top:0}
+.bm-resenas:not(.bm-resenas--chat) .bm-resena__avatar{width:48px;height:48px;flex-shrink:0}
+.bm-resenas:not(.bm-resenas--chat) .bm-resena__titulo{font-size:18px}
+.bm-resenas--chat .bm-resena{padding:0;border:1px solid #c7c7c7;border-radius:34px;overflow:hidden;gap:0;background:#f5f5f5;color:#111;box-shadow:0 12px 30px #0002}
+.bm-chat__estado{display:flex;justify-content:space-between;padding:16px 22px 8px;font:600 13px/1.4 system-ui;color:#111;background:#f7f7f7}
+.bm-resenas--chat .bm-resena__cabecera{padding:8px 14px 12px;min-height:54px;gap:9px;background:#f7f7f7;border-bottom:1px solid #b9b9b9}
+.bm-resenas--chat .bm-resena__autor{font-size:13px;font-weight:600;flex:1}
+.bm-chat__volver{font-size:32px;line-height:1;color:#087fff}
+.bm-chat__llamada{color:#087fff;font-size:20px;white-space:nowrap}
+.bm-chat__mensajes{display:flex;flex-direction:column;gap:10px;padding:16px 12px 20px;background-color:var(--bm-chat-bg,#e7dfd5);background-image:radial-gradient(#b9aa9826 1px,transparent 1px);background-size:20px 20px}
+.bm-chat__dia{align-self:center;padding:5px 12px;border-radius:8px;background:#dce9e5;font-size:12px;color:#52615d;margin-bottom:4px}
+.bm-resenas--chat .bm-resena__texto{color:#111;background:#fff;font-size:15px;max-width:91%}
+.bm-resenas--chat .bm-resena__respuesta{color:#111;background:#d9f7bd;font-size:15px;max-width:91%}
+.bm-resenas--chat .bm-resena__respuesta-autor{display:none}
+.bm-resenas--chat .bm-resena__foto{width:91%;padding:7px;background:#fff;border-radius:12px}
+.bm-resenas--chat .bm-resena__titulo{font-size:14px;margin-bottom:3px}
+.bm-chat__entrada{display:flex;align-items:center;gap:12px;padding:10px 14px 20px;background:#f7f7f7;border-top:1px solid #bbb;color:#45565e;font-size:23px}
+.bm-chat__campo{flex:1;height:31px;border:1px solid #ddd;border-radius:24px;background:white}
+.bm-chat__micro{display:grid;place-items:center;background:#1eb65c;color:white;width:32px;height:32px;border-radius:50%;font-size:14px}
+.bm-resenas--chat .bm-resena__etiqueta{margin:0;padding:9px 14px;background:#fff;border-radius:0;font-size:13px;line-height:1.4}
+@media(max-width:749px){.bm-resenas--cuadricula .bm-resenas__lista{grid-template-columns:1fr}.bm-resenas--chat .bm-resenas__lista{grid-auto-columns:minmax(250px,94%)}}
