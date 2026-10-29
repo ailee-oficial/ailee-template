@@ -71,12 +71,13 @@
   Originales y recortes: ailee/productos/_prueba-social/.
 
   Para agregar otra: subir la foto recortada 1:1 a Shopify Files y sumar el texto,
-  la URL y las estrellas a las TRES listas en el mismo orden, separando con `|`.
+  el NOMBRE del archivo en Files (no la URL: así sobrevive a un cambio de tienda) y las
+  estrellas a las TRES listas en el mismo orden, separando con `|`.
   Solo experiencia de compra (llegó rápido, bien empacado, la talla quedó): eso
   viaja de un producto a otro. El bloque se auto-desactiva si las listas se vacían.
 {%- endcomment -%}
 {%- assign pc_c_txt = 'Ay Dios mio quedaron divinos!! ya los estrené hoy y toda la gente preguntando donde los compré jsjs|Hola buenas! ya me llegaron las sandalias, quedaron divinas, super comodas desde que me las puse|Buenas tardes, ya recibí mi sandalia sueca, la calidad me sorprendió, mil gracias|Buenas noches, ya tengo puesta la sandalia sueca, quedó perfecta de talla y súper fresquita para el pie|hola,ya me llegaron,la verdad son muy comodos y he caminado bastante con ellos,muchas gracias por la atencion' | split: '|' -%}
-{%- assign pc_c_img = 'https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-01.webp|https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-02.webp|https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-03.webp|https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-04.webp|https://cdn.shopify.com/s/files/1/0659/7214/2165/files/ailee-resena-whatsapp-05.webp' | split: '|' -%}
+{%- assign pc_c_img = 'ailee-resena-whatsapp-01.webp|ailee-resena-whatsapp-02.webp|ailee-resena-whatsapp-03.webp|ailee-resena-whatsapp-04.webp|ailee-resena-whatsapp-05.webp' | split: '|' -%}
 {%- assign pc_c_est = '5|5|5|5|5' | split: '|' -%}
 
 {%- if pc_c_txt.size > 0 -%}
@@ -91,7 +92,7 @@
         {%- assign i = forloop.index0 -%}
         {%- assign n = pc_c_est[i] | plus: 0 -%}
         <div class="testimonial-card">
-          {%- if pc_c_img[i] != blank -%}{%- assign pc_u = pc_c_img[i] -%}{%- if pc_u contains '?' -%}{%- assign pc_s = '&' -%}{%- else -%}{%- assign pc_s = '?' -%}{%- endif -%}<img src="{{ pc_u }}{{ pc_s }}width=720" srcset="{{ pc_u }}{{ pc_s }}width=360 360w, {{ pc_u }}{{ pc_s }}width=540 540w, {{ pc_u }}{{ pc_s }}width=720 720w" sizes="(min-width: 768px) 300px, 82vw" loading="lazy" alt="Mensaje de una clienta de Ailee al recibir su pedido">{%- endif -%}
+          {%- if pc_c_img[i] != blank -%}{%- assign pc_u = pc_c_img[i] -%}{%- unless pc_u contains '//' -%}{%- assign pc_u = pc_u | file_url -%}{%- endunless -%}{%- if pc_u contains '?' -%}{%- assign pc_s = '&' -%}{%- else -%}{%- assign pc_s = '?' -%}{%- endif -%}<img src="{{ pc_u }}{{ pc_s }}width=720" srcset="{{ pc_u }}{{ pc_s }}width=360 360w, {{ pc_u }}{{ pc_s }}width=540 540w, {{ pc_u }}{{ pc_s }}width=720 720w" sizes="(min-width: 768px) 300px, 82vw" loading="lazy" alt="Mensaje de una clienta de Ailee al recibir su pedido">{%- endif -%}
           <div class="testimonial-body-content">
             <div class="testimonial-stars">{% for s in (1..n) %}&#9733;{% endfor %}</div>
             <p class="testimonial-text">&ldquo;{{ txt }}&rdquo;</p>
