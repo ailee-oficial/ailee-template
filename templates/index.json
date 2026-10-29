@@ -37,7 +37,7 @@
             "foco": 70,
             "foco_movil": 75,
             "titulo": "Comodidad\nque se nota.",
-            "subtitulo": "Sandalias, suecos y tenis para cada día",
+            "subtitulo": "Suecos y tenis para cada día",
             "boton": "Ver calzado",
             "firma": "",
             "tono": "oscuro"
@@ -74,9 +74,10 @@
         "categoria_1": {
           "type": "categoria",
           "settings": {
-            "respaldo": "ah-cat-sandalias.webp",
-            "nombre": "Sandalias",
-            "enlace": "/products/sandalia-unisex-y54-2"
+            "respaldo": "ah-cat-suecos.webp",
+            "nombre": "Samba",
+            "enlace": "/products/samba-sueco-y58",
+            "imagen": "shopify://shop_images/samba-sueco-y58_color_negro.webp"
           }
         },
         "categoria_2": {
@@ -163,7 +164,7 @@
       "settings": {
         "eyebrow": "Calzado",
         "titulo": "Pasos con estilo",
-        "texto": "Sandalias, suecos y tenis pensados para acompañarte todo el día: cómodos, femeninos y fáciles de combinar.",
+        "texto": "Suecos y tenis pensados para acompañarte todo el día: cómodos, femeninos y fáciles de combinar.",
         "boton": "Ver calzado",
         "pt": 72,
         "pb": 40
@@ -172,8 +173,10 @@
         "foto_1": {
           "type": "foto",
           "settings": {
-            "respaldo": "ah-calzado-1.webp",
-            "alt": "Sandalias nude de dos correas"
+            "respaldo": "ah-calzado-2.webp",
+            "alt": "Suecos Samba negros en la calle",
+            "imagen": "shopify://shop_images/samba-y58_negro_calle.webp",
+            "enlace": "/products/samba-sueco-y58"
           }
         },
         "foto_2": {
@@ -241,9 +244,10 @@
             "respaldo": "ah-banner-detalles.webp",
             "tono": "oscuro",
             "titulo": "Los detalles\ntambién cuentan",
-            "texto": "Hebillas, moños y texturas suaves que hacen la diferencia.",
-            "boton": "Ver sandalias",
-            "enlace": "/products/sandalia-unisex-y54-2"
+            "texto": "Moños, plataformas y texturas suaves que hacen la diferencia.",
+            "boton": "Ver suecos",
+            "enlace": "/products/sueco-045",
+            "imagen": "shopify://shop_images/sueco-045_cierre.webp"
           }
         }
       },
