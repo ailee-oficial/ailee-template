@@ -1,0 +1,24 @@
+{%- comment -%}
+  Bloque «Nota HTML»: texto corto entre láminas (confianza, envío, avisos).
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign b = block.settings -%}
+<div class="bm-nota" data-bm-bloque="nota" data-bm-id="{{ block.id }}" style="--bm-nota-pad:{{ b.padding }}px;--bm-nota-tam:{{ b.tamano }}px;--bm-nota-align:{{ b.alineacion }};{% if b.fondo != blank %}--bm-nota-bg:{{ b.fondo }};{% endif %}{% if b.color != blank %}--bm-nota-fg:{{ b.color }};{% endif %}" {{ block.shopify_attributes }}>
+  {{ b.texto }}
+</div>
+
+{% schema %}
+{
+  "name": "Nota HTML",
+  "tag": null,
+  "settings": [
+    {"type": "richtext", "id": "texto", "label": "Texto", "default": "<p>Envío a toda Colombia · Pagas al recibir</p>"},
+    {"type": "color", "id": "fondo", "label": "Fondo", "info": "Vacío: el de la sección."},
+    {"type": "color", "id": "color", "label": "Texto", "info": "Vacío: el de la sección."},
+    {"type": "select", "id": "alineacion", "label": "Alineación", "options": [{"value": "center", "label": "Centro"}, {"value": "left", "label": "Izquierda"}], "default": "center"},
+    {"type": "range", "id": "padding", "label": "Espacio interno", "min": 4, "max": 32, "step": 2, "unit": "px", "default": 12},
+    {"type": "range", "id": "tamano", "label": "Tamaño del texto", "min": 12, "max": 20, "step": 1, "unit": "px", "default": 15}
+  ],
+  "presets": [{"name": "Nota HTML"}]
+}
+{% endschema %}

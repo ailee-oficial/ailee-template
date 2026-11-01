@@ -1,0 +1,16 @@
+{%- comment -%}
+  Bloque «Insignia»: una etiqueta corta, p. ej. «Pago contra entrega».
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+<p data-bm-bloque="insignia" {{ block.shopify_attributes }}><span class="bm-insignia">{{ block.settings.texto | escape }}</span></p>
+
+{% schema %}
+{
+  "name": "Insignia",
+  "tag": null,
+  "settings": [
+    {"type": "text", "id": "texto", "label": "Texto", "default": "Pago contra entrega"}
+  ],
+  "presets": [{"name": "Insignia"}]
+}
+{% endschema %}

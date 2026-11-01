@@ -1,0 +1,34 @@
+{%- comment -%}
+  Bloque «Fila» de «Tabla». En la comparativa «sí», «si», «✓» dibujan un check y «no», «✗» una cruz; cualquier
+  otro texto se muestra tal cual. El tipo de tabla y las columnas salen de la sección.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign modo = section.settings.modo -%}
+{%- assign tercera = false -%}
+{%- if section.settings.encabezado_3 != blank -%}{%- assign tercera = true -%}{%- endif -%}
+{%- assign b = block.settings -%}
+<tr data-bm-bloque="fila" {{ block.shopify_attributes }}>
+  <th scope="row">{{ b.c1 | escape }}</th>
+  {%- if modo == 'comparativa' -%}
+    {%- assign v2 = b.c2 | downcase | strip -%}
+    {%- assign v3 = b.c3 | downcase | strip -%}
+    <td class="bm-tabla__nos">{% if v2 == 'sí' or v2 == 'si' or v2 == '✓' %}<span class="bm-tabla__si" aria-label="sí">✓</span>{% elsif v2 == 'no' or v2 == '✗' %}<span class="bm-tabla__no" aria-label="no">✕</span>{% else %}{{ b.c2 | escape }}{% endif %}</td>
+    <td>{% if v3 == 'sí' or v3 == 'si' or v3 == '✓' %}<span class="bm-tabla__si" aria-label="sí">✓</span>{% elsif v3 == 'no' or v3 == '✗' %}<span class="bm-tabla__no" aria-label="no">✕</span>{% else %}{{ b.c3 | escape }}{% endif %}</td>
+  {%- else -%}
+    <td class="{% if modo == 'tabla' %}bm-tabla__nos{% endif %}">{{ b.c2 | escape }}</td>
+    {%- if modo == 'tabla' and tercera -%}<td>{{ b.c3 | escape }}</td>{%- endif -%}
+  {%- endif -%}
+</tr>
+
+{% schema %}
+{
+  "name": "Fila",
+  "tag": null,
+  "settings": [
+    {"type": "text", "id": "c1", "label": "Columna 1 (etiqueta)", "default": "Material"},
+    {"type": "text", "id": "c2", "label": "Columna 2 (valor o nuestro producto)", "default": "Valor"},
+    {"type": "text", "id": "c3", "label": "Columna 3 (comparativa u otra medida)"}
+  ],
+  "presets": [{"name": "Fila"}]
+}
+{% endschema %}

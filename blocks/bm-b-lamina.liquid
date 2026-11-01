@@ -1,0 +1,56 @@
+{%- comment -%}
+  Bloque «Lámina»: imagen vertical a ancho completo con el texto de arte integrado. Con «Tocar la lámina abre el
+  formulario», toda la imagen es un botón que espera a Releasit sin cambiar su contenido.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign b = block.settings -%}
+{%- if b.prioridad -%}
+  {%- assign carga = 'eager' -%}
+  {%- assign prioridad = 'high' -%}
+{%- else -%}
+  {%- assign carga = 'lazy' -%}
+  {%- assign prioridad = 'auto' -%}
+{%- endif -%}
+<figure class="bm-lamina" data-bm-bloque="lamina" data-bm-id="{{ block.id }}" {{ block.shopify_attributes }}>
+  {%- if b.titulo_oculto != blank -%}
+    {%- if b.nivel == 'h1' -%}
+      <h1 class="bm-sr">{{ b.titulo_oculto | escape }}</h1>
+    {%- elsif b.nivel == 'h2' -%}
+      <h2 class="bm-sr">{{ b.titulo_oculto | escape }}</h2>
+    {%- endif -%}
+  {%- endif -%}
+  {%- if b.imagen != blank -%}
+    {%- capture lamina_imagen -%}
+      <picture>
+        {%- if b.imagen_escritorio != blank -%}
+          <source media="(min-width: 750px)" srcset="{{ b.imagen_escritorio | image_url: width: 1600 }}">
+        {%- endif -%}
+        {{ b.imagen | image_url: width: 1600 | image_tag: loading: carga, fetchpriority: prioridad, sizes: '(min-width: 750px) 780px, 100vw', widths: '360, 540, 720, 900, 1080, 1280, 1600', alt: b.texto_alt }}
+      </picture>
+    {%- endcapture -%}
+    {%- if b.abre_formulario -%}
+      <button type="button" class="bm-lamina__boton" data-bm-cta="lamina" aria-haspopup="dialog" onclick="event.preventDefault();var a=this,f=function(){return Array.prototype.slice.call(document.querySelectorAll('#_rsi-buy-now-button,._rsi-buy-now-button,._rsi-buy-now-button-product')).find(function(x){return x.offsetWidth*x.offsetHeight})};if(f()){f().click();return}if(window.__rsiW)return;window.__rsiW=1;var n=0;var i=setInterval(function(){var x=f();if(x){clearInterval(i);window.__rsiW=0;x.click()}else if(++n===200){clearInterval(i);window.__rsiW=0}},150)">{{ lamina_imagen }}</button>
+    {%- else -%}
+      {{ lamina_imagen }}
+    {%- endif -%}
+  {%- elsif request.design_mode -%}
+    {{ 'image' | placeholder_svg_tag: 'bm-placeholder' }}
+  {%- endif -%}
+</figure>
+
+{% schema %}
+{
+  "name": "Lámina",
+  "tag": null,
+  "settings": [
+    {"type": "image_picker", "id": "imagen", "label": "Imagen (móvil y escritorio)"},
+    {"type": "image_picker", "id": "imagen_escritorio", "label": "Imagen solo para escritorio (opcional)"},
+    {"type": "textarea", "id": "texto_alt", "label": "Texto integrado en la imagen", "info": "Se usa como texto alternativo. Copia aquí el texto que se lee en la lámina."},
+    {"type": "text", "id": "titulo_oculto", "label": "Título para buscadores (no visible)"},
+    {"type": "select", "id": "nivel", "label": "Nivel del título", "options": [{"value": "h1", "label": "H1 (solo la primera pantalla)"}, {"value": "h2", "label": "H2"}, {"value": "ninguno", "label": "Sin título"}], "default": "h2"},
+    {"type": "checkbox", "id": "prioridad", "label": "Es la primera pantalla (carga prioritaria)", "default": false},
+    {"type": "checkbox", "id": "abre_formulario", "label": "Tocar la lámina abre el formulario", "info": "Úsalo si la lámina dibuja un botón. El botón real sigue siendo necesario.", "default": false}
+  ],
+  "presets": [{"name": "Lámina"}]
+}
+{% endschema %}

@@ -1,0 +1,26 @@
+{%- comment -%}
+  Bloque «Lista»: elementos de una línea con su símbolo.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign b = block.settings -%}
+{%- assign lineas = b.items | newline_to_br | split: '<br />' -%}
+<ul class="bm-lista" data-bm-bloque="lista" {{ block.shopify_attributes }}>
+  {%- for linea in lineas -%}
+    {%- assign item = linea | strip -%}
+    {%- if item != blank -%}
+      <li><span class="bm-lista__icono" aria-hidden="true">{{ b.icono | default: '✓' | escape }}</span><span>{{ item | escape }}</span></li>
+    {%- endif -%}
+  {%- endfor -%}
+</ul>
+
+{% schema %}
+{
+  "name": "Lista",
+  "tag": null,
+  "settings": [
+    {"type": "textarea", "id": "items", "label": "Elementos (uno por línea)", "default": "Primer beneficio\nSegundo beneficio"},
+    {"type": "text", "id": "icono", "label": "Símbolo", "default": "✓"}
+  ],
+  "presets": [{"name": "Lista"}]
+}
+{% endschema %}

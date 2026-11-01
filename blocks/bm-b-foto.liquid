@@ -1,0 +1,26 @@
+{%- comment -%}
+  Bloque «Foto suelta», hijo de «Galería por color»: reemplaza las fotos del producto en la galería. Declara su
+  color («NEGRO»; vacío = se ve con todos).
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign product = closest.product | default: product -%}
+{%- assign b = block.settings -%}
+{%- if b.imagen != blank -%}
+  {%- assign k = b.color | handleize | remove: '-' -%}
+  {%- assign alt = b.alt | default: product.title -%}
+  {%- render 'bm-v2-foto', imagen: b.imagen, clave: k, alt: alt, media: '', n: '', carga: 'lazy', prioridad: 'auto', sid: block.id, attrs: block.shopify_attributes -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Foto suelta",
+  "tag": null,
+  "settings": [
+    {"type": "paragraph", "content": "Reemplaza las fotos del producto en la galería (necesita el bloque «Galería por color»). Misma proporción para todas."},
+    {"type": "image_picker", "id": "imagen", "label": "Foto"},
+    {"type": "text", "id": "color", "label": "Color de la foto", "info": "Como se llama en el producto, p. ej. NEGRO. Vacío: se ve con todos los colores."},
+    {"type": "text", "id": "alt", "label": "Texto alternativo"}
+  ],
+  "presets": [{"name": "Foto suelta"}]
+}
+{% endschema %}

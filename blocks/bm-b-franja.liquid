@@ -1,0 +1,63 @@
+{%- comment -%}
+  Bloque «Franja de confianza»: hasta cuatro promesas que el producto cumple, con ícono en fila o como lista con ✓,
+  y si se pide la fila de WhatsApp con el número de «Ajustes de la página». Una promesa vacía no se muestra.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign product = closest.product | default: product -%}
+{%- assign b = block.settings -%}
+{%- if b.estilo == 'lista' -%}
+  <ul class="bm-oferta__confianza bm-v2-franja--lista" data-bm-bloque="franja" {{ block.shopify_attributes }}>
+    {%- for n in (1..4) -%}
+      {%- assign kt = 'i' | append: n | append: '_titulo' -%}
+      {%- if b[kt] != blank -%}<li><span aria-hidden="true">✓</span><span>{{ b[kt] | escape }}</span></li>{%- endif -%}
+    {%- endfor -%}
+  </ul>
+{%- else -%}
+  <div class="bm-franja" data-bm-bloque="franja" {{ block.shopify_attributes }}>
+    {%- for n in (1..4) -%}
+      {%- assign kt = 'i' | append: n | append: '_titulo' -%}
+      {%- assign kx = 'i' | append: n | append: '_texto' -%}
+      {%- assign ki = 'i' | append: n | append: '_icono' -%}
+      {%- if b[kt] != blank -%}
+        <div class="bm-franja__fila">
+          {%- render 'bm-icono', icono: b[ki] -%}
+          <div><p class="bm-franja__titulo">{{ b[kt] | escape }}</p>{%- if b[kx] != blank -%}<p class="bm-franja__texto">{{ b[kx] | escape }}</p>{%- endif -%}</div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if b.whatsapp -%}
+      <a class="bm-franja__fila bm-franja__wa" href="#" data-bm-wa="{{ b.mensaje | append: ' ' | append: product.title | escape }}" target="_blank" rel="noopener" hidden>
+        {%- render 'bm-icono', icono: 'whatsapp' -%}
+        <div><p class="bm-franja__titulo">{{ b.wa_titulo | escape }}</p>{%- if b.wa_texto != blank -%}<p class="bm-franja__texto">{{ b.wa_texto | escape }}</p>{%- endif -%}</div>
+      </a>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Franja de confianza",
+  "tag": null,
+  "settings": [
+    {"type": "paragraph", "content": "Hasta cuatro promesas. Solo las que el producto cumple: una promesa vacía no se muestra."},
+    {"type": "select", "id": "estilo", "label": "Estilo", "options": [{"value": "iconos", "label": "Íconos en fila"}, {"value": "lista", "label": "Lista con ✓"}], "default": "iconos"},
+    {"type": "select", "id": "i1_icono", "label": "Ícono 1", "options": [{"value": "envio", "label": "Envío"}, {"value": "contraentrega", "label": "Pago contra entrega"}, {"value": "segura", "label": "Compra segura"}, {"value": "garantia", "label": "Garantía"}, {"value": "cambios", "label": "Cambios"}, {"value": "talla", "label": "Talla"}], "default": "contraentrega"},
+    {"type": "text", "id": "i1_titulo", "label": "Promesa 1", "default": "Pagas al recibir"},
+    {"type": "text", "id": "i1_texto", "label": "Detalle 1", "default": "contraentrega"},
+    {"type": "select", "id": "i2_icono", "label": "Ícono 2", "options": [{"value": "envio", "label": "Envío"}, {"value": "contraentrega", "label": "Pago contra entrega"}, {"value": "segura", "label": "Compra segura"}, {"value": "garantia", "label": "Garantía"}, {"value": "cambios", "label": "Cambios"}, {"value": "talla", "label": "Talla"}], "default": "envio"},
+    {"type": "text", "id": "i2_titulo", "label": "Promesa 2", "info": "Solo si el producto lo cumple, p. ej. Envío gratis."},
+    {"type": "text", "id": "i2_texto", "label": "Detalle 2"},
+    {"type": "select", "id": "i3_icono", "label": "Ícono 3", "options": [{"value": "envio", "label": "Envío"}, {"value": "contraentrega", "label": "Pago contra entrega"}, {"value": "segura", "label": "Compra segura"}, {"value": "garantia", "label": "Garantía"}, {"value": "cambios", "label": "Cambios"}, {"value": "talla", "label": "Talla"}], "default": "segura"},
+    {"type": "text", "id": "i3_titulo", "label": "Promesa 3", "default": "Compra segura"},
+    {"type": "text", "id": "i3_texto", "label": "Detalle 3", "default": "datos protegidos"},
+    {"type": "select", "id": "i4_icono", "label": "Ícono 4", "options": [{"value": "envio", "label": "Envío"}, {"value": "contraentrega", "label": "Pago contra entrega"}, {"value": "segura", "label": "Compra segura"}, {"value": "garantia", "label": "Garantía"}, {"value": "cambios", "label": "Cambios"}, {"value": "talla", "label": "Talla"}], "default": "garantia"},
+    {"type": "text", "id": "i4_titulo", "label": "Promesa 4"},
+    {"type": "text", "id": "i4_texto", "label": "Detalle 4"},
+    {"type": "checkbox", "id": "whatsapp", "label": "Fila de WhatsApp", "info": "Con el número de «Ajustes de la página». Sin número no se muestra.", "default": false},
+    {"type": "text", "id": "wa_titulo", "label": "Título de la fila de WhatsApp", "default": "¿Tienes dudas?"},
+    {"type": "text", "id": "wa_texto", "label": "Texto de la fila de WhatsApp", "default": "Te asesoramos por WhatsApp"},
+    {"type": "text", "id": "mensaje", "label": "Mensaje que se escribe en WhatsApp", "info": "Se completa con el nombre del producto.", "default": "Hola, tengo una pregunta sobre"}
+  ],
+  "presets": [{"name": "Franja de confianza"}]
+}
+{% endschema %}
