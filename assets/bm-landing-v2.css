@@ -1,0 +1,8 @@
+/* BreitMarket · kit de landing v2: lo común a todas las secciones v2. Se carga DESPUÉS de bm-landing.css (kit v1,
+   congelado: lo usan productos publicados, y la v2 reusa sus clases de escenas, láminas, reseñas, tablas, botón y
+   movimiento). El estilo propio de cada bloque vive en su `{% stylesheet %}` (blocks/bm-b-*.liquid), que Shopify
+   junta en styles.css solo con los bloques de la página.
+   Fuente canónica: claude-skills/core/tema_landing. Se instala con core/landing_tema.py. */
+.bm-v2 [hidden]{display:none!important}
+.bm-v2-aviso-editor{margin:0;padding:10px 12px;border:1px dashed #b45309;border-radius:8px;background:#fffbeb;color:#92400e;font:13px/1.4 system-ui,sans-serif;text-align:left}
+.bm-codigo{min-width:0}

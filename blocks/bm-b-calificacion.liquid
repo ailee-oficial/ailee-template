@@ -1,0 +1,25 @@
+{%- comment -%}
+  Bloque «Calificación»: solo con reseñas reales del producto. Si el valor está vacío no se muestra nada.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign b = block.settings -%}
+{%- if b.valor != blank -%}
+  <p class="bm-oferta__calif" data-bm-bloque="calificacion" {{ block.shopify_attributes }}>
+    <span class="bm-oferta__estrellas" aria-hidden="true">★★★★★</span>
+    <strong>{{ b.valor | escape }}</strong>
+    {%- if b.texto != blank -%}<span>{{ b.texto | escape }}</span>{%- endif -%}
+  </p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Calificación (solo real)",
+  "tag": null,
+  "settings": [
+    {"type": "paragraph", "content": "Solo con reseñas reales del producto. Vacío: no se muestra."},
+    {"type": "text", "id": "valor", "label": "Calificación", "info": "Ejemplo: 4,8"},
+    {"type": "text", "id": "texto", "label": "Texto", "info": "Ejemplo: 37 reseñas de compradores"}
+  ],
+  "presets": [{"name": "Calificación (solo real)"}]
+}
+{% endschema %}

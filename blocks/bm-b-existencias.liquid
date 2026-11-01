@@ -1,0 +1,66 @@
+{%- comment -%}
+  Bloque «Existencias reales»: «¡Quedan 4 unidades!» de la variante elegida, SOLO cuando Shopify rastrea su
+  inventario (inventory_management = shopify) y quedan entre 1 y el umbral. Sin ese dato real no se muestra: nunca
+  una cifra inventada. Cambia con la variante (<bm-existencias>).
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign product = closest.product | default: product -%}
+{%- comment -%} La variante con que abre la página (bm-v2-inicial): un theme block no ve las variables de la sección. {%- endcomment -%}
+{%- capture vid -%}{%- render 'bm-v2-inicial', product: product, color: section.settings.color_inicial, opcion: section.settings.opcion_color -%}{%- endcapture -%}
+{%- assign vid = vid | plus: 0 -%}
+{%- assign variante = product.selected_or_first_available_variant -%}
+{%- for v in product.variants -%}{%- if v.id == vid -%}{%- assign variante = v -%}{%- endif -%}{%- endfor -%}
+{%- assign b = block.settings -%}
+{%- assign q = 0 -%}
+{%- assign mostrar = false -%}
+{%- if variante.inventory_management == 'shopify' -%}
+  {%- assign q = variante.inventory_quantity | default: 0 -%}
+  {%- if q > 0 and q <= b.umbral -%}{%- assign mostrar = true -%}{%- endif -%}
+{%- endif -%}
+<bm-existencias class="bm-v2-existencias" data-bm-bloque="existencias" data-umbral="{{ b.umbral }}" data-texto="{{ b.texto | escape }}" data-texto-una="{{ b.texto_una | escape }}" {{ block.shopify_attributes }}{% unless mostrar %} hidden{% endunless %}>
+  <span class="bm-v2-existencias__punto" aria-hidden="true"></span>
+  <span data-bm-texto>{%- if mostrar -%}{%- if q == 1 -%}{{ b.texto_una | escape }}{%- else -%}{{ b.texto | replace: '[n]', q | escape }}{%- endif -%}{%- endif -%}</span>
+</bm-existencias>
+
+{% stylesheet %}
+.bm-v2-existencias{display:none}
+.bm-v2-existencias:not([hidden]){display:flex;align-items:center;justify-content:center;gap:8px;margin:0;font-size:14px;font-weight:700;line-height:1.3}
+.bm-v2-existencias__punto{flex:0 0 auto;width:9px;height:9px;border-radius:50%;background:#dc2626;box-shadow:0 0 0 3px rgba(220,38,38,.18)}
+.bm-escena__panel .bm-v2-existencias:not([hidden]){justify-content:var(--bm-precio-align,flex-start)}
+{% endstylesheet %}
+
+{% javascript %}
+// Se registra con el motor del kit (assets/bm-landing.js) sin importar qué script carga primero.
+(window.BMLandingBloques = window.BMLandingBloques || []).push(({ Bloque, actual, elegir, buscar, valorDeClave }) => {
+  if (customElements.get('bm-existencias')) return;
+  customElements.define('bm-existencias', class extends Bloque {
+    iniciar() {
+      this.alVariar((v) => this.pintar(v));
+      const v = this.p && actual(this.p);
+      if (v) this.pintar(v);
+    }
+    pintar(v) {
+      const q = v.q;
+      const ok = typeof q === 'number' && q > 0 && q <= Number(this.dataset.umbral || 0);
+      this.hidden = !ok;
+      if (!ok) return;
+      const t = this.querySelector('[data-bm-texto]');
+      if (t) t.textContent = q === 1 ? (this.dataset.textoUna || '') : String(this.dataset.texto || '').split('[n]').join(String(q));
+    }
+  });
+});
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Existencias reales",
+  "tag": null,
+  "settings": [
+    {"type": "paragraph", "content": "Solo con inventario rastreado por Shopify en la variante elegida: sin ese dato el bloque no se muestra."},
+    {"type": "range", "id": "umbral", "label": "Mostrar cuando queden", "min": 1, "max": 50, "step": 1, "unit": "u", "default": 10},
+    {"type": "text", "id": "texto", "label": "Texto", "default": "¡Quedan [n] unidades!", "info": "[n] se cambia por las unidades reales."},
+    {"type": "text", "id": "texto_una", "label": "Texto con una unidad", "default": "¡Queda la última unidad!"}
+  ],
+  "presets": [{"name": "Existencias reales"}]
+}
+{% endschema %}

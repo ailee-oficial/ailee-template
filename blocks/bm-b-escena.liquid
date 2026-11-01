@@ -1,0 +1,32 @@
+{%- comment -%}
+  Bloque «Escena» de «Galería»: el producto en una ocasión, o una captura real de un cliente, con su etiqueta. Con
+  «Cargar las fotos después del botón» en la sección, la foto baja después del botón y del pixel (bm-diferir).
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign diferir = section.settings.diferir -%}
+{%- assign b = block.settings -%}
+<figure class="bm-galeria__item" data-bm-bloque="escena"{% if diferir %} data-bm-diferido{% endif %} {{ block.shopify_attributes }}>
+  {%- if b.imagen != blank -%}
+    {%- capture foto -%}{{ b.imagen | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 360px, 75vw', widths: '360, 540, 720, 900', alt: b.etiqueta }}{%- endcapture -%}
+    {%- if diferir -%}
+      {{ foto | replace: ' srcset="', ' data-bm-srcset="' | replace: ' src="', ' data-bm-src="' }}
+    {%- else -%}
+      {{ foto }}
+    {%- endif -%}
+  {%- elsif request.design_mode -%}
+    {{ 'image' | placeholder_svg_tag: 'bm-placeholder' }}
+  {%- endif -%}
+  {%- if b.etiqueta != blank -%}<figcaption>{{ b.etiqueta | escape }}</figcaption>{%- endif -%}
+</figure>
+
+{% schema %}
+{
+  "name": "Escena",
+  "tag": null,
+  "settings": [
+    {"type": "image_picker", "id": "imagen", "label": "Foto"},
+    {"type": "text", "id": "etiqueta", "label": "Etiqueta", "default": "En la oficina"}
+  ],
+  "presets": [{"name": "Escena"}]
+}
+{% endschema %}

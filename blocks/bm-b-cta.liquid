@@ -1,0 +1,27 @@
+{%- comment -%}
+  Bloque «Botón de compra»: abre el formulario contra entrega de Releasit con el botón canónico `bm-cta` y nunca navega (G11).
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign b = block.settings -%}
+<div data-bm-bloque="cta" {{ block.shopify_attributes }}>
+  {%- render 'bm-cta', texto: b.texto, subtexto: b.subtexto, fondo: b.fondo, color: b.color, franja: b.franja, ancho: b.ancho, alineacion: b.alineacion, pad_y: b.pad_y, pulso: b.pulso -%}
+</div>
+
+{% schema %}
+{
+  "name": "Botón de compra",
+  "tag": null,
+  "settings": [
+    {"type": "text", "id": "texto", "label": "Texto del botón", "default": "Pedir ahora · pago contra entrega"},
+    {"type": "text", "id": "subtexto", "label": "Línea bajo el botón", "default": "Pagas al recibir"},
+    {"type": "color", "id": "fondo", "label": "Fondo del botón", "info": "Vacío: el de «Ajustes de la página»."},
+    {"type": "color", "id": "color", "label": "Texto del botón", "info": "Vacío: el de «Ajustes de la página»."},
+    {"type": "color", "id": "franja", "label": "Fondo alrededor del botón", "info": "Vacío: transparente."},
+    {"type": "select", "id": "ancho", "label": "Ancho del botón", "options": [{"value": "completo", "label": "Completo"}, {"value": "auto", "label": "Según el texto"}], "default": "completo"},
+    {"type": "select", "id": "alineacion", "label": "Alineación", "options": [{"value": "center", "label": "Centro"}, {"value": "flex-start", "label": "Izquierda"}, {"value": "flex-end", "label": "Derecha"}], "default": "center"},
+    {"type": "range", "id": "pad_y", "label": "Espacio vertical alrededor", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 14},
+    {"type": "checkbox", "id": "pulso", "label": "Animación suave de pulso", "default": false}
+  ],
+  "presets": [{"name": "Botón de compra"}]
+}
+{% endschema %}

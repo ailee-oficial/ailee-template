@@ -1,0 +1,21 @@
+{%- comment -%}
+  Bloque «Código propio»: HTML, Liquid y <script> en línea de ESTE producto (ajuste `liquid` de Shopify: sin las
+  etiquetas javascript, stylesheet ni schema, hasta 50 KB). Vive en la plantilla exclusiva y solo afecta a
+  esa página. Controles: validar_plantilla (tamaño, etiquetas, /rsi-btn-hook, scripts solo de los dominios de
+  config/landing_codigo_propio.json) y landing_qa.mjs (la variante sigue llegando a [name=id], el botón de Releasit
+  sigue, sin errores de consola).
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+<div class="bm-codigo" data-bm-bloque="codigo" {{ block.shopify_attributes }}>{{ block.settings.codigo }}</div>
+
+{% schema %}
+{
+  "name": "Código propio",
+  "tag": null,
+  "settings": [
+    {"type": "paragraph", "content": "Solo para esta página. Sin las etiquetas javascript, stylesheet ni schema; hasta 50 KB. Los scripts externos, solo de los dominios permitidos. La variante sigue escribiéndose en el formulario y el botón de Releasit no se toca."},
+    {"type": "liquid", "id": "codigo", "label": "Código (HTML, Liquid y <script>)"}
+  ],
+  "presets": [{"name": "Código propio"}]
+}
+{% endschema %}

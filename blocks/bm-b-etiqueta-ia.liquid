@@ -1,0 +1,17 @@
+{%- comment -%}
+  Bloque «Aviso de recreación IA»: obligatorio junto a una imagen o reseña recreada con IA.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+<p class="bm-nota bm-nota--ia" data-bm-bloque="etiqueta_ia" data-bm-id="{{ block.id }}" data-origen="ia_recreada" {{ block.shopify_attributes }}>{{ block.settings.texto | default: 'Recreación ilustrativa generada con IA; no es la reseña de un comprador.' | escape }}</p>
+
+{% schema %}
+{
+  "name": "Aviso de recreación IA",
+  "tag": null,
+  "settings": [
+    {"type": "paragraph", "content": "Obligatorio junto a una imagen o reseña recreada con IA."},
+    {"type": "text", "id": "texto", "label": "Aviso", "default": "Recreación ilustrativa generada con IA; no es la reseña de un comprador."}
+  ],
+  "presets": [{"name": "Aviso de recreación IA"}]
+}
+{% endschema %}
