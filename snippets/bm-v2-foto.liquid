@@ -1,0 +1,11 @@
+{%- comment -%}
+  Una foto de «Galería por color» (kit v2): la pinta el bloque bm-b-galeria con cada media del producto y el bloque
+  bm-b-foto («Foto suelta») con la suya.
+  Parámetros: imagen, clave (color de la foto; vacío = se ve con todos), alt, media (id de la media, si viene del
+  producto), n (posición desde 1; vacío en una foto suelta), carga, prioridad, sid (id del bloque), attrs
+  (shopify_attributes de la foto suelta).
+  Fuente canónica: claude-skills/core/tema_landing.
+{%- endcomment -%}
+<figure class="bm-v2-foto" id="{{ sid }}-foto-{{ n }}" data-bm-foto data-n="{{ n }}" data-color="{{ clave }}"{% if media != blank %} data-media="{{ media }}"{% endif %} {{ attrs }}>
+  {{ imagen | image_url: width: 1440 | image_tag: loading: carga, fetchpriority: prioridad, sizes: '(min-width: 750px) 560px, 100vw', widths: '360, 540, 720, 900, 1080, 1440', alt: alt }}
+</figure>

@@ -1,0 +1,277 @@
+{%- comment -%}
+  Bloque «Galería por color» (primera pantalla). Las fotos salen de product.media (solo imágenes; la guía de
+  tallas queda fuera) y se agrupan por color con su texto alternativo (bm-v2-clave-alt). Sus hijos «Foto suelta»,
+  si los tiene, reemplazan a las del producto. Todas se deslizan: tocar un color lleva a sus fotos y deslizar hasta
+  otro color cambia la variante (lo que se ve es lo que se pide). Abre en la foto de la variante inicial: su
+  featured_media o, si no, la primera de su color. El movimiento lo hace <bm-galeria> (su JS, abajo).
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign product = closest.product | default: product -%}
+{%- comment -%} La variante con que abre la página (bm-v2-inicial): un theme block no ve las variables de la sección. {%- endcomment -%}
+{%- capture vid -%}{%- render 'bm-v2-inicial', product: product, color: section.settings.color_inicial, opcion: section.settings.opcion_color -%}{%- endcapture -%}
+{%- assign vid = vid | plus: 0 -%}
+{%- assign variante = product.selected_or_first_available_variant -%}
+{%- for v in product.variants -%}{%- if v.id == vid -%}{%- assign variante = v -%}{%- endif -%}{%- endfor -%}
+{%- assign b = block.settings -%}
+{%- capture pos_color -%}{%- render 'bm-v2-pos-color', product: product, opcion: section.settings.opcion_color -%}{%- endcapture -%}
+{%- assign pos_color = pos_color | plus: 0 -%}
+{%- assign clave_variante = '' -%}
+{%- assign opcion_color = nil -%}
+{%- if product != blank and pos_color > 0 -%}
+  {%- for o in product.options_with_values -%}{%- if o.position == pos_color -%}{%- assign opcion_color = o -%}{%- endif -%}{%- endfor -%}
+  {%- case pos_color -%}
+    {%- when 1 -%}{%- assign clave_variante = variante.option1 | handleize | remove: '-' -%}
+    {%- when 2 -%}{%- assign clave_variante = variante.option2 | handleize | remove: '-' -%}
+    {%- when 3 -%}{%- assign clave_variante = variante.option3 | handleize | remove: '-' -%}
+  {%- endcase -%}
+{%- endif -%}
+{%- comment -%} Fotos sueltas (hijos): la primera carga con prioridad; las miniaturas las arma el JS. {%- endcomment -%}
+{%- capture sueltas -%}{%- content_for 'blocks' -%}{%- endcapture -%}
+{%- assign sueltas = sueltas | strip -%}
+{%- assign fotos = '' -%}
+{%- assign minis = '' -%}
+{%- assign inicio = 1 -%}
+{%- assign total = 0 -%}
+{%- if sueltas != blank -%}
+  {%- assign fotos = sueltas | replace_first: 'loading="lazy"', 'loading="eager"' | replace_first: 'fetchpriority="auto"', 'fetchpriority="high"' -%}
+  {%- assign total = sueltas | split: 'data-bm-foto ' | size | minus: 1 -%}
+{%- elsif product != blank -%}
+  {%- comment -%} Primera pasada: qué foto abre (la featured_media de la variante o la primera de su color). {%- endcomment -%}
+  {%- assign n = 0 -%}
+  {%- assign idx_media = 0 -%}
+  {%- assign idx_color = 0 -%}
+  {%- for m in product.media -%}
+    {%- assign meta = m.alt | downcase -%}
+    {%- if m.media_type == 'image' -%}
+      {%- unless meta contains 'talla' or meta contains 'guia' or meta contains 'medida' or meta contains 'size' -%}
+        {%- assign n = n | plus: 1 -%}
+        {%- if variante.featured_media != blank and m.id == variante.featured_media.id -%}{%- assign idx_media = n -%}{%- endif -%}
+        {%- if idx_color == 0 and clave_variante != '' -%}
+          {%- capture k -%}{%- render 'bm-v2-clave-alt', alt: m.alt -%}{%- endcapture -%}
+          {%- if k == clave_variante -%}{%- assign idx_color = n -%}{%- endif -%}
+        {%- endif -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign total = n -%}
+  {%- if idx_media > 0 -%}{%- assign inicio = idx_media -%}{%- elsif idx_color > 0 -%}{%- assign inicio = idx_color -%}{%- endif -%}
+  {%- comment -%} Segunda pasada: fotos y miniaturas; las de otro color nacen ocultas (el JS las cambia). {%- endcomment -%}
+  {%- assign clave_inicio = '' -%}
+  {%- assign n = 0 -%}
+  {%- for m in product.media -%}
+    {%- assign meta = m.alt | downcase -%}
+    {%- if m.media_type == 'image' -%}
+      {%- unless meta contains 'talla' or meta contains 'guia' or meta contains 'medida' or meta contains 'size' -%}
+        {%- assign n = n | plus: 1 -%}
+        {%- if n == inicio -%}{%- capture clave_inicio -%}{%- render 'bm-v2-clave-alt', alt: m.alt -%}{%- endcapture -%}{%- endif -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign n = 0 -%}
+  {%- for m in product.media -%}
+    {%- assign meta = m.alt | downcase -%}
+    {%- if m.media_type == 'image' -%}
+      {%- unless meta contains 'talla' or meta contains 'guia' or meta contains 'medida' or meta contains 'size' -%}
+        {%- assign n = n | plus: 1 -%}
+        {%- capture k -%}{%- render 'bm-v2-clave-alt', alt: m.alt -%}{%- endcapture -%}
+        {%- assign carga = 'lazy' -%}{%- assign prioridad = 'auto' -%}
+        {%- if n == inicio -%}{%- assign carga = 'eager' -%}{%- assign prioridad = 'high' -%}{%- endif -%}
+        {%- assign nombre_color = '' -%}
+        {%- if opcion_color != blank and k != '' -%}
+          {%- for valor in opcion_color.values -%}
+            {%- assign nv = valor.name | default: valor -%}
+            {%- assign kv = nv | handleize | remove: '-' -%}
+            {%- if kv == k -%}{%- assign nombre_color = nv -%}{%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+        {%- assign alt = product.title -%}
+        {%- if nombre_color != '' -%}{%- assign alt = alt | append: ' · ' | append: nombre_color -%}{%- endif -%}
+        {%- capture una -%}{%- render 'bm-v2-foto', imagen: m, clave: k, alt: alt, media: m.id, n: n, carga: carga, prioridad: prioridad, sid: block.id, attrs: '' -%}{%- endcapture -%}
+        {%- assign fotos = fotos | append: una -%}
+        {%- capture una -%}<button type="button" class="bm-v2-galeria__mini" data-bm-ir="{{ n }}" data-color="{{ k }}" aria-label="Ver foto {{ n }}"{% if clave_inicio != '' and k != '' and k != clave_inicio %} hidden{% endif %}>{{ m | image_url: width: 160 | image_tag: loading: 'lazy', widths: '80, 160', sizes: '56px', alt: '' }}</button>{%- endcapture -%}
+        {%- assign minis = minis | append: una -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- if total > 0 -%}
+  <bm-galeria class="bm-v2-galeria" data-bm-bloque="galeria" data-tira="{{ b.tira }}" data-inicio="{{ inicio }}" data-pos-color="{{ pos_color }}" style="--bm-galeria-ratio:{{ b.proporcion | default: '3 / 4' }}" {{ block.shopify_attributes }}>
+    <div class="bm-v2-galeria__marco">
+      <div class="bm-v2-galeria__pista" data-bm-pista tabindex="0" role="region" aria-label="Fotos del producto">{{ fotos }}</div>
+      {%- if total > 1 -%}
+        <button type="button" class="bm-v2-galeria__flecha bm-v2-galeria__flecha--ant" data-bm-paso="-1" aria-label="Foto anterior">&#8249;</button>
+        <button type="button" class="bm-v2-galeria__flecha bm-v2-galeria__flecha--sig" data-bm-paso="1" aria-label="Foto siguiente">&#8250;</button>
+        {%- if b.contador -%}<p class="bm-v2-galeria__cuenta" data-bm-cuenta>{{ inicio }} / {{ total }}</p>{%- endif -%}
+      {%- endif -%}
+    </div>
+    {%- if total > 1 -%}
+      {%- if b.tira == 'miniaturas' -%}
+        <div class="bm-v2-galeria__minis" data-bm-minis>{{ minis }}</div>
+      {%- elsif b.tira == 'puntos' -%}
+        <div class="bm-v2-galeria__puntos" data-bm-puntos aria-hidden="true"></div>
+      {%- endif -%}
+    {%- endif -%}
+  </bm-galeria>
+{%- elsif request.design_mode -%}
+  <div class="bm-v2-galeria" data-bm-bloque="galeria" {{ block.shopify_attributes }}>{{ 'image' | placeholder_svg_tag: 'bm-placeholder' }}</div>
+{%- endif -%}
+
+{% stylesheet %}
+bm-galeria:not([hidden]){display:block}
+.bm-v2-galeria{position:relative;margin:0 calc(var(--bm-pad-x,16px) * -1)}
+.bm-oferta__pila>.bm-v2-galeria:first-child{margin-top:calc(var(--bm-pad-top,0px) * -1)}
+.bm-v2-galeria__marco{position:relative}
+.bm-v2-galeria__pista{display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;outline:none}
+.bm-v2-galeria__pista::-webkit-scrollbar{display:none}
+.bm-v2-foto{flex:0 0 100%;margin:0;scroll-snap-align:start;scroll-snap-stop:always;aspect-ratio:var(--bm-galeria-ratio,3 / 4);background:#ffffff;overflow:hidden}
+.bm-v2-foto img{display:block;width:100%;height:100%;object-fit:cover}
+.bm-v2-galeria__cuenta{position:absolute;top:12px;right:12px;margin:0;padding:3px 10px;border-radius:999px;background:rgba(28,28,28,.6);color:#ffffff;font-size:13px;font-weight:600;line-height:1.45;letter-spacing:.04em;pointer-events:none}
+.bm-v2-galeria__cuenta:empty{display:none}
+.bm-v2-galeria__flecha{display:none;position:absolute;top:50%;width:40px;height:40px;margin-top:-20px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.9);color:#1c1c1c;font-size:26px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.14);align-items:center;justify-content:center}
+.bm-v2-galeria__flecha--ant{left:10px}
+.bm-v2-galeria__flecha--sig{right:10px}
+@media (hover:hover) and (pointer:fine){.bm-v2-galeria__flecha{display:flex}}
+.bm-v2-galeria__minis{display:flex;gap:8px;overflow-x:auto;padding:10px var(--bm-pad-x,16px) 2px;scrollbar-width:none;justify-content:flex-start}
+.bm-v2-galeria__minis::-webkit-scrollbar{display:none}
+.bm-v2-galeria__mini{flex:0 0 56px;width:56px;height:56px;padding:0;border:1px solid rgba(28,28,28,.14);border-radius:10px;background:#ffffff;overflow:hidden;cursor:pointer;opacity:.7;-webkit-tap-highlight-color:transparent;transition:opacity .15s ease,box-shadow .15s ease}
+.bm-v2-galeria__mini img{display:block;width:100%;height:100%;object-fit:cover}
+.bm-v2-galeria__mini[aria-current="true"]{opacity:1;border-color:var(--bm-sec-fg,#1c1c1c);box-shadow:0 0 0 1px var(--bm-sec-fg,#1c1c1c)}
+.bm-v2-galeria__mini:focus-visible{outline:2px solid var(--bm-sec-fg,#1c1c1c);outline-offset:2px}
+.bm-v2-galeria__puntos{display:flex;justify-content:center;align-items:center;gap:6px;min-height:8px;margin-top:10px}
+.bm-v2-galeria__puntos button{width:7px;height:7px;padding:0;border:0;border-radius:999px;background:currentColor;opacity:.22;cursor:pointer;transition:width .2s ease,opacity .2s ease}
+.bm-v2-galeria__puntos button[aria-current="true"]{width:20px;opacity:.8}
+@media (min-width:750px){.bm-v2-galeria{max-width:560px;margin-left:auto;margin-right:auto}.bm-v2-galeria__minis{justify-content:center}}
+@media (prefers-reduced-motion:reduce){.bm-v2-galeria__pista{scroll-behavior:auto}}
+{% endstylesheet %}
+
+{% javascript %}
+// Se registra con el motor del kit (assets/bm-landing.js) sin importar qué script carga primero.
+(window.BMLandingBloques = window.BMLandingBloques || []).push(({ Bloque, actual, elegir, buscar, valorDeClave }) => {
+  if (customElements.get('bm-galeria')) return;
+  customElements.define('bm-galeria', class extends Bloque {
+    iniciar() {
+      this.pista = this.querySelector('[data-bm-pista]');
+      if (!this.pista) return;
+      this.fotos = [...this.pista.querySelectorAll('[data-bm-foto]')];
+      // Con fotos sueltas (hijos) las miniaturas no vienen del servidor: se arman con las mismas fotos.
+      const caja = this.querySelector('[data-bm-minis]');
+      if (caja && !caja.children.length) {
+        this.fotos.forEach((f, n) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'bm-v2-galeria__mini';
+          b.dataset.bmIr = String(n + 1);
+          b.dataset.color = f.dataset.color || '';
+          b.setAttribute('aria-label', `Ver foto ${n + 1}`);
+          const img = f.querySelector('img')?.cloneNode();
+          if (img) {
+            img.removeAttribute('fetchpriority');
+            img.loading = 'lazy';
+            img.sizes = '56px';
+            img.alt = '';
+            b.append(img);
+          }
+          caja.append(b);
+        });
+      }
+      this.minis = [...this.querySelectorAll('[data-bm-ir]')];
+      this.puntos = this.querySelector('[data-bm-puntos]');
+      this.cuenta = this.querySelector('[data-bm-cuenta]');
+      this.pos = Number(this.closest('[data-bm-pos-color]')?.dataset.bmPosColor || 0);
+      this.i = 0;
+      this.bloqueo = false;
+      let espera;
+      this.escuchar(this.pista, 'scroll', () => {
+        clearTimeout(espera);
+        espera = setTimeout(() => this.mirar(true), 90);
+      }, { passive: true });
+      this.querySelectorAll('[data-bm-paso]').forEach((b) => this.escuchar(b, 'click', () => this.ir(this.i + Number(b.dataset.bmPaso))));
+      this.minis.forEach((m) => this.escuchar(m, 'click', () => this.ir(Number(m.dataset.bmIr) - 1)));
+      this.alVariar((v, origen) => { if (origen !== 'galeria') this.mostrar(v, true); });
+      const inicio = Math.max(0, Number(this.dataset.inicio || 1) - 1);
+      this.ir(inicio, false);
+      const v = this.p && actual(this.p);
+      if (v) this.mostrar(v, false);
+      this.mirar(false);
+    }
+    indice() { return Math.max(0, Math.min(this.fotos.length - 1, Math.round(this.pista.scrollLeft / (this.pista.clientWidth || 1)))); }
+    ir(i, suave = true) {
+      const f = this.fotos[(i + this.fotos.length) % this.fotos.length];
+      if (!f) return;
+      const img = f.querySelector('img');
+      if (img) img.loading = 'eager';
+      const destino = f.offsetLeft - this.fotos[0].offsetLeft;
+      if (!suave || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        this.pista.scrollLeft = destino;
+        this.mirar(false);
+      } else {
+        this.pista.scrollTo({ left: destino, behavior: 'smooth' });
+      }
+    }
+    // La foto de la variante: su featured_media o la primera de su color. Si ya se ve una foto de ese color, no se
+    // mueve (cambiar de talla no saca a nadie de la foto que está mirando).
+    mostrar(v, suave) {
+      const k = this.pos ? v.c[this.pos - 1] : '';
+      const vista = this.fotos[this.indice()];
+      if (k && vista && vista.dataset.color === k) return;
+      let i = v.m != null ? this.fotos.findIndex((f) => f.dataset.media === String(v.m)) : -1;
+      if (i < 0 && k) i = this.fotos.findIndex((f) => f.dataset.color === k);
+      if (i < 0) return;
+      this.bloqueo = true;
+      this.ir(i, suave);
+      if (!suave) this.bloqueo = false;
+    }
+    mirar(elegirColor) {
+      this.i = this.indice();
+      const f = this.fotos[this.i];
+      if (!f) return;
+      const k = f.dataset.color || '';
+      if (this.cuenta) this.cuenta.textContent = this.fotos.length > 1 ? `${this.i + 1} / ${this.fotos.length}` : '';
+      // Miniaturas y puntos del color que se está viendo (las genéricas, sin color, van con todos).
+      const grupo = k ? this.fotos.filter((x) => !x.dataset.color || x.dataset.color === k) : this.fotos;
+      this.minis.forEach((m) => {
+        const foto = this.fotos[Number(m.dataset.bmIr) - 1];
+        m.hidden = !grupo.includes(foto);
+        m.setAttribute('aria-current', foto === f ? 'true' : 'false');
+      });
+      if (this.puntos) {
+        if (this.puntos.dataset.de !== k || this.puntos.children.length !== (grupo.length > 1 ? grupo.length : 0)) {
+          this.puntos.dataset.de = k;
+          this.puntos.replaceChildren(...(grupo.length > 1 ? grupo.map((x) => {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.tabIndex = -1;
+            b.addEventListener('click', () => this.ir(this.fotos.indexOf(x)));
+            return b;
+          }) : []));
+        }
+        [...this.puntos.children].forEach((b, n) => b.setAttribute('aria-current', grupo[n] === f ? 'true' : 'false'));
+      }
+      if (elegirColor && !this.bloqueo && this.p && this.pos && k) {
+        const v = actual(this.p);
+        if (v && v.c[this.pos - 1] !== k) {
+          const valor = valorDeClave(this.p, this.pos, k);
+          const nueva = valor !== undefined ? buscar(this.p, { [this.pos]: valor }) : null;
+          if (nueva) elegir(this.p, nueva, 'galeria');
+        }
+      }
+      if (elegirColor) this.bloqueo = false;
+    }
+  });
+});
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Galería por color",
+  "tag": null,
+  "settings": [
+    {"type": "paragraph", "content": "Fotos del producto agrupadas por color con su texto alternativo (negro, negro_2…). Con bloques «Foto suelta» adentro, la galería usa esas fotos en su lugar. El color con que abre se elige en la sección."},
+    {"type": "select", "id": "proporcion", "label": "Proporción de las fotos", "options": [{"value": "3 / 4", "label": "3:4 vertical"}, {"value": "4 / 5", "label": "4:5 vertical"}, {"value": "1 / 1", "label": "Cuadrada"}], "default": "3 / 4"},
+    {"type": "select", "id": "tira", "label": "Bajo la foto", "options": [{"value": "miniaturas", "label": "Miniaturas del color"}, {"value": "puntos", "label": "Puntos"}, {"value": "nada", "label": "Nada"}], "default": "miniaturas"},
+    {"type": "checkbox", "id": "contador", "label": "Mostrar «1 / 8» sobre la foto", "default": true}
+  ],
+  "blocks": [{"type": "@theme"}, {"type": "bm-b-foto"}],
+  "presets": [{"name": "Galería por color"}]
+}
+{% endschema %}

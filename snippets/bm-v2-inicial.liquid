@@ -1,0 +1,24 @@
+{%- comment -%}
+  Id de la variante con que abre la página: la del enlace (?variant=); si no, la primera disponible del color
+  `color` («Color que abre la galería» de la sección); si no, la primera disponible. La usan la primera pantalla y
+  cada bloque que depende de la variante (un theme block no ve las variables de la sección). Imprime solo el id.
+  Uso: {%- capture vid -%}{%- render 'bm-v2-inicial', product: product, color: section.settings.color_inicial, opcion: section.settings.opcion_color -%}{%- endcapture -%}
+  Fuente canónica: claude-skills/core/tema_landing.
+{%- endcomment -%}
+{%- assign inicial = product.selected_or_first_available_variant -%}
+{%- assign clave = color | handleize | remove: '-' -%}
+{%- if product.selected_variant == blank and clave != blank -%}
+  {%- capture pos -%}{%- render 'bm-v2-pos-color', product: product, opcion: opcion -%}{%- endcapture -%}
+  {%- assign pos = pos | plus: 0 -%}
+  {%- assign hallada = false -%}
+  {%- for v in product.variants -%}
+    {%- case pos -%}
+      {%- when 1 -%}{%- assign vc = v.option1 | handleize | remove: '-' -%}
+      {%- when 2 -%}{%- assign vc = v.option2 | handleize | remove: '-' -%}
+      {%- when 3 -%}{%- assign vc = v.option3 | handleize | remove: '-' -%}
+      {%- else -%}{%- assign vc = '' -%}
+    {%- endcase -%}
+    {%- if hallada == false and vc == clave and v.available -%}{%- assign inicial = v -%}{%- assign hallada = true -%}{%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{{- inicial.id -}}

@@ -1,0 +1,9 @@
+{%- comment -%}
+  Recursos del kit v2: estilos (los del kit v1, congelados, más los propios de la v2) y el JS de los bloques
+  dinámicos (`bm-landing.js`). Lo llama cada sección `bm-*-v2` al empezar, para que una sección agregada sola
+  en el editor también funcione; el JS se protege contra la doble carga.
+  Fuente canónica: claude-skills/core/tema_landing.
+{%- endcomment -%}
+{{ 'bm-landing.css' | asset_url | stylesheet_tag }}
+{{ 'bm-landing-v2.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'bm-landing.js' | asset_url }}" defer></script>

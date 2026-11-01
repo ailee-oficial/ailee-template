@@ -1,0 +1,32 @@
+{%- comment -%}
+  Datos de las variantes para `bm-landing.js`, dentro de la sección y sin `fetch`: un
+  <script type="application/json" data-bm-producto> con lo que necesitan la galería, el selector, el precio y
+  las existencias. Sale solo de objetos estándar de Shopify (product, variants, featured_media).
+  Parámetros: product, inicial (la variante con que abre la primera pantalla; vacío en las demás secciones).
+  Por variante: id, o (opciones), c (clave de cada opción: handleize sin guiones, la misma que llevan las
+  fotos y las muestras), a (disponible), p/pa (precio y precio de comparación ya con el formato de la
+  tienda), ah/pct (ahorro y porcentaje), m (id de su featured_media) y q (unidades, SOLO si Shopify rastrea
+  el inventario de esa variante: sin ese dato, «Existencias reales» no se muestra).
+  Fuente canónica: claude-skills/core/tema_landing.
+{%- endcomment -%}
+{%- if product != blank -%}
+<script type="application/json" data-bm-producto="{{ product.id }}">{"id":{{ product.id | json }},"opciones":[{%- for o in product.options_with_values -%}{{ o.name | json }}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}],"actual":{% if inicial != blank %}{{ inicial.id | json }}{% else %}null{% endif %},"variantes":[
+  {%- for v in product.variants -%}
+    {%- assign c1 = v.option1 | handleize | remove: '-' -%}
+    {%- assign c2 = v.option2 | handleize | remove: '-' -%}
+    {%- assign c3 = v.option3 | handleize | remove: '-' -%}
+    {%- assign pa = 'null' -%}
+    {%- assign ah = 'null' -%}
+    {%- assign pct = 'null' -%}
+    {%- if v.compare_at_price > v.price -%}
+      {%- assign pa = v.compare_at_price | money_without_trailing_zeros | json -%}
+      {%- assign ahorro = v.compare_at_price | minus: v.price -%}
+      {%- assign ah = ahorro | money_without_trailing_zeros | json -%}
+      {%- assign pct = ahorro | times: 100 | divided_by: v.compare_at_price -%}
+    {%- endif -%}
+    {%- assign q = 'null' -%}
+    {%- if v.inventory_management == 'shopify' -%}{%- assign q = v.inventory_quantity | default: 0 -%}{%- endif -%}
+    {"id":{{ v.id | json }},"o":[{{ v.option1 | json }},{{ v.option2 | json }},{{ v.option3 | json }}],"c":[{{ c1 | json }},{{ c2 | json }},{{ c3 | json }}],"a":{{ v.available | json }},"p":{{ v.price | money_without_trailing_zeros | json }},"pa":{{ pa }},"ah":{{ ah }},"pct":{{ pct }},"m":{% if v.featured_media != blank %}{{ v.featured_media.id | json }}{% else %}null{% endif %},"q":{{ q }}}
+    {%- unless forloop.last -%},{%- endunless -%}
+  {%- endfor -%}]}</script>
+{%- endif -%}

@@ -1,0 +1,19 @@
+{%- comment -%}
+  Posición (1, 2 o 3) de la opción de color del producto; 0 si no hay. Con `opcion` («Opción de color» de la
+  sección), la que se llama así; si no, la que se llama color, colour o tono. Imprime solo el número.
+  Uso: {%- capture pos -%}{%- render 'bm-v2-pos-color', product: product, opcion: section.settings.opcion_color -%}{%- endcapture -%}
+  Fuente canónica: claude-skills/core/tema_landing.
+{%- endcomment -%}
+{%- assign pos = 0 -%}
+{%- assign buscada = opcion | downcase | strip -%}
+{%- for o in product.options_with_values -%}
+  {%- assign nombre_o = o.name | downcase | strip -%}
+  {%- if pos == 0 -%}
+    {%- if buscada != blank -%}
+      {%- if nombre_o == buscada -%}{%- assign pos = o.position -%}{%- endif -%}
+    {%- elsif nombre_o contains 'color' or nombre_o contains 'colour' or nombre_o contains 'tono' -%}
+      {%- assign pos = o.position -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{{- pos -}}

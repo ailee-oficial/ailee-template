@@ -1,0 +1,18 @@
+{%- comment -%}
+  Bloque «Fila de pasos»: agrupa pasos o beneficios («Texto o paso») en una fila que se desliza. Sus hijos se
+  agregan, ocultan y reordenan dentro de ella.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+<div class="bm-oferta__caracts" data-bm-bloque="pasos" {{ block.shopify_attributes }}>{%- content_for 'blocks' -%}</div>
+
+{% schema %}
+{
+  "name": "Fila de pasos",
+  "tag": null,
+  "settings": [
+    {"type": "paragraph", "content": "Agrega adentro bloques «Texto o paso» con estilo paso."}
+  ],
+  "blocks": [{"type": "@theme"}, {"type": "bm-b-texto"}],
+  "presets": [{"name": "Fila de pasos", "blocks": [{"type": "bm-b-texto", "settings": {"estilo": "paso", "simbolo": "✓", "titulo": "Paso 1", "texto": "<p>Qué cambia para el cliente.</p>"}}, {"type": "bm-b-texto", "settings": {"estilo": "paso", "simbolo": "✓", "titulo": "Paso 2", "texto": "<p>Qué cambia para el cliente.</p>"}}, {"type": "bm-b-texto", "settings": {"estilo": "paso", "simbolo": "✓", "titulo": "Paso 3", "texto": "<p>Qué cambia para el cliente.</p>"}}]}]
+}
+{% endschema %}
