@@ -1,0 +1,718 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ajustes": {
+      "type": "bm-ajustes-v2",
+      "settings": {
+        "aplicar_fondo": true,
+        "fondo_pagina": "#FFFFFF",
+        "texto_pagina": "#111827",
+        "ancho_max": 780,
+        "ficha_modo": "oculta",
+        "ficha_margen_lateral": 16,
+        "ocultar_galeria": true,
+        "ocultar_descripcion": true,
+        "ficha_padding": 12,
+        "cta_fondo": "#111827",
+        "cta_texto": "#FFFFFF",
+        "cta_radio": 12,
+        "cta_alto": 54,
+        "cta_letra": 17,
+        "rsi_aplicar": true,
+        "movimiento_pagina": false
+      }
+    },
+    "cinta": {
+      "type": "bm-cinta-v2",
+      "settings": {
+        "frases": "pago|Pago contra entrega\ncamion|Envío a toda Colombia\ncambio|Cambios sin costo",
+        "separador": "·",
+        "animada": true,
+        "duracion": 24,
+        "tamano": 14,
+        "padding": 9,
+        "fondo": "#111827",
+        "texto": "#FFFFFF"
+      }
+    },
+    "primera": {
+      "type": "bm-primera-v2",
+      "blocks": {
+        "galeria": {
+          "type": "bm-b-galeria",
+          "settings": {
+            "proporcion": "3 / 4",
+            "tira": "miniaturas",
+            "contador": true
+          }
+        },
+        "titulo": {
+          "type": "bm-b-titulo",
+          "settings": {
+            "estilo": "producto",
+            "antetitulo": "Categoría del producto",
+            "texto": "",
+            "nivel": "h1",
+            "tamano": 26,
+            "subtitulo": "La promesa del anuncio, en palabras del cliente."
+          }
+        },
+        "pasos": {
+          "type": "bm-b-pasos",
+          "settings": {},
+          "blocks": {
+            "c1": {
+              "type": "bm-b-texto",
+              "settings": {
+                "estilo": "paso",
+                "simbolo": "⚡",
+                "titulo": "Beneficio 1",
+                "texto": "<p>Qué cambia para el cliente</p>"
+              }
+            },
+            "c2": {
+              "type": "bm-b-texto",
+              "settings": {
+                "estilo": "paso",
+                "simbolo": "💧",
+                "titulo": "Beneficio 2",
+                "texto": "<p>Qué cambia para el cliente</p>"
+              }
+            },
+            "c3": {
+              "type": "bm-b-texto",
+              "settings": {
+                "estilo": "paso",
+                "simbolo": "✋",
+                "titulo": "Beneficio 3",
+                "texto": "<p>Qué cambia para el cliente</p>"
+              }
+            }
+          },
+          "block_order": [
+            "c1",
+            "c2",
+            "c3"
+          ]
+        },
+        "calificacion": {
+          "type": "bm-b-calificacion",
+          "settings": {
+            "valor": "",
+            "texto": ""
+          }
+        },
+        "precio": {
+          "type": "bm-b-precio",
+          "settings": {
+            "estilo": "tarjeta",
+            "prefijo": "",
+            "precio_texto": "",
+            "ahorro": "pildora",
+            "ahorro_texto": "Ahorras",
+            "descuento_texto": "OFF",
+            "nota": ""
+          }
+        },
+        "selector": {
+          "type": "bm-b-selector",
+          "settings": {
+            "opcion": "Color",
+            "etiqueta": "",
+            "estilo": "foto",
+            "mostrar_agotados": true,
+            "nota": ""
+          }
+        },
+        "existencias": {
+          "type": "bm-b-existencias",
+          "settings": {
+            "umbral": 10,
+            "texto": "¡Quedan [n] unidades!",
+            "texto_una": "¡Queda la última unidad!"
+          }
+        },
+        "contador": {
+          "type": "bm-b-contador",
+          "settings": {
+            "modo": "fin_dia",
+            "fecha": "",
+            "texto": "La oferta termina en"
+          },
+          "disabled": true
+        },
+        "boton": {
+          "type": "bm-b-cta",
+          "settings": {
+            "texto": "Comprar ahora — Pago contra entrega",
+            "subtexto": "",
+            "ancho": "completo",
+            "alineacion": "center",
+            "pad_y": 4,
+            "pulso": false
+          }
+        },
+        "confianza": {
+          "type": "bm-b-franja",
+          "settings": {
+            "estilo": "lista",
+            "whatsapp": false,
+            "i1_titulo": "Cambio fácil",
+            "i1_texto": "",
+            "i2_titulo": "Pago contra entrega",
+            "i2_texto": "",
+            "i3_titulo": "Envío a toda Colombia",
+            "i3_texto": "",
+            "i4_titulo": "",
+            "i4_texto": ""
+          }
+        },
+        "garantias": {
+          "type": "bm-b-franja",
+          "settings": {
+            "estilo": "lista",
+            "whatsapp": false,
+            "i1_titulo": "Pago contra entrega",
+            "i1_texto": "",
+            "i2_titulo": "Envío gratis",
+            "i2_texto": "",
+            "i3_titulo": "Compra segura",
+            "i3_texto": "",
+            "i4_titulo": "",
+            "i4_texto": ""
+          }
+        }
+      },
+      "block_order": [
+        "galeria",
+        "titulo",
+        "pasos",
+        "confianza",
+        "calificacion",
+        "precio",
+        "selector",
+        "existencias",
+        "contador",
+        "boton",
+        "garantias"
+      ],
+      "settings": {
+        "alineacion": "center",
+        "separacion": 14,
+        "padding_top": 0,
+        "padding_bottom": 20,
+        "padding_lateral": 16
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "comprar": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "descripcion": {
+          "type": "description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "comprar",
+        "descripcion"
+      ],
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "detalle": {
+      "type": "bm-escena-v2",
+      "settings": {
+        "disposicion": "texto_arriba",
+        "posicion_texto": "end",
+        "sobre_degradado": true,
+        "alineacion": "left",
+        "ancho": "contenido",
+        "panel_padding": 20,
+        "separacion": 10,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "prioridad": false,
+        "nivel_oculto": "h2",
+        "titulo_oculto": "",
+        "texto_alt": ""
+      },
+      "blocks": {
+        "titulo": {
+          "type": "bm-b-titulo",
+          "settings": {
+            "estilo": "seccion",
+            "antetitulo": "",
+            "texto": "Detalles de cerca",
+            "nivel": "h2",
+            "tamano": 26,
+            "subtitulo": ""
+          }
+        },
+        "texto": {
+          "type": "bm-b-texto",
+          "settings": {
+            "estilo": "texto",
+            "texto": "<p>Qué se ve en la foto y por qué importa.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "titulo",
+        "texto"
+      ]
+    },
+    "videos": {
+      "type": "bm-videos-v2",
+      "settings": {
+        "antetitulo": "En video",
+        "titulo": "Míralo en acción",
+        "subtitulo": "Así lo usan en su día a día",
+        "ancho_tarjeta": 60,
+        "alineacion": "center",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_lateral": 16,
+        "cta_mostrar": true,
+        "cta_texto": "Comprar ahora — Pago contra entrega",
+        "cta_subtexto": ""
+      },
+      "blocks": {
+        "v1": {
+          "type": "bm-b-video",
+          "settings": {
+            "leyenda": ""
+          }
+        },
+        "v2": {
+          "type": "bm-b-video",
+          "settings": {
+            "leyenda": ""
+          }
+        }
+      },
+      "block_order": [
+        "v1",
+        "v2"
+      ]
+    },
+    "especificaciones": {
+      "type": "bm-tabla-v2",
+      "settings": {
+        "modo": "lista",
+        "antetitulo": "Especificaciones",
+        "titulo": "Detalles técnicos",
+        "encabezado_1": "",
+        "encabezado_2": "",
+        "encabezado_3": "",
+        "nota": "",
+        "alineacion": "left",
+        "fondo": "#111827",
+        "texto": "#FFFFFF",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_lateral": 16,
+        "cta_mostrar": false,
+        "cta_texto": "Pedir ahora · pago contra entrega",
+        "cta_subtexto": ""
+      },
+      "blocks": {
+        "f1": {
+          "type": "bm-b-fila",
+          "settings": {
+            "c1": "Material",
+            "c2": "Valor",
+            "c3": ""
+          }
+        },
+        "f2": {
+          "type": "bm-b-fila",
+          "settings": {
+            "c1": "Medidas",
+            "c2": "Valor",
+            "c3": ""
+          }
+        },
+        "f3": {
+          "type": "bm-b-fila",
+          "settings": {
+            "c1": "Incluye",
+            "c2": "Valor",
+            "c3": ""
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3"
+      ]
+    },
+    "ocasiones": {
+      "type": "bm-galeria-v2",
+      "settings": {
+        "antetitulo": "",
+        "titulo": "Para cada ocasión",
+        "subtitulo": "",
+        "disposicion": "carrusel",
+        "ancho_tarjeta": 75,
+        "radio": 12,
+        "alineacion": "left",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_lateral": 16,
+        "cta_mostrar": false,
+        "cta_texto": "Comprar ahora — Pago contra entrega",
+        "cta_subtexto": ""
+      },
+      "blocks": {
+        "e1": {
+          "type": "bm-b-escena",
+          "settings": {
+            "etiqueta": "Ocasión 1"
+          }
+        },
+        "e2": {
+          "type": "bm-b-escena",
+          "settings": {
+            "etiqueta": "Ocasión 2"
+          }
+        },
+        "e3": {
+          "type": "bm-b-escena",
+          "settings": {
+            "etiqueta": "Ocasión 3"
+          }
+        }
+      },
+      "block_order": [
+        "e1",
+        "e2",
+        "e3"
+      ]
+    },
+    "uso": {
+      "type": "bm-beneficios-v2",
+      "settings": {
+        "titulo": "Cómo se usa",
+        "subtitulo": "",
+        "estilo": "tarjeta",
+        "cols_movil": "1",
+        "cols_escritorio": "3",
+        "numerar": true,
+        "alineacion": "center",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "padding_lateral": 16,
+        "item_padding": 14,
+        "radio": 12,
+        "icono_tam": 44,
+        "cta_mostrar": false,
+        "cta_texto": "Pedir ahora · pago contra entrega",
+        "cta_subtexto": ""
+      },
+      "blocks": {
+        "p1": {
+          "type": "bm-b-item",
+          "settings": {
+            "titulo": "Paso 1",
+            "texto": "Instrucción fiel al producto.",
+            "simbolo": ""
+          }
+        },
+        "p2": {
+          "type": "bm-b-item",
+          "settings": {
+            "titulo": "Paso 2",
+            "texto": "Instrucción fiel al producto.",
+            "simbolo": ""
+          }
+        },
+        "p3": {
+          "type": "bm-b-item",
+          "settings": {
+            "titulo": "Paso 3",
+            "texto": "Instrucción fiel al producto.",
+            "simbolo": ""
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ]
+    },
+    "comparativa": {
+      "type": "bm-tabla-v2",
+      "settings": {
+        "modo": "comparativa",
+        "antetitulo": "",
+        "titulo": "¿Por qué este producto?",
+        "encabezado_1": "",
+        "encabezado_2": "Este producto",
+        "encabezado_3": "Alternativa común",
+        "nota": "",
+        "alineacion": "center",
+        "destacado_fondo": "#111827",
+        "destacado_texto": "#FFFFFF",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_lateral": 16,
+        "cta_mostrar": true,
+        "cta_texto": "Pedir ahora · pago contra entrega",
+        "cta_subtexto": ""
+      },
+      "blocks": {
+        "f1": {
+          "type": "bm-b-fila",
+          "settings": {
+            "c1": "Criterio comprobable",
+            "c2": "sí",
+            "c3": "no"
+          }
+        },
+        "f2": {
+          "type": "bm-b-fila",
+          "settings": {
+            "c1": "Criterio comprobable",
+            "c2": "sí",
+            "c3": "sí"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2"
+      ]
+    },
+    "resenas": {
+      "type": "bm-resenas-v2",
+      "settings": {
+        "titulo": "Lo que dicen quienes ya lo usan",
+        "disposicion": "carrusel",
+        "alineacion": "center",
+        "aviso_ia": "Las tarjetas marcadas son recreaciones generadas con IA a partir de opiniones frecuentes; no son reseñas de compradores.",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "padding_lateral": 16,
+        "cta_mostrar": false,
+        "cta_texto": "Pedir ahora · pago contra entrega",
+        "cta_subtexto": ""
+      },
+      "blocks": {
+        "r1": {
+          "type": "bm-b-resena",
+          "settings": {
+            "origen": "ia_recreada",
+            "texto": "Texto de ejemplo: reemplázalo por una reseña real importada o una recreación registrada.",
+            "estrellas": 0,
+            "etiqueta": "Recreación con IA · no es la reseña de un comprador",
+            "prompt": "Marcador del molde: sustituir en la copia del producto por el prompt y la evidencia documentada."
+          }
+        }
+      },
+      "block_order": [
+        "r1"
+      ]
+    },
+    "conversaciones": {
+      "type": "bm-resenas-v2",
+      "settings": {
+        "titulo": "Conversaciones ilustrativas",
+        "disposicion": "chat",
+        "alineacion": "center",
+        "aviso_ia": "Las tarjetas marcadas son recreaciones generadas con IA a partir de opiniones frecuentes; no son reseñas de compradores.",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "padding_lateral": 16,
+        "cta_mostrar": false,
+        "cta_texto": "Pedir ahora · pago contra entrega",
+        "cta_subtexto": ""
+      },
+      "blocks": {
+        "c1": {
+          "type": "bm-b-resena",
+          "settings": {
+            "origen": "ia_recreada",
+            "texto": "Ejemplo de pregunta 1 sobre este producto.",
+            "respuesta_tienda": "Respuesta de ejemplo: complétala con datos verificados del producto.",
+            "estrellas": 0,
+            "etiqueta": "Recreación con IA · no es una conversación recibida",
+            "prompt": "Marcador del molde: sustituir en la copia del producto por el prompt y la evidencia documentada."
+          }
+        },
+        "c2": {
+          "type": "bm-b-resena",
+          "settings": {
+            "origen": "ia_recreada",
+            "texto": "Ejemplo de pregunta 2 sobre este producto.",
+            "respuesta_tienda": "Respuesta de ejemplo: complétala con datos verificados del producto.",
+            "estrellas": 0,
+            "etiqueta": "Recreación con IA · no es una conversación recibida",
+            "prompt": "Marcador del molde: sustituir en la copia del producto por el prompt y la evidencia documentada."
+          }
+        },
+        "c3": {
+          "type": "bm-b-resena",
+          "settings": {
+            "origen": "ia_recreada",
+            "texto": "Ejemplo de pregunta 3 sobre este producto.",
+            "respuesta_tienda": "Respuesta de ejemplo: complétala con datos verificados del producto.",
+            "estrellas": 0,
+            "etiqueta": "Recreación con IA · no es una conversación recibida",
+            "prompt": "Marcador del molde: sustituir en la copia del producto por el prompt y la evidencia documentada."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ]
+    },
+    "faq": {
+      "type": "bm-preguntas-v2",
+      "settings": {
+        "titulo": "Preguntas frecuentes",
+        "alineacion": "left",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "padding_lateral": 16,
+        "cta_mostrar": false,
+        "cta_texto": "Pedir ahora · pago contra entrega",
+        "cta_subtexto": ""
+      },
+      "blocks": {
+        "q1": {
+          "type": "bm-b-pregunta",
+          "settings": {
+            "pregunta": "¿Cómo pago?",
+            "respuesta": "<p>Pagas en efectivo cuando recibes el pedido.</p>"
+          }
+        },
+        "q2": {
+          "type": "bm-b-pregunta",
+          "settings": {
+            "pregunta": "¿Cómo elijo color y talla?",
+            "respuesta": "<p>En el formulario, al hacer tu pedido.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2"
+      ]
+    },
+    "cierre": {
+      "type": "bm-cierre-v2",
+      "settings": {
+        "disposicion": "solo_texto",
+        "posicion_texto": "end",
+        "sobre_degradado": true,
+        "alineacion": "center",
+        "ancho": "contenido",
+        "panel_padding": 24,
+        "separacion": 10,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "prioridad": false,
+        "nivel_oculto": "h2",
+        "titulo_oculto": "",
+        "texto_alt": ""
+      },
+      "blocks": {
+        "titulo": {
+          "type": "bm-b-titulo",
+          "settings": {
+            "estilo": "seccion",
+            "antetitulo": "",
+            "texto": "Pídelo hoy y paga al recibir",
+            "nivel": "h2",
+            "tamano": 26,
+            "subtitulo": ""
+          }
+        },
+        "precio": {
+          "type": "bm-b-precio",
+          "settings": {
+            "estilo": "linea",
+            "prefijo": "Hoy",
+            "precio_texto": "",
+            "ahorro": "porcentaje",
+            "ahorro_texto": "Ahorras",
+            "descuento_texto": "OFF",
+            "nota": ""
+          }
+        },
+        "cta": {
+          "type": "bm-b-cta",
+          "settings": {
+            "texto": "Comprar ahora — Pago contra entrega",
+            "subtexto": "Pagas al recibir",
+            "ancho": "completo",
+            "alineacion": "center",
+            "pad_y": 8,
+            "pulso": false
+          }
+        },
+        "existencias": {
+          "type": "bm-b-existencias",
+          "settings": {
+            "umbral": 10,
+            "texto": "¡Quedan [n] unidades!",
+            "texto_una": "¡Queda la última unidad!"
+          }
+        },
+        "contador": {
+          "type": "bm-b-contador",
+          "disabled": true,
+          "settings": {
+            "modo": "fin_dia",
+            "fecha": "",
+            "texto": "La oferta termina en"
+          }
+        }
+      },
+      "block_order": [
+        "titulo",
+        "precio",
+        "existencias",
+        "contador",
+        "cta"
+      ]
+    }
+  },
+  "order": [
+    "ajustes",
+    "cinta",
+    "primera",
+    "main",
+    "detalle",
+    "videos",
+    "especificaciones",
+    "ocasiones",
+    "uso",
+    "comparativa",
+    "resenas",
+    "conversaciones",
+    "faq",
+    "cierre"
+  ]
+}

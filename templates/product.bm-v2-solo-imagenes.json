@@ -1,0 +1,301 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ajustes": {
+      "type": "bm-ajustes-v2",
+      "settings": {
+        "aplicar_fondo": true,
+        "fondo_pagina": "#FFFFFF",
+        "texto_pagina": "#111827",
+        "ancho_max": 780,
+        "ficha_modo": "solo_boton",
+        "ficha_margen_lateral": 16,
+        "ocultar_galeria": true,
+        "ocultar_descripcion": true,
+        "ficha_padding": 12,
+        "cta_fondo": "#111827",
+        "cta_texto": "#FFFFFF",
+        "cta_radio": 12,
+        "cta_alto": 54,
+        "cta_letra": 17,
+        "rsi_aplicar": true
+      }
+    },
+    "cinta": {
+      "type": "bm-cinta-v2",
+      "settings": {
+        "frases": "pago|Pago contra entrega\ncamion|Envío a toda Colombia\ncambio|Cambios sin costo",
+        "separador": "·",
+        "animada": true,
+        "duracion": 24,
+        "tamano": 14,
+        "padding": 9,
+        "fondo": "#111827",
+        "texto": "#FFFFFF"
+      }
+    },
+    "apertura": {
+      "type": "bm-laminas-v2",
+      "settings": {
+        "espacio": 0,
+        "radio_imagen": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "ancho": "contenido"
+      },
+      "blocks": {
+        "hero": {
+          "type": "bm-b-lamina",
+          "settings": {
+            "texto_alt": "",
+            "titulo_oculto": "Promesa del anuncio",
+            "nivel": "h1",
+            "prioridad": true,
+            "abre_formulario": false
+          }
+        }
+      },
+      "block_order": [
+        "hero"
+      ]
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "comprar": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "descripcion": {
+          "type": "description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "comprar",
+        "descripcion"
+      ],
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "videos": {
+      "type": "bm-videos-v2",
+      "settings": {
+        "antetitulo": "En video",
+        "titulo": "Míralo en acción",
+        "subtitulo": "Así lo usan en su día a día",
+        "ancho_tarjeta": 60,
+        "alineacion": "center",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_lateral": 16,
+        "cta_mostrar": true,
+        "cta_texto": "Comprar ahora — Pago contra entrega",
+        "cta_subtexto": ""
+      },
+      "blocks": {
+        "v1": {
+          "type": "bm-b-video",
+          "settings": {
+            "leyenda": ""
+          }
+        },
+        "v2": {
+          "type": "bm-b-video",
+          "settings": {
+            "leyenda": ""
+          }
+        }
+      },
+      "block_order": [
+        "v1",
+        "v2"
+      ]
+    },
+    "laminas": {
+      "type": "bm-laminas-v2",
+      "settings": {
+        "espacio": 0,
+        "radio_imagen": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "ancho": "contenido"
+      },
+      "blocks": {
+        "lamina_2": {
+          "type": "bm-b-lamina",
+          "settings": {
+            "texto_alt": "",
+            "titulo_oculto": "",
+            "nivel": "h2",
+            "prioridad": false,
+            "abre_formulario": false
+          }
+        },
+        "lamina_3": {
+          "type": "bm-b-lamina",
+          "settings": {
+            "texto_alt": "",
+            "titulo_oculto": "",
+            "nivel": "h2",
+            "prioridad": false,
+            "abre_formulario": false
+          }
+        },
+        "cta_2": {
+          "type": "bm-b-cta",
+          "settings": {
+            "texto": "Pedir ahora · pago contra entrega",
+            "subtexto": "Pagas al recibir",
+            "ancho": "completo",
+            "alineacion": "center",
+            "pad_y": 14,
+            "pulso": false
+          }
+        },
+        "colores": {
+          "type": "bm-b-lamina",
+          "settings": {
+            "texto_alt": "",
+            "titulo_oculto": "Colores disponibles",
+            "nivel": "h2",
+            "prioridad": false,
+            "abre_formulario": false
+          }
+        },
+        "tallas": {
+          "type": "bm-b-lamina",
+          "settings": {
+            "texto_alt": "",
+            "titulo_oculto": "Guía de tallas",
+            "nivel": "h2",
+            "prioridad": false,
+            "abre_formulario": false
+          }
+        },
+        "cta_3": {
+          "type": "bm-b-cta",
+          "settings": {
+            "texto": "Pedir ahora · pago contra entrega",
+            "subtexto": "Pagas al recibir",
+            "ancho": "completo",
+            "alineacion": "center",
+            "pad_y": 14,
+            "pulso": false
+          }
+        },
+        "lamina_4": {
+          "type": "bm-b-lamina",
+          "settings": {
+            "texto_alt": "",
+            "titulo_oculto": "",
+            "nivel": "h2",
+            "prioridad": false,
+            "abre_formulario": false
+          }
+        },
+        "lamina_5": {
+          "type": "bm-b-lamina",
+          "settings": {
+            "texto_alt": "",
+            "titulo_oculto": "",
+            "nivel": "h2",
+            "prioridad": false,
+            "abre_formulario": false
+          }
+        },
+        "cta_4": {
+          "type": "bm-b-cta",
+          "settings": {
+            "texto": "Pedir ahora · pago contra entrega",
+            "subtexto": "Pagas al recibir",
+            "ancho": "completo",
+            "alineacion": "center",
+            "pad_y": 14,
+            "pulso": false
+          }
+        }
+      },
+      "block_order": [
+        "lamina_2",
+        "lamina_3",
+        "cta_2",
+        "colores",
+        "tallas",
+        "cta_3",
+        "lamina_4",
+        "lamina_5",
+        "cta_4"
+      ]
+    },
+    "cierre": {
+      "type": "bm-laminas-v2",
+      "settings": {
+        "espacio": 0,
+        "radio_imagen": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "ancho": "contenido"
+      },
+      "blocks": {
+        "lamina_cierre": {
+          "type": "bm-b-lamina",
+          "settings": {
+            "texto_alt": "",
+            "titulo_oculto": "",
+            "nivel": "h2",
+            "prioridad": false,
+            "abre_formulario": false
+          }
+        },
+        "confianza": {
+          "type": "bm-b-nota",
+          "settings": {
+            "texto": "<p>Envío a toda Colombia · Pagas al recibir</p>",
+            "alineacion": "center",
+            "padding": 12,
+            "tamano": 15
+          }
+        },
+        "cta_final": {
+          "type": "bm-b-cta",
+          "settings": {
+            "texto": "Pedir ahora · pago contra entrega",
+            "subtexto": "Pagas al recibir",
+            "ancho": "completo",
+            "alineacion": "center",
+            "pad_y": 14,
+            "pulso": false
+          }
+        }
+      },
+      "block_order": [
+        "lamina_cierre",
+        "confianza",
+        "cta_final"
+      ]
+    }
+  },
+  "order": [
+    "ajustes",
+    "cinta",
+    "apertura",
+    "main",
+    "videos",
+    "laminas",
+    "cierre"
+  ]
+}
