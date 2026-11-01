@@ -1,0 +1,29 @@
+{%- comment -%}
+  Bloque «Video»: video REAL del producto desde Archivos o por la URL del MP4, vertical y en silencio.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign b = block.settings -%}
+<figure class="bm-videos__item" data-bm-bloque="video" {{ block.shopify_attributes }}>
+  {%- if b.video != blank -%}
+    {{ b.video | video_tag: image_size: '720x', autoplay: false, loop: true, muted: true, controls: true, class: 'bm-videos__v' }}
+  {%- elsif b.video_url != blank -%}
+    <video class="bm-videos__v" src="{{ b.video_url }}"{% if b.portada != blank %} poster="{{ b.portada | image_url: width: 720 }}"{% endif %} controls playsinline muted loop preload="metadata"></video>
+  {%- elsif request.design_mode -%}
+    {{ 'image' | placeholder_svg_tag: 'bm-placeholder' }}
+  {%- endif -%}
+  {%- if b.leyenda != blank -%}<figcaption>{{ b.leyenda | escape }}</figcaption>{%- endif -%}
+</figure>
+
+{% schema %}
+{
+  "name": "Video",
+  "tag": null,
+  "settings": [
+    {"type": "video", "id": "video", "label": "Video (desde Archivos)"},
+    {"type": "url", "id": "video_url", "label": "O URL del MP4 en Archivos"},
+    {"type": "image_picker", "id": "portada", "label": "Portada (para la URL)"},
+    {"type": "text", "id": "leyenda", "label": "Leyenda"}
+  ],
+  "presets": [{"name": "Video"}]
+}
+{% endschema %}

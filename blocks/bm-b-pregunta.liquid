@@ -1,0 +1,21 @@
+{%- comment -%}
+  Bloque «Pregunta»: pregunta y respuesta desde una objeción real.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+<details class="bm-faq__item" data-bm-bloque="pregunta" {% if block.settings.abierta %}open{% endif %} {{ block.shopify_attributes }}>
+  <summary>{{ block.settings.pregunta | escape }}</summary>
+  <div class="bm-faq__resp">{{ block.settings.respuesta }}</div>
+</details>
+
+{% schema %}
+{
+  "name": "Pregunta",
+  "tag": null,
+  "settings": [
+    {"type": "text", "id": "pregunta", "label": "Pregunta", "default": "¿Cómo pago?"},
+    {"type": "richtext", "id": "respuesta", "label": "Respuesta", "default": "<p>Pagas en efectivo cuando recibes el pedido.</p>"},
+    {"type": "checkbox", "id": "abierta", "label": "Abierta al cargar", "default": false}
+  ],
+  "presets": [{"name": "Pregunta"}]
+}
+{% endschema %}

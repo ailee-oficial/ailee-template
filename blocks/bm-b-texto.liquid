@@ -1,0 +1,34 @@
+{%- comment -%}
+  Bloque «Texto o paso». «Texto»: un párrafo editable. «Paso o beneficio»: tarjeta con ícono, símbolo o número,
+  título y texto; dentro de una «Fila de pasos» se deslizan en fila.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign b = block.settings -%}
+{%- if b.estilo == 'paso' -%}
+  <div class="bm-oferta__caract" data-bm-bloque="paso" {{ block.shopify_attributes }}>
+    {%- if b.icono != blank -%}
+      <span class="bm-oferta__icono">{{ b.icono | image_url: width: 120 | image_tag: loading: 'lazy', widths: '60, 120', alt: '' }}</span>
+    {%- elsif b.simbolo != blank -%}
+      <span class="bm-oferta__simbolo" aria-hidden="true">{{ b.simbolo | escape }}</span>
+    {%- endif -%}
+    {%- if b.titulo != blank -%}<p class="bm-oferta__caract-t">{{ b.titulo | escape }}</p>{%- endif -%}
+    {%- if b.texto != blank -%}<div class="bm-oferta__caract-x bm-texto">{{ b.texto }}</div>{%- endif -%}
+  </div>
+{%- else -%}
+  <div class="bm-texto" data-bm-bloque="texto" {{ block.shopify_attributes }}>{{ b.texto }}</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Texto o paso",
+  "tag": null,
+  "settings": [
+    {"type": "select", "id": "estilo", "label": "Estilo", "options": [{"value": "texto", "label": "Texto"}, {"value": "paso", "label": "Paso o beneficio (tarjeta)"}], "default": "texto", "info": "Los pasos seguidos se agrupan en una fila que se desliza."},
+    {"type": "image_picker", "id": "icono", "label": "Ícono (paso)"},
+    {"type": "text", "id": "simbolo", "label": "Símbolo o número (paso, si no hay ícono)"},
+    {"type": "text", "id": "titulo", "label": "Título (paso)"},
+    {"type": "richtext", "id": "texto", "label": "Texto", "default": "<p>Explica aquí el beneficio con las palabras del cliente.</p>"}
+  ],
+  "presets": [{"name": "Texto o paso"}]
+}
+{% endschema %}

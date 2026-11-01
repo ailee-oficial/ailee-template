@@ -1,0 +1,75 @@
+{%- comment -%}
+  Bloque «Guía de tallas»: abre la guía en una ventana (<bm-tallas>) y, si se pide, el WhatsApp con el número de
+  «Ajustes de la página». Imagen vacía: la del producto cuyo archivo o texto alternativo diga talla, guía, medida o
+  size; sin guía no hay botón (una tabla equivocada es peor que ninguna).
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign product = closest.product | default: product -%}
+{%- assign b = block.settings -%}
+{%- assign guia = b.imagen -%}
+{%- if guia == blank and product != blank -%}
+  {%- for im in product.images -%}
+    {%- if guia == blank -%}
+      {%- assign meta = im.src | append: ' ' | append: im.alt | downcase -%}
+      {%- if meta contains 'talla' or meta contains 'guia' or meta contains 'medida' or meta contains 'size' -%}{%- assign guia = im -%}{%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+<div class="bm-ayuda" data-bm-bloque="tallas" {{ block.shopify_attributes }}>
+  <span class="bm-ayuda__icono">{%- render 'bm-icono', icono: 'talla' -%}</span>
+  <div class="bm-ayuda__texto">
+    {%- if b.titulo != blank -%}<p class="bm-ayuda__titulo">{{ b.titulo | escape }}</p>{%- endif -%}
+    {%- if b.texto != blank -%}<p class="bm-ayuda__x">{{ b.texto | escape }}</p>{%- endif -%}
+  </div>
+  <bm-tallas class="bm-ayuda__botones">
+    {%- if guia != blank -%}<button type="button" class="bm-ayuda__boton bm-ayuda__boton--borde" data-bm-guia-abrir aria-haspopup="dialog">{{ b.boton_guia | default: 'Ver guía de tallas' | escape }}</button>{%- endif -%}
+    {%- if b.whatsapp -%}<a class="bm-ayuda__boton" href="#" data-bm-wa="{{ b.mensaje | append: ' ' | append: product.title | escape }}" target="_blank" rel="noopener" hidden>{%- render 'bm-icono', icono: 'whatsapp' -%}<span>{{ b.boton_wa | default: 'Te ayudamos por WhatsApp' | escape }}</span></a>{%- endif -%}
+    {%- if guia != blank -%}
+      {%- capture alt_guia -%}Guía de tallas de {{ product.title }}{%- endcapture -%}
+      <dialog class="bm-guia" data-bm-guia aria-label="Guía de tallas">
+        <button type="button" class="bm-guia__cerrar" data-bm-guia-cerrar aria-label="Cerrar">×</button>
+        {{ guia | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '480, 720, 1080, 1400', sizes: 'min(92vw, 720px)', alt: alt_guia }}
+      </dialog>
+    {%- endif -%}
+  </bm-tallas>
+</div>
+
+{% stylesheet %}
+bm-tallas:not([hidden]){display:block}
+{% endstylesheet %}
+
+{% javascript %}
+// Se registra con el motor del kit (assets/bm-landing.js) sin importar qué script carga primero.
+(window.BMLandingBloques = window.BMLandingBloques || []).push(({ Bloque, actual, elegir, buscar, valorDeClave }) => {
+  if (customElements.get('bm-tallas')) return;
+  customElements.define('bm-tallas', class extends Bloque {
+    iniciar() {
+      const d = this.querySelector('dialog');
+      const abrir = this.querySelector('[data-bm-guia-abrir]');
+      if (!d || !abrir) return;
+      this.escuchar(abrir, 'click', () => (d.showModal ? d.showModal() : d.setAttribute('open', '')));
+      const cerrar = this.querySelector('[data-bm-guia-cerrar]');
+      if (cerrar) this.escuchar(cerrar, 'click', () => (d.close ? d.close() : d.removeAttribute('open')));
+      this.escuchar(d, 'click', (e) => { if (e.target === d && d.close) d.close(); });
+    }
+  });
+});
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Guía de tallas",
+  "tag": null,
+  "settings": [
+    {"type": "paragraph", "content": "Abre la guía en una ventana. Imagen vacía: la del producto cuyo archivo o texto alternativo diga talla, guía, medida o size; sin guía no hay botón."},
+    {"type": "image_picker", "id": "imagen", "label": "Imagen de la guía"},
+    {"type": "text", "id": "titulo", "label": "Título", "default": "¿No sabes qué talla elegir?"},
+    {"type": "text", "id": "texto", "label": "Texto", "default": "Consulta la guía de tallas o escríbenos y te ayudamos a encontrar tu talla."},
+    {"type": "text", "id": "boton_guia", "label": "Botón de la guía", "default": "Ver guía de tallas"},
+    {"type": "checkbox", "id": "whatsapp", "label": "Botón de WhatsApp", "info": "Con el número de «Ajustes de la página». Sin número no sale.", "default": true},
+    {"type": "text", "id": "boton_wa", "label": "Texto del botón de WhatsApp", "default": "Te ayudamos por WhatsApp"},
+    {"type": "text", "id": "mensaje", "label": "Mensaje que se escribe en WhatsApp", "info": "Se completa con el nombre del producto.", "default": "Hola, quiero ayuda con mi talla de"}
+  ],
+  "presets": [{"name": "Guía de tallas"}]
+}
+{% endschema %}

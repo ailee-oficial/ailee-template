@@ -1,0 +1,29 @@
+{%- comment -%}
+  Bloque «Promo»: la oferta cuando no es un descuento, p. ej. «Promo 2x1 · Pagas 1, te llevas 2». Debe decir lo
+  mismo que la oferta de Releasit.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign b = block.settings -%}
+{%- if b.texto != blank -%}
+  <p class="bm-v2-promo bm-v2-promo--{{ b.estilo }}" data-bm-bloque="promo" {{ block.shopify_attributes }}>{{ b.texto | escape }}</p>
+{%- endif -%}
+
+{% stylesheet %}
+.bm-v2-promo{margin:0;font-weight:800;line-height:1.3}
+.bm-v2-promo--pildora{align-self:center;display:inline-block;padding:5px 14px;border-radius:999px;background:var(--bm-pildora-bg,var(--bm-acento,#111827));color:var(--bm-pildora-fg,var(--bm-acento-fg,#ffffff));font-size:14px}
+.bm-escena__panel .bm-v2-promo--pildora,.bm-oferta[style*="--bm-align:left"] .bm-v2-promo--pildora{align-self:flex-start}
+.bm-v2-promo--franja{padding:10px 14px;border-radius:12px;background:var(--bm-pildora-bg,var(--bm-acento,#111827));color:var(--bm-pildora-fg,var(--bm-acento-fg,#ffffff));font-size:15px;text-align:center}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Promo (2x1)",
+  "tag": null,
+  "settings": [
+    {"type": "paragraph", "content": "La oferta cuando no es un descuento. Debe decir lo mismo que la oferta de Releasit."},
+    {"type": "text", "id": "texto", "label": "Texto", "default": "Promo 2x1 · Pagas 1, te llevas 2"},
+    {"type": "select", "id": "estilo", "label": "Estilo", "options": [{"value": "pildora", "label": "Píldora"}, {"value": "franja", "label": "Franja a lo ancho"}], "default": "pildora"}
+  ],
+  "presets": [{"name": "Promo (2x1)"}]
+}
+{% endschema %}

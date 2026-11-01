@@ -1,0 +1,19 @@
+{%- comment -%}
+  Clave de color de una foto del producto según su texto alternativo (convención de core/lib/galeria_shopify.py):
+  «negro», «negro_2» o «azul-petroleo_3» → «negro» / «azulpetroleo». Imprime solo la clave (handleize sin
+  guiones), la misma que llevan las variantes en bm-v2-producto y las muestras del selector.
+  Uso: {%- capture k -%}{%- render 'bm-v2-clave-alt', alt: media.alt -%}{%- endcapture -%}
+  Fuente canónica: claude-skills/core/tema_landing.
+{%- endcomment -%}
+{%- assign a = alt | downcase | strip -%}
+{%- assign partes = a | split: '_' -%}
+{%- if partes.size > 1 -%}
+  {%- assign i = partes.size | minus: 1 -%}
+  {%- assign ult = partes[i] -%}
+  {%- assign num = ult | plus: 0 | append: '' -%}
+  {%- if num == ult -%}
+    {%- assign sufijo = '_' | append: ult -%}
+    {%- assign a = a | remove_last: sufijo -%}
+  {%- endif -%}
+{%- endif -%}
+{{- a | handleize | remove: '-' -}}

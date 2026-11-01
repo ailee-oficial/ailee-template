@@ -1,0 +1,51 @@
+{%- comment -%}
+  Bloque «Título»: con estilo «Del producto», el encabezado de la primera pantalla (antetítulo, título y
+  subtítulo; vacío = el nombre del producto); con «De la sección», el titular de una escena o del cierre.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign product = closest.product | default: product -%}
+{%- assign b = block.settings -%}
+{%- assign texto = b.texto | default: product.title -%}
+{%- if b.estilo == 'producto' -%}
+  <div class="bm-oferta__encabezado" data-bm-bloque="titulo" {{ block.shopify_attributes }}>
+    {%- if b.antetitulo != blank -%}<p class="bm-oferta__ante">{{ b.antetitulo | escape }}</p>{%- endif -%}
+    {%- case b.nivel -%}
+      {%- when 'h1' -%}<h1 class="bm-oferta__titulo" style="--bm-titulo-tam:{{ b.tamano }}px">{{ texto | escape }}</h1>
+      {%- when 'h3' -%}<h3 class="bm-oferta__titulo" style="--bm-titulo-tam:{{ b.tamano }}px">{{ texto | escape }}</h3>
+      {%- else -%}<h2 class="bm-oferta__titulo" style="--bm-titulo-tam:{{ b.tamano }}px">{{ texto | escape }}</h2>
+    {%- endcase -%}
+    {%- if b.subtitulo != blank -%}<p class="bm-oferta__sub">{{ b.subtitulo | escape }}</p>{%- endif -%}
+  </div>
+{%- else -%}
+  <div class="bm-v2-titulo" data-bm-bloque="titulo" {{ block.shopify_attributes }}>
+    {%- if b.antetitulo != blank -%}<p class="bm-oferta__ante">{{ b.antetitulo | escape }}</p>{%- endif -%}
+    {%- case b.nivel -%}
+      {%- when 'h1' -%}<h1 class="bm-titulo" style="--bm-titulo-tam:{{ b.tamano }}px">{{ texto | escape }}</h1>
+      {%- when 'h3' -%}<h3 class="bm-titulo" style="--bm-titulo-tam:{{ b.tamano }}px">{{ texto | escape }}</h3>
+      {%- else -%}<h2 class="bm-titulo" style="--bm-titulo-tam:{{ b.tamano }}px">{{ texto | escape }}</h2>
+    {%- endcase -%}
+    {%- if b.subtitulo != blank -%}<p class="bm-v2-subtitulo">{{ b.subtitulo | escape }}</p>{%- endif -%}
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+.bm-v2-titulo>*{margin:0}
+.bm-v2-titulo>*+*{margin-top:6px}
+.bm-v2-subtitulo{line-height:1.4;opacity:.85}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Título",
+  "tag": null,
+  "settings": [
+    {"type": "select", "id": "estilo", "label": "Estilo", "options": [{"value": "seccion", "label": "De la sección (escena, cierre)"}, {"value": "producto", "label": "Del producto (primera pantalla)"}], "default": "seccion"},
+    {"type": "text", "id": "antetitulo", "label": "Antetítulo"},
+    {"type": "text", "id": "texto", "label": "Título", "info": "Vacío: el nombre del producto."},
+    {"type": "select", "id": "nivel", "label": "Nivel", "options": [{"value": "h1", "label": "H1 (solo la primera pantalla)"}, {"value": "h2", "label": "H2"}, {"value": "h3", "label": "H3"}], "default": "h2"},
+    {"type": "range", "id": "tamano", "label": "Tamaño", "min": 18, "max": 44, "step": 2, "unit": "px", "default": 26},
+    {"type": "textarea", "id": "subtitulo", "label": "Subtítulo"}
+  ],
+  "presets": [{"name": "Título", "settings": {"estilo": "seccion"}}]
+}
+{% endschema %}
