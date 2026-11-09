@@ -1,0 +1,860 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ajustes": {
+      "type": "bm-ajustes-v2__kfac29c91",
+      "settings": {
+        "aplicar_fondo": true,
+        "fondo_pagina": "#FBF6F1",
+        "texto_pagina": "#2B1D1A",
+        "ancho_max": 780,
+        "ficha_modo": "oculta",
+        "ficha_margen_lateral": 16,
+        "ocultar_galeria": true,
+        "ocultar_descripcion": true,
+        "ficha_padding": 12,
+        "cta_fondo": "#2B1D1A",
+        "cta_texto": "#FFFFFF",
+        "cta_radio": 12,
+        "cta_alto": 54,
+        "cta_letra": 17,
+        "rsi_aplicar": true,
+        "movimiento_pagina": true,
+        "ficha_fondo": "#FBF6F1",
+        "ficha_texto": "#2B1D1A",
+        "cta_animacion": "salto",
+        "cta_sombra": true,
+        "cta_fuente": "tema",
+        "cta_mayusculas": false,
+        "pie_fondo": "#2B1D1A",
+        "pie_texto": "#FBF6F1",
+        "pie_acento": "#8C5A3C"
+      }
+    },
+    "p01_cinta": {
+      "type": "bm-cinta-v2__k39c733b4",
+      "settings": {
+        "frases": "pago|Pago contra entrega\ncamion|Envío gratis\nreloj|Llega en 3 a 5 días hábiles",
+        "separador": "·",
+        "animada": true,
+        "duracion": 24,
+        "tamano": 14,
+        "padding": 9,
+        "fondo": "#8C5A3C",
+        "texto": "#FFFFFF"
+      }
+    },
+    "p02_hero": {
+      "type": "bm-laminas-v2__k77470d3b",
+      "settings": {
+        "fondo": "#FBF6F1",
+        "texto": "#2B1D1A",
+        "ancho": "contenido",
+        "espacio": 0,
+        "radio_imagen": 0,
+        "padding_top": 0,
+        "padding_bottom": 0
+      },
+      "blocks": {
+        "b01_portada": {
+          "type": "bm-b-lamina",
+          "settings": {
+            "imagen": "shopify://shop_images/bm-kit-mujer-irresistible-4b1b3d73.png",
+            "texto_alt": "Bésame",
+            "titulo_oculto": "Tu noche especial ya tiene kit",
+            "nivel": "ninguno",
+            "prioridad": true,
+            "abre_formulario": false
+          }
+        }
+      },
+      "block_order": [
+        "b01_portada"
+      ]
+    },
+    "p03_oferta": {
+      "type": "bm-primera-v2__kf1157af6",
+      "blocks": {
+        "titulo": {
+          "type": "bm-b-titulo",
+          "settings": {
+            "estilo": "producto",
+            "antetitulo": "Early Black Friday",
+            "texto": "Tu noche especial ya tiene kit",
+            "nivel": "h1",
+            "tamano": 26,
+            "subtitulo": "Perfume Bésame y body de encaje negro, siempre juntos en una caja."
+          }
+        },
+        "pasos": {
+          "type": "bm-b-pasos__ka8f30660",
+          "settings": {},
+          "blocks": {
+            "b02_caracteristica": {
+              "type": "bm-b-texto__k96b0ad3c",
+              "settings": {
+                "estilo": "paso",
+                "simbolo": "1",
+                "titulo": "Perfume Bésame «Sensual Gold»",
+                "texto": "<p>Fragancia para prendas íntimas, en su caja dorada.</p>",
+                "icono": "shopify://shop_images/bm-kit-mujer-irresistible-ef4553e4.png",
+                "icono_tamano": "foto"
+              }
+            },
+            "b03_caracteristica": {
+              "type": "bm-b-texto__k96b0ad3c",
+              "settings": {
+                "estilo": "paso",
+                "simbolo": "2",
+                "titulo": "Body de encaje negro",
+                "texto": "<p>Para estrenar en tu noche especial.</p>",
+                "icono": "shopify://shop_images/bm-kit-mujer-irresistible-b18767fe.png",
+                "icono_tamano": "foto"
+              }
+            }
+          },
+          "block_order": [
+            "b02_caracteristica",
+            "b03_caracteristica"
+          ]
+        },
+        "b04_precio": {
+          "type": "bm-b-precio__k9ca4cd28",
+          "settings": {
+            "estilo": "tarjeta",
+            "prefijo": "",
+            "precio_texto": "169900",
+            "ahorro": "pildora",
+            "ahorro_texto": "Ahorras",
+            "descuento_texto": "OFF",
+            "nota": ""
+          }
+        },
+        "promo": {
+          "type": "bm-b-promo",
+          "settings": {
+            "texto": "1 Kit Mujer Irresistible, envío gratis · 2 kits, el segundo con descuento · pagas al recibir",
+            "estilo": "pildora"
+          }
+        },
+        "selector": {
+          "type": "bm-b-selector__k319b3b0f",
+          "settings": {
+            "opcion": "Color",
+            "etiqueta": "",
+            "estilo": "foto",
+            "mostrar_agotados": true,
+            "nota": ""
+          }
+        },
+        "existencias": {
+          "type": "bm-b-existencias",
+          "settings": {
+            "umbral": 10,
+            "texto": "¡Quedan [n] unidades!",
+            "texto_una": "¡Queda la última unidad!"
+          }
+        },
+        "contador": {
+          "type": "bm-b-contador__k5c3dd6c5",
+          "settings": {
+            "modo": "visita",
+            "fecha": "2026-11-30 23:59",
+            "texto": "La oferta termina en",
+            "minutos": 10,
+            "fin_texto": "Oferta terminada"
+          }
+        },
+        "b05_boton": {
+          "type": "bm-b-cta__k5eb583fc",
+          "settings": {
+            "texto": "Pedir ahora · pago contra entrega",
+            "subtexto": "Pagas al recibir",
+            "ancho": "completo",
+            "alineacion": "center",
+            "pad_y": 4,
+            "pulso": false,
+            "fondo": "#2B1D1A",
+            "color": "#FFFFFF"
+          }
+        },
+        "franja": {
+          "type": "bm-b-franja",
+          "settings": {
+            "estilo": "lista",
+            "whatsapp": false,
+            "i1_titulo": "Pago contra entrega",
+            "i1_texto": "",
+            "i2_titulo": "Envío gratis a todo Colombia",
+            "i2_texto": "",
+            "i3_titulo": "Llega en 3 a 5 días hábiles",
+            "i3_texto": "",
+            "i4_titulo": "",
+            "i4_texto": ""
+          }
+        }
+      },
+      "block_order": [
+        "titulo",
+        "pasos",
+        "b04_precio",
+        "promo",
+        "selector",
+        "existencias",
+        "contador",
+        "b05_boton",
+        "franja"
+      ],
+      "settings": {
+        "alineacion": "center",
+        "fondo": "#FBF6F1",
+        "texto": "#2B1D1A",
+        "tarjeta_fondo": "#F1E6DC",
+        "tarjeta_texto": "#2B1D1A",
+        "pildora_fondo": "#8C5A3C",
+        "pildora_texto": "#FFFFFF",
+        "separacion": 14,
+        "padding_top": 16,
+        "padding_bottom": 20,
+        "padding_lateral": 16,
+        "color_inicial": ""
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "comprar": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "descripcion": {
+          "type": "description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "comprar",
+        "descripcion"
+      ],
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "bm_omitir_galeria": true
+      }
+    },
+    "p04_ocasiones": {
+      "type": "bm-galeria-v2__kcbb8e918",
+      "settings": {
+        "antetitulo": "",
+        "titulo": "Mira el kit de cerca",
+        "subtitulo": "",
+        "disposicion": "carrusel",
+        "ancho_tarjeta": 75,
+        "radio": 12,
+        "alineacion": "center",
+        "diferir": true,
+        "fondo": "#FBF6F1",
+        "texto": "#2B1D1A",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_lateral": 16,
+        "cta_mostrar": false,
+        "cta_texto": "Pedir ahora · pago contra entrega",
+        "cta_subtexto": "Pagas al recibir"
+      },
+      "blocks": {
+        "b01_escena": {
+          "type": "bm-b-escena",
+          "settings": {
+            "imagen": "shopify://shop_images/bm-kit-mujer-irresistible-08646b68.png",
+            "etiqueta": "El kit completo"
+          }
+        },
+        "b02_escena": {
+          "type": "bm-b-escena",
+          "settings": {
+            "imagen": "shopify://shop_images/bm-kit-mujer-irresistible-dec70109.png",
+            "etiqueta": "Para tu noche especial"
+          }
+        },
+        "b03_escena": {
+          "type": "bm-b-escena",
+          "settings": {
+            "imagen": "shopify://shop_images/bm-kit-mujer-irresistible-d8096022.webp",
+            "etiqueta": "El body de encaje negro"
+          }
+        },
+        "b04_escena": {
+          "type": "bm-b-escena",
+          "settings": {
+            "imagen": "shopify://shop_images/bm-kit-mujer-irresistible-6a6d1ce8.webp",
+            "etiqueta": "Visto por detrás"
+          }
+        },
+        "b05_escena": {
+          "type": "bm-b-escena",
+          "settings": {
+            "imagen": "shopify://shop_images/bm-kit-mujer-irresistible-5e6724e8.webp",
+            "etiqueta": "El perfume Bésame"
+          }
+        }
+      },
+      "block_order": [
+        "b01_escena",
+        "b02_escena",
+        "b03_escena",
+        "b04_escena",
+        "b05_escena"
+      ]
+    },
+    "p05_beneficios": {
+      "type": "bm-escena-v2__ka39ab8c1",
+      "settings": {
+        "imagen": "shopify://shop_images/bm-kit-mujer-irresistible-3c11166e.png",
+        "texto_alt": "Body de encaje negro en una percha dorada junto a una bata de seda",
+        "titulo_oculto": "",
+        "nivel_oculto": "h2",
+        "prioridad": false,
+        "diferir": true,
+        "disposicion": "imagen_arriba",
+        "posicion_texto": "end",
+        "sobre_degradado": true,
+        "alineacion": "center",
+        "ancho": "contenido",
+        "fondo": "#FBF6F1",
+        "texto": "#2B1D1A",
+        "panel_fondo": "#F1E6DC",
+        "acento": "#8C5A3C",
+        "acento_texto": "#FFFFFF",
+        "panel_padding": 20,
+        "separacion": 10,
+        "padding_top": 0,
+        "padding_bottom": 0
+      },
+      "blocks": {
+        "b01_titulo": {
+          "type": "bm-b-titulo",
+          "settings": {
+            "estilo": "seccion",
+            "antetitulo": "",
+            "texto": "Qué incluye tu kit",
+            "nivel": "h2",
+            "tamano": 26,
+            "subtitulo": ""
+          }
+        },
+        "b02_lista": {
+          "type": "bm-b-lista",
+          "settings": {
+            "items": "Perfume Bésame «Sensual Gold»: Fragancia para prendas íntimas, en su caja dorada.\nBody de encaje negro: Para estrenar en tu noche especial.",
+            "icono": "✓"
+          }
+        },
+        "b03_cta": {
+          "type": "bm-b-cta__k5eb583fc",
+          "settings": {
+            "texto": "Pedir ahora · pago contra entrega",
+            "subtexto": "Pagas al recibir",
+            "ancho": "completo",
+            "alineacion": "center",
+            "pad_y": 8,
+            "pulso": false,
+            "fondo": "#2B1D1A",
+            "color": "#FFFFFF"
+          }
+        }
+      },
+      "block_order": [
+        "b01_titulo",
+        "b02_lista",
+        "b03_cta"
+      ]
+    },
+    "p06_solucion": {
+      "type": "bm-escena-v2__ka39ab8c1",
+      "settings": {
+        "imagen": "shopify://shop_images/bm-kit-mujer-irresistible-9e113cfa.png",
+        "texto_alt": "Mano sobre el frasco Bésame en un tocador, con un vestido de fiesta al fondo",
+        "titulo_oculto": "",
+        "nivel_oculto": "h2",
+        "prioridad": false,
+        "diferir": true,
+        "disposicion": "imagen_arriba",
+        "posicion_texto": "end",
+        "sobre_degradado": true,
+        "alineacion": "center",
+        "ancho": "contenido",
+        "fondo": "#FBF6F1",
+        "texto": "#2B1D1A",
+        "panel_fondo": "#F1E6DC",
+        "acento": "#8C5A3C",
+        "acento_texto": "#FFFFFF",
+        "panel_padding": 20,
+        "separacion": 10,
+        "padding_top": 0,
+        "padding_bottom": 0
+      },
+      "blocks": {
+        "b01_titulo": {
+          "type": "bm-b-titulo",
+          "settings": {
+            "estilo": "seccion",
+            "antetitulo": "",
+            "texto": "Para cuándo es",
+            "nivel": "h2",
+            "tamano": 26,
+            "subtitulo": ""
+          }
+        },
+        "b02_lista": {
+          "type": "bm-b-lista",
+          "settings": {
+            "items": "Una cena de diciembre: Llega con algo nuevo que estrenar.\nLa noche del 31: Perfume y body listos desde ya.\nTodo en una caja: Perfume y body juntos, con envío gratis.",
+            "icono": "✓"
+          }
+        },
+        "b03_cta": {
+          "type": "bm-b-cta__k5eb583fc",
+          "settings": {
+            "texto": "Pedir ahora · pago contra entrega",
+            "subtexto": "Pagas al recibir",
+            "ancho": "completo",
+            "alineacion": "center",
+            "pad_y": 8,
+            "pulso": false,
+            "fondo": "#2B1D1A",
+            "color": "#FFFFFF"
+          }
+        }
+      },
+      "block_order": [
+        "b01_titulo",
+        "b02_lista",
+        "b03_cta"
+      ]
+    },
+    "p07_prueba_social": {
+      "type": "bm-resenas-v2__k96c63558",
+      "settings": {
+        "titulo": "Lo que dicen quienes ya lo recibieron",
+        "subtitulo": "",
+        "disposicion": "carrusel",
+        "alineacion": "center",
+        "aviso_ia": "",
+        "fondo": "#FBF6F1",
+        "texto": "#2B1D1A",
+        "tarjeta_fondo": "#F1E6DC",
+        "tarjeta_texto": "#2B1D1A",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_lateral": 16,
+        "cta_mostrar": false,
+        "cta_texto": "Pedir ahora · pago contra entrega",
+        "cta_subtexto": "Pagas al recibir"
+      },
+      "blocks": {
+        "b01_resena": {
+          "type": "bm-b-resena__kc71d5ff4",
+          "settings": {
+            "origen": "ia_recreada",
+            "foto": "shopify://shop_images/bm-kit-mujer-irresistible-10af521d.png",
+            "foto_alt": "",
+            "avatar": "shopify://shop_images/bm-retrato-m01.webp",
+            "prompt": "Reseña breve de una clienta que confirma que el kit llegó como en las fotos y que pagó al recibir; sin efectos prometidos ni medidas.",
+            "foto_origen": "reutilizada",
+            "foto_prompt": "",
+            "avatar_prompt": "Banco de retratos M01 (mujer de 27 años, piel trigueña, cabello castaño ondulado suelto): Casual smartphone selfie profile photo of a 27-year-old Colombian woman with tan skin and wavy brown shoulder-length hair, light makeup, wearing a plain coral t-shirt, warm genuine smile, soft natural daylight from a window, blurred living room background, head and shoulders centered, looking at camera, realistic skin texture, square framing, no text, no logo, no watermark",
+            "titulo": "Llegó tal cual",
+            "apertura_tienda": "",
+            "segundo_mensaje": "",
+            "texto": "El perfume vino en su caja dorada y el body igual a la foto. Pagué al recibir.",
+            "respuesta_tienda": "",
+            "nombre": "Camila",
+            "detalle": "Medellín",
+            "estrellas": 5,
+            "etiqueta": ""
+          }
+        },
+        "b02_resena": {
+          "type": "bm-b-resena__kc71d5ff4",
+          "settings": {
+            "origen": "ia_recreada",
+            "foto": "shopify://shop_images/bm-kit-mujer-irresistible-cc9b9576.png",
+            "foto_alt": "",
+            "avatar": "shopify://shop_images/bm-retrato-m02.webp",
+            "prompt": "Reseña breve de una clienta que cuenta que el aroma es distinto al diario y que el body es bonito; sin ml, tela ni medidas.",
+            "foto_origen": "reutilizada",
+            "foto_prompt": "",
+            "avatar_prompt": "Banco de retratos M02 (mujer de 38 años, piel morena, cabello negro rizado recogido): Casual smartphone selfie profile photo of a 38-year-old Afro-Colombian woman with dark skin and black curly hair tied up, small gold earrings, wearing a white blouse, relaxed confident smile, natural outdoor daylight, blurred green plants and house wall background, head and shoulders centered, looking at camera, realistic skin texture, square framing, no text, no logo, no watermark",
+            "titulo": "Para estrenar en diciembre",
+            "apertura_tienda": "",
+            "segundo_mensaje": "",
+            "texto": "El body es bonito y el perfume tiene un aroma distinto al que uso a diario.",
+            "respuesta_tienda": "",
+            "nombre": "Valentina",
+            "detalle": "Cali",
+            "estrellas": 5,
+            "etiqueta": ""
+          }
+        },
+        "ia_1": {
+          "type": "bm-b-resena__kc71d5ff4",
+          "settings": {
+            "origen": "ia_recreada",
+            "foto": "shopify://shop_images/bm-kit-mujer-irresistible-d3b4b57c.png",
+            "foto_alt": "La caja es divina",
+            "avatar": "shopify://shop_images/bm-retrato-m04.webp",
+            "prompt": "Reseña breve de una clienta que cuenta que el perfume llegó bien empacado y que pagó al recibir; sin efectos prometidos.",
+            "foto_origen": "reutilizada",
+            "foto_prompt": "",
+            "avatar_prompt": "Banco de retratos M04 (mujer de 23 años, piel trigueña clara, cabello negro liso largo): Casual smartphone selfie profile photo of a 23-year-old Colombian woman with light tan skin and long straight black hair, natural look, wearing a beige hoodie, cheerful smile, daylight on a city street, blurred buildings background, head and shoulders centered, looking at camera, realistic skin texture, square framing, no text, no logo, no watermark",
+            "titulo": "La caja es divina",
+            "apertura_tienda": "",
+            "segundo_mensaje": "",
+            "texto": "El perfume llegó en su caja dorada, perfecto y bien protegido. Lo pagué cuando me lo entregaron.",
+            "respuesta_tienda": "",
+            "nombre": "Daniela",
+            "detalle": "Bogotá",
+            "estrellas": 5,
+            "fuente": "",
+            "etiqueta": ""
+          }
+        }
+      },
+      "block_order": [
+        "b01_resena",
+        "b02_resena",
+        "ia_1"
+      ]
+    },
+    "p08_conversaciones": {
+      "type": "bm-resenas-v2__k96c63558",
+      "settings": {
+        "titulo": "Lo que escriben al recibir su kit",
+        "subtitulo": "",
+        "disposicion": "chat",
+        "alineacion": "center",
+        "aviso_ia": "",
+        "fondo": "#FBF6F1",
+        "texto": "#2B1D1A",
+        "tarjeta_fondo": "#F1E6DC",
+        "tarjeta_texto": "#2B1D1A",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_lateral": 16,
+        "cta_mostrar": true,
+        "cta_texto": "Pedir ahora · pago contra entrega",
+        "cta_subtexto": "Pagas al recibir"
+      },
+      "blocks": {
+        "b01_resena": {
+          "type": "bm-b-resena__kc71d5ff4",
+          "settings": {
+            "origen": "ia_recreada",
+            "foto": "shopify://shop_images/bm-kit-mujer-irresistible-a34c1e25.png",
+            "foto_alt": "",
+            "avatar": "shopify://shop_images/bm-retrato-m03.webp",
+            "prompt": "Conversación breve de WhatsApp de una clienta que confirma la llegada del kit, paga al recibir y lo estrena en una cena de diciembre; sin promesas de efecto ni datos de ficha.",
+            "foto_origen": "reutilizada",
+            "foto_prompt": "",
+            "avatar_prompt": "Banco de retratos M03 (mujer de 52 años, piel clara, cabello corto castaño con canas): Casual smartphone photo of a 52-year-old Colombian woman with light skin and short brown hair with some gray strands, reading glasses pushed up on her head, wearing a soft blue cardigan, kind smile, soft natural light in a kitchen, blurred background, head and shoulders centered, looking at camera, realistic skin texture with fine lines, square framing, no text, no logo, no watermark",
+            "titulo": "Me llegó el kit",
+            "apertura_tienda": "Hola Mariana, ya recibiste tu Kit Mujer Irresistible?",
+            "segundo_mensaje": "Lo voy a estrenar en la cena del 24.",
+            "texto": "Sí, ya me llegó. Viene el perfume y el body, todo en la misma caja. Pagué al recibir.",
+            "respuesta_tienda": "Qué bueno, Mariana. Que tengas una linda noche.",
+            "nombre": "Mariana",
+            "detalle": "Barranquilla",
+            "estrellas": 5,
+            "etiqueta": ""
+          }
+        },
+        "ia_1": {
+          "type": "bm-b-resena__kc71d5ff4",
+          "settings": {
+            "origen": "ia_recreada",
+            "foto": "shopify://shop_images/bm-kit-mujer-irresistible-62cb5241.png",
+            "foto_alt": "Llegó completo",
+            "avatar": "shopify://shop_images/bm-retrato-m05.webp",
+            "prompt": "Conversación breve de WhatsApp de una clienta que confirma la llegada del kit y paga al recibir; sin promesas de efecto ni datos de ficha.",
+            "foto_origen": "reutilizada",
+            "foto_prompt": "",
+            "avatar_prompt": "Banco de retratos M05 (mujer de 44 años, piel mestiza, cabello castaño oscuro con mechas): Casual smartphone selfie profile photo of a 44-year-old mestiza Colombian woman with medium brown skin and dark brown hair with caramel highlights, wearing a green blouse, warm smile, late afternoon natural light on a balcony, blurred background, head and shoulders centered, looking at camera, realistic skin texture, square framing, no text, no logo, no watermark",
+            "titulo": "Llegó completo",
+            "apertura_tienda": "Hola Paola, ¿ya te llegó tu Kit Mujer Irresistible?",
+            "segundo_mensaje": "Le pagué al domiciliario cuando llegó.",
+            "texto": "¡Sí! Llegó hoy en la tarde. Todo venía completo y bien empacado.",
+            "respuesta_tienda": "Qué alegría, Paola. Gracias por tu compra.",
+            "nombre": "Paola",
+            "detalle": "Cartagena",
+            "estrellas": 5,
+            "fuente": "",
+            "etiqueta": ""
+          }
+        },
+        "ia_2": {
+          "type": "bm-b-resena__kc71d5ff4",
+          "settings": {
+            "origen": "ia_recreada",
+            "foto": "shopify://shop_images/bm-kit-mujer-irresistible-164fd759.png",
+            "foto_alt": "Es para regalo",
+            "avatar": "",
+            "prompt": "Conversación breve de WhatsApp de una clienta que confirma la llegada del kit y paga al recibir; sin promesas de efecto ni datos de ficha.",
+            "foto_origen": "reutilizada",
+            "foto_prompt": "",
+            "avatar_prompt": "",
+            "titulo": "Es para regalo",
+            "apertura_tienda": "Hola Andrea, ¿cómo te fue con tu pedido?",
+            "segundo_mensaje": "Se lo voy a regalar a mi hermana en Navidad.",
+            "texto": "Ya lo tengo. La caja del perfume es preciosa y el body está divino.",
+            "respuesta_tienda": "Qué lindo detalle, Andrea. Que lo disfrute mucho.",
+            "nombre": "Andrea",
+            "detalle": "Cali",
+            "estrellas": 5,
+            "fuente": "",
+            "etiqueta": ""
+          }
+        }
+      },
+      "block_order": [
+        "b01_resena",
+        "ia_1",
+        "ia_2"
+      ]
+    },
+    "p09_faq": {
+      "type": "bm-preguntas-v2__k3bd80bb0",
+      "settings": {
+        "titulo": "Preguntas frecuentes",
+        "alineacion": "center",
+        "fondo": "#FBF6F1",
+        "texto": "#2B1D1A",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_lateral": 16,
+        "cta_mostrar": false,
+        "cta_texto": "Pedir ahora · pago contra entrega",
+        "cta_subtexto": "Pagas al recibir"
+      },
+      "blocks": {
+        "b01_pregunta": {
+          "type": "bm-b-pregunta",
+          "settings": {
+            "pregunta": "¿Qué trae el kit?",
+            "respuesta": "<p>Un perfume Bésame «Sensual Gold» y un body de encaje negro, juntos en el mismo pedido.</p>"
+          }
+        },
+        "b02_pregunta": {
+          "type": "bm-b-pregunta",
+          "settings": {
+            "pregunta": "¿Cómo pago?",
+            "respuesta": "<p>Pagas al recibir en tu casa.</p>"
+          }
+        },
+        "b03_pregunta": {
+          "type": "bm-b-pregunta",
+          "settings": {
+            "pregunta": "¿Cuánto cuesta el envío?",
+            "respuesta": "<p>Es gratis y llega a todo Colombia.</p>"
+          }
+        },
+        "b04_pregunta": {
+          "type": "bm-b-pregunta",
+          "settings": {
+            "pregunta": "¿Cuándo llega?",
+            "respuesta": "<p>En 3 a 5 días hábiles.</p>"
+          }
+        },
+        "b05_pregunta": {
+          "type": "bm-b-pregunta",
+          "settings": {
+            "pregunta": "¿Hasta cuándo es la oferta?",
+            "respuesta": "<p>Hasta el 30 de noviembre a las 11:59 p. m.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "b01_pregunta",
+        "b02_pregunta",
+        "b03_pregunta",
+        "b04_pregunta",
+        "b05_pregunta"
+      ]
+    },
+    "p10_confianza_envio": {
+      "type": "bm-beneficios-v2__k89157314",
+      "settings": {
+        "titulo": "Pides hoy, pagas cuando lo recibes",
+        "subtitulo": "",
+        "estilo": "fila",
+        "cols_movil": "1",
+        "cols_escritorio": "3",
+        "numerar": false,
+        "alineacion": "center",
+        "fondo": "#FBF6F1",
+        "texto": "#2B1D1A",
+        "tarjeta_fondo": "#F1E6DC",
+        "acento": "#8C5A3C",
+        "acento_texto": "#FFFFFF",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_lateral": 16,
+        "item_padding": 20,
+        "radio": 12,
+        "icono_tam": 44,
+        "cta_mostrar": true,
+        "cta_texto": "Pedir ahora · pago contra entrega",
+        "cta_subtexto": "Pagas al recibir"
+      },
+      "blocks": {
+        "b01_item": {
+          "type": "bm-b-item",
+          "settings": {
+            "simbolo": "",
+            "titulo": "Pago contra entrega",
+            "texto": "Pagas al recibir en tu casa."
+          }
+        },
+        "b02_item": {
+          "type": "bm-b-item",
+          "settings": {
+            "simbolo": "",
+            "titulo": "Envío gratis",
+            "texto": "A todo Colombia."
+          }
+        },
+        "b03_item": {
+          "type": "bm-b-item",
+          "settings": {
+            "simbolo": "",
+            "titulo": "Entrega en 3 a 5 días hábiles",
+            "texto": "De lunes a sábado."
+          }
+        }
+      },
+      "block_order": [
+        "b01_item",
+        "b02_item",
+        "b03_item"
+      ]
+    },
+    "p11_oferta_cta": {
+      "type": "bm-cierre-v2__k985c6dcb",
+      "settings": {
+        "texto_alt": "",
+        "titulo_oculto": "",
+        "nivel_oculto": "h2",
+        "prioridad": false,
+        "diferir": true,
+        "disposicion": "solo_texto",
+        "posicion_texto": "end",
+        "sobre_degradado": true,
+        "alineacion": "center",
+        "ancho": "contenido",
+        "fondo": "#FBF6F1",
+        "texto": "#2B1D1A",
+        "panel_fondo": "#F1E6DC",
+        "acento": "#8C5A3C",
+        "acento_texto": "#FFFFFF",
+        "panel_padding": 20,
+        "separacion": 10,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "imagen": "shopify://shop_images/bm-kit-mujer-irresistible-137668ca.png"
+      },
+      "blocks": {
+        "b01_titulo": {
+          "type": "bm-b-titulo",
+          "settings": {
+            "estilo": "seccion",
+            "antetitulo": "",
+            "texto": "Tu noche especial ya tiene kit",
+            "nivel": "h2",
+            "tamano": 26,
+            "subtitulo": ""
+          }
+        },
+        "b02_texto": {
+          "type": "bm-b-texto__k96b0ad3c",
+          "settings": {
+            "estilo": "texto",
+            "texto": "<p>1 kit $169.900, envío gratis. 2 kits $279.900. Pagas al recibir.</p>"
+          }
+        },
+        "b03_precio": {
+          "type": "bm-b-precio__k9ca4cd28",
+          "settings": {
+            "estilo": "linea",
+            "prefijo": "Hoy",
+            "precio_texto": "169900",
+            "ahorro": "porcentaje",
+            "ahorro_texto": "Ahorras",
+            "descuento_texto": "OFF",
+            "nota": ""
+          }
+        },
+        "b03_precio_promo": {
+          "type": "bm-b-promo",
+          "settings": {
+            "texto": "1 Kit Mujer Irresistible, envío gratis · 2 kits, el segundo con descuento · pagas al recibir",
+            "estilo": "pildora"
+          }
+        },
+        "b04_lista": {
+          "type": "bm-b-lista",
+          "settings": {
+            "items": "1 kit, envío gratis: $169.900\n2 kits: $279.900",
+            "icono": "✓"
+          }
+        },
+        "b05_cta": {
+          "type": "bm-b-cta__k5eb583fc",
+          "settings": {
+            "texto": "Pedir ahora · pago contra entrega",
+            "subtexto": "Pagas al recibir",
+            "ancho": "completo",
+            "alineacion": "center",
+            "pad_y": 8,
+            "pulso": false,
+            "fondo": "#2B1D1A",
+            "color": "#FFFFFF"
+          }
+        }
+      },
+      "block_order": [
+        "b01_titulo",
+        "b02_texto",
+        "b03_precio",
+        "b03_precio_promo",
+        "b04_lista",
+        "b05_cta"
+      ]
+    }
+  },
+  "order": [
+    "ajustes",
+    "p01_cinta",
+    "p02_hero",
+    "p03_oferta",
+    "main",
+    "p04_ocasiones",
+    "p05_beneficios",
+    "p06_solucion",
+    "p07_prueba_social",
+    "p08_conversaciones",
+    "p09_faq",
+    "p10_confianza_envio",
+    "p11_oferta_cta"
+  ]
+}
