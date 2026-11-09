@@ -1,0 +1,298 @@
+{%- comment -%} BM-KIT-COPIA sections/bm-cierre-v2.liquid k985c6dcb: copia inmutable del kit para las páginas que la nombran; nunca se edita en el tema (otra versión es otro archivo). {%- endcomment -%}
+{%- comment -%}
+  Cierre con precio (kit v2): la última pantalla, donde se pide. Imagen opcional y panel con título, precio de la
+  variante elegida (cambia con ella), promo, contador, existencias reales, franja de confianza y botón de compra.
+  Comparte el marco de «Escena» (snippets/bm-v2-escena).
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: cada bloque es un theme block, blocks/bm-b-*).
+{%- endcomment -%}
+{%- render 'bm-v2-recursos__k5d2de239' -%}
+{%- assign s = section.settings -%}
+{%- assign con_datos = false -%}
+{%- for bl in section.blocks -%}
+  {%- if bl.type contains 'precio' or bl.type contains 'existencias' -%}{%- assign con_datos = true -%}{%- endif -%}
+{%- endfor -%}
+{%- if con_datos -%}{%- render 'bm-v2-producto', product: product, inicial: blank -%}{%- endif -%}
+{%- capture panel -%}{%- content_for 'blocks' -%}{%- endcapture -%}
+{%- render 'bm-v2-escena', s: s, panel: panel, sid: section.id, tipo: 'cierre' -%}
+
+{% schema %}
+{
+  "name": "Cierre con precio",
+  "tag": "section",
+  "class": "bm-v2-seccion",
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
+  "max_blocks": 16,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Imagen"
+    },
+    {
+      "type": "image_picker",
+      "id": "imagen",
+      "label": "Imagen (móvil y escritorio)"
+    },
+    {
+      "type": "image_picker",
+      "id": "imagen_escritorio",
+      "label": "Imagen solo para escritorio (opcional)"
+    },
+    {
+      "type": "textarea",
+      "id": "texto_alt",
+      "label": "Texto integrado en la imagen",
+      "info": "Texto alternativo: copia lo que se lee en la imagen."
+    },
+    {
+      "type": "text",
+      "id": "titulo_oculto",
+      "label": "Título para buscadores (no visible)",
+      "info": "Úsalo cuando el titular ya está dibujado en la imagen, para no repetirlo visible."
+    },
+    {
+      "type": "select",
+      "id": "nivel_oculto",
+      "label": "Nivel del título oculto",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1 (solo la primera pantalla)"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "checkbox",
+      "id": "prioridad",
+      "label": "Es la primera pantalla (carga prioritaria)",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "diferir",
+      "label": "Cargar la foto después del botón de compra",
+      "info": "Solo si no es la primera pantalla. La foto baja cuando la página terminó de cargar o cuando la clienta se acerca.",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Disposición"
+    },
+    {
+      "type": "select",
+      "id": "disposicion",
+      "label": "Disposición",
+      "options": [
+        {
+          "value": "imagen_arriba",
+          "label": "Imagen arriba, texto debajo"
+        },
+        {
+          "value": "texto_arriba",
+          "label": "Texto arriba, imagen debajo"
+        },
+        {
+          "value": "texto_sobre",
+          "label": "Texto sobre la imagen"
+        },
+        {
+          "value": "lado",
+          "label": "Lado a lado en escritorio"
+        },
+        {
+          "value": "solo_texto",
+          "label": "Solo texto"
+        }
+      ],
+      "default": "imagen_arriba"
+    },
+    {
+      "type": "select",
+      "id": "posicion_texto",
+      "label": "Posición del texto sobre la imagen",
+      "options": [
+        {
+          "value": "start",
+          "label": "Arriba"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        },
+        {
+          "value": "end",
+          "label": "Abajo"
+        }
+      ],
+      "default": "end"
+    },
+    {
+      "type": "checkbox",
+      "id": "sobre_degradado",
+      "label": "Degradado detrás del texto sobre la imagen",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "alineacion",
+      "label": "Alineación del texto",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        },
+        {
+          "value": "right",
+          "label": "Derecha"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "ancho",
+      "label": "Ancho en escritorio",
+      "options": [
+        {
+          "value": "contenido",
+          "label": "Ancho del contenido"
+        },
+        {
+          "value": "completo",
+          "label": "Pantalla completa"
+        }
+      ],
+      "default": "contenido"
+    },
+    {
+      "type": "header",
+      "content": "Colores"
+    },
+    {
+      "type": "color",
+      "id": "fondo",
+      "label": "Fondo de la sección",
+      "info": "Vacío: el de la página."
+    },
+    {
+      "type": "color",
+      "id": "panel_fondo",
+      "label": "Fondo del panel de texto",
+      "info": "Vacío: transparente."
+    },
+    {
+      "type": "color",
+      "id": "texto",
+      "label": "Color del texto",
+      "info": "Vacío: el de la página."
+    },
+    {
+      "type": "color",
+      "id": "acento",
+      "label": "Acento (iconos, insignias, ahorro)"
+    },
+    {
+      "type": "color",
+      "id": "acento_texto",
+      "label": "Texto sobre el acento"
+    },
+    {
+      "type": "header",
+      "content": "Espaciado"
+    },
+    {
+      "type": "range",
+      "id": "panel_padding",
+      "label": "Espacio interno del panel",
+      "min": 8,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "separacion",
+      "label": "Separación entre elementos del panel",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior de la sección",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior de la sección",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "bm-b-titulo"
+    },
+    {
+      "type": "bm-b-texto__k96b0ad3c"
+    },
+    {
+      "type": "bm-b-lista"
+    },
+    {
+      "type": "bm-b-insignia"
+    },
+    {
+      "type": "bm-b-precio__k9ca4cd28"
+    },
+    {
+      "type": "bm-b-promo"
+    },
+    {
+      "type": "bm-b-contador__k5c3dd6c5"
+    },
+    {
+      "type": "bm-b-existencias"
+    },
+    {
+      "type": "bm-b-franja"
+    },
+    {
+      "type": "bm-b-cta__k5eb583fc"
+    },
+    {
+      "type": "bm-b-etiqueta-ia"
+    },
+    {
+      "type": "bm-b-codigo"
+    }
+  ]
+}
+{% endschema %}

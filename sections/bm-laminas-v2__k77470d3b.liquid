@@ -1,0 +1,119 @@
+{%- comment -%} BM-KIT-COPIA sections/bm-laminas-v2.liquid k77470d3b: copia inmutable del kit para las páginas que la nombran; nunca se edita en el tema (otra versión es otro archivo). {%- endcomment -%}
+{%- comment -%}
+  Láminas (kit v2): imágenes verticales a ancho completo con el texto de arte integrado, botones de compra
+  (Releasit) y notas HTML intercaladas. Sin marco ni hueco entre piezas salvo el espacio que se elija aquí.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: cada bloque es un theme block, blocks/bm-b-*).
+{%- endcomment -%}
+{%- render 'bm-v2-recursos__k5d2de239' -%}
+{%- assign s = section.settings -%}
+<div class="bm-sec bm-laminas bm-v2{% if s.ancho == 'completo' %} bm-sec--completo{% endif %}" data-bm-landing="laminas" data-bm-sec="{{ section.id }}" style="{% if s.fondo != blank %}--bm-sec-bg:{{ s.fondo }};{% endif %}{% if s.texto != blank %}--bm-sec-fg:{{ s.texto }};{% endif %}--bm-pad-top:{{ s.padding_top }}px;--bm-pad-bottom:{{ s.padding_bottom }}px;--bm-gap:{{ s.espacio }}px;--bm-radio-img:{{ s.radio_imagen }}px;">
+  <div class="bm-sec__in bm-pila">{%- content_for 'blocks' -%}</div>
+</div>
+
+{% schema %}
+{
+  "name": "Láminas",
+  "tag": "section",
+  "class": "bm-v2-seccion",
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
+  "max_blocks": 50,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Láminas verticales con el texto integrado en la imagen. Para no dejar franjas, deja el espacio entre láminas en 0."
+    },
+    {
+      "type": "color",
+      "id": "fondo",
+      "label": "Fondo de la sección",
+      "info": "Vacío: usa el fondo de la página."
+    },
+    {
+      "type": "color",
+      "id": "texto",
+      "label": "Texto de notas y botones",
+      "info": "Vacío: usa el de la página."
+    },
+    {
+      "type": "select",
+      "id": "ancho",
+      "label": "Ancho en escritorio",
+      "options": [
+        {
+          "value": "contenido",
+          "label": "Ancho del contenido"
+        },
+        {
+          "value": "completo",
+          "label": "Pantalla completa"
+        }
+      ],
+      "default": "contenido"
+    },
+    {
+      "type": "range",
+      "id": "espacio",
+      "label": "Espacio entre láminas",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "radio_imagen",
+      "label": "Redondeo de las láminas",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "bm-b-lamina"
+    },
+    {
+      "type": "bm-b-cta__k5eb583fc"
+    },
+    {
+      "type": "bm-b-nota"
+    },
+    {
+      "type": "bm-b-etiqueta-ia"
+    },
+    {
+      "type": "bm-b-codigo"
+    }
+  ]
+}
+{% endschema %}

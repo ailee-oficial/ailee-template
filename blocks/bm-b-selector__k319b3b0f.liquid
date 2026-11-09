@@ -1,0 +1,206 @@
+{%- comment -%} BM-KIT-COPIA blocks/bm-b-selector.liquid k319b3b0f: copia inmutable del kit para las páginas que la nombran; nunca se edita en el tema (otra versión es otro archivo). {%- endcomment -%}
+{%- comment -%}
+  Bloque «Selector»: las muestras de una opción del producto (por defecto «Color»), con la foto de su variante
+  (featured_media) o, si no tiene, la primera foto de su color. Elegir una cambia la galería, el precio y las
+  existencias, y escribe la variante en el formulario del producto (`form[action*="/cart/add"] [name=id]`), que
+  Releasit lee al abrir. Otro selector con «Talla» deja elegir la talla en la página (hoy se confirma en el formulario
+  de Releasit). Sin la opción, o con un solo valor, no se muestra.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign product = closest.product | default: product -%}
+{%- comment -%} La variante con que abre la página (bm-v2-inicial): un theme block no ve las variables de la sección. {%- endcomment -%}
+{%- capture vid -%}{%- render 'bm-v2-inicial', product: product, color: section.settings.color_inicial, opcion: section.settings.opcion_color -%}{%- endcapture -%}
+{%- assign vid = vid | plus: 0 -%}
+{%- assign variante = product.selected_or_first_available_variant -%}
+{%- for v in product.variants -%}{%- if v.id == vid -%}{%- assign variante = v -%}{%- endif -%}{%- endfor -%}
+{%- assign b = block.settings -%}
+{%- assign buscada = b.opcion | default: 'Color' | downcase | strip -%}
+{%- assign opcion = nil -%}
+{%- if product != blank -%}
+  {%- for o in product.options_with_values -%}
+    {%- assign nombre_o = o.name | downcase | strip -%}
+    {%- if nombre_o == buscada -%}{%- assign opcion = o -%}{%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- if opcion != blank and opcion.values.size > 1 -%}
+  {%- case opcion.position -%}
+    {%- when 1 -%}{%- assign valor_actual = variante.option1 -%}
+    {%- when 2 -%}{%- assign valor_actual = variante.option2 -%}
+    {%- else -%}{%- assign valor_actual = variante.option3 -%}
+  {%- endcase -%}
+  <bm-selector__k319b3b0f class="bm-v2-selector" data-bm-bloque="selector" data-pos="{{ opcion.position }}" {{ block.shopify_attributes }}>
+    <p class="bm-v2-selector__cab">{{ b.etiqueta | default: opcion.name | escape }}: <strong data-bm-valor>{{ valor_actual | escape }}</strong></p>
+    <div class="bm-v2-selector__ops bm-v2-selector__ops--{{ b.estilo }}" role="radiogroup" aria-label="{{ b.etiqueta | default: opcion.name | escape }}">
+      {%- for valor in opcion.values -%}
+        {%- assign nombre = valor.name | default: valor -%}
+        {%- assign clave = nombre | handleize | remove: '-' -%}
+        {%- assign disponible = false -%}
+        {%- assign foto = nil -%}
+        {%- for v in product.variants -%}
+          {%- case opcion.position -%}
+            {%- when 1 -%}{%- assign vv = v.option1 -%}
+            {%- when 2 -%}{%- assign vv = v.option2 -%}
+            {%- else -%}{%- assign vv = v.option3 -%}
+          {%- endcase -%}
+          {%- if vv == nombre -%}
+            {%- if v.available -%}{%- assign disponible = true -%}{%- endif -%}
+            {%- if foto == blank and v.featured_media != blank -%}{%- assign foto = v.featured_media -%}{%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if b.estilo == 'foto' and foto == blank -%}
+          {%- for m in product.media -%}
+            {%- if foto == blank and m.media_type == 'image' -%}
+              {%- capture k -%}{%- render 'bm-v2-clave-alt', alt: m.alt -%}{%- endcapture -%}
+              {%- if k == clave -%}{%- assign foto = m -%}{%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+        {%- if disponible or b.mostrar_agotados -%}
+          {%- assign marcado = false -%}
+          {%- if nombre == valor_actual -%}{%- assign marcado = true -%}{%- endif -%}
+          <button type="button" class="bm-v2-selector__op{% unless disponible %} bm-v2-selector__op--agotado{% endunless %}{% if b.estilo == 'foto' and foto != blank %} bm-v2-selector__op--foto{% endif %}" role="radio" aria-checked="{{ marcado }}" tabindex="{% if marcado %}0{% else %}-1{% endif %}" data-valor="{{ nombre | escape }}" data-clave="{{ clave }}" aria-label="{{ nombre | escape }}{% unless disponible %} (agotado){% endunless %}"{% unless disponible %} aria-disabled="true"{% endunless %}>
+            {%- if b.estilo == 'foto' and foto != blank -%}
+              {{ foto | image_url: width: 192 | image_tag: loading: 'lazy', widths: '96, 144, 192', sizes: '64px', alt: '' }}
+              {%- comment -%} El nombre bajo la foto, el mismo que el formulario de Releasit (titular, 2026-11-03: «cómo entiende
+                 qué color es»): la persona elige en el formulario el color que vio aquí. {%- endcomment -%}
+              {%- unless b.ocultar_nombres -%}<span class="bm-v2-selector__nombre">{{ nombre | escape }}</span>{%- endunless -%}
+            {%- else -%}
+              <span>{{ nombre | escape }}</span>
+            {%- endif -%}
+          </button>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    {%- if b.nota != blank -%}<p class="bm-v2-selector__nota">{{ b.nota | escape }}</p>{%- endif -%}
+  </bm-selector__k319b3b0f>
+{%- elsif request.design_mode -%}
+  <p class="bm-v2-aviso-editor" {{ block.shopify_attributes }}>Selector: el producto no tiene la opción «{{ b.opcion | escape }}» con más de un valor, así que no se muestra.</p>
+{%- endif -%}
+
+<style data-bm-kit="k319b3b0f">
+bm-selector__k319b3b0f:not([hidden]){display:block}
+.bm-v2-selector:not([hidden]){display:flex;flex-direction:column;gap:10px}
+.bm-v2-selector__cab{margin:0;font-size:15px;line-height:1.3}
+.bm-v2-selector__cab strong{font-weight:700}
+.bm-v2-selector__ops{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.bm-oferta[style*="--bm-align:left"] .bm-v2-selector__ops{justify-content:flex-start}
+.bm-v2-selector__op{position:relative;min-width:48px;min-height:44px;padding:0 14px;border:1px solid rgba(28,28,28,.2);border-radius:12px;background:var(--bm-tarjeta-bg,#ffffff);color:var(--bm-tarjeta-fg,#1c1c1c);font:inherit;font-size:14px;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:box-shadow .15s ease}
+.bm-v2-selector__op--foto{width:60px;height:60px;min-width:0;padding:0;overflow:hidden;background:#ffffff}
+.bm-v2-selector__op--foto img{display:block;width:100%;height:100%;object-fit:contain}
+.bm-v2-selector__op--foto:has(.bm-v2-selector__nombre){width:76px;height:auto;padding:0 0 6px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.bm-v2-selector__op--foto:has(.bm-v2-selector__nombre) img{height:60px;width:100%;background:#ffffff}
+.bm-v2-selector__nombre{display:block;max-width:100%;padding:0 4px;font-size:11px;line-height:1.2;font-weight:700;letter-spacing:.02em;text-align:center;color:#1c1c1c;overflow-wrap:anywhere}
+.bm-v2-selector__op[aria-checked="true"]{border-color:var(--bm-sec-fg,#1c1c1c);box-shadow:0 0 0 2px var(--bm-sec-bg,#ffffff),0 0 0 4px var(--bm-sec-fg,#1c1c1c)}
+.bm-v2-selector__op:focus-visible{outline:2px solid var(--bm-sec-fg,#1c1c1c);outline-offset:3px}
+.bm-v2-selector__op--agotado{opacity:.45;cursor:not-allowed}
+.bm-v2-selector__op--agotado::after{content:"";position:absolute;left:8%;right:8%;top:50%;border-top:1.5px solid currentColor;transform:rotate(-28deg)}
+.bm-v2-selector__op--sin{opacity:.55}
+.bm-v2-selector__nota{margin:-2px 0 0;font-size:14px;line-height:1.35;opacity:.75}
+</style>
+
+{% javascript %}
+// Se registra con el motor del kit (assets/bm-landing.js) sin importar qué script carga primero.
+(window.BMLandingBloques = window.BMLandingBloques || []).push(({ Bloque, actual, elegir, buscar, valorDeClave }) => {
+  if (customElements.get('bm-selector__k319b3b0f')) return;
+  customElements.define('bm-selector__k319b3b0f', class extends Bloque {
+    iniciar() {
+      this.pos = Number(this.dataset.pos || 0);
+      this.botones = [...this.querySelectorAll('[data-valor]')];
+      this.valor = this.querySelector('[data-bm-valor]');
+      this.botones.forEach((b, n) => {
+        this.escuchar(b, 'click', () => this.tocar(b));
+        this.escuchar(b, 'keydown', (e) => {
+          const d = ['ArrowRight', 'ArrowDown'].includes(e.key) ? 1 : ['ArrowLeft', 'ArrowUp'].includes(e.key) ? -1 : 0;
+          if (!d) return;
+          e.preventDefault();
+          const otro = this.botones[(n + d + this.botones.length) % this.botones.length];
+          otro.focus();
+          this.tocar(otro);
+        });
+      });
+      this.alVariar((v) => this.pintar(v));
+      const v = this.p && actual(this.p);
+      if (v) this.pintar(v);
+    }
+    tocar(b) {
+      if (!this.p || !this.pos || b.getAttribute('aria-disabled') === 'true') return;
+      const v = buscar(this.p, { [this.pos]: b.dataset.valor });
+      if (v) elegir(this.p, v, 'selector');
+    }
+    pintar(v) {
+      const valor = v.o[this.pos - 1];
+      this.botones.forEach((b) => {
+        const si = b.dataset.valor === valor;
+        b.setAttribute('aria-checked', si ? 'true' : 'false');
+        b.tabIndex = si ? 0 : -1;
+        // Agotado con lo demás que está elegido (p. ej. NEGRO 39): se ve tenue, pero se puede tocar y lleva a la
+        // combinación disponible más parecida.
+        const combo = v.o.map((x, i) => (i === this.pos - 1 ? b.dataset.valor : x));
+        const hay = this.p && this.p.variantes.some((x) => x.a && x.o.every((y, i) => y === combo[i]));
+        b.classList.toggle('bm-v2-selector__op--sin', !hay && b.getAttribute('aria-disabled') !== 'true');
+      });
+      if (this.valor && valor != null) this.valor.textContent = valor;
+    }
+  });
+});
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Selector de color",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Las muestras salen de las variantes del producto. Elegir una cambia la galería, el precio y la variante que lee el formulario de Releasit."
+    },
+    {
+      "type": "text",
+      "id": "opcion",
+      "label": "Opción del producto",
+      "default": "Color",
+      "info": "Como se llama en el producto. Para elegir también la talla en la página agrega otro selector con «Talla»; si no, la talla se elige en el formulario."
+    },
+    {
+      "type": "text",
+      "id": "etiqueta",
+      "label": "Texto antes del valor elegido",
+      "info": "Vacío: el nombre de la opción."
+    },
+    {
+      "type": "select",
+      "id": "estilo",
+      "label": "Muestras",
+      "options": [
+        {
+          "value": "foto",
+          "label": "Foto de cada valor"
+        },
+        {
+          "value": "texto",
+          "label": "Botones con el nombre"
+        }
+      ],
+      "default": "foto"
+    },
+    {
+      "type": "checkbox",
+      "id": "mostrar_agotados",
+      "label": "Mostrar valores agotados (tachados)",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "nota",
+      "label": "Nota bajo las muestras"
+    },
+    {
+      "type": "checkbox",
+      "id": "ocultar_nombres",
+      "label": "Ocultar el nombre bajo cada foto",
+      "info": "Por defecto cada foto lleva su nombre, el mismo del formulario.",
+      "default": false
+    }
+  ]
+}
+{% endschema %}

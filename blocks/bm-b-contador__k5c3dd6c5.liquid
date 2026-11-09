@@ -1,0 +1,162 @@
+{%- comment -%} BM-KIT-COPIA blocks/bm-b-contador.liquid k5c3dd6c5: copia inmutable del kit para las páginas que la nombran; nunca se edita en el tema (otra versión es otro archivo). {%- endcomment -%}
+{%- comment -%}
+  Bloque «Contador regresivo»: cuenta hasta el fin del día, hasta la hora de corte del despacho de hoy (modo «corte»: pasada
+  la hora se oculta hasta el día siguiente, titular 2026-11-03) o hasta una fecha, en la hora de la tienda
+  (`'now' | date: '%z'`). Solo para una oferta que de verdad termina; pasada la fecha se oculta, y sin JavaScript no
+  se muestra (una cuenta quieta sería urgencia falsa). Lo mueve <bm-contador__k5c3dd6c5>.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign b = block.settings -%}
+<bm-contador__k5c3dd6c5 class="bm-v2-contador" data-bm-bloque="contador" data-modo="{{ b.modo }}" data-fecha="{{ b.fecha | escape }}" data-hora="{{ b.hora | escape }}" data-minutos="{{ b.minutos | default: 10 }}" data-fin="{{ b.fin_texto | default: 'Oferta terminada' | escape }}" data-zona="{{ 'now' | date: '%z' }}" {{ block.shopify_attributes }} hidden>
+  {%- if b.texto != blank -%}<span class="bm-v2-contador__texto">{{ b.texto | escape }}</span>{%- endif -%}
+  <span class="bm-v2-contador__reloj" data-bm-reloj role="timer">--:--:--</span>
+</bm-contador__k5c3dd6c5>
+
+<style data-bm-kit="k5c3dd6c5">
+bm-contador__k5c3dd6c5:not([hidden]){display:block}
+.bm-v2-contador{text-align:center;line-height:1.25}
+.bm-v2-contador__texto{display:block;font-size:14px;font-weight:600;opacity:.85}
+.bm-v2-contador__reloj{display:inline-block;margin-top:4px;padding:6px 14px;border-radius:10px;background:var(--bm-tarjeta-bg,rgba(0,0,0,.05));color:var(--bm-tarjeta-fg,inherit);font-size:22px;font-weight:800;letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.bm-escena__panel .bm-v2-contador{text-align:var(--bm-align,left)}
+.bm-v2-contador--fin .bm-v2-contador__texto{display:none}
+.bm-v2-contador--fin .bm-v2-contador__reloj{letter-spacing:.02em;font-size:18px}
+</style>
+
+{% javascript %}
+// Se registra con el motor del kit (assets/bm-landing.js) sin importar qué script carga primero.
+(window.BMLandingBloques = window.BMLandingBloques || []).push(({ Bloque, actual, elegir, buscar, valorDeClave }) => {
+  if (customElements.get('bm-contador__k5c3dd6c5')) return;
+  customElements.define('bm-contador__k5c3dd6c5', class extends Bloque {
+    iniciar() {
+      this.reloj = this.querySelector('[data-bm-reloj]');
+      this.fin = this.calcularFin(Date.now());
+      if (!this.fin || !this.reloj) { this.hidden = true; return; }
+      this.hidden = false;
+      this.tic();
+      this.t = setInterval(() => this.tic(), 1000);
+    }
+    parar() { clearInterval(this.t); }
+    // Hora de la tienda: `'now' | date: '%z'` (p. ej. -0500). Sin ella, la del teléfono.
+    zona() {
+      const m = /^([+-])(\d{2}):?(\d{2})$/.exec(String(this.dataset.zona || '').trim());
+      if (!m) return -new Date().getTimezoneOffset() * 60000;
+      return (m[1] === '-' ? -1 : 1) * (Number(m[2]) * 60 + Number(m[3])) * 60000;
+    }
+    calcularFin(ahora) {
+      // «En cada visita» (titular, 2026-11-08): N minutos desde que carga la página; cada visita o recarga empieza de nuevo y
+      // nada se guarda en el navegador. Al llegar a cero queda «Oferta terminada» sin tocar precio, oferta ni formulario.
+      if (this.dataset.modo === 'visita') {
+        const min = Math.min(240, Math.max(1, Math.round(Number(this.dataset.minutos) || 10)));
+        return ahora + min * 60000;
+      }
+      const z = this.zona();
+      if (this.dataset.modo === 'fecha') {
+        const m = /^(\d{4})-(\d{2})-(\d{2})(?:[ T](\d{1,2}):(\d{2}))?$/.exec(String(this.dataset.fecha || '').trim());
+        if (!m) return null;
+        const fin = Date.UTC(+m[1], +m[2] - 1, +m[3], m[4] ? +m[4] : 23, m[5] ? +m[5] : 59, m[4] ? 0 : 59) - z;
+        return fin > ahora ? fin : null;
+      }
+      const d = new Date(ahora + z);
+      if (this.dataset.modo === 'corte') {
+        // Hoy a la hora de corte; pasada, nada: «el despacho de hoy» ya cerró (nunca se pasa a mañana con el mismo texto).
+        const h = /^(\d{1,2}):(\d{2})$/.exec(String(this.dataset.hora || '').trim());
+        if (!h || +h[1] > 23 || +h[2] > 59) return null;
+        const fin = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), +h[1], +h[2]) - z;
+        return fin > ahora ? fin : null;
+      }
+      return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() + 1) - z;
+    }
+    tic() {
+      let resta = this.fin - Date.now();
+      if (resta <= 0 && this.dataset.modo === 'visita') {
+        this.reloj.textContent = this.dataset.fin || 'Oferta terminada';
+        this.classList.add('bm-v2-contador--fin');
+        this.parar();
+        return;
+      }
+      if (resta <= 0) {
+        this.fin = this.dataset.modo === 'fin_dia' ? this.calcularFin(Date.now()) : null;
+        if (!this.fin) { this.hidden = true; this.parar(); return; }
+        resta = this.fin - Date.now();
+      }
+      const s = Math.floor(resta / 1000);
+      const dias = Math.floor(s / 86400);
+      const dd = (n) => String(n).padStart(2, '0');
+      const hms = `${dd(Math.floor((s % 86400) / 3600))}:${dd(Math.floor((s % 3600) / 60))}:${dd(s % 60)}`;
+      this.reloj.textContent = dias > 0 ? `${dias} d ${hms}` : hms;
+    }
+  });
+});
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Contador regresivo",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Solo con una oferta que de verdad termina. Pasada la fecha se oculta (en cada visita: queda «Oferta terminada»); sin JavaScript no se muestra."
+    },
+    {
+      "type": "select",
+      "id": "modo",
+      "label": "Termina",
+      "options": [
+        {
+          "value": "fin_dia",
+          "label": "Al final del día (hora de la tienda)"
+        },
+        {
+          "value": "corte",
+          "label": "A la hora de corte del despacho de hoy"
+        },
+        {
+          "value": "fecha",
+          "label": "En una fecha"
+        },
+        {
+          "value": "visita",
+          "label": "En cada visita (minutos desde que entra)"
+        }
+      ],
+      "default": "fin_dia"
+    },
+    {
+      "type": "range",
+      "id": "minutos",
+      "label": "Minutos de cada visita",
+      "min": 1,
+      "max": 60,
+      "step": 1,
+      "default": 10,
+      "info": "Modo «En cada visita»: empieza de nuevo cada vez que se abre o recarga la página."
+    },
+    {
+      "type": "text",
+      "id": "fin_texto",
+      "label": "Texto al terminar",
+      "default": "Oferta terminada",
+      "info": "Modo «En cada visita»: lo que queda al llegar a cero. Precio y oferta no cambian."
+    },
+    {
+      "type": "text",
+      "id": "fecha",
+      "label": "Fecha y hora de fin",
+      "info": "AAAA-MM-DD HH:MM, en la hora de la tienda."
+    },
+    {
+      "type": "text",
+      "id": "hora",
+      "label": "Hora de corte del despacho",
+      "info": "HH:MM, en la hora de la tienda (modo «A la hora de corte»). Pasada la hora, se oculta hasta el día siguiente."
+    },
+    {
+      "type": "text",
+      "id": "texto",
+      "label": "Texto",
+      "default": "La oferta termina en"
+    }
+  ]
+}
+{% endschema %}

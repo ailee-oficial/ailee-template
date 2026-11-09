@@ -1,0 +1,283 @@
+/* BM-KIT-COPIA assets/bm-landing.css kc196d2dd: copia inmutable del kit para las páginas que la nombran; nunca se edita en el tema (otra versión es otro archivo). */
+/* BreitMarket · landing por secciones («solo imágenes», «imágenes + HTML» e «híbrida dinámica»).
+   Fuente canónica: claude-skills/core/tema_landing. Se instala con core/landing_tema.py.
+   Los valores por producto (colores, espacios, ancho) llegan como variables CSS desde los
+   ajustes de cada sección; este archivo solo fija la estructura. */
+.bm-sec{--bm-sec-bg:transparent;--bm-sec-fg:inherit;--bm-pad-top:0px;--bm-pad-bottom:0px;--bm-pad-x:0px;--bm-gap:0px;--bm-ancho:var(--bm-ancho-pagina,780px);display:block;width:100%;margin:0;padding:var(--bm-pad-top) 0 var(--bm-pad-bottom);background:var(--bm-sec-bg);color:var(--bm-sec-fg);box-sizing:border-box;overflow:hidden}
+.bm-sec *,.bm-sec *::before,.bm-sec *::after{box-sizing:border-box}
+.bm-sec__in{max-width:var(--bm-ancho);margin:0 auto;padding:0 var(--bm-pad-x)}
+.bm-sec--completo .bm-sec__in{max-width:none}
+.bm-pila{display:flex;flex-direction:column;gap:var(--bm-gap)}
+.bm-sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.bm-cabecera{padding:0 0 var(--bm-cabecera-gap,12px);text-align:var(--bm-align,left)}
+.bm-cabecera h2{margin:0;font-size:var(--bm-titulo-tam,26px);line-height:1.15;color:inherit}
+.bm-cabecera p{margin:6px 0 0;line-height:1.4;opacity:.9}
+
+/* Láminas: imagen a ancho completo, sin marco ni hueco. */
+.bm-lamina{display:block;margin:0;padding:0;line-height:0;position:relative}
+.bm-lamina picture{display:block}
+.bm-lamina img{display:block;width:100%;height:auto;margin:0;border:0;border-radius:var(--bm-radio-img,0)}
+.bm-lamina__boton{display:block;width:100%;margin:0;padding:0;border:0;background:none;cursor:pointer;line-height:0}
+.bm-placeholder{display:block;width:100%;height:auto;aspect-ratio:4/5;background:rgba(127,127,127,.15)}
+
+/* CTA de compra: abre Releasit; no navega. */
+.bm-cta{display:flex;flex-direction:column;align-items:var(--bm-cta-align,center);margin:0;padding:var(--bm-cta-pad-y,14px) var(--bm-cta-pad-x,16px);background:var(--bm-cta-franja,transparent);line-height:1.2}
+.bm-cta__boton{-webkit-appearance:none;appearance:none;display:flex;align-items:center;justify-content:center;width:var(--bm-cta-ancho,100%);max-width:var(--bm-ancho,780px);min-height:var(--bm-cta-alto,54px);margin:0;padding:12px 20px;border:0;border-radius:var(--bm-cta-radio,12px);background:var(--bm-cta-bg,#111827);color:var(--bm-cta-fg,#ffffff);font:inherit;font-size:var(--bm-cta-letra,17px);font-weight:800;line-height:1.2;letter-spacing:.01em;text-align:center;text-decoration:none;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.14)}
+.bm-cta__sub{margin:7px 0 0;font-size:14px;line-height:1.3;text-align:center;color:var(--bm-cta-sub,inherit);opacity:.92}
+@keyframes bm-pulso{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+.bm-cta--pulso .bm-cta__boton{animation:bm-pulso 1.9s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.bm-cta--pulso .bm-cta__boton{animation:none}}
+
+/* Notas HTML (confianza, envío, avisos) dentro de una pila de láminas. */
+.bm-nota{margin:0;padding:var(--bm-nota-pad,12px) 16px;background:var(--bm-nota-bg,transparent);color:var(--bm-nota-fg,inherit);text-align:var(--bm-nota-align,center);font-size:var(--bm-nota-tam,15px);line-height:1.4}
+.bm-nota p{margin:0}
+.bm-nota p+p{margin-top:6px}
+.bm-nota--ia{font-size:13px;opacity:.9}
+
+/* Escena: imagen + panel HTML editable. */
+.bm-escena{display:flex;flex-direction:column}
+.bm-escena--texto_arriba .bm-escena__panel{order:-1}
+.bm-escena--texto_sobre{display:grid}
+.bm-escena--texto_sobre>*{grid-area:1/1}
+.bm-escena--texto_sobre .bm-escena__panel{position:relative;align-self:var(--bm-panel-v,end);background:var(--bm-panel-sobre,linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.6)))}
+.bm-escena__media{line-height:0}
+.bm-escena__media img{display:block;width:100%;height:auto;margin:0;border:0}
+.bm-escena__panel{padding:var(--bm-panel-pad,20px);background:var(--bm-panel-bg,transparent);color:var(--bm-panel-fg,inherit);text-align:var(--bm-align,left)}
+.bm-escena__panel>*{margin-top:0;margin-bottom:0}
+.bm-escena__panel>*+*{margin-top:var(--bm-panel-gap,10px)}
+.bm-escena__panel .bm-cta{padding-left:0;padding-right:0}
+.bm-titulo{margin:0;font-size:var(--bm-titulo-tam,26px);line-height:1.15;color:inherit}
+.bm-texto{line-height:1.45}
+.bm-texto p{margin:0}
+.bm-texto p+p{margin-top:.5em}
+.bm-lista{margin:0;padding:0;list-style:none;display:grid;gap:8px;text-align:left}
+.bm-lista li{display:flex;gap:9px;align-items:flex-start;line-height:1.35}
+.bm-lista__icono{flex:0 0 auto;color:var(--bm-acento,currentColor);font-weight:800}
+.bm-insignia{display:inline-block;padding:5px 11px;border-radius:999px;background:var(--bm-acento,#111827);color:var(--bm-acento-fg,#ffffff);font-size:13px;font-weight:800;letter-spacing:.02em}
+.bm-precio{display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px;justify-content:var(--bm-precio-align,var(--bm-align,center))}
+.bm-precio__prefijo{font-weight:700}
+.bm-precio__actual{font-size:30px;font-weight:900;line-height:1}
+.bm-precio__antes{text-decoration:line-through;line-height:1;opacity:.7}
+.bm-precio__ahorro{padding:3px 9px;border-radius:999px;background:var(--bm-acento,#111827);color:var(--bm-acento-fg,#ffffff);font-size:13px;font-weight:800}
+.bm-precio__nota{flex-basis:100%;font-size:14px;opacity:.9}
+@media screen and (min-width:750px){.bm-escena--lado{flex-direction:row;align-items:center}.bm-escena--lado>*{flex:1 1 50%}}
+
+/* Beneficios, pasos y confianza. */
+.bm-items__grid{display:grid;grid-template-columns:repeat(var(--bm-cols-movil,1),minmax(0,1fr));gap:var(--bm-items-gap,10px)}
+@media screen and (min-width:750px){.bm-items__grid{grid-template-columns:repeat(var(--bm-cols-escritorio,3),minmax(0,1fr))}}
+.bm-item{display:flex;gap:12px;align-items:flex-start;padding:var(--bm-item-pad,14px);border-radius:var(--bm-item-radio,12px);background:var(--bm-item-bg,transparent);color:var(--bm-item-fg,inherit)}
+.bm-items--tarjeta .bm-item{flex-direction:column;align-items:center;text-align:center}
+.bm-item__icono{flex:0 0 auto;width:var(--bm-icono,44px);line-height:0}
+.bm-item__icono img{display:block;width:100%;height:auto}
+.bm-item__simbolo{display:flex;align-items:center;justify-content:center;flex:0 0 auto;width:var(--bm-icono,44px);height:var(--bm-icono,44px);border-radius:50%;background:var(--bm-acento,#111827);color:var(--bm-acento-fg,#ffffff);font-weight:900;font-size:calc(var(--bm-icono,44px) * .45);line-height:1}
+.bm-item__titulo{margin:0;font-size:17px;font-weight:800;line-height:1.25}
+.bm-item__texto{margin:4px 0 0;font-size:15px;line-height:1.4}
+
+/* Reseñas: una recreación IA muestra su aviso y no atribuye identidad ni compra. */
+.bm-resenas__lista{display:grid;gap:12px}
+.bm-resenas--carrusel .bm-resenas__lista{grid-auto-flow:column;grid-auto-columns:84%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+.bm-resenas--cuadricula .bm-resenas__lista{grid-template-columns:repeat(2,minmax(0,1fr))}
+.bm-resena{display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:14px;background:var(--bm-tarjeta-bg,#ffffff);color:var(--bm-tarjeta-fg,#111827);scroll-snap-align:start}
+.bm-resena__cabecera{display:flex;align-items:center;gap:8px;min-height:32px}
+.bm-resena__foto{line-height:0}
+.bm-resena__ampliar{display:block;position:relative;border-radius:10px;overflow:hidden}
+.bm-resena__ampliar::after{content:'+';position:absolute;right:8px;bottom:8px;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#ffffffed;color:#111827;font:700 22px/1 system-ui,sans-serif;box-shadow:0 2px 6px #0003}
+.bm-resena__ampliar:focus-visible{outline:3px solid currentColor;outline-offset:2px}
+.bm-resena__foto img{display:block;width:100%;height:auto;border-radius:10px}
+.bm-resena__estrellas{color:var(--bm-estrellas,#f5a623);letter-spacing:2px;font-size:16px;line-height:1}
+.bm-resena__texto{margin:0;line-height:1.45;font-size:15px}
+.bm-resena__autor{margin:0;font-weight:800;font-size:14px}
+.bm-resenas--cuadricula .bm-resena{min-width:0;box-shadow:0 3px 12px #00000014}
+.bm-resenas--cuadricula .bm-resena__texto{font-size:14px}
+.bm-resenas--cuadricula .bm-resena__foto{margin-top:auto}
+@media (max-width:340px){.bm-resenas--cuadricula .bm-resenas__lista{grid-template-columns:1fr}}
+.bm-resena__etiqueta{margin:0;padding-top:7px;border-top:1px dashed currentColor;font-size:13px;line-height:1.3;opacity:.88}
+.bm-resenas__aviso{margin:10px 0 0;font-size:13px;line-height:1.35;opacity:.88;text-align:center}
+
+/* Preguntas frecuentes. */
+.bm-faq__item{border-bottom:1px solid var(--bm-linea,rgba(0,0,0,.14))}
+.bm-faq__item summary{display:flex;justify-content:space-between;gap:12px;padding:14px 0;font-weight:800;line-height:1.3;cursor:pointer;list-style:none}
+.bm-faq__item summary::-webkit-details-marker{display:none}
+.bm-faq__item summary::after{content:"+";font-weight:900}
+.bm-faq__item[open] summary::after{content:"\2013"}
+.bm-faq__resp{padding:0 0 14px;line-height:1.45}
+.bm-faq__resp p{margin:0}
+.bm-faq__resp p+p{margin-top:.5em}
+
+/* Oferta (fold de la híbrida): encabezado, características, confianza, precio real y botón. */
+.bm-oferta__pila{display:flex;flex-direction:column;gap:var(--bm-oferta-gap,14px);text-align:var(--bm-align,center)}
+.bm-oferta__ante{margin:0 0 4px;font-size:13px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;opacity:.75}
+.bm-oferta__titulo{margin:0;font-size:var(--bm-titulo-tam,26px);font-weight:900;line-height:1.1;letter-spacing:.02em;text-transform:uppercase;color:inherit}
+.bm-oferta__sub{margin:8px 0 0;font-size:16px;line-height:1.4;opacity:.8}
+.bm-oferta__colores{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(120px,42%);gap:4px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(var(--bm-pad-x,16px) * -1);padding:0 var(--bm-pad-x,16px);scrollbar-width:none}
+.bm-oferta__colores::-webkit-scrollbar{display:none}
+.bm-oferta__liquid{text-align:initial}
+/* Ayuda con la talla y franja de confianza (bloques de la oferta). Los enlaces de WhatsApp nacen ocultos: los
+   muestra el script de «Landing · Ajustes» cuando hay número. Colores: los de las tarjetas de la sección. */
+.bm-ayuda,.bm-franja{background:var(--bm-tarjeta-bg,rgba(0,0,0,.04));color:var(--bm-tarjeta-fg,inherit);border-radius:14px;text-align:left}
+.bm-ayuda{display:grid;grid-template-columns:auto 1fr;gap:12px 14px;align-items:center;padding:18px 16px}
+.bm-ayuda__icono{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.85);display:grid;place-items:center}
+.bm-ayuda__icono svg{width:26px;height:26px}
+.bm-ayuda__titulo{margin:0 0 2px;font-size:18px;font-weight:600;line-height:1.2}
+.bm-ayuda__x{margin:0;font-size:13px;line-height:1.45;opacity:.8}
+.bm-ayuda__botones{grid-column:1 / -1;display:grid;gap:10px}
+.bm-ayuda__botones:empty{display:none}
+.bm-ayuda__boton{display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border:1px solid var(--bm-cta-bg,#111827);border-radius:var(--bm-cta-radio,12px);background:var(--bm-cta-bg,#111827);color:var(--bm-cta-fg,#ffffff);font:inherit;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer}
+.bm-ayuda__boton svg{width:20px;height:20px}
+.bm-ayuda__boton--borde{background:transparent;color:inherit}
+.bm-ayuda [hidden],.bm-franja [hidden],.bm-franja__wa[hidden]{display:none !important}
+.bm-guia{border:0;border-radius:8px;padding:0;max-width:min(92vw,720px);background:#ffffff}
+.bm-guia::backdrop{background:rgba(28,28,28,.55)}
+.bm-guia img{display:block;width:100%;height:auto}
+.bm-guia__cerrar{position:absolute;top:8px;right:8px;width:36px;height:36px;border-radius:50%;border:0;background:#ffffff;font-size:22px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+.bm-franja{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);padding:16px 8px}
+.bm-franja__fila{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:2px 8px;color:inherit;text-decoration:none}
+.bm-franja__fila + .bm-franja__fila{border-left:1px solid rgba(0,0,0,.1)}
+.bm-franja__fila > svg{width:28px;height:28px;flex:none}
+.bm-franja__titulo{margin:0;font-size:13px;font-weight:600;line-height:1.25}
+.bm-franja__texto{margin:0;font-size:12px;line-height:1.3;opacity:.75}
+.bm-oferta__color[data-bm-color]{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.bm-oferta__color[data-bm-color]::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 0 var(--bm-sec-fg,#111827);transition:box-shadow .15s}
+.bm-oferta__color[aria-pressed="true"]::after{box-shadow:inset 0 0 0 2px rgba(17,24,39,.3);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--bm-sec-fg,#111827) 30%,transparent)}
+.bm-oferta__color img{transition:opacity .25s ease}
+.bm-oferta__colores:has([aria-pressed="true"]) .bm-oferta__color[aria-pressed="false"] img{opacity:.72}
+.bm-oferta__color[data-bm-color]:focus-visible{outline:2px solid var(--bm-sec-fg,#111827);outline-offset:-4px}
+.bm-oferta__color{position:relative;margin:0;aspect-ratio:3/4;overflow:hidden;scroll-snap-align:start;background:var(--bm-tarjeta-bg,#ffffff)}
+.bm-oferta__color img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bm-oferta__color figcaption{position:absolute;left:0;right:0;top:0;padding:10px 8px 30px;text-align:center;font-family:var(--font-heading-family,inherit);font-size:18px;line-height:1.15;color:var(--bm-sec-fg,#111827);background:linear-gradient(180deg,rgba(255,255,255,.92) 0%,rgba(255,255,255,.7) 55%,rgba(255,255,255,0) 100%);background:linear-gradient(180deg,color-mix(in srgb,var(--bm-sec-bg,#ffffff) 92%,transparent) 0%,color-mix(in srgb,var(--bm-sec-bg,#ffffff) 70%,transparent) 55%,transparent 100%)}
+.bm-oferta__colores-nota{margin:-6px 0 0;font-size:14px;line-height:1.35;opacity:.75}
+@media (min-width:750px){.bm-oferta__colores{grid-auto-flow:row;grid-template-columns:repeat(var(--bm-colores-n,4),minmax(0,1fr));overflow:visible;margin:0;padding:0}.bm-oferta__color figcaption{font-size:22px}}
+.bm-oferta__caracts{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(128px,38%);justify-content:safe center;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 6px;text-align:center}
+.bm-oferta__caracts:not(:has(>:nth-child(4))){grid-auto-columns:minmax(0,1fr);overflow-x:visible}
+.bm-oferta__caract{scroll-snap-align:start;padding:14px 10px;border-radius:14px;background:var(--bm-tarjeta-bg,#ffffff);color:var(--bm-tarjeta-fg,#111827);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.bm-oferta__icono{display:block;width:34px;margin:0 auto 6px;line-height:0}
+.bm-oferta__icono img{width:100%;height:auto}
+.bm-oferta__icono--foto{width:auto;margin:-14px -10px 10px;border-radius:14px 14px 0 0;overflow:hidden}
+.bm-oferta__icono--foto img{display:block;width:100%;aspect-ratio:1;object-fit:cover}
+.bm-oferta__simbolo{display:block;font-size:24px;line-height:1.2;margin-bottom:4px}
+.bm-oferta__caract-t{margin:0;font-size:15px;font-weight:800;line-height:1.25}
+.bm-oferta__caract-x{margin:4px 0 0;font-size:13px;line-height:1.35;opacity:.75}
+.bm-oferta__confianza{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px;margin:0;padding:0;list-style:none;font-size:13px;line-height:1.3}
+.bm-oferta__confianza li{display:flex;flex-direction:column;align-items:center;gap:3px;opacity:.85}
+.bm-oferta__calif{display:inline-flex;align-self:center;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center;margin:0;padding:6px 14px;border-radius:999px;background:var(--bm-tarjeta-bg,#ffffff);color:var(--bm-tarjeta-fg,#111827);font-size:14px}
+.bm-oferta__estrellas{color:var(--bm-estrellas,#f5a623);letter-spacing:1px}
+.bm-oferta__precio{padding:14px 16px;border-radius:16px;border:1px solid var(--bm-linea,rgba(0,0,0,.14));background:var(--bm-tarjeta-bg,transparent);color:var(--bm-tarjeta-fg,inherit);text-align:var(--bm-align,center)}
+.bm-oferta__precio-fila{display:flex;align-items:center;justify-content:var(--bm-align,center);flex-wrap:wrap;gap:4px 10px;margin:0}
+.bm-oferta__precio-actual{font-size:30px;font-weight:900;line-height:1.05;color:var(--bm-precio-color,inherit)}
+.bm-oferta__precio-antes{font-size:17px;line-height:1;opacity:.6}
+.bm-oferta__pildora{display:inline-block;margin:8px 0 0;padding:4px 12px;border-radius:999px;background:var(--bm-pildora-bg,#111827);color:var(--bm-pildora-fg,#ffffff);font-size:13px;font-weight:800}
+.bm-oferta__nota{margin:6px 0 0;font-size:14px;opacity:.85}
+.bm-oferta .bm-cta{padding-left:0;padding-right:0}
+
+/* Variantes visuales: la elección se completa en el formulario. */
+.bm-variantes__lista{display:grid;grid-template-columns:repeat(var(--bm-cols-movil,2),minmax(0,1fr));gap:10px}
+@media screen and (min-width:750px){.bm-variantes__lista{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.bm-variantes--carrusel .bm-variantes__lista{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:42%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+.bm-variante{margin:0;padding:8px;border-radius:14px;background:var(--bm-tarjeta-bg,#ffffff);color:var(--bm-tarjeta-fg,#111827);text-align:center;scroll-snap-align:start}
+.bm-variante__foto{line-height:0;margin-bottom:8px}
+.bm-variante__foto img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:10px}
+.bm-variante figcaption{font-size:15px;font-weight:800;line-height:1.25}
+.bm-variante figcaption small{display:block;font-weight:400;font-size:13px;opacity:.8}
+.bm-variante--agotada{opacity:.55}
+.bm-variantes__nota{margin:12px 0 0;font-size:14px;line-height:1.35;text-align:center;opacity:.85}
+
+/* Tablas: especificaciones, guía de tallas y comparativa. */
+.bm-tabla__t{width:100%;border-collapse:collapse;font-size:15px;line-height:1.35}
+.bm-tabla__t th,.bm-tabla__t td{padding:12px 8px;border-bottom:1px solid var(--bm-linea,rgba(127,127,127,.3));text-align:left;font-weight:400}
+.bm-tabla__t tbody th{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.bm-tabla--lista td{text-align:right;font-weight:700}
+.bm-tabla__t thead th{font-size:13px;font-weight:800;text-align:center}
+.bm-tabla--tabla td,.bm-tabla--comparativa td{text-align:center}
+.bm-tabla--comparativa .bm-tabla__nos{background:var(--bm-destacado-bg,transparent);color:var(--bm-destacado-fg,inherit);font-weight:800}
+.bm-tabla--tabla .bm-tabla__nos{font-weight:800}
+.bm-tabla--tabla tbody th{font-size:15px;letter-spacing:0;text-transform:none;opacity:1;text-align:center;font-weight:800}
+.bm-tabla__si,.bm-tabla__no{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;font-weight:900;line-height:1}
+.bm-tabla__si{color:inherit;background:none;border:2px solid currentColor}
+.bm-tabla__no{color:#dc2626;border:2px solid #dc2626}
+.bm-tabla__nota{margin:10px 0 0;font-size:13px;opacity:.8}
+
+/* Cinta de frases. */
+.bm-cinta{padding:var(--bm-cinta-pad,9px) 0;font-size:var(--bm-cinta-tam,14px);font-weight:700;line-height:1.2;white-space:nowrap}
+.bm-cinta__pista{display:flex;width:max-content;margin:0 auto}
+.bm-cinta__fila{display:flex;align-items:center;flex:0 0 auto}
+.bm-cinta__frase{display:inline-flex;align-items:center;gap:.45em;padding:0 14px}
+.bm-cinta__icono{display:inline-flex;line-height:0}
+.bm-cinta__icono svg{width:1.25em;height:1.25em}
+.bm-cinta__sep{opacity:.7}
+.bm-cinta--animada .bm-cinta__pista{margin:0;animation:bm-cinta var(--bm-cinta-dur,24s) linear infinite}
+@keyframes bm-cinta{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.bm-cinta--animada .bm-cinta__pista{animation:none}}
+
+/* Reseñas: foto de perfil o icono ilustrativo y disposición de chat. */
+.bm-resena__avatar{display:block;width:32px;height:32px;border-radius:50%;overflow:hidden;line-height:0}
+.bm-resena__avatar img{width:100%;height:100%;object-fit:cover}
+.bm-resena__avatar--icon{display:grid;place-items:center;background:#d7dee3;color:#52616b}
+.bm-resena__avatar--icon svg{width:22px;height:22px;fill:currentColor}
+.bm-resenas--chat .bm-resenas__lista{gap:10px;padding:14px;border-radius:16px;background:var(--bm-chat-bg,#e5ddd5)}
+.bm-resenas--chat .bm-resena{padding:0;background:transparent;gap:7px}
+.bm-resenas--chat .bm-resena__texto{max-width:86%;padding:10px 12px;border-radius:4px 14px 14px 14px;background:var(--bm-tarjeta-bg,#ffffff);box-shadow:0 1px 1px rgba(0,0,0,.12)}
+.bm-resena__respuesta{margin:0;max-width:86%;align-self:flex-end;padding:10px 12px;border-radius:14px 4px 14px 14px;background:var(--bm-burbuja-propia,#dcf8c6);box-shadow:0 1px 1px rgba(0,0,0,.12);font-size:15px;line-height:1.45}
+.bm-resena__respuesta-autor{display:block;font-size:13px;font-weight:800;margin-bottom:2px}
+.bm-resenas--chat .bm-resena__etiqueta{max-width:100%;background:#fff;padding:7px 9px;border:0;border-radius:8px}
+
+/* Galería de escenas y videos en carrusel. */
+.bm-galeria__lista,.bm-videos__lista{display:grid;grid-auto-flow:column;grid-auto-columns:var(--bm-galeria-ancho,75%);gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+.bm-galeria--cuadricula .bm-galeria__lista{grid-auto-flow:row;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-columns:auto;overflow:visible}
+.bm-galeria__item,.bm-videos__item{margin:0;scroll-snap-align:start}
+.bm-galeria__item img{display:block;width:100%;height:auto;border-radius:var(--bm-radio-img,12px)}
+.bm-galeria__item figcaption,.bm-videos__item figcaption{margin-top:6px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+.bm-videos__lista{grid-auto-columns:var(--bm-video-ancho,60%)}
+.bm-videos__v{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:14px;background:#000}
+
+/* Movimiento de la tercera plantilla. Sin JavaScript todo el contenido permanece visible. */
+html.bm-dinamica-activa .bm-sec.bm-entrada{opacity:0;transform:translateY(18px)}
+html.bm-dinamica-activa .bm-sec.bm-entrada.bm-en-vista{opacity:1;transform:none;transition:opacity .65s ease,transform .65s cubic-bezier(.2,.75,.25,1)}
+html.bm-dinamica-activa .bm-resenas--cuadricula .bm-resena{transition:transform .25s ease,box-shadow .25s ease}
+html.bm-dinamica-activa .bm-resenas--cuadricula .bm-resena:hover{transform:translateY(-4px);box-shadow:0 10px 24px #0000001c}
+html:has([data-bm-ajustes][data-movimiento-pagina="true"]) .bm-resenas--chat .bm-resenas__lista{grid-auto-flow:column;grid-auto-columns:minmax(250px,82%);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+html:has([data-bm-ajustes][data-movimiento-pagina="true"]) .bm-resenas--chat .bm-resenas__lista::-webkit-scrollbar{display:none}
+.bm-resena-modal{max-width:min(94vw,780px);max-height:92vh;padding:12px;border:0;border-radius:14px;background:#fff;box-shadow:0 20px 70px #0006}
+.bm-resena-modal::backdrop{background:#000b}
+.bm-resena-modal img{display:block;max-width:100%;max-height:calc(92vh - 24px);object-fit:contain}
+.bm-resena-modal__cerrar{position:absolute;right:18px;top:18px;width:38px;height:38px;border:0;border-radius:50%;background:#fff;color:#111827;font:700 28px/1 system-ui;cursor:pointer}
+@media (prefers-reduced-motion:reduce){html.bm-dinamica-activa .bm-sec.bm-entrada,html.bm-dinamica-activa .bm-sec.bm-entrada.bm-en-vista{opacity:1;transform:none;transition:none}html.bm-dinamica-activa .bm-resena{transition:none!important}}
+
+/* Conversaciones independientes, como la referencia Rond Store (2026-10-24).
+   Sin teléfonos, horas ni identidad simulada; cada recreación conserva su aviso. */
+.bm-resena__titulo{margin:0;font-size:16px;line-height:1.35;font-weight:800;color:inherit}
+.bm-resena{min-width:0;overflow-wrap:anywhere}
+.bm-resenas--chat .bm-resenas__lista{grid-auto-flow:column;grid-auto-columns:minmax(250px,86%);overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 4px 12px;background:transparent;border-radius:0;align-items:start}
+.bm-resenas--chat .bm-resena{padding:14px;background:var(--bm-chat-bg,#e5ddd5);border-radius:18px;box-shadow:0 3px 12px #00000014;min-width:0}
+.bm-resenas--chat .bm-resena__cabecera{padding-bottom:10px;border-bottom:1px solid #0002}
+.bm-resenas--chat .bm-resena__foto{width:86%;align-self:flex-start}
+.bm-resenas--chat .bm-resena__respuesta{color:#153c25}
+@media(min-width:750px){.bm-resenas--chat .bm-resenas__lista,html:has([data-bm-ajustes][data-movimiento-pagina="true"]) .bm-resenas--chat .bm-resenas__lista{grid-auto-columns:minmax(280px,32%)}}
+
+/* BM-RESENAS-V3 · tarjeta con foto compacta y conversación en teléfono. */
+.bm-resenas:not(.bm-resenas--chat) .bm-resena{padding:22px;border:1px solid #edd8d5;border-radius:20px;gap:14px}
+.bm-resenas:not(.bm-resenas--chat) .bm-resena__foto{width:100%;margin-top:0}
+.bm-resena__foto img{max-height:420px;object-fit:contain;background:var(--bm-tarjeta-bg,#fff)}
+.bm-resenas:not(.bm-resenas--chat) .bm-resena__avatar{width:48px;height:48px;flex-shrink:0}
+.bm-resenas:not(.bm-resenas--chat) .bm-resena__titulo{font-size:18px}
+.bm-resenas--chat .bm-resena{padding:0;border:1px solid #c7c7c7;border-radius:34px;overflow:hidden;gap:0;background:#f5f5f5;color:#111;box-shadow:0 12px 30px #0002}
+.bm-chat__estado{display:flex;justify-content:space-between;padding:16px 22px 8px;font:600 13px/1.4 system-ui;color:#111;background:#f7f7f7}
+.bm-resenas--chat .bm-resena__cabecera{padding:8px 14px 12px;min-height:54px;gap:9px;background:#f7f7f7;border-bottom:1px solid #b9b9b9}
+.bm-resenas--chat .bm-resena__autor{font-size:13px;font-weight:600;flex:1}
+.bm-chat__volver{font-size:32px;line-height:1;color:#087fff}
+.bm-chat__llamada{color:#087fff;font-size:20px;white-space:nowrap}
+.bm-chat__mensajes{display:flex;flex-direction:column;gap:10px;padding:16px 12px 20px;background-color:var(--bm-chat-bg,#e7dfd5);background-image:radial-gradient(#b9aa9826 1px,transparent 1px);background-size:20px 20px}
+.bm-chat__dia{align-self:center;padding:5px 12px;border-radius:8px;background:#dce9e5;font-size:12px;color:#52615d;margin-bottom:4px}
+.bm-resenas--chat .bm-resena__texto{color:#111;background:#fff;font-size:15px;max-width:91%}
+.bm-resenas--chat .bm-resena__respuesta{color:#111;background:#d9f7bd;font-size:15px;max-width:91%}
+.bm-resenas--chat .bm-resena__respuesta-autor{display:none}
+.bm-resenas--chat .bm-resena__foto{width:91%;padding:7px;background:#fff;border-radius:12px}
+.bm-resenas--chat .bm-resena__titulo{font-size:14px;margin-bottom:3px}
+.bm-chat__entrada{display:flex;align-items:center;gap:12px;padding:10px 14px 20px;background:#f7f7f7;border-top:1px solid #bbb;color:#45565e;font-size:23px}
+.bm-chat__campo{flex:1;height:31px;border:1px solid #ddd;border-radius:24px;background:white}
+.bm-chat__micro{display:grid;place-items:center;background:#1eb65c;color:white;width:32px;height:32px;border-radius:50%;font-size:14px}
+.bm-resenas--chat .bm-resena__etiqueta{margin:0;padding:9px 14px;background:#fff;border-radius:0;font-size:13px;line-height:1.4}
+@media(max-width:749px){.bm-resenas--cuadricula .bm-resenas__lista{grid-template-columns:1fr}.bm-resenas--chat .bm-resenas__lista{grid-auto-columns:minmax(250px,94%)}}
+/* BM-UI-CENTRADO-V1 (titular, 2026-11-08: «todo debería estar centrado… un muy buen diseño UI»). El tachado va a la altura
+   del precio (centro, no línea base) y, en una sección centrada, una lista de beneficios se centra como bloque y conserva
+   sus líneas a la izquierda para que se lean. */
+@container style(--bm-align: center){.bm-lista{width:fit-content;max-width:100%;margin-inline:auto}}

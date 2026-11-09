@@ -1,0 +1,19 @@
+{%- comment -%} BM-KIT-COPIA snippets/bm-cta.liquid k9778c285: copia inmutable del kit para las páginas que la nombran; nunca se edita en el tema (otra versión es otro archivo). {%- endcomment -%}
+{%- comment -%}
+  CTA de landing BreitMarket: abre el formulario COD de Releasit y nunca navega (G11).
+  Es un <button type="button">, no un enlace /rsi-btn-hook: Releasit no lo reemplaza, así que su
+  texto y color siguen siendo los de la plantilla. Fuente canónica: claude-skills/core/tema_landing.
+  Parámetros: texto, subtexto, fondo, color, franja, ancho ('completo'|'auto'), alineacion, pad_y, pulso.
+{%- endcomment -%}
+{%- comment -%}
+  BM-CTA-COLOR-V2 (titular, 2026-11-08: «no se entiende si es un botón de compra»): un color vacío nunca se escribe. Antes
+  una sección pasaba `fondo: blank` y algunos motores lo pintaban como `--bm-cta-bg:;`, que deja el botón transparente
+  (texto oscuro sobre el fondo de la página). Sin color propio, manda el de «Ajustes de la página».
+{%- endcomment -%}
+{%- assign bm_f = fondo | default: '' | strip -%}{%- assign bm_c = color | default: '' | strip -%}{%- assign bm_fr = franja | default: '' | strip -%}
+<div class="bm-cta{% if pulso %} bm-cta--pulso{% endif %}" style="--bm-cta-pad-y:{{ pad_y | default: 14 }}px;{% if bm_fr.size > 0 %}--bm-cta-franja:{{ bm_fr }};{% endif %}{% if bm_f.size > 0 %}--bm-cta-bg:{{ bm_f }};{% endif %}{% if bm_c.size > 0 %}--bm-cta-fg:{{ bm_c }};{% endif %}{% if ancho == 'auto' %}--bm-cta-ancho:auto;{% endif %}{% if alineacion != blank %}--bm-cta-align:{{ alineacion }};{% endif %}">
+  <button type="button" class="bm-cta__boton" data-bm-cta aria-haspopup="dialog" onclick="event.preventDefault();var a=this,f=function(){return Array.prototype.slice.call(document.querySelectorAll('#_rsi-buy-now-button,._rsi-buy-now-button,._rsi-buy-now-button-product')).find(function(x){return x.offsetWidth*x.offsetHeight})};if(f()){f().click();return}if(window.__rsiW)return;window.__rsiW=1;var t=a.textContent,n=0;a.textContent='Cargando...';var i=setInterval(function(){var x=f();if(x){clearInterval(i);window.__rsiW=0;a.textContent=t;x.click()}else if(++n===200){clearInterval(i);window.__rsiW=0;a.textContent=t}},150)">{{ texto | default: 'Pedir ahora' | escape }}</button>
+  {%- if subtexto != blank -%}
+    <p class="bm-cta__sub">{{ subtexto | escape }}</p>
+  {%- endif -%}
+</div>

@@ -1,0 +1,28 @@
+{%- comment -%} BM-KIT-COPIA blocks/bm-b-pasos.liquid ka8f30660: copia inmutable del kit para las páginas que la nombran; nunca se edita en el tema (otra versión es otro archivo). {%- endcomment -%}
+{%- comment -%}
+  Bloque «Fila de pasos»: agrupa pasos o beneficios («Texto o paso») en una fila que se desliza. Sus hijos se
+  agregan, ocultan y reordenan dentro de ella.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+<div class="bm-oferta__caracts" data-bm-bloque="pasos" {{ block.shopify_attributes }}>{%- content_for 'blocks' -%}</div>
+
+{% schema %}
+{
+  "name": "Fila de pasos",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Agrega adentro bloques «Texto o paso» con estilo paso."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "bm-b-texto__k96b0ad3c"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,212 @@
+{%- comment -%} BM-KIT-COPIA sections/bm-primera-v2.liquid kf1157af6: copia inmutable del kit para las páginas que la nombran; nunca se edita en el tema (otra versión es otro archivo). {%- endcomment -%}
+{%- comment -%}
+  Primera pantalla (kit v2): la galería por color del producto y la compra temprana para quien ya decidió.
+  Cada pieza es un theme block que se agrega, oculta, reordena y abre su código desde el editor: Galería por color
+  (product.media agrupada por el texto alternativo de cada foto; «Foto suelta» adentro la reemplaza), Título,
+  Calificación (solo real), Precio de la variante, Promo, Selector de color, Existencias reales, Contador regresivo,
+  Guía de tallas, Fila de pasos, Texto o paso, Franja de confianza, Botón de compra y Código propio. Lo que se elige
+  aquí es lo que se pide: la variante se escribe en el formulario del producto (`form[action*="/cart/add"] [name=id]`),
+  que Releasit lee al abrir. Abre en la variante del enlace (?variant=), si no en «Color que abre la galería» y si no
+  en la primera disponible (bm-v2-inicial, la misma cuenta que hace cada bloque).
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: cada bloque es un theme block, blocks/bm-b-*).
+{%- endcomment -%}
+{%- render 'bm-v2-recursos__k5d2de239' -%}
+{%- assign s = section.settings -%}
+{%- if product != blank -%}
+  {%- capture vid -%}{%- render 'bm-v2-inicial', product: product, color: s.color_inicial, opcion: s.opcion_color -%}{%- endcapture -%}
+  {%- assign vid = vid | plus: 0 -%}
+  {%- assign inicial = product.selected_or_first_available_variant -%}
+  {%- for v in product.variants -%}{%- if v.id == vid -%}{%- assign inicial = v -%}{%- endif -%}{%- endfor -%}
+  {%- render 'bm-v2-producto', product: product, inicial: inicial -%}
+{%- endif -%}
+<div class="bm-sec bm-oferta bm-primera bm-v2" data-bm-landing="primera" data-bm-sec="{{ section.id }}" style="{% if s.fondo != blank %}--bm-sec-bg:{{ s.fondo }};{% endif %}{% if s.texto != blank %}--bm-sec-fg:{{ s.texto }};{% endif %}{% if s.tarjeta_fondo != blank %}--bm-tarjeta-bg:{{ s.tarjeta_fondo }};{% endif %}{% if s.tarjeta_texto != blank %}--bm-tarjeta-fg:{{ s.tarjeta_texto }};{% endif %}{% if s.precio_color != blank %}--bm-precio-color:{{ s.precio_color }};{% endif %}{% if s.pildora_fondo != blank %}--bm-pildora-bg:{{ s.pildora_fondo }};{% endif %}{% if s.pildora_texto != blank %}--bm-pildora-fg:{{ s.pildora_texto }};{% endif %}{% if s.estrellas != blank %}--bm-estrellas:{{ s.estrellas }};{% endif %}--bm-pad-top:{{ s.padding_top }}px;--bm-pad-bottom:{{ s.padding_bottom }}px;--bm-pad-x:{{ s.padding_lateral }}px;--bm-align:{{ s.alineacion }};--bm-oferta-gap:{{ s.separacion }}px;">
+  <div class="bm-sec__in bm-oferta__pila">{%- content_for 'blocks' -%}</div>
+</div>
+
+{% schema %}
+{
+  "name": "Primera pantalla",
+  "tag": "section",
+  "class": "bm-v2-seccion",
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
+  "max_blocks": 50,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Precio, tachado y existencias salen de la variante elegida: se cambian en el producto, no aquí."
+    },
+    {
+      "type": "select",
+      "id": "alineacion",
+      "label": "Alineación",
+      "options": [
+        {
+          "value": "center",
+          "label": "Centro"
+        },
+        {
+          "value": "left",
+          "label": "Izquierda"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Colores"
+    },
+    {
+      "type": "color",
+      "id": "fondo",
+      "label": "Fondo",
+      "info": "Vacío: el de la página."
+    },
+    {
+      "type": "color",
+      "id": "texto",
+      "label": "Texto"
+    },
+    {
+      "type": "color",
+      "id": "tarjeta_fondo",
+      "label": "Fondo de las tarjetas"
+    },
+    {
+      "type": "color",
+      "id": "tarjeta_texto",
+      "label": "Texto de las tarjetas"
+    },
+    {
+      "type": "color",
+      "id": "precio_color",
+      "label": "Color del precio"
+    },
+    {
+      "type": "color",
+      "id": "pildora_fondo",
+      "label": "Fondo de la píldora de ahorro"
+    },
+    {
+      "type": "color",
+      "id": "pildora_texto",
+      "label": "Texto de la píldora de ahorro"
+    },
+    {
+      "type": "color",
+      "id": "estrellas",
+      "label": "Estrellas"
+    },
+    {
+      "type": "header",
+      "content": "Espaciado"
+    },
+    {
+      "type": "range",
+      "id": "separacion",
+      "label": "Separación entre elementos",
+      "min": 4,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_lateral",
+      "label": "Margen lateral",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Variante con que abre"
+    },
+    {
+      "type": "text",
+      "id": "color_inicial",
+      "label": "Color que abre la galería",
+      "info": "Como se llama en el producto, p. ej. NEGRO. Vacío: la primera variante disponible. Un enlace con ?variant= manda sobre esto."
+    },
+    {
+      "type": "text",
+      "id": "opcion_color",
+      "label": "Opción de color del producto",
+      "info": "Vacío: la que se llama Color, Colour o Tono. Escríbela si el producto la llama distinto (p. ej. Estampado)."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "bm-b-galeria"
+    },
+    {
+      "type": "bm-b-titulo"
+    },
+    {
+      "type": "bm-b-calificacion"
+    },
+    {
+      "type": "bm-b-precio__k9ca4cd28"
+    },
+    {
+      "type": "bm-b-promo"
+    },
+    {
+      "type": "bm-b-selector__k319b3b0f"
+    },
+    {
+      "type": "bm-b-existencias"
+    },
+    {
+      "type": "bm-b-contador__k5c3dd6c5"
+    },
+    {
+      "type": "bm-b-tallas"
+    },
+    {
+      "type": "bm-b-pasos__ka8f30660"
+    },
+    {
+      "type": "bm-b-texto__k96b0ad3c"
+    },
+    {
+      "type": "bm-b-franja"
+    },
+    {
+      "type": "bm-b-cta__k5eb583fc"
+    },
+    {
+      "type": "bm-b-codigo"
+    }
+  ]
+}
+{% endschema %}

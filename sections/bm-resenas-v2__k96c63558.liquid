@@ -1,0 +1,214 @@
+{%- comment -%} BM-KIT-COPIA sections/bm-resenas-v2.liquid k96c63558: copia inmutable del kit para las páginas que la nombran; nunca se edita en el tema (otra versión es otro archivo). {%- endcomment -%}
+{%- comment -%}
+  BM-RESENAS-ORIGEN-INTERNO-V3
+  BM-RESENAS-ORIGEN-INTERNO-V1
+  Reseñas (kit v2): prueba social con su origen — real importada, real propia o recreación IA con aviso
+  visible en la tarjeta —, en lista, carrusel, cuadrícula o conversación tipo chat. Con el movimiento encendido en
+  «Ajustes de la página», las conversaciones avanzan solas. Regla: _nucleo/landing-formatos.md.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: cada bloque es un theme block, blocks/bm-b-*).
+{%- endcomment -%}
+{%- render 'bm-v2-recursos__k5d2de239' -%}
+{%- assign s = section.settings -%}
+{%- assign hay_ia = false -%}
+{%- for block in section.blocks -%}
+  {%- if block.settings.origen == 'ia_recreada' -%}{%- assign hay_ia = true -%}{%- endif -%}
+{%- endfor -%}
+<div class="bm-sec bm-resenas bm-v2 bm-resenas--{{ s.disposicion }}" data-bm-landing="resenas" data-bm-sec="{{ section.id }}" data-bm-segundos="{{ s.segundos | default: 2 }}" style="{% if s.fondo != blank %}--bm-sec-bg:{{ s.fondo }};{% endif %}{% if s.texto != blank %}--bm-sec-fg:{{ s.texto }};{% endif %}{% if s.tarjeta_fondo != blank %}--bm-tarjeta-bg:{{ s.tarjeta_fondo }};{% endif %}{% if s.tarjeta_texto != blank %}--bm-tarjeta-fg:{{ s.tarjeta_texto }};{% endif %}{% if s.estrellas != blank %}--bm-estrellas:{{ s.estrellas }};{% endif %}--bm-pad-top:{{ s.padding_top }}px;--bm-pad-bottom:{{ s.padding_bottom }}px;--bm-pad-x:{{ s.padding_lateral }}px;--bm-align:{{ s.alineacion }};">
+  <div class="bm-sec__in">
+    {%- if s.titulo != blank or s.subtitulo != blank -%}
+      <div class="bm-cabecera">
+        {%- if s.titulo != blank -%}<h2>{{ s.titulo | escape }}</h2>{%- endif -%}
+        {%- comment -%}
+  BM-RESENAS-ORIGEN-INTERNO-V1 De dónde salen las reseñas (p. ej. «de otros productos de la tienda»): nunca se omite si el plan lo trae. {%- endcomment -%}
+        {%- if s.subtitulo != blank -%}<p>{{ s.subtitulo | escape }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+    <div class="bm-resenas__lista">
+      {%- content_for 'blocks' -%}
+    </div>
+  </div>
+  {%- if s.cta_mostrar -%}
+    {%- render 'bm-cta__k9778c285', texto: s.cta_texto, subtexto: s.cta_subtexto, ancho: 'completo', alineacion: 'center', pad_y: 14, pulso: false -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Reseñas",
+  "tag": "section",
+  "class": "bm-v2-seccion",
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título",
+      "default": "Ejemplos de uso y opiniones"
+    },
+    {
+      "type": "text",
+      "id": "subtitulo",
+      "label": "Subtítulo",
+      "info": "De dónde salen las reseñas cuando no son de este producto, p. ej. «Mensajes reales de clientas (de otros productos de la tienda)»."
+    },
+    {
+      "type": "select",
+      "id": "disposicion",
+      "label": "Disposición",
+      "options": [
+        {
+          "value": "lista",
+          "label": "Lista vertical"
+        },
+        {
+          "value": "carrusel",
+          "label": "Carrusel horizontal"
+        },
+        {
+          "value": "cuadricula",
+          "label": "Cuadrícula de tarjetas"
+        },
+        {
+          "value": "chat",
+          "label": "Conversación (burbujas de chat)"
+        }
+      ],
+      "default": "carrusel"
+    },
+    {
+      "type": "range",
+      "id": "segundos",
+      "label": "Segundos por tarjeta",
+      "info": "El carrusel avanza solo y vuelve a empezar sin fin; cuánto se queda cada tarjeta antes de pasar a la siguiente.",
+      "min": 1,
+      "max": 8,
+      "step": 0.5,
+      "unit": "s",
+      "default": 2
+    },
+    {
+      "type": "select",
+      "id": "alineacion",
+      "label": "Alineación del título",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "text",
+      "id": "aviso_ia",
+      "label": "Aviso público opcional"
+    },
+    {
+      "type": "header",
+      "content": "Colores"
+    },
+    {
+      "type": "color",
+      "id": "fondo",
+      "label": "Fondo de la sección",
+      "info": "Vacío: el de la página."
+    },
+    {
+      "type": "color",
+      "id": "texto",
+      "label": "Texto de la sección"
+    },
+    {
+      "type": "color",
+      "id": "tarjeta_fondo",
+      "label": "Fondo de las tarjetas"
+    },
+    {
+      "type": "color",
+      "id": "tarjeta_texto",
+      "label": "Texto de las tarjetas"
+    },
+    {
+      "type": "color",
+      "id": "estrellas",
+      "label": "Color de estrellas"
+    },
+    {
+      "type": "header",
+      "content": "Espaciado"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_lateral",
+      "label": "Margen lateral",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Botón de compra"
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_mostrar",
+      "label": "Mostrar botón al final",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "cta_texto",
+      "label": "Texto del botón",
+      "default": "Pedir ahora · pago contra entrega"
+    },
+    {
+      "type": "text",
+      "id": "cta_subtexto",
+      "label": "Línea bajo el botón",
+      "default": "Pagas al recibir"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "bm-b-resena__kc71d5ff4"
+    },
+    {
+      "type": "bm-b-codigo"
+    }
+  ]
+}
+{% endschema %}

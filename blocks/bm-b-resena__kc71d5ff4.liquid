@@ -1,0 +1,186 @@
+{%- comment -%} BM-KIT-COPIA blocks/bm-b-resena.liquid kc71d5ff4: copia inmutable del kit para las páginas que la nombran; nunca se edita en el tema (otra versión es otro archivo). {%- endcomment -%}
+{%- comment -%}
+  BM-RESENAS-ORIGEN-INTERNO-V3
+  BM-RESENAS-ORIGEN-INTERNO-V1
+  Bloque «Reseña». Cada tarjeta declara su origen: real importada o real propia (puede mostrar nombre, ciudad y
+  estrellas) o reseña IA (origen interno, sin etiqueta pública, sin compra verificada). La disposición
+  (lista, carrusel, cuadrícula o chat) sale de la sección. Regla: _nucleo/landing-formatos.md.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign disposicion = section.settings.disposicion -%}
+{%- assign b = block.settings -%}
+{%- assign es_ia = false -%}
+{%- if b.origen == 'ia_recreada' -%}{%- assign es_ia = true -%}{%- endif -%}
+<article class="bm-resena" data-bm-bloque="resena" data-origen="{{ b.origen }}" {{ block.shopify_attributes }}>
+  {%- if disposicion == 'chat' -%}
+    <div class="bm-chat__estado" aria-hidden="true"><span>9:41</span><span>▮▮▮ ◉ ▰</span></div>
+  {%- endif -%}
+  <div class="bm-resena__cabecera">
+    {%- if disposicion == 'chat' -%}<span class="bm-chat__volver" aria-hidden="true">‹</span>{%- endif -%}
+    {%- if b.avatar != blank -%}
+      <span class="bm-resena__avatar">{{ b.avatar | image_url: width: 96 | image_tag: loading: 'lazy', widths: '48, 96', alt: '' }}</span>
+    {%- elsif disposicion == 'chat' or es_ia -%}
+      <span class="bm-resena__avatar bm-resena__avatar--icon" role="img" aria-label="Icono ilustrativo de persona">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.3-7 8-7s8 2.6 8 7"/></svg>
+      </span>
+    {%- endif -%}
+    {%- if b.nombre != blank or b.detalle != blank -%}<span class="bm-resena__autor">{{ b.nombre | escape }}{% if b.nombre != blank and b.detalle != blank %} · {% endif %}{{ b.detalle | escape }}</span>{%- elsif es_ia and disposicion == 'chat' -%}<span class="bm-resena__autor">Conversación</span>{%- endif -%}
+    {%- if disposicion == 'chat' -%}<span class="bm-chat__llamada" aria-hidden="true">♧ ☎</span>{%- endif -%}
+  </div>
+  {%- if disposicion == 'chat' -%}<div class="bm-chat__mensajes"><span class="bm-chat__dia">HOY</span>{%- endif -%}
+  {%- if b.estrellas > 0 -%}
+    <div class="bm-resena__estrellas" role="img" aria-label="{{ b.estrellas }} de 5">{% for i in (1..b.estrellas) %}★{% endfor %}</div>
+  {%- endif -%}
+  {%- if b.titulo != blank -%}<h3 class="bm-resena__titulo">{{ b.titulo | escape }}</h3>{%- endif -%}
+  {%- if disposicion == 'chat' and b.apertura_tienda != blank -%}
+    <p class="bm-resena__respuesta"><span class="bm-resena__respuesta-autor">La tienda</span>{{ b.apertura_tienda | escape }}</p>
+  {%- endif -%}
+  {%- if b.texto != blank -%}<p class="bm-resena__texto">{{ b.texto | escape }}</p>{%- endif -%}
+  {%- if b.foto != blank -%}
+    <a class="bm-resena__foto bm-resena__ampliar" href="{{ b.foto | image_url: width: 1600 }}" target="_blank" rel="noopener" aria-label="Ampliar foto de la reseña">{{ b.foto | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 380px, 84vw', widths: '360, 540, 720, 900', alt: b.foto_alt }}</a>
+  {%- endif -%}
+  {%- comment -%} BM-CHAT-ORDEN-V1 · Orden de un chat real (titular, 2026-11-08: «no estás colocando bien la relación entre el que escribe y el que
+  responde»): la tienda abre, la persona contesta, la tienda le responde y la persona cierra. {%- endcomment -%}
+  {%- if disposicion == 'chat' and b.respuesta_tienda != blank -%}
+    <p class="bm-resena__respuesta"><span class="bm-resena__respuesta-autor">La tienda</span>{{ b.respuesta_tienda | escape }}</p>
+  {%- endif -%}
+  {%- if disposicion == 'chat' and b.segundo_mensaje != blank -%}
+    <p class="bm-resena__texto">{{ b.segundo_mensaje | escape }}</p>
+  {%- endif -%}
+  {%- if disposicion == 'chat' -%}
+    </div><div class="bm-chat__entrada" aria-hidden="true"><span>＋</span><span class="bm-chat__campo"></span><span>◎</span><span class="bm-chat__micro">●</span></div>
+  {%- endif -%}
+</article>
+
+{% schema %}
+{
+  "name": "Reseña",
+  "tag": null,
+  "settings": [
+    {
+      "type": "select",
+      "id": "origen",
+      "label": "Origen",
+      "options": [
+        {
+          "value": "real_importada",
+          "label": "Real importada (con fuente registrada)"
+        },
+        {
+          "value": "real_propia",
+          "label": "Real de un cliente nuestro"
+        },
+        {
+          "value": "ia_recreada",
+          "label": "Recreación generada con IA"
+        }
+      ],
+      "default": "ia_recreada",
+      "info": "Origen y prompts internos; sin etiqueta pública. Sin compra verificada inventada."
+    },
+    {
+      "type": "image_picker",
+      "id": "foto",
+      "label": "Foto o captura"
+    },
+    {
+      "type": "image_picker",
+      "id": "avatar",
+      "label": "Foto pequeña de persona (real con permiso o sintética con origen IA)"
+    },
+    {
+      "type": "text",
+      "id": "foto_alt",
+      "label": "Descripción de la foto"
+    },
+    {
+      "type": "textarea",
+      "id": "prompt",
+      "label": "Prompt del texto IA (registro interno)"
+    },
+    {
+      "type": "select",
+      "id": "foto_origen",
+      "label": "Procedencia de la foto",
+      "options": [
+        {
+          "value": "ia_generada",
+          "label": "Generada con IA"
+        },
+        {
+          "value": "reutilizada",
+          "label": "Material existente del producto"
+        }
+      ],
+      "default": "ia_generada"
+    },
+    {
+      "type": "textarea",
+      "id": "foto_prompt",
+      "label": "Prompt de la foto IA (registro interno)"
+    },
+    {
+      "type": "textarea",
+      "id": "avatar_prompt",
+      "label": "Prompt del avatar IA (registro interno)"
+    },
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título de la reseña"
+    },
+    {
+      "type": "textarea",
+      "id": "apertura_tienda",
+      "label": "1 · La tienda abre (solo chat)"
+    },
+    {
+      "type": "textarea",
+      "id": "texto",
+      "label": "Texto (en chat: 2 · la persona contesta)"
+    },
+    {
+      "type": "textarea",
+      "id": "respuesta_tienda",
+      "label": "3 · La tienda responde (solo chat)",
+      "info": "Responde a lo que dijo la persona. Si la conversación es real, transcribir la respuesta real; si es IA, usar solo datos comprobados de la oferta."
+    },
+    {
+      "type": "textarea",
+      "id": "segundo_mensaje",
+      "label": "4 · La persona cierra (solo chat)",
+      "info": "Contesta a la respuesta de la tienda: gracias, lo que va a hacer o cómo le quedó."
+    },
+    {
+      "type": "text",
+      "id": "nombre",
+      "label": "Nombre"
+    },
+    {
+      "type": "text",
+      "id": "detalle",
+      "label": "Ciudad o detalle (solo reseñas reales)"
+    },
+    {
+      "type": "range",
+      "id": "estrellas",
+      "label": "Estrellas (ilustrativas si origen IA)",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "url",
+      "id": "fuente",
+      "label": "Fuente de la reseña real (no se muestra)"
+    },
+    {
+      "type": "text",
+      "id": "etiqueta",
+      "label": "Etiqueta histórica (sin salida pública)",
+      "info": "Dato de compatibilidad; no se muestra en tarjetas ni chat."
+    }
+  ]
+}
+{% endschema %}
