@@ -1,0 +1,201 @@
+{%- comment -%} BM-KIT-COPIA sections/bm-cuenta-v2.liquid kf93cf73e: copia inmutable del kit para las páginas que la nombran; nunca se edita en el tema (otra versión es otro archivo). {%- endcomment -%}
+{%- comment -%}
+  BM-CUENTA-V1 · La cuenta (kit v2; titular, 2026-11-11): lo que se paga y cuándo, en forma de recibo. Cada renglón es
+  un bloque «Renglón de la cuenta» (concepto y valor; normal, tachado, destacado o total). El precio de hoy y el
+  tachado salen de la variante real y cambian con ella; el envío y «pagas hoy» son lo operativo de la tienda. Nada se
+  inventa: un renglón de precio de comparación no se pinta si la variante no lo tiene, y un paquete se dice por lo que
+  se lleva, nunca por unidad.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: cada bloque es un theme block, blocks/bm-b-*).
+{%- endcomment -%}
+{%- render 'bm-v2-recursos__k65a02952' -%}
+{%- assign s = section.settings -%}
+{%- render 'bm-v2-producto', product: product, inicial: blank -%}
+<div class="bm-sec bm-cuenta bm-v2" data-bm-landing="cuenta" data-bm-sec="{{ section.id }}" style="{% if s.fondo != blank %}--bm-sec-bg:{{ s.fondo }};{% endif %}{% if s.texto != blank %}--bm-sec-fg:{{ s.texto }};{% endif %}{% if s.recibo_fondo != blank %}--bm-cuenta-bg:{{ s.recibo_fondo }};{% endif %}{% if s.recibo_texto != blank %}--bm-cuenta-fg:{{ s.recibo_texto }};{% endif %}{% if s.acento != blank %}--bm-cuenta-acento:{{ s.acento }};{% endif %}{% if s.cabeza_acento != blank %}--bm-cabeza-c:{{ s.cabeza_acento }};{% endif %}--bm-pad-top:{{ s.padding_top }}px;--bm-pad-bottom:{{ s.padding_bottom }}px;--bm-pad-x:{{ s.padding_lateral }}px;--bm-align:center;">
+  <div class="bm-sec__in">
+    {%- render 'bm-v2-cabeza', antetitulo: s.antetitulo, titulo: s.titulo, remate: s.remate, subtitulo: s.subtitulo -%}
+    <div class="bm-cuenta__recibo">
+      {%- if s.encabezado != blank -%}<p class="bm-cuenta__encabezado">{{ s.encabezado | escape }}</p>{%- endif -%}
+      {%- content_for 'blocks' -%}
+    </div>
+    {%- if s.nota != blank -%}<p class="bm-cuenta__nota">{{ s.nota | escape }}</p>{%- endif -%}
+  </div>
+  {%- if s.cta_mostrar -%}
+    {%- render 'bm-cta__k9778c285', texto: s.cta_texto, subtexto: s.cta_subtexto, fondo: s.boton_fondo, color: s.boton_color, ancho: 'completo', alineacion: 'center', pad_y: 14, pulso: false -%}
+  {%- endif -%}
+</div>
+
+<style data-bm-kit="kf93cf73e">
+.bm-cuenta__recibo{position:relative;max-width:340px;margin:6px auto 14px;padding:22px 20px 24px;background:var(--bm-cuenta-bg,#ffffff);color:var(--bm-cuenta-fg,#111827);box-shadow:0 14px 30px rgba(17,24,39,.14);text-align:left;--bm-cuenta-linea:color-mix(in srgb,currentColor 22%,transparent)}
+/* El borde dentado del papel, con el mismo color del recibo. */
+.bm-cuenta__recibo::after{content:"";position:absolute;left:0;right:0;bottom:-9px;height:10px;background:linear-gradient(-45deg,transparent 7px,var(--bm-cuenta-bg,#ffffff) 0) 0 0/14px 10px,linear-gradient(45deg,transparent 7px,var(--bm-cuenta-bg,#ffffff) 0) 0 0/14px 10px}
+.bm-cuenta__encabezado{margin:0;padding-bottom:12px;border-bottom:1px dashed var(--bm-cuenta-linea);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-align:center;opacity:.75}
+.bm-cuenta__nota{margin:18px 0 0;font-size:13px;line-height:1.4;text-align:center;opacity:.8}
+</style>
+
+{% schema %}
+{
+  "name": "La cuenta",
+  "tag": "section",
+  "class": "bm-v2-seccion",
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Lo que se paga y cuándo, en forma de recibo. El precio y el tachado salen de la variante elegida; el envío y el pago, de la operación de la tienda."
+    },
+    {
+      "type": "text",
+      "id": "antetitulo",
+      "label": "Etiqueta (antetítulo)",
+      "default": "La cuenta"
+    },
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título",
+      "default": "Lo que pagas"
+    },
+    {
+      "type": "text",
+      "id": "remate",
+      "label": "Remate (segunda línea, en cursiva)"
+    },
+    {
+      "type": "text",
+      "id": "subtitulo",
+      "label": "Subtítulo (bajada)"
+    },
+    {
+      "type": "text",
+      "id": "encabezado",
+      "label": "Encabezado del recibo",
+      "default": "Tu pedido"
+    },
+    {
+      "type": "text",
+      "id": "nota",
+      "label": "Nota bajo el recibo"
+    },
+    {
+      "type": "header",
+      "content": "Colores"
+    },
+    {
+      "type": "color",
+      "id": "fondo",
+      "label": "Fondo de la sección",
+      "info": "Vacío: el de la página."
+    },
+    {
+      "type": "color",
+      "id": "texto",
+      "label": "Texto"
+    },
+    {
+      "type": "color",
+      "id": "cabeza_acento",
+      "label": "Color de la etiqueta y el remate",
+      "info": "Vacío: el del texto."
+    },
+    {
+      "type": "color",
+      "id": "recibo_fondo",
+      "label": "Fondo del recibo",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "recibo_texto",
+      "label": "Texto del recibo",
+      "default": "#111827"
+    },
+    {
+      "type": "color",
+      "id": "acento",
+      "label": "Valor destacado",
+      "info": "Vacío: el del texto del recibo."
+    },
+    {
+      "type": "header",
+      "content": "Espaciado"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_lateral",
+      "label": "Margen lateral",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Botón de compra"
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_mostrar",
+      "label": "Mostrar botón al final",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "cta_texto",
+      "label": "Texto del botón",
+      "default": "Pedir ahora · pago contra entrega"
+    },
+    {
+      "type": "text",
+      "id": "cta_subtexto",
+      "label": "Línea bajo el botón",
+      "default": "Pagas al recibir"
+    },
+    {
+      "type": "color",
+      "id": "boton_fondo",
+      "label": "Fondo del botón",
+      "info": "Vacío: el de «Ajustes de la página»."
+    },
+    {
+      "type": "color",
+      "id": "boton_color",
+      "label": "Texto del botón",
+      "info": "Vacío: el de «Ajustes de la página»."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "bm-b-renglon"
+    }
+  ]
+}
+{% endschema %}

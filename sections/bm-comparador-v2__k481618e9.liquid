@@ -1,0 +1,377 @@
+{%- comment -%} BM-KIT-COPIA sections/bm-comparador-v2.liquid k481618e9: copia inmutable del kit para las páginas que la nombran; nunca se edita en el tema (otra versión es otro archivo). {%- endcomment -%}
+{%- comment -%}
+  BM-COMPARADOR-V1 · Comparador (kit v2; titular, 2026-11-11): dos fotos del MISMO producto con el mismo encuadre y una
+  línea que se desliza entre ellas. Sirve para «de frente / por detrás», «cerrado / abierto» o un antes y después con su
+  fuente (las reglas de `antes_despues` valen igual: fuente comprobable, o recreación sutil rotulada en «Nota bajo la
+  comparación»). Se mueve con el dedo o el ratón (arrastrar en horizontal; el scroll vertical sigue libre), con el
+  teclado (flechas sobre el control, que es un `input type=range`) y con dos botones que llevan a cada lado. Con
+  «reducir movimiento» el salto a cada lado es inmediato. Sin JavaScript se ven las dos mitades.
+  Las fotos cargan diferidas (`loading="lazy"`): la sección va debajo de la primera pantalla y no suma a su peso.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2).
+{%- endcomment -%}
+{%- render 'bm-v2-recursos__k65a02952' -%}
+{%- assign s = section.settings -%}
+{%- assign eti_a = s.etiqueta_a | default: 'Lado 1' -%}
+{%- assign eti_b = s.etiqueta_b | default: 'Lado 2' -%}
+<div class="bm-sec bm-comparador bm-v2" data-bm-landing="comparador" data-bm-sec="{{ section.id }}" style="{% if s.fondo != blank %}--bm-sec-bg:{{ s.fondo }};{% endif %}{% if s.texto != blank %}--bm-sec-fg:{{ s.texto }};{% endif %}{% if s.acento != blank %}--bm-acento:{{ s.acento }};{% endif %}{% if s.acento_texto != blank %}--bm-acento-fg:{{ s.acento_texto }};{% endif %}{% if s.cabeza_acento != blank %}--bm-cabeza-c:{{ s.cabeza_acento }};{% endif %}--bm-pad-top:{{ s.padding_top }}px;--bm-pad-bottom:{{ s.padding_bottom }}px;--bm-pad-x:{{ s.padding_lateral }}px;--bm-radio-img:{{ s.radio }}px;--bm-comp-ratio:{{ s.proporcion }};--bm-align:center;">
+  <div class="bm-sec__in">
+    {%- render 'bm-v2-cabeza', antetitulo: s.antetitulo, titulo: s.titulo, remate: s.remate, subtitulo: s.subtitulo -%}
+    {%- if s.imagen_a != blank and s.imagen_b != blank -%}
+      <bm-comparador__k481618e9 class="bm-comparador__caja" style="--bm-comp-x:{{ s.inicio }}%">
+        <div class="bm-comparador__vista" data-bm-comp-vista>
+          <input type="range" class="bm-comparador__rango" min="0" max="100" step="1" value="{{ s.inicio }}" aria-label="{{ s.control_etiqueta | default: 'Comparar las dos fotos' | escape }}" aria-valuetext="{{ eti_a | escape }} {{ s.inicio }} %" data-bm-comp-rango>
+          <div class="bm-comparador__foto">{{ s.imagen_b | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 560px, 100vw', widths: '360, 540, 720, 900, 1200', alt: s.alt_b }}</div>
+          <div class="bm-comparador__foto bm-comparador__foto--a">{{ s.imagen_a | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 560px, 100vw', widths: '360, 540, 720, 900, 1200', alt: s.alt_a }}</div>
+          <span class="bm-comparador__linea" aria-hidden="true"><span class="bm-comparador__asa">‹ ›</span></span>
+          <span class="bm-comparador__eti bm-comparador__eti--a" aria-hidden="true">{{ eti_a | escape }}</span>
+          <span class="bm-comparador__eti bm-comparador__eti--b" aria-hidden="true">{{ eti_b | escape }}</span>
+        </div>
+        <div class="bm-comparador__botones" role="group" aria-label="{{ s.botones_etiqueta | default: 'Ver cada lado' | escape }}">
+          <button type="button" class="bm-comparador__btn" data-bm-comp-ir="100" aria-pressed="{% if s.inicio >= 50 %}true{% else %}false{% endif %}">{{ eti_a | escape }}</button>
+          <button type="button" class="bm-comparador__btn" data-bm-comp-ir="0" aria-pressed="{% if s.inicio >= 50 %}false{% else %}true{% endif %}">{{ eti_b | escape }}</button>
+        </div>
+      </bm-comparador__k481618e9>
+      {%- if s.nota != blank -%}<p class="bm-comparador__nota">{{ s.nota | escape }}</p>{%- endif -%}
+    {%- elsif request.design_mode -%}
+      <p class="bm-v2-aviso-editor">Comparador: elige las dos fotos (mismo producto, mismo encuadre).</p>
+    {%- endif -%}
+    {%- content_for 'blocks' -%}
+  </div>
+  {%- if s.cta_mostrar -%}
+    {%- render 'bm-cta__k9778c285', texto: s.cta_texto, subtexto: s.cta_subtexto, fondo: s.boton_fondo, color: s.boton_color, ancho: 'completo', alineacion: 'center', pad_y: 14, pulso: false -%}
+  {%- endif -%}
+</div>
+
+<style data-bm-kit="k481618e9">
+bm-comparador__k481618e9{display:block}
+.bm-comparador__caja{max-width:560px;margin:0 auto}
+.bm-comparador__vista{position:relative;aspect-ratio:var(--bm-comp-ratio,3/4);overflow:hidden;border-radius:var(--bm-radio-img,20px);background:color-mix(in srgb,currentColor 8%,transparent);touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:ew-resize}
+.bm-comparador__foto{position:absolute;inset:0}
+.bm-comparador__foto img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
+.bm-comparador__foto--a{clip-path:inset(0 calc(100% - var(--bm-comp-x,50%)) 0 0)}
+.bm-comparador__linea{position:absolute;top:0;bottom:0;left:var(--bm-comp-x,50%);width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.12);pointer-events:none}
+.bm-comparador__asa{position:absolute;top:50%;left:50%;display:flex;align-items:center;justify-content:center;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:#fff;color:#111827;font:700 16px/1 system-ui,sans-serif;white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.bm-comparador__eti{position:absolute;top:12px;max-width:44%;padding:6px 10px;border-radius:999px;background:rgba(17,24,39,.78);color:#fff;font-size:11px;font-weight:700;line-height:1.2;letter-spacing:.1em;text-transform:uppercase;pointer-events:none}
+.bm-comparador__eti--a{left:12px}
+.bm-comparador__eti--b{right:12px}
+/* El control real: un rango que no se ve, pero recibe el foco y las flechas del teclado. */
+.bm-comparador__rango{position:absolute;inset:0;z-index:1;width:100%;height:100%;margin:0;opacity:0;pointer-events:none}
+.bm-comparador__rango:focus-visible~.bm-comparador__linea .bm-comparador__asa{outline:3px solid var(--bm-acento,#2563eb);outline-offset:3px}
+.bm-comparador__botones{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.bm-comparador__btn{min-height:46px;padding:8px 12px;border:1px solid color-mix(in srgb,currentColor 35%,transparent);border-radius:999px;background:transparent;color:inherit;font:inherit;font-size:14px;font-weight:700;line-height:1.2;cursor:pointer}
+.bm-comparador__btn[aria-pressed="true"]{border-color:var(--bm-acento,currentColor);background:var(--bm-acento,currentColor);color:var(--bm-acento-fg,var(--bm-sec-bg,#fff))}
+.bm-comparador__btn:focus-visible{outline:3px solid var(--bm-acento,currentColor);outline-offset:3px}
+.bm-comparador__nota{margin:10px 0 0;font-size:13px;line-height:1.4;text-align:center;opacity:.8}
+</style>
+
+{% javascript %}
+// <bm-comparador__k481618e9>: mueve la línea con arrastre (puntero), teclado (el rango) y los dos botones. No depende del motor
+// del kit: no lee variantes.
+if (!customElements.get('bm-comparador__k481618e9')) {
+  customElements.define('bm-comparador__k481618e9', class extends HTMLElement {
+    connectedCallback() {
+      if (this._vivo) return;
+      this._vivo = true;
+      this.vista = this.querySelector('[data-bm-comp-vista]');
+      this.rango = this.querySelector('[data-bm-comp-rango]');
+      this.botones = [...this.querySelectorAll('[data-bm-comp-ir]')];
+      if (!this.vista || !this.rango) return;
+      this.poner(Number(this.rango.value));
+      this.rango.addEventListener('input', () => this.poner(Number(this.rango.value)));
+      const mover = (e) => {
+        const r = this.vista.getBoundingClientRect();
+        if (r.width) this.poner(((e.clientX - r.left) / r.width) * 100);
+      };
+      this.vista.addEventListener('pointerdown', (e) => {
+        if (e.button) return;
+        cancelAnimationFrame(this._anim);
+        this._arrastra = true;
+        try { this.vista.setPointerCapture(e.pointerId); } catch { /* sin captura, sigue el movimiento dentro de la foto */ }
+        mover(e);
+      });
+      this.vista.addEventListener('pointermove', (e) => { if (this._arrastra) mover(e); });
+      ['pointerup', 'pointercancel', 'lostpointercapture'].forEach((ev) => this.vista.addEventListener(ev, () => { this._arrastra = false; }));
+      // Tras tocar o hacer clic, las flechas del teclado siguen moviendo la línea (el foco va al soltar: al presionar,
+      // el navegador se lo quita a lo que no es enfocable).
+      this.vista.addEventListener('click', () => this.rango.focus({ preventScroll: true }));
+      this.botones.forEach((b) => b.addEventListener('click', () => this.ir(Number(b.dataset.bmCompIr))));
+    }
+    disconnectedCallback() {
+      this._vivo = false;
+      cancelAnimationFrame(this._anim);
+    }
+    poner(valor) {
+      const x = Math.max(0, Math.min(100, Number.isFinite(valor) ? valor : 50));
+      this.x = x;
+      this.style.setProperty('--bm-comp-x', `${x}%`);
+      if (Number(this.rango.value) !== Math.round(x)) this.rango.value = String(Math.round(x));
+      const lado = x >= 50 ? 0 : 1;
+      this.botones.forEach((b, i) => b.setAttribute('aria-pressed', String(i === lado)));
+      const nombre = this.botones[lado]?.textContent.trim() || '';
+      this.rango.setAttribute('aria-valuetext', `${nombre} ${Math.round(lado === 0 ? x : 100 - x)} %`);
+    }
+    ir(fin) {
+      cancelAnimationFrame(this._anim);
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) { this.poner(fin); return; }
+      const ini = this.x;
+      const t0 = performance.now();
+      const paso = (t) => {
+        const q = Math.min(1, (t - t0) / 450);
+        this.poner(ini + (fin - ini) * (1 - Math.pow(1 - q, 3)));
+        if (q < 1) this._anim = requestAnimationFrame(paso);
+      };
+      this._anim = requestAnimationFrame(paso);
+    }
+  });
+}
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Comparador",
+  "tag": "section",
+  "class": "bm-v2-seccion",
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Dos fotos del mismo producto con el mismo encuadre: de frente y por detrás, cerrado y abierto. Un antes y después solo con su fuente, o como recreación rotulada en la nota."
+    },
+    {
+      "type": "text",
+      "id": "antetitulo",
+      "label": "Etiqueta (antetítulo)",
+      "default": "Desliza"
+    },
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título"
+    },
+    {
+      "type": "text",
+      "id": "remate",
+      "label": "Remate (segunda línea, en cursiva)"
+    },
+    {
+      "type": "text",
+      "id": "subtitulo",
+      "label": "Subtítulo (bajada)",
+      "default": "Mueve la línea y míralo completo antes de pedirlo."
+    },
+    {
+      "type": "header",
+      "content": "Fotos"
+    },
+    {
+      "type": "image_picker",
+      "id": "imagen_a",
+      "label": "Foto del lado 1 (se ve a la izquierda)"
+    },
+    {
+      "type": "text",
+      "id": "etiqueta_a",
+      "label": "Etiqueta del lado 1",
+      "default": "De frente"
+    },
+    {
+      "type": "text",
+      "id": "alt_a",
+      "label": "Texto alternativo del lado 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "imagen_b",
+      "label": "Foto del lado 2 (se ve a la derecha)"
+    },
+    {
+      "type": "text",
+      "id": "etiqueta_b",
+      "label": "Etiqueta del lado 2",
+      "default": "Por detrás"
+    },
+    {
+      "type": "text",
+      "id": "alt_b",
+      "label": "Texto alternativo del lado 2"
+    },
+    {
+      "type": "select",
+      "id": "proporcion",
+      "label": "Proporción",
+      "options": [
+        {
+          "value": "3/4",
+          "label": "Vertical 3:4"
+        },
+        {
+          "value": "4/5",
+          "label": "Vertical 4:5"
+        },
+        {
+          "value": "1/1",
+          "label": "Cuadrada"
+        },
+        {
+          "value": "4/3",
+          "label": "Horizontal 4:3"
+        }
+      ],
+      "default": "3/4"
+    },
+    {
+      "type": "range",
+      "id": "inicio",
+      "label": "Dónde empieza la línea",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "radio",
+      "label": "Redondeo de la foto",
+      "min": 0,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "text",
+      "id": "nota",
+      "label": "Nota bajo la comparación",
+      "info": "La fuente de un antes y después, o el rótulo de una recreación ilustrativa."
+    },
+    {
+      "type": "text",
+      "id": "control_etiqueta",
+      "label": "Nombre del control para lectores de pantalla",
+      "default": "Comparar las dos fotos"
+    },
+    {
+      "type": "text",
+      "id": "botones_etiqueta",
+      "label": "Nombre del grupo de botones para lectores de pantalla",
+      "default": "Ver cada lado"
+    },
+    {
+      "type": "header",
+      "content": "Colores"
+    },
+    {
+      "type": "color",
+      "id": "fondo",
+      "label": "Fondo de la sección",
+      "info": "Vacío: el de la página."
+    },
+    {
+      "type": "color",
+      "id": "texto",
+      "label": "Texto"
+    },
+    {
+      "type": "color",
+      "id": "cabeza_acento",
+      "label": "Color de la etiqueta y el remate",
+      "info": "Vacío: el del texto."
+    },
+    {
+      "type": "color",
+      "id": "acento",
+      "label": "Acento (botón del lado que se ve)"
+    },
+    {
+      "type": "color",
+      "id": "acento_texto",
+      "label": "Texto sobre el acento"
+    },
+    {
+      "type": "header",
+      "content": "Espaciado"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_lateral",
+      "label": "Margen lateral",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Botón de compra"
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_mostrar",
+      "label": "Mostrar botón al final",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "cta_texto",
+      "label": "Texto del botón",
+      "default": "Pedir ahora · pago contra entrega"
+    },
+    {
+      "type": "text",
+      "id": "cta_subtexto",
+      "label": "Línea bajo el botón",
+      "default": "Pagas al recibir"
+    },
+    {
+      "type": "color",
+      "id": "boton_fondo",
+      "label": "Fondo del botón",
+      "info": "Vacío: el de «Ajustes de la página»."
+    },
+    {
+      "type": "color",
+      "id": "boton_color",
+      "label": "Texto del botón",
+      "info": "Vacío: el de «Ajustes de la página»."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "bm-b-etiqueta-ia"
+    },
+    {
+      "type": "bm-b-codigo"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,95 @@
+{%- comment -%}
+  BM-CUENTA-V1 · Bloque «Renglón de la cuenta» de «La cuenta» (kit v2): un concepto y su valor. El valor NO se inventa:
+  «Precio de la variante» y «Precio de comparación» salen de la variante elegida y cambian con ella (<bm-renglon>, sin
+  fetch); «Texto» es para lo operativo de la tienda («Gratis», «$0»). Un renglón de precio de comparación no se pinta si
+  la variante no lo tiene. «Precio del paquete» sigue la misma regla del bloque «Precio»: solo reemplaza al de la
+  variante cuando la oferta principal es un paquete con otro precio (debe coincidir con Releasit).
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign product = closest.product | default: product -%}
+{%- comment -%} La variante con que abre la página (bm-v2-inicial): un theme block no ve las variables de la sección. {%- endcomment -%}
+{%- capture vid -%}{%- render 'bm-v2-inicial', product: product, color: section.settings.color_inicial, opcion: section.settings.opcion_color -%}{%- endcapture -%}
+{%- assign vid = vid | plus: 0 -%}
+{%- assign variante = product.selected_or_first_available_variant -%}
+{%- for v in product.variants -%}{%- if v.id == vid -%}{%- assign variante = v -%}{%- endif -%}{%- endfor -%}
+{%- assign b = block.settings -%}
+{%- assign tiene_antes = false -%}
+{%- if variante != blank and variante.compare_at_price > variante.price -%}{%- assign tiene_antes = true -%}{%- endif -%}
+{%- assign fijo = false -%}
+{%- assign n_num = 0 -%}
+{%- if b.origen == 'precio' and b.precio_texto != blank -%}
+  {%- assign fijo = true -%}
+  {%- assign n_fijo = b.precio_texto | strip | remove: '$' | remove: ' ' | remove: '.' | remove: ',' -%}
+  {%- assign n_num = n_fijo | plus: 0 -%}
+  {%- assign n_txt = n_num | append: '' -%}
+  {%- assign n_centavos = n_num | times: 100 -%}
+  {%- if n_txt != n_fijo -%}{%- assign n_num = 0 -%}{%- endif -%}
+  {%- if variante != blank and n_num > 0 and n_centavos == variante.price -%}{%- assign fijo = false -%}{%- endif -%}
+{%- endif -%}
+{%- assign pinta = true -%}
+{%- if b.origen != 'texto' and variante == blank -%}{%- assign pinta = false -%}{%- endif -%}
+{%- if pinta -%}
+  <bm-renglon class="bm-cuenta__fila bm-cuenta__fila--{{ b.estilo }}" data-bm-bloque="renglon" data-origen="{{ b.origen }}" data-fijo="{{ fijo }}" {{ block.shopify_attributes }}{% if b.origen == 'antes' and tiene_antes == false %} hidden{% endif %}>
+    <span class="bm-cuenta__concepto">{{ b.concepto | escape }}</span>
+    {%- if b.origen == 'precio' -%}
+      {%- if fijo -%}
+        <span class="bm-cuenta__valor">{%- if n_num > 0 -%}{{ n_num | times: 100 | money_without_trailing_zeros }}{%- else -%}{{ b.precio_texto | escape }}{%- endif -%}</span>
+      {%- else -%}
+        <span class="bm-cuenta__valor" data-bm-precio>{{ variante.price | money_without_trailing_zeros }}</span>
+      {%- endif -%}
+    {%- elsif b.origen == 'antes' -%}
+      <s class="bm-cuenta__valor" data-bm-antes>{%- if tiene_antes -%}{{ variante.compare_at_price | money_without_trailing_zeros }}{%- endif -%}</s>
+    {%- else -%}
+      <span class="bm-cuenta__valor">{{ b.valor | escape }}</span>
+    {%- endif -%}
+  </bm-renglon>
+{%- endif -%}
+
+{% stylesheet %}
+bm-renglon:not([hidden]){display:flex}
+.bm-cuenta__fila{align-items:baseline;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed var(--bm-cuenta-linea,rgba(17,24,39,.18));font-size:14px;line-height:1.35;text-align:left}
+.bm-cuenta__concepto{min-width:0}
+.bm-cuenta__valor{flex:0 0 auto;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bm-cuenta__fila--tachado .bm-cuenta__valor,s.bm-cuenta__valor{text-decoration:line-through;opacity:.7}
+.bm-cuenta__fila--destacado .bm-cuenta__valor{color:var(--bm-cuenta-acento,inherit);font-weight:700}
+.bm-cuenta__fila--total{padding-top:14px;border-bottom:0;font-size:17px;font-weight:700}
+.bm-cuenta__fila--total .bm-cuenta__valor{font-size:22px}
+.bm-cuenta__fila:last-child{border-bottom:0}
+{% endstylesheet %}
+
+{% javascript %}
+// Se registra con el motor del kit (assets/bm-landing.js) sin importar qué script carga primero.
+(window.BMLandingBloques = window.BMLandingBloques || []).push(({ Bloque, actual }) => {
+  if (customElements.get('bm-renglon')) return;
+  customElements.define('bm-renglon', class extends Bloque {
+    iniciar() {
+      if (this.dataset.origen === 'texto' || this.dataset.fijo === 'true') return;
+      this.alVariar((v) => this.pintar(v));
+      const v = this.p && actual(this.p);
+      if (v) this.pintar(v);
+    }
+    pintar(v) {
+      const precio = this.querySelector('[data-bm-precio]');
+      const antes = this.querySelector('[data-bm-antes]');
+      if (precio) precio.textContent = v.p;
+      if (antes) { this.hidden = !v.pa; antes.textContent = v.pa || ''; }
+    }
+  });
+});
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Renglón de la cuenta",
+  "tag": null,
+  "settings": [
+    {"type": "paragraph", "content": "El precio y el tachado salen de la variante elegida y cambian con ella: se editan en el producto, no aquí."},
+    {"type": "text", "id": "concepto", "label": "Concepto", "default": "Precio de hoy"},
+    {"type": "select", "id": "origen", "label": "De dónde sale el valor", "options": [{"value": "precio", "label": "Precio de la variante"}, {"value": "antes", "label": "Precio de comparación de la variante (tachado)"}, {"value": "texto", "label": "Texto (envío, pago hoy)"}], "default": "precio"},
+    {"type": "text", "id": "valor", "label": "Valor (solo con «Texto»)", "info": "Lo operativo de la tienda: «Gratis», «$0». Nunca un precio escrito a mano."},
+    {"type": "text", "id": "precio_texto", "label": "Precio del paquete (reemplaza el de la variante)", "info": "Solo si la oferta principal es un paquete con otro precio que el del producto. Debe coincidir con la oferta de Releasit. Vacío (o el mismo precio del producto): precio real de la variante."},
+    {"type": "select", "id": "estilo", "label": "Estilo", "options": [{"value": "normal", "label": "Normal"}, {"value": "tachado", "label": "Tachado"}, {"value": "destacado", "label": "Destacado"}, {"value": "total", "label": "Total (último renglón)"}], "default": "normal"}
+  ],
+  "presets": [{"name": "Renglón de la cuenta"}]
+}
+{% endschema %}
