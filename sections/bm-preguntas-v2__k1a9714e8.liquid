@@ -1,0 +1,165 @@
+{%- comment -%} BM-KIT-COPIA sections/bm-preguntas-v2.liquid k1a9714e8: copia inmutable del kit para las páginas que la nombran; nunca se edita en el tema (otra versión es otro archivo). {%- endcomment -%}
+{%- comment -%}
+  Preguntas (kit v2): preguntas frecuentes editables, salidas de las objeciones reales del avatar.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: cada bloque es un theme block, blocks/bm-b-*).
+{%- endcomment -%}
+{%- render 'bm-v2-recursos__k65a02952' -%}
+{%- assign s = section.settings -%}
+<div class="bm-sec bm-faq bm-v2" data-bm-landing="faq" data-bm-sec="{{ section.id }}" style="{% if s.fondo != blank %}--bm-sec-bg:{{ s.fondo }};{% endif %}{% if s.texto != blank %}--bm-sec-fg:{{ s.texto }};{% endif %}{% if s.linea != blank %}--bm-linea:{{ s.linea }};{% endif %}{% if s.cabeza_acento != blank %}--bm-cabeza-c:{{ s.cabeza_acento }};{% endif %}--bm-pad-top:{{ s.padding_top }}px;--bm-pad-bottom:{{ s.padding_bottom }}px;--bm-pad-x:{{ s.padding_lateral }}px;--bm-align:{{ s.alineacion }};">
+  <div class="bm-sec__in">
+    {%- render 'bm-v2-cabeza', antetitulo: s.antetitulo, titulo: s.titulo, remate: s.remate, subtitulo: s.subtitulo -%}
+    {%- content_for 'blocks' -%}
+  </div>
+  {%- if s.cta_mostrar -%}
+    {%- render 'bm-cta__k9778c285', texto: s.cta_texto, subtexto: s.cta_subtexto, fondo: s.boton_fondo, color: s.boton_color, ancho: 'completo', alineacion: 'center', pad_y: 14, pulso: false -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Preguntas",
+  "tag": "section",
+  "class": "bm-v2-seccion",
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
+  "max_blocks": 16,
+  "settings": [
+    {
+      "type": "text",
+      "id": "antetitulo",
+      "label": "Etiqueta (antetítulo)",
+      "info": "Con «Remate» se pinta en píldora, encima del título."
+    },
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título",
+      "default": "Preguntas frecuentes"
+    },
+    {
+      "type": "text",
+      "id": "remate",
+      "label": "Remate (segunda línea, en cursiva)",
+      "info": "Enciende el encabezado del sistema visual: etiqueta en píldora, título, remate en cursiva y bajada. Vacío: el encabezado de siempre."
+    },
+    {
+      "type": "text",
+      "id": "subtitulo",
+      "label": "Subtítulo (bajada)"
+    },
+    {
+      "type": "select",
+      "id": "alineacion",
+      "label": "Alineación del título",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "fondo",
+      "label": "Fondo de la sección",
+      "info": "Vacío: el de la página."
+    },
+    {
+      "type": "color",
+      "id": "texto",
+      "label": "Texto"
+    },
+    {
+      "type": "color",
+      "id": "cabeza_acento",
+      "label": "Color de la etiqueta y el remate",
+      "info": "Vacío: el del texto."
+    },
+    {
+      "type": "color",
+      "id": "linea",
+      "label": "Línea divisoria"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_lateral",
+      "label": "Margen lateral",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Botón de compra"
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_mostrar",
+      "label": "Mostrar botón al final",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "cta_texto",
+      "label": "Texto del botón",
+      "default": "Pedir ahora · pago contra entrega"
+    },
+    {
+      "type": "text",
+      "id": "cta_subtexto",
+      "label": "Línea bajo el botón",
+      "default": "Pagas al recibir"
+    },
+    {
+      "type": "color",
+      "id": "boton_fondo",
+      "label": "Fondo del botón",
+      "info": "Vacío: el de «Ajustes de la página»."
+    },
+    {
+      "type": "color",
+      "id": "boton_color",
+      "label": "Texto del botón",
+      "info": "Vacío: el de «Ajustes de la página»."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "bm-b-pregunta"
+    }
+  ]
+}
+{% endschema %}

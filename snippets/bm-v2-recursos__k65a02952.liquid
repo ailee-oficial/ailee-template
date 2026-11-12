@@ -1,0 +1,10 @@
+{%- comment -%} BM-KIT-COPIA snippets/bm-v2-recursos.liquid k65a02952: copia inmutable del kit para las páginas que la nombran; nunca se edita en el tema (otra versión es otro archivo). {%- endcomment -%}
+{%- comment -%}
+  Recursos del kit v2: estilos (los del kit v1, congelados, más los propios de la v2) y el JS de los bloques
+  dinámicos (`bm-landing.js`). Lo llama cada sección `bm-*-v2` al empezar, para que una sección agregada sola
+  en el editor también funcione; el JS se protege contra la doble carga.
+  Fuente canónica: claude-skills/core/tema_landing.
+{%- endcomment -%}
+{{ 'bm-landing__kc196d2dd.css' | asset_url | stylesheet_tag }}
+{{ 'bm-landing-v2__k8dca6098.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'bm-landing__ke838838b.js' | asset_url }}" defer></script>

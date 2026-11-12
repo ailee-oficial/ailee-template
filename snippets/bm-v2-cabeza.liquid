@@ -1,0 +1,26 @@
+{%- comment -%}
+  BM-CABEZA-V1 · Encabezado de sección del kit v2 (titular, 2026-11-11: «este nivel de diseño en todas las plantillas»).
+  Lo llaman todas las secciones v2 con título y el bloque «Título» (escena y cierre): un solo lugar pinta el patrón.
+  Con `remate` es el sistema visual: etiqueta pequeña en píldora con punto (`antetitulo`), título fuerte, remate en
+  cursiva del color de acento y una bajada corta (`subtitulo`). SIN `remate` pinta exactamente lo de antes (la
+  cabecera de siempre), para que una página o un plan anterior se vean igual.
+  Parámetros: antetitulo, titulo, remate, subtitulo, nivel ('h1' | 'h2' | 'h3'; por defecto h2), tam (px del título;
+  vacío = el de la sección), clase (clases extra del contenedor) y attrs (shopify_attributes del bloque que lo llama).
+  El color de la etiqueta y del remate es `--bm-cabeza-c` (lo pone la sección: «Color de la etiqueta y el remate»);
+  vacío, el del texto. Estilo: assets/bm-landing-v2.css.
+  Fuente canónica: claude-skills/core/tema_landing.
+{%- endcomment -%}
+{%- if antetitulo != blank or titulo != blank or remate != blank or subtitulo != blank -%}
+  <div class="bm-cabecera{% if remate != blank %} bm-cabeza{% endif %}{% if clase != blank %} {{ clase }}{% endif %}"{% if remate != blank %} data-bm-cabeza{% endif %}{% if attrs != blank %} {{ attrs }}{% endif %}>
+    {%- if antetitulo != blank -%}<p class="{% if remate != blank %}bm-cabeza__eti{% else %}bm-oferta__ante{% endif %}">{{ antetitulo | escape }}</p>{%- endif -%}
+    {%- if titulo != blank -%}
+      {%- case nivel -%}
+        {%- when 'h1' -%}<h1{% if tam != blank %} style="--bm-titulo-tam:{{ tam }}px"{% endif %}>{{ titulo | escape }}</h1>
+        {%- when 'h3' -%}<h3{% if tam != blank %} style="--bm-titulo-tam:{{ tam }}px"{% endif %}>{{ titulo | escape }}</h3>
+        {%- else -%}<h2{% if tam != blank %} style="--bm-titulo-tam:{{ tam }}px"{% endif %}>{{ titulo | escape }}</h2>
+      {%- endcase -%}
+    {%- endif -%}
+    {%- if remate != blank -%}<p class="bm-cabeza__remate">{{ remate | escape }}</p>{%- endif -%}
+    {%- if subtitulo != blank -%}<p{% if remate != blank %} class="bm-cabeza__bajada"{% endif %}>{{ subtitulo | escape }}</p>{%- endif -%}
+  </div>
+{%- endif -%}

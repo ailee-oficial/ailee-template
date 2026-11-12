@@ -1,0 +1,527 @@
+{%- comment -%} BM-KIT-COPIA blocks/bm-b-galeria.liquid k8ba8a82c: copia inmutable del kit para las páginas que la nombran; nunca se edita en el tema (otra versión es otro archivo). {%- endcomment -%}
+{%- comment -%}
+  Bloque «Galería por color» (primera pantalla). Las fotos salen de product.media (solo imágenes; la guía de
+  tallas queda fuera) y se agrupan por color con su texto alternativo (bm-v2-clave-alt). Sus hijos «Foto suelta»,
+  si los tiene, reemplazan a las del producto. Todas se deslizan: tocar un color lleva a sus fotos y deslizar hasta
+  otro color cambia la variante (lo que se ve es lo que se pide). Abre en la foto de la variante inicial: su
+  featured_media o, si no, la primera de su color. El movimiento lo hace <bm-galeria__k8ba8a82c> (su JS, abajo).
+  «Primera pantalla» (`portada`, BM-PORTADA-V1): carrusel (la de siempre, se desliza), historias (las fotos del color
+  pasan solas con barritas de avance), viva (la foto se acerca despacio, con destello y luces) y flotante (las dos
+  primeras fotos del color en discos que flotan, con etiquetas). Es un solo ajuste: se cambia sin rehacer la página.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign product = closest.product | default: product -%}
+{%- comment -%} La variante con que abre la página (bm-v2-inicial): un theme block no ve las variables de la sección. {%- endcomment -%}
+{%- capture vid -%}{%- render 'bm-v2-inicial', product: product, color: section.settings.color_inicial, opcion: section.settings.opcion_color -%}{%- endcapture -%}
+{%- assign vid = vid | plus: 0 -%}
+{%- assign variante = product.selected_or_first_available_variant -%}
+{%- for v in product.variants -%}{%- if v.id == vid -%}{%- assign variante = v -%}{%- endif -%}{%- endfor -%}
+{%- assign b = block.settings -%}
+{%- capture pos_color -%}{%- render 'bm-v2-pos-color', product: product, opcion: section.settings.opcion_color -%}{%- endcapture -%}
+{%- assign pos_color = pos_color | plus: 0 -%}
+{%- assign clave_variante = '' -%}
+{%- assign opcion_color = nil -%}
+{%- if product != blank and pos_color > 0 -%}
+  {%- for o in product.options_with_values -%}{%- if o.position == pos_color -%}{%- assign opcion_color = o -%}{%- endif -%}{%- endfor -%}
+  {%- case pos_color -%}
+    {%- when 1 -%}{%- assign clave_variante = variante.option1 | handleize | remove: '-' -%}
+    {%- when 2 -%}{%- assign clave_variante = variante.option2 | handleize | remove: '-' -%}
+    {%- when 3 -%}{%- assign clave_variante = variante.option3 | handleize | remove: '-' -%}
+  {%- endcase -%}
+{%- endif -%}
+{%- comment -%} Fotos sueltas (hijos): la primera carga con prioridad; las miniaturas las arma el JS. {%- endcomment -%}
+{%- capture sueltas -%}{%- content_for 'blocks' -%}{%- endcapture -%}
+{%- assign sueltas = sueltas | strip -%}
+{%- assign fotos = '' -%}
+{%- assign minis = '' -%}
+{%- assign inicio = 1 -%}
+{%- assign total = 0 -%}
+{%- if sueltas != blank -%}
+  {%- assign fotos = sueltas | replace_first: 'loading="lazy"', 'loading="eager"' | replace_first: 'fetchpriority="auto"', 'fetchpriority="high"' -%}
+  {%- assign total = sueltas | split: 'data-bm-foto ' | size | minus: 1 -%}
+{%- elsif product != blank -%}
+  {%- comment -%} Primera pasada: qué foto abre (la featured_media de la variante o la primera de su color). {%- endcomment -%}
+  {%- assign n = 0 -%}
+  {%- assign idx_media = 0 -%}
+  {%- assign idx_color = 0 -%}
+  {%- for m in product.media -%}
+    {%- assign meta = m.alt | downcase -%}
+    {%- if m.media_type == 'image' -%}
+      {%- unless meta contains 'talla' or meta contains 'guia' or meta contains 'medida' or meta contains 'size' -%}
+        {%- assign n = n | plus: 1 -%}
+        {%- if variante.featured_media != blank and m.id == variante.featured_media.id -%}{%- assign idx_media = n -%}{%- endif -%}
+        {%- if idx_color == 0 and clave_variante != '' -%}
+          {%- capture k -%}{%- render 'bm-v2-clave-alt', alt: m.alt -%}{%- endcapture -%}
+          {%- if k == clave_variante -%}{%- assign idx_color = n -%}{%- endif -%}
+        {%- endif -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign total = n -%}
+  {%- if idx_media > 0 -%}{%- assign inicio = idx_media -%}{%- elsif idx_color > 0 -%}{%- assign inicio = idx_color -%}{%- endif -%}
+  {%- comment -%} Segunda pasada: fotos y miniaturas; las de otro color nacen ocultas (el JS las cambia). {%- endcomment -%}
+  {%- assign clave_inicio = '' -%}
+  {%- assign n = 0 -%}
+  {%- for m in product.media -%}
+    {%- assign meta = m.alt | downcase -%}
+    {%- if m.media_type == 'image' -%}
+      {%- unless meta contains 'talla' or meta contains 'guia' or meta contains 'medida' or meta contains 'size' -%}
+        {%- assign n = n | plus: 1 -%}
+        {%- if n == inicio -%}{%- capture clave_inicio -%}{%- render 'bm-v2-clave-alt', alt: m.alt -%}{%- endcapture -%}{%- endif -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign n = 0 -%}
+  {%- for m in product.media -%}
+    {%- assign meta = m.alt | downcase -%}
+    {%- if m.media_type == 'image' -%}
+      {%- unless meta contains 'talla' or meta contains 'guia' or meta contains 'medida' or meta contains 'size' -%}
+        {%- assign n = n | plus: 1 -%}
+        {%- capture k -%}{%- render 'bm-v2-clave-alt', alt: m.alt -%}{%- endcapture -%}
+        {%- assign carga = 'lazy' -%}{%- assign prioridad = 'auto' -%}
+        {%- if n == inicio -%}{%- assign carga = 'eager' -%}{%- assign prioridad = 'high' -%}{%- endif -%}
+        {%- assign nombre_color = '' -%}
+        {%- if opcion_color != blank and k != '' -%}
+          {%- for valor in opcion_color.values -%}
+            {%- assign nv = valor.name | default: valor -%}
+            {%- assign kv = nv | handleize | remove: '-' -%}
+            {%- if kv == k -%}{%- assign nombre_color = nv -%}{%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+        {%- assign alt = product.title -%}
+        {%- if nombre_color != '' -%}{%- assign alt = alt | append: ' · ' | append: nombre_color -%}{%- endif -%}
+        {%- capture una -%}{%- render 'bm-v2-foto', imagen: m, clave: k, alt: alt, media: m.id, n: n, carga: carga, prioridad: prioridad, sid: block.id, attrs: '' -%}{%- endcapture -%}
+        {%- assign fotos = fotos | append: una -%}
+        {%- capture una -%}<button type="button" class="bm-v2-galeria__mini" data-bm-ir="{{ n }}" data-color="{{ k }}" aria-label="Ver foto {{ n }}"{% if clave_inicio != '' and k != '' and k != clave_inicio %} hidden{% endif %}>{{ m | image_url: width: 160 | image_tag: loading: 'lazy', widths: '80, 160', sizes: '56px', alt: '' }}</button>{%- endcapture -%}
+        {%- assign minis = minis | append: una -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- if total > 0 -%}
+  {%- assign portada = b.portada | default: 'carrusel' -%}
+  <bm-galeria__k8ba8a82c class="bm-v2-galeria" data-bm-bloque="galeria" data-portada="{{ portada }}" data-segundos="{{ b.segundos | default: 3 }}" data-tira="{{ b.tira }}" data-inicio="{{ inicio }}" data-pos-color="{{ pos_color }}" style="--bm-galeria-ratio:{{ b.proporcion | default: '3 / 4' }};--bm-portada-seg:{{ b.segundos | default: 3 }}s;{% if b.flota_fondo != blank %}--bm-flota-bg:{{ b.flota_fondo }};{% endif %}{% if b.flota_acento != blank %}--bm-flota-acento:{{ b.flota_acento }};{% endif %}" {{ block.shopify_attributes }}>
+    <div class="bm-v2-galeria__marco">
+      <div class="bm-v2-galeria__pista" data-bm-pista tabindex="0" role="region" aria-label="Fotos del producto">{{ fotos }}</div>
+      {%- if portada == 'historias' and total > 1 -%}
+        <div class="bm-v2-galeria__barras" data-bm-barras aria-hidden="true"></div>
+      {%- elsif portada == 'viva' -%}
+        <div class="bm-v2-galeria__destello" aria-hidden="true"></div>
+        <div class="bm-v2-galeria__luces" data-bm-luces aria-hidden="true"></div>
+      {%- elsif portada == 'flotante' -%}
+        <span class="bm-v2-galeria__aro" aria-hidden="true"></span><span class="bm-v2-galeria__aro bm-v2-galeria__aro--b" aria-hidden="true"></span>
+        <span class="bm-v2-galeria__mas" data-bm-mas aria-hidden="true" hidden>+</span>
+        {%- assign fichas = b.fichas | newline_to_br | split: '<br />' -%}
+        {%- assign nf = 0 -%}
+        {%- for ficha in fichas -%}
+          {%- assign texto_ficha = ficha | strip -%}
+          {%- if texto_ficha != blank and nf < 4 -%}
+            {%- assign nf = nf | plus: 1 -%}
+            <span class="bm-v2-galeria__ficha bm-v2-galeria__ficha--{{ nf }}">{{ texto_ficha | escape }}</span>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+      {%- if total > 1 -%}
+        <button type="button" class="bm-v2-galeria__flecha bm-v2-galeria__flecha--ant" data-bm-paso="-1" aria-label="Foto anterior">&#8249;</button>
+        <button type="button" class="bm-v2-galeria__flecha bm-v2-galeria__flecha--sig" data-bm-paso="1" aria-label="Foto siguiente">&#8250;</button>
+        {%- if b.contador -%}<p class="bm-v2-galeria__cuenta" data-bm-cuenta>{{ inicio }} / {{ total }}</p>{%- endif -%}
+      {%- endif -%}
+    </div>
+    {%- if total > 1 -%}
+      {%- if b.tira == 'miniaturas' -%}
+        <div class="bm-v2-galeria__minis" data-bm-minis>{{ minis }}</div>
+      {%- elsif b.tira == 'puntos' -%}
+        <div class="bm-v2-galeria__puntos" data-bm-puntos aria-hidden="true"></div>
+      {%- endif -%}
+    {%- endif -%}
+  </bm-galeria__k8ba8a82c>
+{%- elsif request.design_mode -%}
+  <div class="bm-v2-galeria" data-bm-bloque="galeria" {{ block.shopify_attributes }}>{{ 'image' | placeholder_svg_tag: 'bm-placeholder' }}</div>
+{%- endif -%}
+
+<style data-bm-kit="k8ba8a82c">
+bm-galeria__k8ba8a82c:not([hidden]){display:block}
+.bm-v2-galeria{position:relative;margin:0 calc(var(--bm-pad-x,16px) * -1)}
+.bm-oferta__pila>.bm-v2-galeria:first-child{margin-top:calc(var(--bm-pad-top,0px) * -1)}
+.bm-v2-galeria__marco{position:relative}
+.bm-v2-galeria__pista{display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;outline:none}
+.bm-v2-galeria__pista::-webkit-scrollbar{display:none}
+.bm-v2-foto{flex:0 0 100%;margin:0;scroll-snap-align:start;scroll-snap-stop:always;aspect-ratio:var(--bm-galeria-ratio,3 / 4);background:#ffffff;overflow:hidden}
+.bm-v2-foto img{display:block;width:100%;height:100%;object-fit:cover}
+.bm-v2-galeria__cuenta{position:absolute;top:12px;right:12px;margin:0;padding:3px 10px;border-radius:999px;background:rgba(28,28,28,.6);color:#ffffff;font-size:13px;font-weight:600;line-height:1.45;letter-spacing:.04em;pointer-events:none}
+.bm-v2-galeria__cuenta:empty{display:none}
+.bm-v2-galeria__flecha{display:none;position:absolute;top:50%;width:40px;height:40px;margin-top:-20px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.9);color:#1c1c1c;font-size:26px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.14);align-items:center;justify-content:center}
+.bm-v2-galeria__flecha--ant{left:10px}
+.bm-v2-galeria__flecha--sig{right:10px}
+@media (hover:hover) and (pointer:fine){.bm-v2-galeria__flecha{display:flex}}
+.bm-v2-galeria__minis{display:flex;gap:8px;overflow-x:auto;padding:10px var(--bm-pad-x,16px) 2px;scrollbar-width:none;justify-content:flex-start}
+.bm-v2-galeria__minis::-webkit-scrollbar{display:none}
+.bm-v2-galeria__mini{flex:0 0 56px;width:56px;height:56px;padding:0;border:1px solid rgba(28,28,28,.14);border-radius:10px;background:#ffffff;overflow:hidden;cursor:pointer;opacity:.7;-webkit-tap-highlight-color:transparent;transition:opacity .15s ease,box-shadow .15s ease}
+.bm-v2-galeria__mini img{display:block;width:100%;height:100%;object-fit:cover}
+.bm-v2-galeria__mini[aria-current="true"]{opacity:1;border-color:var(--bm-sec-fg,#1c1c1c);box-shadow:0 0 0 1px var(--bm-sec-fg,#1c1c1c)}
+.bm-v2-galeria__mini:focus-visible{outline:2px solid var(--bm-sec-fg,#1c1c1c);outline-offset:2px}
+.bm-v2-galeria__puntos{display:flex;justify-content:center;align-items:center;gap:6px;min-height:8px;margin-top:10px}
+.bm-v2-galeria__puntos button{width:7px;height:7px;padding:0;border:0;border-radius:999px;background:currentColor;opacity:.22;cursor:pointer;transition:width .2s ease,opacity .2s ease}
+.bm-v2-galeria__puntos button[aria-current="true"]{width:20px;opacity:.8}
+@media (min-width:750px){.bm-v2-galeria{max-width:560px;margin-left:auto;margin-right:auto}.bm-v2-galeria__minis{justify-content:center}}
+/* BM-PORTADA-V1 · historias: barritas de avance sobre la foto (las del color que se ve) */
+.bm-v2-galeria__barras{position:absolute;top:10px;left:10px;right:10px;display:flex;gap:4px;pointer-events:none;z-index:2}
+.bm-v2-galeria__barras i{flex:1;height:3px;border-radius:3px;background:rgba(255,255,255,.4);overflow:hidden;box-shadow:0 0 2px rgba(0,0,0,.25)}
+.bm-v2-galeria__barras i::after{content:"";display:block;height:100%;width:0;background:#ffffff}
+.bm-v2-galeria__barras i[data-e="hecha"]::after{width:100%}
+.bm-v2-galeria__barras i[data-e="ahora"]::after{width:100%;animation:bm-portada-llena var(--bm-portada-seg,3s) linear}
+.bm-v2-galeria[data-pausa] .bm-v2-galeria__barras i[data-e="ahora"]::after{animation-play-state:paused}
+@keyframes bm-portada-llena{from{width:0}to{width:100%}}
+.bm-v2-galeria[data-portada="historias"] .bm-v2-galeria__cuenta{display:none}
+.bm-v2-galeria[data-portada="historias"] .bm-v2-foto[data-actual] img{animation:bm-portada-acerca calc(var(--bm-portada-seg,3s) + 1s) ease-out both}
+/* viva: la foto se acerca despacio, cruza un destello y suben luces */
+.bm-v2-galeria[data-portada="viva"] .bm-v2-foto[data-actual] img{animation:bm-portada-acerca 12s ease-in-out infinite alternate}
+@keyframes bm-portada-acerca{from{transform:scale(1)}to{transform:scale(1.09)}}
+.bm-v2-galeria__destello{position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 40%,rgba(255,236,196,.3) 50%,transparent 60%);transform:translateX(-120%);animation:bm-portada-destello 5.5s ease-in-out infinite}
+@keyframes bm-portada-destello{0%,55%{transform:translateX(-120%)}85%,100%{transform:translateX(120%)}}
+.bm-v2-galeria__luces{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.bm-v2-galeria__luces i{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,226,165,.75),rgba(255,226,165,0) 65%);animation:bm-portada-sube linear infinite}
+@keyframes bm-portada-sube{0%{transform:translateY(30px) scale(.7);opacity:0}20%{opacity:.9}100%{transform:translateY(-190px) scale(1.15);opacity:0}}
+/* flotante: las dos primeras fotos del color en discos que flotan, con etiquetas */
+.bm-v2-galeria[data-portada="flotante"] .bm-v2-galeria__marco{aspect-ratio:1 / 1;overflow:hidden;background:radial-gradient(circle at 50% 44%,color-mix(in srgb,var(--bm-flota-acento,#d2ae6a) 34%,var(--bm-flota-bg,#1c1210)) 0%,var(--bm-flota-bg,#1c1210) 62%)}
+.bm-v2-galeria[data-portada="flotante"] .bm-v2-galeria__pista{position:absolute;inset:0;display:block;overflow:hidden}
+.bm-v2-galeria[data-portada="flotante"] .bm-v2-foto{display:none}
+.bm-v2-galeria[data-portada="flotante"] .bm-v2-foto[data-disco]{display:block;position:absolute;width:47%;aspect-ratio:1 / 1;border-radius:50%;border:3px solid var(--bm-flota-acento,#d2ae6a);box-shadow:0 24px 44px rgba(0,0,0,.5);animation:bm-portada-flota 5s ease-in-out infinite}
+.bm-v2-galeria[data-portada="flotante"] .bm-v2-foto[data-disco="1"]{left:8%;top:18%}
+.bm-v2-galeria[data-portada="flotante"] .bm-v2-foto[data-disco="2"]{right:8%;top:36%;animation-delay:-2.5s}
+.bm-v2-galeria[data-portada="flotante"][data-discos="1"] .bm-v2-foto[data-disco="1"]{left:21%;top:21%;width:58%}
+@keyframes bm-portada-flota{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-14px) rotate(2deg)}}
+.bm-v2-galeria__aro{position:absolute;left:50%;top:50%;width:86%;aspect-ratio:1 / 1;border-radius:50%;border:1px solid color-mix(in srgb,var(--bm-flota-acento,#d2ae6a) 40%,transparent);transform:translate(-50%,-50%);pointer-events:none}
+.bm-v2-galeria__aro--b{width:64%;border-style:dashed;animation:bm-portada-gira 40s linear infinite}
+@keyframes bm-portada-gira{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.bm-v2-galeria__mas{position:absolute;left:50%;top:50%;z-index:2;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;background:var(--bm-flota-acento,#d2ae6a);color:var(--bm-flota-bg,#1c1210);font-size:24px;font-weight:700;line-height:38px;text-align:center}
+.bm-v2-galeria__mas[hidden]{display:none}
+.bm-v2-galeria__ficha{position:absolute;z-index:2;max-width:46%;padding:7px 11px;border-radius:999px;background:#fbf6f1;color:#1c1210;font-size:12px;font-weight:700;line-height:1.2;box-shadow:0 8px 18px rgba(0,0,0,.4);animation:bm-portada-flota 6s ease-in-out infinite}
+.bm-v2-galeria__ficha--1{left:5%;top:7%}
+.bm-v2-galeria__ficha--2{right:5%;top:19%;animation-delay:-2s}
+.bm-v2-galeria__ficha--3{left:6%;bottom:13%;animation-delay:-3s}
+.bm-v2-galeria__ficha--4{right:5%;bottom:6%;animation-delay:-1s}
+.bm-v2-galeria[data-portada="flotante"] .bm-v2-galeria__cuenta,.bm-v2-galeria[data-portada="flotante"] .bm-v2-galeria__flecha,.bm-v2-galeria[data-portada="flotante"] .bm-v2-galeria__minis,.bm-v2-galeria[data-portada="flotante"] .bm-v2-galeria__puntos{display:none}
+@media (prefers-reduced-motion:reduce){.bm-v2-galeria__pista{scroll-behavior:auto}.bm-v2-galeria .bm-v2-foto img,.bm-v2-galeria .bm-v2-foto[data-disco],.bm-v2-galeria__destello,.bm-v2-galeria__luces i,.bm-v2-galeria__aro--b,.bm-v2-galeria__ficha,.bm-v2-galeria__barras i::after{animation:none!important}.bm-v2-galeria__destello,.bm-v2-galeria__luces{display:none}}
+</style>
+
+{% javascript %}
+// Se registra con el motor del kit (assets/bm-landing.js) sin importar qué script carga primero.
+(window.BMLandingBloques = window.BMLandingBloques || []).push(({ Bloque, actual, elegir, buscar, valorDeClave }) => {
+  if (customElements.get('bm-galeria__k8ba8a82c')) return;
+  customElements.define('bm-galeria__k8ba8a82c', class extends Bloque {
+    iniciar() {
+      this.pista = this.querySelector('[data-bm-pista]');
+      if (!this.pista) return;
+      this.fotos = [...this.pista.querySelectorAll('[data-bm-foto]')];
+      // Con fotos sueltas (hijos) las miniaturas no vienen del servidor: se arman con las mismas fotos.
+      const caja = this.querySelector('[data-bm-minis]');
+      if (caja && !caja.children.length) {
+        this.fotos.forEach((f, n) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'bm-v2-galeria__mini';
+          b.dataset.bmIr = String(n + 1);
+          b.dataset.color = f.dataset.color || '';
+          b.setAttribute('aria-label', `Ver foto ${n + 1}`);
+          const img = f.querySelector('img')?.cloneNode();
+          if (img) {
+            img.removeAttribute('fetchpriority');
+            img.loading = 'lazy';
+            img.sizes = '56px';
+            img.alt = '';
+            b.append(img);
+          }
+          caja.append(b);
+        });
+      }
+      this.minis = [...this.querySelectorAll('[data-bm-ir]')];
+      this.puntos = this.querySelector('[data-bm-puntos]');
+      this.cuenta = this.querySelector('[data-bm-cuenta]');
+      this.pos = Number(this.closest('[data-bm-pos-color]')?.dataset.bmPosColor || 0);
+      this.i = 0;
+      this.bloqueo = false;
+      let espera;
+      this.escuchar(this.pista, 'scroll', () => {
+        clearTimeout(espera);
+        espera = setTimeout(() => this.mirar(true), 90);
+      }, { passive: true });
+      this.querySelectorAll('[data-bm-paso]').forEach((b) => this.escuchar(b, 'click', () => this.ir(this.i + Number(b.dataset.bmPaso))));
+      this.minis.forEach((m) => this.escuchar(m, 'click', () => this.ir(Number(m.dataset.bmIr) - 1)));
+      this.alVariar((v, origen) => { if (origen !== 'galeria') this.mostrar(v, true); });
+      const inicio = Math.max(0, Number(this.dataset.inicio || 1) - 1);
+      this.ir(inicio, false);
+      const v = this.p && actual(this.p);
+      if (v) this.mostrar(v, false);
+      this.mirar(false);
+      this.portada();
+    }
+    // BM-PORTADA-V1: historias (avanza sola dentro del color que se ve), viva (luces) y flotante (discos).
+    portada() {
+      this.modo = this.dataset.portada || 'carrusel';
+      this.quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (this.modo === 'flotante') { this.discos(); return; }
+      if (this.modo === 'viva') {
+        const luces = this.querySelector('[data-bm-luces]');
+        if (luces && !luces.children.length && !this.quieto) {
+          for (let n = 0; n < 12; n += 1) {
+            const i = document.createElement('i');
+            const t = 8 + ((n * 37) % 26);
+            i.style.cssText = `width:${t}px;height:${t}px;left:${8 + ((n * 53) % 86)}%;top:${28 + ((n * 29) % 66)}%;animation-duration:${5 + (n % 6)}s;animation-delay:-${(n * 7) % 8}s`;
+            luces.append(i);
+          }
+        }
+        return;
+      }
+      if (this.modo !== 'historias') return;
+      this.barras = this.querySelector('[data-bm-barras]');
+      if (!this.barras) return;
+      this.visible = true;
+      const pausar = () => { this.tocando = true; this.reloj(); };
+      const seguir = () => { clearTimeout(this.suelta); this.suelta = setTimeout(() => { this.tocando = false; this.reloj(); }, 2500); };
+      ['pointerdown', 'touchstart'].forEach((e) => this.escuchar(this, e, pausar, { passive: true }));
+      ['pointerup', 'pointercancel', 'touchend'].forEach((e) => this.escuchar(this, e, seguir, { passive: true }));
+      if ('IntersectionObserver' in window) {
+        this.ojo = new IntersectionObserver((es) => { this.visible = es[0].isIntersecting; this.reloj(); }, { threshold: 0.5 });
+        this.ojo.observe(this);
+      }
+      this.escuchar(document, 'visibilitychange', () => this.reloj());
+      this.pintarBarras();
+      this.reloj();
+    }
+    parar() {
+      clearTimeout(this.turno);
+      clearTimeout(this.suelta);
+      this.ojo?.disconnect();
+    }
+    grupo() {
+      const k = this.fotos[this.i]?.dataset.color || '';
+      return k ? this.fotos.filter((x) => !x.dataset.color || x.dataset.color === k) : this.fotos;
+    }
+    pintarBarras() {
+      if (!this.barras) return;
+      const g = this.grupo();
+      const pos = g.indexOf(this.fotos[this.i]);
+      if (this.barras.children.length !== g.length) this.barras.replaceChildren(...g.map(() => document.createElement('i')));
+      [...this.barras.children].forEach((b, n) => {
+        const e = n < pos ? 'hecha' : n === pos ? 'ahora' : '';
+        if (b.dataset.e !== e || n === pos) { delete b.dataset.e; void b.offsetWidth; if (e) b.dataset.e = e; }
+      });
+    }
+    reloj() {
+      clearTimeout(this.turno);
+      const parada = this.quieto || this.tocando || !this.visible || document.hidden;
+      this.toggleAttribute('data-pausa', parada);
+      if (parada || this.modo !== 'historias') return;
+      this.turno = setTimeout(() => {
+        const g = this.grupo();
+        if (g.length > 1) {
+          const sig = g[(g.indexOf(this.fotos[this.i]) + 1) % g.length];
+          this.bloqueo = true;
+          this.ir(this.fotos.indexOf(sig));
+        }
+      }, Math.max(2, Number(this.dataset.segundos) || 3) * 1000);
+    }
+    discos(k) {
+      const color = k !== undefined ? k : (this.fotos[Math.max(0, Number(this.dataset.inicio || 1) - 1)]?.dataset.color || '');
+      const g = (color ? this.fotos.filter((x) => !x.dataset.color || x.dataset.color === color) : this.fotos).slice(0, 2);
+      this.fotos.forEach((f) => {
+        const n = g.indexOf(f);
+        if (n < 0) { delete f.dataset.disco; return; }
+        f.dataset.disco = String(n + 1);
+        const img = f.querySelector('img');
+        if (img) img.loading = 'eager';
+      });
+      this.dataset.discos = String(g.length);
+      const mas = this.querySelector('[data-bm-mas]');
+      if (mas) mas.hidden = g.length < 2;
+    }
+    indice() { return Math.max(0, Math.min(this.fotos.length - 1, Math.round(this.pista.scrollLeft / (this.pista.clientWidth || 1)))); }
+    ir(i, suave = true) {
+      const f = this.fotos[(i + this.fotos.length) % this.fotos.length];
+      if (!f) return;
+      const img = f.querySelector('img');
+      if (img) img.loading = 'eager';
+      const destino = f.offsetLeft - this.fotos[0].offsetLeft;
+      if (!suave || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        this.pista.scrollLeft = destino;
+        this.mirar(false);
+      } else {
+        this.pista.scrollTo({ left: destino, behavior: 'smooth' });
+      }
+    }
+    // La foto de la variante: su featured_media o la primera de su color. Si ya se ve una foto de ese color, no se
+    // mueve (cambiar de talla no saca a nadie de la foto que está mirando).
+    mostrar(v, suave) {
+      const k = this.pos ? v.c[this.pos - 1] : '';
+      if (this.dataset.portada === 'flotante') { if (k) this.discos(k); return; }
+      const vista = this.fotos[this.indice()];
+      if (k && vista && vista.dataset.color === k) return;
+      let i = v.m != null ? this.fotos.findIndex((f) => f.dataset.media === String(v.m)) : -1;
+      if (i < 0 && k) i = this.fotos.findIndex((f) => f.dataset.color === k);
+      if (i < 0) return;
+      this.bloqueo = true;
+      this.ir(i, suave);
+      if (!suave) this.bloqueo = false;
+    }
+    mirar(elegirColor) {
+      this.i = this.indice();
+      const f = this.fotos[this.i];
+      if (!f) return;
+      const k = f.dataset.color || '';
+      if (this.cuenta) this.cuenta.textContent = this.fotos.length > 1 ? `${this.i + 1} / ${this.fotos.length}` : '';
+      // Miniaturas y puntos del color que se está viendo (las genéricas, sin color, van con todos).
+      const grupo = k ? this.fotos.filter((x) => !x.dataset.color || x.dataset.color === k) : this.fotos;
+      this.minis.forEach((m) => {
+        const foto = this.fotos[Number(m.dataset.bmIr) - 1];
+        m.hidden = !grupo.includes(foto);
+        m.setAttribute('aria-current', foto === f ? 'true' : 'false');
+      });
+      if (this.puntos) {
+        if (this.puntos.dataset.de !== k || this.puntos.children.length !== (grupo.length > 1 ? grupo.length : 0)) {
+          this.puntos.dataset.de = k;
+          this.puntos.replaceChildren(...(grupo.length > 1 ? grupo.map((x) => {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.tabIndex = -1;
+            b.addEventListener('click', () => this.ir(this.fotos.indexOf(x)));
+            return b;
+          }) : []));
+        }
+        [...this.puntos.children].forEach((b, n) => b.setAttribute('aria-current', grupo[n] === f ? 'true' : 'false'));
+      }
+      if (elegirColor && !this.bloqueo && this.p && this.pos && k) {
+        const v = actual(this.p);
+        if (v && v.c[this.pos - 1] !== k) {
+          const valor = valorDeClave(this.p, this.pos, k);
+          const nueva = valor !== undefined ? buscar(this.p, { [this.pos]: valor }) : null;
+          if (nueva) elegir(this.p, nueva, 'galeria');
+        }
+      }
+      if (elegirColor) this.bloqueo = false;
+      this.fotos.forEach((x) => x.toggleAttribute('data-actual', x === f));
+      if (this.modo === 'historias') { this.pintarBarras(); this.reloj(); }
+    }
+  });
+});
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Galería por color",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Fotos del producto agrupadas por color con su texto alternativo (negro, negro_2…). Con bloques «Foto suelta» adentro, la galería usa esas fotos en su lugar. El color con que abre se elige en la sección."
+    },
+    {
+      "type": "select",
+      "id": "portada",
+      "label": "Primera pantalla",
+      "info": "Carrusel: se desliza. Historias: las fotos pasan solas con barritas de avance. Foto viva: la foto se acerca despacio, con destello y luces. Kit flotante: las dos primeras fotos en discos que flotan.",
+      "options": [
+        {
+          "value": "carrusel",
+          "label": "Carrusel"
+        },
+        {
+          "value": "historias",
+          "label": "Historias"
+        },
+        {
+          "value": "viva",
+          "label": "Foto viva"
+        },
+        {
+          "value": "flotante",
+          "label": "Kit flotante"
+        }
+      ],
+      "default": "carrusel"
+    },
+    {
+      "type": "range",
+      "id": "segundos",
+      "label": "Segundos por foto (Historias)",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "unit": "s",
+      "default": 3
+    },
+    {
+      "type": "textarea",
+      "id": "fichas",
+      "label": "Etiquetas del kit flotante",
+      "info": "Una por línea, hasta cuatro. Solo lo que el producto trae."
+    },
+    {
+      "type": "color",
+      "id": "flota_fondo",
+      "label": "Fondo del kit flotante",
+      "default": "#1c1210"
+    },
+    {
+      "type": "color",
+      "id": "flota_acento",
+      "label": "Acento del kit flotante",
+      "default": "#d2ae6a"
+    },
+    {
+      "type": "select",
+      "id": "proporcion",
+      "label": "Proporción de las fotos",
+      "options": [
+        {
+          "value": "3 / 4",
+          "label": "3:4 vertical"
+        },
+        {
+          "value": "4 / 5",
+          "label": "4:5 vertical"
+        },
+        {
+          "value": "1 / 1",
+          "label": "Cuadrada"
+        }
+      ],
+      "default": "3 / 4"
+    },
+    {
+      "type": "select",
+      "id": "tira",
+      "label": "Bajo la foto",
+      "options": [
+        {
+          "value": "miniaturas",
+          "label": "Miniaturas del color"
+        },
+        {
+          "value": "puntos",
+          "label": "Puntos"
+        },
+        {
+          "value": "nada",
+          "label": "Nada"
+        }
+      ],
+      "default": "miniaturas"
+    },
+    {
+      "type": "checkbox",
+      "id": "contador",
+      "label": "Mostrar «1 / 8» sobre la foto",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "bm-b-foto"
+    }
+  ]
+}
+{% endschema %}

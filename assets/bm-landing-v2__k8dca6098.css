@@ -1,0 +1,65 @@
+/* BM-KIT-COPIA assets/bm-landing-v2.css k8dca6098: copia inmutable del kit para las páginas que la nombran; nunca se edita en el tema (otra versión es otro archivo). */
+/* BreitMarket · kit de landing v2: lo común a todas las secciones v2. Se carga DESPUÉS de bm-landing.css (kit v1,
+   congelado: lo usan productos publicados, y la v2 reusa sus clases de escenas, láminas, reseñas, tablas, botón y
+   movimiento). El estilo propio de cada bloque vive en su `{% stylesheet %}` (blocks/bm-b-*.liquid), que Shopify
+   junta en styles.css solo con los bloques de la página.
+   Fuente canónica: claude-skills/core/tema_landing. Se instala con core/landing_tema.py. */
+.bm-v2 [hidden]{display:none!important}
+.bm-v2-aviso-editor{margin:0;padding:10px 12px;border:1px dashed #b45309;border-radius:8px;background:#fffbeb;color:#92400e;font:13px/1.4 system-ui,sans-serif;text-align:left}
+.bm-codigo{min-width:0}
+
+/* Una demostración sola ocupa el ancho; ningún formato fuerza un recorte del producto. */
+.bm-v2 .bm-videos__lista:has(>.bm-videos__item:only-child){grid-auto-columns:100%}
+.bm-v2 [data-bm-video-proporcion="original"] .bm-videos__v{aspect-ratio:auto;height:auto}
+.bm-v2 [data-bm-video-proporcion="cuadrado"] .bm-videos__v{aspect-ratio:1}
+.bm-v2 [data-bm-video-proporcion="vertical"] .bm-videos__v{aspect-ratio:9/16}
+.bm-v2 [data-bm-video-proporcion="horizontal"] .bm-videos__v{aspect-ratio:16/9}
+.bm-v2 [data-bm-video-ajuste="contain"] .bm-videos__v{object-fit:contain}
+.bm-v2 [data-bm-video-ajuste="cover"] .bm-videos__v{object-fit:cover}
+.bm-video__control{min-height:44px;min-width:44px;margin-top:8px;padding:10px 14px;border:1px solid currentColor;border-radius:8px;background:transparent;color:inherit;font:inherit;cursor:pointer}
+.bm-video__control:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+
+/* BM-CARRUSEL-SIEMPRE-V1 · BM-CARRUSEL-BARRA-V1 · Carruseles (titular, 2026-11-08: «la barra más delgada», «quedó muy pegado
+   a la card», «que se entienda que hay un carrusel y que se está moviendo»). La barra del navegador se oculta (en el
+   celular ni se ve) y bm-landing.js pone debajo de cada carrusel una línea propia de 4 px, centrada, con aire respecto a la
+   tarjeta: el tramo claro dice qué parte se ve y avanza con el carrusel. Todo carrusel avanza solo (bm-landing.js), así
+   que la conversación en chat también se desliza en horizontal en cualquier formato. */
+.bm-v2.bm-resenas--chat .bm-resenas__lista{grid-auto-flow:column;grid-auto-columns:minmax(210px,72%);overflow-x:auto;scroll-snap-type:x mandatory}
+/* BM-CHAT-COMPACTO-V1 (titular, 2026-11-08: «ver un poco más pequeños esos chats… las cargas están muy grandes»): la misma
+   conversación en una tarjeta más angosta y baja; se asoma la siguiente, así se entiende que es un carrusel. */
+@media(min-width:750px){.bm-v2.bm-resenas--chat .bm-resenas__lista{grid-auto-columns:minmax(220px,27%)}}
+.bm-v2.bm-resenas--chat .bm-resena{border-radius:26px;box-shadow:0 8px 20px #0002}
+.bm-v2.bm-resenas--chat .bm-chat__estado{padding:10px 16px 4px;font-size:11px}
+.bm-v2.bm-resenas--chat .bm-resena__cabecera{padding:6px 10px 8px;min-height:44px;gap:7px}
+.bm-v2.bm-resenas--chat .bm-resena__avatar{width:30px;height:30px}
+.bm-v2.bm-resenas--chat .bm-resena__autor{font-size:12px}
+.bm-v2.bm-resenas--chat .bm-chat__volver{font-size:26px}
+.bm-v2.bm-resenas--chat .bm-chat__llamada{font-size:16px}
+.bm-v2.bm-resenas--chat .bm-chat__mensajes{gap:7px;padding:10px 9px 12px;background-size:16px 16px}
+.bm-v2.bm-resenas--chat .bm-chat__dia{padding:3px 10px;font-size:10.5px}
+.bm-v2.bm-resenas--chat .bm-resena__texto,.bm-v2.bm-resenas--chat .bm-resena__respuesta{font-size:13px;line-height:1.38;padding:7px 9px}
+.bm-v2.bm-resenas--chat .bm-resena__foto{padding:5px;border-radius:10px}
+.bm-v2.bm-resenas--chat .bm-chat__entrada{gap:9px;padding:7px 10px 12px;font-size:18px}
+.bm-v2.bm-resenas--chat .bm-chat__campo{height:26px}
+.bm-v2.bm-resenas--chat .bm-chat__micro{width:26px;height:26px;font-size:12px}
+.bm-v2.bm-resenas--chat .bm-resenas__lista>*{scroll-snap-align:start}
+.bm-v2 :is(.bm-galeria__lista,.bm-resenas__lista,.bm-videos__lista){scrollbar-width:none}
+.bm-v2 :is(.bm-galeria__lista,.bm-resenas__lista,.bm-videos__lista)::-webkit-scrollbar{display:none}
+.bm-v2 .bm-carrusel__barra{position:relative;width:min(140px,40%);height:4px;margin:18px auto 4px;border-radius:999px;background:color-mix(in srgb,currentColor 16%,transparent);overflow:hidden}
+.bm-v2 .bm-carrusel__barra[hidden]{display:none}
+.bm-v2 .bm-carrusel__barra>span{display:block;height:100%;width:30%;border-radius:inherit;background:color-mix(in srgb,currentColor 70%,transparent);transition:transform .45s ease,width .2s ease}
+@media (prefers-reduced-motion:reduce){.bm-v2 .bm-carrusel__barra>span{transition:none}}
+
+/* BM-CABEZA-V1 · Encabezado del sistema visual (titular, 2026-11-11: «este nivel de diseño en todas las plantillas y
+   productos»). Un solo estilo para toda sección v2 con título (snippets/bm-v2-cabeza): etiqueta pequeña en píldora con
+   punto, título fuerte, remate en cursiva del color de acento y bajada corta. Solo se enciende cuando la sección trae
+   «Remate»: sin él la cabecera es la de siempre (bm-landing.css). El color sale de `--bm-cabeza-c` («Color de la
+   etiqueta y el remate» de la sección; vacío, el del texto). La tipografía es la del tema: solo el remate va en cursiva. */
+.bm-v2 .bm-cabeza{--bm-cabeza-color:var(--bm-cabeza-c,currentColor);padding-bottom:var(--bm-cabecera-gap,18px);text-align:var(--bm-align,center)}
+.bm-v2 .bm-cabeza>*{margin:0}
+.bm-v2 .bm-cabeza .bm-cabeza__eti{display:inline-flex;align-items:center;gap:7px;max-width:100%;margin:0 0 12px;padding:6px 12px;border:1px solid color-mix(in srgb,var(--bm-cabeza-color) 28%,transparent);border-radius:999px;background:color-mix(in srgb,var(--bm-cabeza-color) 10%,transparent);color:var(--bm-cabeza-color);font-size:11px;font-weight:700;line-height:1.2;letter-spacing:.16em;text-transform:uppercase;opacity:1}
+.bm-v2 .bm-cabeza .bm-cabeza__eti::before{content:"";flex:0 0 auto;width:5px;height:5px;border-radius:50%;background:currentColor}
+.bm-v2 .bm-cabeza :is(h1,h2,h3){margin:0;font-size:var(--bm-titulo-tam,30px);line-height:1.08;letter-spacing:-.01em;text-wrap:balance}
+.bm-v2 .bm-cabeza .bm-cabeza__remate{margin:4px 0 0;color:var(--bm-cabeza-color);font-size:21px;font-style:italic;font-weight:500;line-height:1.2;opacity:1;text-wrap:balance}
+.bm-v2 .bm-cabeza .bm-cabeza__bajada{max-width:34em;margin:12px auto 0;font-size:15px;line-height:1.5;opacity:.82}
+.bm-v2 .bm-escena__panel .bm-cabeza{padding-bottom:6px}

@@ -1,0 +1,63 @@
+{%- comment -%} BM-KIT-COPIA blocks/bm-b-item.liquid k5b4b49f3: copia inmutable del kit para las páginas que la nombran; nunca se edita en el tema (otra versión es otro archivo). {%- endcomment -%}
+{%- comment -%}
+  Bloque «Elemento» de «Beneficios»: ícono, símbolo o número, título y texto. Con «Numerar» en la sección, el
+  número sale del orden (contador CSS), así se puede reordenar sin renumerar.
+  Fuente canónica: claude-skills/core/tema_landing (kit v2: un theme block por tipo, blocks/bm-b-*).
+{%- endcomment -%}
+{%- assign b = block.settings -%}
+<div class="bm-item" data-bm-bloque="item" {{ block.shopify_attributes }}>
+  {%- if b.icono != blank -%}
+    <div class="bm-item__icono">{{ b.icono | image_url: width: 200 | image_tag: loading: 'lazy', widths: '100, 200', alt: '' }}</div>
+  {%- elsif b.simbolo != blank -%}
+    <span class="bm-item__simbolo" aria-hidden="true">{{ b.simbolo | escape }}</span>
+  {%- elsif section.settings.numerar -%}
+    <span class="bm-item__simbolo bm-v2-numero" aria-hidden="true"></span>
+  {%- endif -%}
+  <div>
+    {%- if b.titulo != blank -%}<p class="bm-item__titulo">{{ b.titulo | escape }}</p>{%- endif -%}
+    {%- if b.texto != blank -%}<p class="bm-item__texto">{{ b.texto | escape }}</p>{%- endif -%}
+  </div>
+</div>
+
+<style data-bm-kit="k5b4b49f3">
+.bm-items__grid{counter-reset:bm-paso}
+.bm-item{counter-increment:bm-paso}
+.bm-v2-numero::before{content:counter(bm-paso)}
+/* BM-CAMINO-V1 · «Camino en pasos»: una columna centrada de pasos con su número y una línea punteada que los une. */
+.bm-items--camino .bm-items__grid{grid-template-columns:minmax(0,1fr);gap:0;max-width:400px;margin-inline:auto}
+.bm-items--camino .bm-item{position:relative;align-items:flex-start;gap:14px;padding:0 0 22px;border-radius:0;background:transparent;text-align:left}
+.bm-items--camino .bm-item:last-child{padding-bottom:0}
+.bm-items--camino .bm-item:not(:last-child)::before{content:"";position:absolute;left:calc(var(--bm-icono,44px) / 2 - 1px);top:var(--bm-icono,44px);bottom:0;border-left:2px dashed color-mix(in srgb,var(--bm-acento,currentColor) 50%,transparent)}
+.bm-items--camino .bm-item__texto{opacity:.85}
+</style>
+
+{% schema %}
+{
+  "name": "Elemento",
+  "tag": null,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "icono",
+      "label": "Icono o foto pequeña"
+    },
+    {
+      "type": "text",
+      "id": "simbolo",
+      "label": "Símbolo o número (si no hay icono)"
+    },
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título",
+      "default": "Beneficio"
+    },
+    {
+      "type": "textarea",
+      "id": "texto",
+      "label": "Texto",
+      "default": "Qué cambia para el cliente."
+    }
+  ]
+}
+{% endschema %}
